@@ -36,8 +36,8 @@ class PatientController {
     @Cacheable (cacheNames = "patientsCache")
     @Operation (summary = "Get a list of patients")
     @ResponseStatus (HttpStatus.OK)
-    public ReadPatientsResponse getAllPatients (@PathVariable Integer page,
-                                                @PathVariable Integer size) {
+    public ReadPatientsResponse getAllPatients (@RequestParam Integer page,
+                                                @RequestParam Integer size) {
         return ReadPatientsResponse.of(readQuery.execute(PaginationCriteria.of(page, size)));
     }
     

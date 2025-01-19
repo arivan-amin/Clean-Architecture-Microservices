@@ -33,8 +33,8 @@ public class JpaPatientStorage implements PatientStorage {
     }
     
     public PageData extractPageData (Page<JpaPatient> page) {
-        return PageData.of(page.getSize(), page.getTotalElements(), page.getTotalPages(),
-            page.getNumber());
+        return PageData.of(page.getNumber(), page.getTotalPages(), page.getSize(),
+            page.getTotalElements());
     }
     
     @Override
