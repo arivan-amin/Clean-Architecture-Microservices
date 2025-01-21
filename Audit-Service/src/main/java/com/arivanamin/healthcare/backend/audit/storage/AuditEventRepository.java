@@ -1,11 +1,13 @@
 package com.arivanamin.healthcare.backend.audit.storage;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 public interface AuditEventRepository extends MongoRepository<JpaAuditEvent, String> {
     
-    List<JpaAuditEvent> findAllByRecordedAtBetween (LocalDateTime start, LocalDateTime end);
+    Page<JpaAuditEvent> findAllByRecordedAtBetween (LocalDateTime start, LocalDateTime end,
+                                                    Pageable pageable);
 }

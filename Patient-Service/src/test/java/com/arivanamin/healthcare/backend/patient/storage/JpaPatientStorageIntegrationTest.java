@@ -15,7 +15,6 @@ class JpaPatientStorageIntegrationTest implements BaseDatabaseTest {
     
     @Autowired
     private PatientRepository repository;
-    
     private JpaPatientStorage persistence;
     
     private int numberOfSavedEntities;
@@ -51,7 +50,8 @@ class JpaPatientStorageIntegrationTest implements BaseDatabaseTest {
     }
     
     private void whenFindAllIsCalled () {
-        expectedPatients = persistence.findAll();
+        expectedPatients = persistence.findAll(PAGINATION_CRITERIA)
+            .getContent();
     }
     
     private void thenAssertThatAllEntitiesOfRepositoryAreReturned (List<Patient> result) {
@@ -111,7 +111,8 @@ class JpaPatientStorageIntegrationTest implements BaseDatabaseTest {
     }
     
     private void thenAssertThatEntityIsDeletedFromRepository () {
-        assertThat(persistence.findAll()
+        assertThat(persistence.findAll(PAGINATION_CRITERIA)
+            .getContent()
             .size()).isEqualTo(numberOfSavedEntities - 1);
         assertThat(repository.findById(expectedId)).isEmpty();
     }

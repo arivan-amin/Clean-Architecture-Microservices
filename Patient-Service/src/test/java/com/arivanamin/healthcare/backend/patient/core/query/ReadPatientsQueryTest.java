@@ -1,5 +1,6 @@
 package com.arivanamin.healthcare.backend.patient.core.query;
 
+import com.arivanamin.healthcare.backend.base.domain.pagination.PaginatedResponse;
 import com.arivanamin.healthcare.backend.patient.core.entity.Patient;
 import com.arivanamin.healthcare.backend.patient.core.persistence.PatientStorage;
 import com.arivanamin.healthcare.backend.testing.architecture.bases.BaseUnitTest;
@@ -13,34 +14,36 @@ import static org.mockito.Mockito.*;
 class ReadPatientsQueryTest implements BaseUnitTest {
     
     private final List<Patient> patients = List.of();
-    private PatientStorage persistence;
+    
+    private PatientStorage storage;
     private ReadPatientsQuery query;
     
     @Test
     void shouldCallPersistenceFindAll () {
-        givenQueryWithMockPersistence();
+        givenQueryWithMockStorage();
         whenQueryIsExecuted();
         thenVerifyQueryCallsFindAll();
     }
     
-    private void givenQueryWithMockPersistence () {
-        persistence = mock(PatientStorage.class);
-        when(persistence.findAll()).thenReturn(patients);
-        query = new ReadPatientsQuery(persistence);
+    private void givenQueryWithMockStorage () {
+        storage = mock(PatientStorage.class);
+        when(storage.findAll(PAGINATION_CRITERIA)).thenReturn(
+            PaginatedResponse.of(PAGE_DATA, patients));
+        query = new ReadPatientsQuery(storage);
     }
     
-    private List<Patient> whenQueryIsExecuted () {
-        return query.execute();
+    private PaginatedResponse<Patient> whenQueryIsExecuted () {
+        return query.execute(PAGINATION_CRITERIA);
     }
     
     private void thenVerifyQueryCallsFindAll () {
-        verify(persistence, times(1)).findAll();
+        verify(storage, times(1)).findAll(PAGINATION_CRITERIA);
     }
     
     @Test
     void shouldReturnResultOfPersistenceFindAll () {
-        givenQueryWithMockPersistence();
-        List<Patient> result = whenQueryIsExecuted();
+        givenQueryWithMockStorage();
+        List<Patient> result = whenQueryIsExecuted().getContent();
         thenVerifyFindAllResultIsReturned(result);
     }
     

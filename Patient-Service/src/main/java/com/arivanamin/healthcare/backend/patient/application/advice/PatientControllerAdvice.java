@@ -2,6 +2,8 @@ package com.arivanamin.healthcare.backend.patient.application.advice;
 
 import com.arivanamin.healthcare.backend.patient.core.exception.PatientAlreadyExistsException;
 import com.arivanamin.healthcare.backend.patient.core.exception.PatientNotFoundException;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ProblemDetail;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -18,7 +20,8 @@ import static org.springframework.http.ProblemDetail.forStatusAndDetail;
 
 @Slf4j
 @RestControllerAdvice
-public class PatientControllerAdvice {
+@NoArgsConstructor (access = AccessLevel.PRIVATE)
+public final class PatientControllerAdvice {
     
     @ExceptionHandler (PatientNotFoundException.class)
     ProblemDetail handlePatientNotFound (PatientNotFoundException exception) {

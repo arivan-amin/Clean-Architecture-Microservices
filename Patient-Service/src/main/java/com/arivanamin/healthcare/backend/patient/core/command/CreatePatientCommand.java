@@ -20,14 +20,7 @@ public class CreatePatientCommand {
     }
     
     private boolean doesPatientExist (Patient patient) {
-        return storage.findAll()
-            .stream()
-            .anyMatch(p -> checkEmailDuplication(patient, p));
-    }
-    
-    private static boolean checkEmailDuplication (Patient patientToBeCreated,
-                                                  Patient existingPatient) {
-        return patientToBeCreated.getEmail()
-            .equals(existingPatient.getEmail());
+        return storage.findByEmail(patient.getEmail())
+            .isPresent();
     }
 }

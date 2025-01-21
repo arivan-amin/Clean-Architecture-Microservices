@@ -6,7 +6,7 @@ import com.arivanamin.healthcare.backend.patient.core.persistence.PatientStorage
 import com.arivanamin.healthcare.backend.testing.architecture.bases.BaseUnitTest;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -25,17 +25,17 @@ class CreatePatientCommandTest implements BaseUnitTest {
     
     @Test
     void shouldThrowExceptionWhenPatientExists () {
-        givenCommandWithMockFindAll();
+        givenCommandWithMockFindByEmail();
         whenEmailIsDuplicate();
         thenThrowPatientAlreadyExistsException();
     }
     
-    private void givenCommandWithMockFindAll () {
+    private void givenCommandWithMockFindByEmail () {
         persistence = mock(PatientStorage.class);
         command = new CreatePatientCommand(persistence);
         Patient patient = RANDOM.nextObject(Patient.class);
         patient.setEmail(emailAddress);
-        when(persistence.findAll()).thenReturn(List.of(patient));
+        when(persistence.findByEmail(emailAddress)).thenReturn(Optional.of(patient));
     }
     
     private void whenEmailIsDuplicate () {

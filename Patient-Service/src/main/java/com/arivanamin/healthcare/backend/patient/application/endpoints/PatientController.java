@@ -1,5 +1,6 @@
 package com.arivanamin.healthcare.backend.patient.application.endpoints;
 
+import com.arivanamin.healthcare.backend.base.domain.pagination.PaginationCriteria;
 import com.arivanamin.healthcare.backend.patient.application.request.CreatePatientRequest;
 import com.arivanamin.healthcare.backend.patient.application.request.UpdatePatientRequest;
 import com.arivanamin.healthcare.backend.patient.application.response.*;
@@ -35,8 +36,9 @@ class PatientController {
     @Cacheable (cacheNames = "patientsCache")
     @Operation (summary = "Get a list of patients")
     @ResponseStatus (HttpStatus.OK)
-    public ReadPatientsResponse getAllPatients () {
-        return ReadPatientsResponse.of(readQuery.execute());
+    public ReadPatientsResponse getAllPatients (@RequestParam Integer page,
+                                                @RequestParam Integer size) {
+        return ReadPatientsResponse.of(readQuery.execute(PaginationCriteria.of(page, size)));
     }
     
     @GetMapping (GET_PATIENT_BY_ID_URL)
