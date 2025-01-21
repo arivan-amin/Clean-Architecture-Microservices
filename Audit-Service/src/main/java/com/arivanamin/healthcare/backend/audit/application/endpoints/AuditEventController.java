@@ -29,8 +29,8 @@ class AuditEventController {
     @GetMapping (GET_EVENTS_URL)
     @Operation (summary = "Get a list of auditEvents")
     @ResponseStatus (HttpStatus.OK)
-    public ReadAuditEventsResponse getAllAuditEvents (@PathVariable long start,
-                                                      @PathVariable long end,
+    public ReadAuditEventsResponse getAllAuditEvents (@RequestParam long start,
+                                                      @RequestParam long end,
                                                       @RequestParam Integer page,
                                                       @RequestParam Integer size) {
         return ReadAuditEventsResponse.of(
