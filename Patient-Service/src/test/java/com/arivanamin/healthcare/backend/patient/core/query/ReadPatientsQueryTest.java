@@ -43,7 +43,7 @@ class ReadPatientsQueryTest implements BaseUnitTest {
     @Test
     void shouldReturnResultOfPersistenceFindAll () {
         givenQueryWithMockStorage();
-        List<Patient> result = whenQueryIsExecuted().getElements();
+        List<Patient> result = whenQueryIsExecuted().getContent();
         thenVerifyFindAllResultIsReturned(result);
     }
     

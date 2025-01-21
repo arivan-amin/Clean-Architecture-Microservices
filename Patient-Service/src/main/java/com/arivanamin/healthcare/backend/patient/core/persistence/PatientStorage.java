@@ -9,7 +9,7 @@ import java.util.UUID;
 
 public interface PatientStorage {
     
-    PaginatedResponse<Patient> findAll (PaginationCriteria paginationCriteria);
+    PaginatedResponse<Patient> findAll (PaginationCriteria criteria);
     
     Optional<Patient> findById (UUID id);
     

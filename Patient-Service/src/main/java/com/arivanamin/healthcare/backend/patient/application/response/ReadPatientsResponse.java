@@ -11,11 +11,11 @@ import java.util.List;
 public class ReadPatientsResponse {
     
     PageData pageData;
-    List<PatientResponse> responses;
+    List<PatientResponse> patients;
     
     public static ReadPatientsResponse of (PaginatedResponse<Patient> paginatedResponse) {
         return new ReadPatientsResponse(paginatedResponse.getPageData(),
-            paginatedResponse.getElements()
+            paginatedResponse.getContent()
                 .stream()
                 .map(PatientResponse::of)
                 .toList());

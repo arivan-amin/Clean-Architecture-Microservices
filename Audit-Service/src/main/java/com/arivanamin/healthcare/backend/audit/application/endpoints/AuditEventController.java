@@ -5,6 +5,7 @@ import com.arivanamin.healthcare.backend.audit.application.response.AuditEventRe
 import com.arivanamin.healthcare.backend.audit.application.response.ReadAuditEventsResponse;
 import com.arivanamin.healthcare.backend.audit.core.query.*;
 import com.arivanamin.healthcare.backend.audit.core.util.AuditPeriod;
+import com.arivanamin.healthcare.backend.base.domain.pagination.PaginationCriteria;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -29,16 +30,21 @@ class AuditEventController {
     @Operation (summary = "Get a list of auditEvents")
     @ResponseStatus (HttpStatus.OK)
     public ReadAuditEventsResponse getAllAuditEvents (@PathVariable long start,
-                                                      @PathVariable long end) {
-        return ReadAuditEventsResponse.of(readQuery.execute(AuditPeriod.of(start, end)));
+                                                      @PathVariable long end,
+                                                      @RequestParam Integer page,
+                                                      @RequestParam Integer size) {
+        return ReadAuditEventsResponse.of(
+            readQuery.execute(AuditPeriod.of(start, end), PaginationCriteria.of(page, size)));
     }
     
     @GetMapping (GET_EVENT_BY_CRITERIA_URL)
     @Operation (summary = "Get a list of auditEvents by criteria")
     @ResponseStatus (HttpStatus.OK)
     public ReadAuditEventsResponse getAllAuditEventsByCriteria (
-        @RequestBody @Valid AuditEventCriteria criteria) {
-        return ReadAuditEventsResponse.of(readByCriteriaQuery.execute(criteria.toDomain()));
+        @RequestBody @Valid AuditEventCriteria criteria, @RequestParam Integer page,
+        @RequestParam Integer size) {
+        return ReadAuditEventsResponse.of(
+            readByCriteriaQuery.execute(criteria.toDomain(), PaginationCriteria.of(page, size)));
     }
     
     @GetMapping (GET_EVENT_BY_ID_URL)

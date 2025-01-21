@@ -53,7 +53,8 @@ class JpaAuditEventStorageIntegrationTest implements BaseMongoDatabaseTest {
     
     private void whenFindAllIsCalled () {
         expectedAuditEvents = persistence.findAll(LocalDateTime.now()
-            .minusDays(1), LocalDateTime.now());
+                .minusDays(1), LocalDateTime.now(), PAGINATION_CRITERIA)
+            .getContent();
     }
     
     private void thenAssertThatAllEntitiesOfRepositoryAreReturned (List<AuditEvent> result) {

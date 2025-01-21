@@ -19,8 +19,8 @@ public class JpaPatientStorage implements PatientStorage {
     private final PatientRepository repository;
     
     @Override
-    public PaginatedResponse<Patient> findAll (PaginationCriteria pagination) {
-        Page<JpaPatient> page = repository.findAll(of(pagination.getPage(), pagination.getSize()));
+    public PaginatedResponse<Patient> findAll (PaginationCriteria criteria) {
+        Page<JpaPatient> page = repository.findAll(of(criteria.getPage(), criteria.getSize()));
         
         List<Patient> elements = fetchAllPatientsAndMapToEntity(page.getContent());
         return PaginatedResponse.of(extractPageData(page), elements);
