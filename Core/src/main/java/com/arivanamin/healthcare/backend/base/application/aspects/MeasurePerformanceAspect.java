@@ -24,6 +24,6 @@ class MeasurePerformanceAspect {
         
         String methodName = joinPoint.getSignature()
             .toShortString();
-        return executeThrowable(methodName, joinPoint::proceed);
+        return executeThrowable(joinPoint::proceed);
     }
 }

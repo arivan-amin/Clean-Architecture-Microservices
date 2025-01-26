@@ -15,8 +15,7 @@ class SpringSchedulerLoggingAspect {
     
     @Around ("@annotation(org.springframework.scheduling.annotation.Scheduled)")
     public Object logScheduler (ProceedingJoinPoint joinPoint) throws Throwable {
-        return ExecuteAndLogPerformance.executeThrowable(initJobName(joinPoint),
-            joinPoint::proceed);
+        return ExecuteAndLogPerformance.executeThrowable(joinPoint::proceed);
     }
     
     private String initJobName (JoinPoint joinPoint) {
