@@ -17,7 +17,7 @@
     <packaging>pom</packaging>
     <name>Backend</name>
     <description>Backend Parent Module</description>
-    <url>https://github.com/arivan-amin/Healthcare-Management-Microservices</url>
+    <url>https://github.com/arivan-amin/Clean-Architecture-Microservices</url>
 
     <properties>
         <java.version>21</java.version>
