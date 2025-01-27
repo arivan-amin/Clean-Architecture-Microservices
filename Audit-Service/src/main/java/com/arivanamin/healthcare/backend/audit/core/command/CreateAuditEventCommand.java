@@ -6,9 +6,9 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class CreateAuditEventCommand {
-    
+
     private final AuditEventStorage storage;
-    
+
     public String execute (AuditEvent patient) {
         return storage.create(patient);
     }

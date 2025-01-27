@@ -6,5 +6,5 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @SuppressWarnings ({ "MarkerInterface", "NewClassNamingConvention" })
 @ExtendWith (SpringExtension.class)
 public interface BaseIntegrationTest extends BaseUnitTest {
-    
+
 }

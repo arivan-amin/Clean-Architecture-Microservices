@@ -14,7 +14,7 @@ import static org.springframework.http.ProblemDetail.forStatusAndDetail;
 
 @RestControllerAdvice
 class ApiGatewayAdvice {
-    
+
     @ExceptionHandler (NoResourceFoundException.class)
     ProblemDetail handleResourceNotFound (NoResourceFoundException exception) {
         ProblemDetail detail = forStatusAndDetail(NOT_FOUND, exception.getMessage());
@@ -27,7 +27,7 @@ class ApiGatewayAdvice {
         detail.setDetail(exception.getMessage());
         return detail;
     }
-    
+
     @ExceptionHandler (Exception.class)
     ProblemDetail handleGeneralExceptions (Exception exception) {
         ProblemDetail detail = forStatusAndDetail(INTERNAL_SERVER_ERROR, exception.getMessage());

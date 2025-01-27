@@ -18,7 +18,7 @@ import static org.springframework.http.ProblemDetail.forStatusAndDetail;
 @Slf4j
 @RestControllerAdvice
 public class AuditControllerAdvice {
-    
+
     @ExceptionHandler (AuditEventNotFoundException.class)
     ProblemDetail handleAuditEventNotFound (AuditEventNotFoundException exception) {
         ProblemDetail detail = forStatusAndDetail(NOT_FOUND, exception.getMessage());
@@ -31,7 +31,7 @@ public class AuditControllerAdvice {
         log.error("AuditEventNotFoundException advice", exception);
         return detail;
     }
-    
+
     @ExceptionHandler (MissingPathVariableException.class)
     ProblemDetail handleMissingPathVariable (MissingPathVariableException exception) {
         ProblemDetail detail = forStatusAndDetail(BAD_REQUEST, exception.getMessage());
@@ -45,7 +45,7 @@ public class AuditControllerAdvice {
         log.error("MissingPathVariableException advice", exception);
         return detail;
     }
-    
+
     @ExceptionHandler (HttpMessageNotReadableException.class)
     ProblemDetail handleMissingRequestBody (HttpMessageNotReadableException exception) {
         ProblemDetail detail = forStatusAndDetail(BAD_REQUEST, exception.getMessage());
@@ -59,7 +59,7 @@ public class AuditControllerAdvice {
         log.error("HttpMessageNotReadableException advice", exception);
         return detail;
     }
-    
+
     @ExceptionHandler (MethodArgumentNotValidException.class)
     ProblemDetail handleMethodArgumentNotValid (MethodArgumentNotValidException exception) {
         ProblemDetail detail = forStatusAndDetail(BAD_REQUEST, exception.getMessage());
@@ -73,7 +73,7 @@ public class AuditControllerAdvice {
         log.error("MethodArgumentNotValidException advice", exception);
         return detail;
     }
-    
+
     @ExceptionHandler (MissingServletRequestParameterException.class)
     ProblemDetail handleMissingParameterException (
         MissingServletRequestParameterException exception) {
@@ -88,7 +88,7 @@ public class AuditControllerAdvice {
         log.error("MissingServletRequestParameterException advice", exception);
         return detail;
     }
-    
+
     @ExceptionHandler (NoResourceFoundException.class)
     ProblemDetail handleResourceNotFound (NoResourceFoundException exception) {
         ProblemDetail detail = forStatusAndDetail(NOT_FOUND, exception.getMessage());
@@ -103,7 +103,7 @@ public class AuditControllerAdvice {
         log.error("NoResourceFoundException advice", exception);
         return detail;
     }
-    
+
     @ExceptionHandler (Exception.class)
     ProblemDetail handleGeneralExceptions (Exception exception) {
         ProblemDetail detail = forStatusAndDetail(INTERNAL_SERVER_ERROR, exception.getMessage());

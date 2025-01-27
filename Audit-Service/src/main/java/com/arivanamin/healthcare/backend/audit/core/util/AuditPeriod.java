@@ -10,10 +10,10 @@ import static com.arivanamin.healthcare.backend.base.domain.dates.TimestampHelpe
 @Value
 @AllArgsConstructor
 public class AuditPeriod {
-    
+
     LocalDateTime start;
     LocalDateTime end;
-    
+
     public static AuditPeriod of (long startTimestamp, long endTimestamp) {
         return new AuditPeriod(toLocalDateTime(startTimestamp), toLocalDateTime(endTimestamp));
     }

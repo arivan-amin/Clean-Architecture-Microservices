@@ -9,5 +9,5 @@ import static com.arivanamin.healthcare.backend.base.domain.config.CoreApplicati
 
 @AnalyzeClasses (packages = BASE_PACKAGE, importOptions = ImportOption.DoNotIncludeTests.class)
 class AuditArchitectureTest implements CommonBestPracticeRules, CleanArchitectureRules {
-    
+
 }

@@ -11,14 +11,14 @@ import static com.arivanamin.healthcare.backend.base.domain.dates.TimestampHelpe
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreatePatientRequest {
-    
+
     String firstName;
     String lastName;
     String email;
     long dateOfBirth;
     Gender gender;
     String address;
-    
+
     public Patient toEntity () {
         Patient patient = new ModelMapper().map(this, Patient.class);
         patient.setDateOfBirth(toLocalDateTime(dateOfBirth).toLocalDate());

@@ -15,13 +15,13 @@ import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 public class EurekaSecurityConfig {
-    
+
     @Value ("${EUREKA_USER}")
     private String userName;
-    
+
     @Value ("${EUREKA_PASSWORD}")
     private String password;
-    
+
     @Bean
     public SecurityFilterChain filterChain (HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
@@ -30,7 +30,7 @@ public class EurekaSecurityConfig {
             .httpBasic(withDefaults());
         return http.build();
     }
-    
+
     @Bean
     public UserDetailsService userDetailsService () {
         UserDetails user = User.builder()
@@ -38,10 +38,10 @@ public class EurekaSecurityConfig {
             .password(passwordEncoder().encode(password))
             .roles("USER")
             .build();
-        
+
         return new InMemoryUserDetailsManager(user);
     }
-    
+
     @Bean
     public PasswordEncoder passwordEncoder () {
         return new BCryptPasswordEncoder();

@@ -12,7 +12,7 @@ import static com.arivanamin.healthcare.backend.base.domain.config.CoreApplicati
 @Configuration
 @Slf4j
 class PatientLiquibaseConfig {
-    
+
     @Bean
     public SpringLiquibase liquibase (DataSource dataSource) {
         log.info("Initializing Liquibase Bean");

@@ -12,7 +12,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PatientResponse {
-    
+
     UUID id;
     String firstName;
     String lastName;
@@ -20,7 +20,7 @@ public class PatientResponse {
     LocalDate dateOfBirth;
     Gender gender;
     String address;
-    
+
     public static PatientResponse of (Patient patient) {
         return new ModelMapper().map(patient, PatientResponse.class);
     }

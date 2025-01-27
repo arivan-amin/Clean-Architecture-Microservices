@@ -6,6 +6,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface PatientRepository extends JpaRepository<JpaPatient, UUID> {
-    
+
     Optional<JpaPatient> findByEmail (String email);
 }

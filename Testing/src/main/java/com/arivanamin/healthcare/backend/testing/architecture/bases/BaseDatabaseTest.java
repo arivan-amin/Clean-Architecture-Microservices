@@ -10,13 +10,13 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 @SpringBootTest
 @Testcontainers
 public interface BaseDatabaseTest extends BaseIntegrationTest {
-    
+
     @Container
     MySQLContainer<?> MYSQL_CONTAINER =
         new MySQLContainer<>("mysql:9.1.0").withDatabaseName("service_database")
             .withUsername("root")
             .withPassword("mysql");
-    
+
     @DynamicPropertySource
     static void registerProperties (DynamicPropertyRegistry registry) {
         registry.add("spring.datasource.url", MYSQL_CONTAINER::getJdbcUrl);

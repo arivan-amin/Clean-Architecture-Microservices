@@ -8,14 +8,14 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 public interface AuditEventStorage {
-    
+
     PaginatedResponse<AuditEvent> findAll (LocalDateTime start, LocalDateTime end,
                                            PaginationCriteria criteria);
-    
+
     PaginatedResponse<AuditEvent> findAllByCriteria (AuditEvent searchCriteria,
                                                      PaginationCriteria paginationCriteria);
-    
+
     Optional<AuditEvent> findById (String id);
-    
+
     String create (AuditEvent event);
 }

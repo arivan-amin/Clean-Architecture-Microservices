@@ -13,16 +13,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
 class CreatePatientRequestTest implements BaseUnitTest {
-    
+
     @Test
     void shouldMapRequestToEntityCorrectly () {
         // given
         CreatePatientRequest request = RANDOM.nextObject(CreatePatientRequest.class);
         request.setDateOfBirth(toTimestampInMilliseconds(LocalDateTime.now()));
-        
+
         // when
         Patient entity = request.toEntity();
-        
+
         // then
         assertThat(request.getFirstName()).isEqualTo(entity.getFirstName());
         assertThat(request.getLastName()).isEqualTo(entity.getLastName());

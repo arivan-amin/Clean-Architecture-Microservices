@@ -11,7 +11,7 @@ import static com.arivanamin.healthcare.backend.base.domain.config.CoreApplicati
 @EnableDiscoveryClient
 @EnableCaching
 public class PatientApplication {
-    
+
     public static void main (String[] args) {
         SpringApplication.run(PatientApplication.class, args);
     }

@@ -14,15 +14,15 @@ import static com.arivanamin.healthcare.backend.base.domain.audit.AuditTopics.AP
 @RequiredArgsConstructor
 @Slf4j
 public class ApiAuditConsumer {
-    
+
     private final CreateAuditEventCommand command;
-    
+
     @KafkaListener (topics = API_AUDIT_TOPIC, groupId = "api-audit-group")
     @LogExecutionTime
     public void consumeAuditEvent (AuditEvent auditEvent) {
         saveToStorage(auditEvent);
     }
-    
+
     private void saveToStorage (AuditEvent event) {
         String savedEventId = command.execute(event);
         log.info("savedEventId = {}", savedEventId);

@@ -7,9 +7,9 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class ReadAuditEventByIdQuery {
-    
+
     private final AuditEventStorage storage;
-    
+
     public AuditEvent execute (String id) {
         return storage.findById(id)
             .orElseThrow(AuditEventNotFoundException::new);

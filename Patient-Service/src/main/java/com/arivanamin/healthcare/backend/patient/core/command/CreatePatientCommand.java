@@ -9,16 +9,16 @@ import java.util.UUID;
 
 @RequiredArgsConstructor
 public class CreatePatientCommand {
-    
+
     private final PatientStorage storage;
-    
+
     public UUID execute (Patient patient) {
         if (doesPatientExist(patient)) {
             throw new PatientAlreadyExistsException();
         }
         return storage.create(patient);
     }
-    
+
     private boolean doesPatientExist (Patient patient) {
         return storage.findByEmail(patient.getEmail())
             .isPresent();

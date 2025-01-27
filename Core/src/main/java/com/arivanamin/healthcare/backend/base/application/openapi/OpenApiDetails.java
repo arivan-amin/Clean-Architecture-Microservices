@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor (access = AccessLevel.PRIVATE)
 public final class OpenApiDetails {
-    
+
     public static Contact getOpenApiContactDetails () {
         Contact contact = new Contact();
         contact.setEmail("arivanamin@gmail.com");
@@ -15,12 +15,12 @@ public final class OpenApiDetails {
         contact.setUrl("https://www.arivan-amin.com");
         return contact;
     }
-    
+
     public static License getOpenApiLicence () {
         return new License().name("MIT License")
             .url("https://choosealicense.com/licenses/mit/");
     }
-    
+
     public static String getOpenApiTermsOfService () {
         return "https://www.arivan-amin.com/healthcare-clean-microservices/terms";
     }

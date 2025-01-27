@@ -7,9 +7,9 @@ import org.junit.jupiter.api.Test;
 
 @Slf4j
 class AuditEventTest {
-    
+
     EasyRandom random = new EasyRandom();
-    
+
     @Test
     void should () throws Exception {
         AuditEvent event = AuditEvent.builder()

@@ -21,11 +21,13 @@ public class AuditDataExtractor {
     
     private final String serviceName;
     
-    public AuditEvent extractAuditData (ProceedingJoinPoint joinPoint) {
+    public AuditEvent extractAuditData (ProceedingJoinPoint joinPoint, Object result,
+                                        long duration) {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
         String requestURL = extractRequestUrl(method);
         String requestAnnotation = extractRequestAnnotation(method);
+        
         AuditEvent event = new AuditEvent();
         event.setServiceName(serviceName);
         event.setTimestamp(toTimestampInMilliseconds(LocalDateTime.now()));
@@ -35,8 +37,10 @@ public class AuditDataExtractor {
             .map(String::valueOf)
             .collect(Collectors.joining(","));
         event.setData(data);
+        event.setResponse(result == null ? "Void" : result.toString());
+        event.setDuration(duration);
         
-        log.info("Create AuditEvent to be published = {}", event);
+        log.info("Created AuditEvent to be published = {}", event);
         return event;
     }
     

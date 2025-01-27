@@ -13,39 +13,39 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 class UpdatePatientCommandTest implements BaseUnitTest {
-    
+
     private final Patient patient = RANDOM.nextObject(Patient.class);
-    
+
     private PatientStorage persistence;
     private UpdatePatientCommand command;
-    
+
     @Test
     void shouldCallPersistenceUpdate () {
         givenCommandWithMockPersistence();
         whenCommandIsExecuted();
         thenVerifyCommandCallsPersistenceUpdate();
     }
-    
+
     private void givenCommandWithMockPersistence () {
         persistence = Mockito.mock(PatientStorage.class);
         command = new UpdatePatientCommand(persistence);
     }
-    
+
     private void whenCommandIsExecuted () {
         command.execute(patient);
     }
-    
+
     private void thenVerifyCommandCallsPersistenceUpdate () {
         verify(persistence, times(1)).update(any());
     }
-    
+
     @Test
     void shouldPassParameterToPersistence () {
         givenCommandWithMockPersistence();
         whenCommandIsExecuted();
         thenAssertCommandPassesParameterToPersistence();
     }
-    
+
     private void thenAssertCommandPassesParameterToPersistence () {
         ArgumentCaptor<Patient> captor = ArgumentCaptor.forClass(Patient.class);
         verify(persistence).update(captor.capture());

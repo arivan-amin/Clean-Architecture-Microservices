@@ -8,9 +8,9 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class ReadPatientsQuery {
-    
+
     private final PatientStorage storage;
-    
+
     public PaginatedResponse<Patient> execute (PaginationCriteria paginationCriteria) {
         return storage.findAll(paginationCriteria);
     }
