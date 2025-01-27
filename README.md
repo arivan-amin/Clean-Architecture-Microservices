@@ -2,30 +2,13 @@
 
 ## Overview
 
-This project is a **Sample Healthcare System** developed as a **Microservices Architecture**
-using **Java**.
+This project is a **Sample Healthcare System** developed as a **Microservices**
+using **Java** and **Clean Architecture**.
 
 It serves as a practice project to demonstrate the implementation of microservices using
 modern **Java** and **Spring Boot** and follow some of the best practices in development.
 
 ---
-
-## Notable Features
-
-- **Automatic Audit Logs Recording**: Uses Spring **AOP** to create Audit Events automatically
-  whenever any API in any of the services are called and uses **Kafka** to send them to the Audit
-  Service to be recorded, allowing the controllers to be clutter-free and simple.
-- **Clean and concise Restful API in all services**: the API follows the modern best practices in
-  Restful services recommendations like using **ResponseEntity** and returning **ProblemDetails**.
-- **CQRS**: Command and Query Separation Principle to implement Business logic.
-- **ArchUnit**: to validate architectural boundaries and verify adherence to best coding standards
-- **@RestControllerAdvice**: to handle specific exceptions and return a unified and standard error
-  response instead of an exception stack trace using Spring **ProblemDetail**.
-- **OpenAPI and Swagger Docs**: to provide detailed documentation for all endpoints.
-- **Entity and DTO separation**: decouples core business logic from presentation using request and
-  response pojo.
-- **Core Entity and Jpa separation**: core entities have no association with JPA and are never
-  annotated with @Entity.
 
 ## Quick Info
 
@@ -39,6 +22,63 @@ modern **Java** and **Spring Boot** and follow some of the best practices in dev
 ![Repo Size](https://img.shields.io/github/repo-size/arivan-amin/Healthcare-Clean-Microservices)
 ![Contributors](https://img.shields.io/github/contributors/arivan-amin/Healthcare-Clean-Microservices)
 ![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20Windows%20%7C%20MacOS-informational)
+
+## Notable Features
+
+- **Automatic Audit Logs Recording**: Uses Spring **AOP** to create Audit Events automatically
+  whenever any API in any of the services are called and uses **Kafka** to send them to the **Audit
+  Service** to be recorded, allowing the controllers to be clutter-free and simple.
+- **Clean and concise Restful API in all services**: the API follows the modern best practices in
+  Restful services recommendations like using **ResponseEntity** and returning **ProblemDetails**.
+- **CQRS**: Command and Query Separation Principle to implement Business logic.
+- **ArchUnit**: to validate architectural boundaries and verify adherence to best coding standards
+- **@RestControllerAdvice**: to handle specific exceptions and return a unified and standard error
+  response instead of an exception stack trace using Spring **ProblemDetail**.
+- **OpenAPI and Swagger Docs**: to provide detailed documentation for all endpoints.
+- **Entity and DTO separation**: decouples core business logic from presentation using request and
+  response pojo.
+- **Core Entity and Jpa separation**: core entities have no association with JPA and are never
+  annotated with @Entity.
+
+## Sample audit log from Audit-Service captured from API calls in Patient-Service
+
+```
+        // Create Patient Endpoint
+        {
+            "id": "6797e0215829937787277607",
+            "serviceName": "patient-service",
+            "location": "/patients/protected/v1/accounts",
+            "action": "Create",
+            "data": "CreatePatientRequest(firstName=Hayden, lastName=Ondricka, email=Helen21@gmail.com, dateOfBirth=977659882000, gender=MALE, address=Bernhard Cape)",
+            "creationDate": "2025-01-27T14:36:01.528",
+            "duration": "50ms",
+            "response": "CreatePatientResponse(id=9622e5ef-5ab7-4faf-89db-7dd970ea8ef0)"
+        }
+
+        // Delete Patient Endpoint
+        {
+            "id": "6797e0115829937787277605",
+            "serviceName": "patient-service",
+            "location": "/patients/protected/v1/accounts/{id}",
+            "action": "Delete",
+            "data": "e8cd23d1-4bad-44bb-9b58-a3ca89dbf793",
+            "creationDate": "2025-01-27T14:35:45.631",
+            "duration": "25ms",
+            "response": "Void"
+        },
+        
+        // Read Patient by ID Endpoint
+        {
+            "id": "6797e0145829937787277606",
+            "serviceName": "patient-service",
+            "location": "/patients/protected/v1/accounts/{id}",
+            "action": "Read",
+            "data": "e8cd23d1-4bad-44bb-9b58-a3ca89dbf793",
+            "creationDate": "2025-01-27T14:35:48.66",
+            "duration": "14ms",
+            "response": "Error: Patient by the requested id not found"
+        }
+```
 
 ## 🛠️ Architecture concepts demonstrated and implemented
 
