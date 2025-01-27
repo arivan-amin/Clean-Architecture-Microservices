@@ -25,6 +25,8 @@ public class JpaAuditEvent {
     private String action;
     private String data;
     private LocalDateTime recordedAt;
+    private long duration;
+    private String response;
     
     public static JpaAuditEvent fromDomain (AuditEvent event) {
         JpaAuditEvent jpaEvent = new ModelMapper().map(event, JpaAuditEvent.class);

@@ -18,11 +18,14 @@ public class AuditEventResponse {
     private String location;
     private String action;
     private String data;
-    private LocalDateTime dateTime;
+    private LocalDateTime creationDate;
+    private String duration;
+    private String response;
     
     public static AuditEventResponse of (AuditEvent event) {
         AuditEventResponse response = new ModelMapper().map(event, AuditEventResponse.class);
-        response.setDateTime(toLocalDateTime(event.getTimestamp()));
+        response.setCreationDate(toLocalDateTime(event.getTimestamp()));
+        response.setDuration(event.getDuration() + "ms");
         return response;
     }
 }
