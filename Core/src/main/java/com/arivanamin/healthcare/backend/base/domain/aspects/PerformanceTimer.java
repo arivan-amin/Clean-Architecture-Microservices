@@ -1,14 +1,21 @@
 package com.arivanamin.healthcare.backend.base.domain.aspects;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+@NoArgsConstructor (access = AccessLevel.PRIVATE)
 @Slf4j
-public class PerformanceTimer {
+public final class PerformanceTimer {
     
     public static final int MILLISECOND_DIVISOR = 1_000_000;
     
     long start;
     long end;
+    
+    public static PerformanceTimer newInstance () {
+        return new PerformanceTimer();
+    }
     
     public void startTimer () {
         start = System.nanoTime();

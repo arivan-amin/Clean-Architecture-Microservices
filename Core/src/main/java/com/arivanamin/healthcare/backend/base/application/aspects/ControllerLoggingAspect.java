@@ -35,19 +35,22 @@ class ControllerLoggingAspect {
         """)
     public Object logEndpoint (ProceedingJoinPoint joinPoint) throws Throwable {
         logIncomingRequestDetails(joinPoint);
+        PerformanceTimer timer = PerformanceTimer.newInstance();
         
-        PerformanceTimer timer = new PerformanceTimer();
         Object result = null;
         try {
             timer.startTimer();
             result = executeThrowable(joinPoint::proceed);
-            return result;
+        }
+        catch (RuntimeException exception) {
+            result = "Error: " + exception.getMessage();
+            throw exception;
         }
         finally {
-            timer.stopTimer();
-            timer.logMethodPerformance(getMethodName(joinPoint));
+            stopTimerAndLogExecutionDuration(joinPoint, timer);
             sendAuditEventThroughPublisher(joinPoint, result, timer.getDuration());
         }
+        return result;
     }
     
     private static void logIncomingRequestDetails (JoinPoint joinPoint) {
@@ -55,13 +58,19 @@ class ControllerLoggingAspect {
             List.of(joinPoint.getArgs()));
     }
     
-    private static String getMethodName (JoinPoint joinPoint) {
-        return "controller endpoint %s ".formatted(joinPoint.getSignature());
+    private static void stopTimerAndLogExecutionDuration (JoinPoint joinPoint,
+                                                          PerformanceTimer timer) {
+        timer.stopTimer();
+        timer.logMethodPerformance(getMethodName(joinPoint));
     }
     
     private void sendAuditEventThroughPublisher (ProceedingJoinPoint joinPoint, Object result,
                                                  long duration) {
         AuditEvent event = dataExtractor.extractAuditData(joinPoint, result, duration);
         publisher.sendAuditLog(API_AUDIT_TOPIC, event);
+    }
+    
+    private static String getMethodName (JoinPoint joinPoint) {
+        return "Controller endpoint %s ".formatted(joinPoint.getSignature());
     }
 }

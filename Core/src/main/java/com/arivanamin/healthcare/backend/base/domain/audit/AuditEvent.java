@@ -14,7 +14,7 @@ public class AuditEvent {
     private String action;
     private String data;
     private long timestamp;
-    private String response;
     private long duration;
+    private String response;
 }
 

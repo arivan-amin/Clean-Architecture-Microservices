@@ -1,12 +1,14 @@
 package com.arivanamin.healthcare.backend.base.application.aspects;
 
-import com.arivanamin.healthcare.backend.base.domain.aspects.ExecuteAndLogPerformance;
+import com.arivanamin.healthcare.backend.base.domain.aspects.PerformanceTimer;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
+
+import static com.arivanamin.healthcare.backend.base.domain.aspects.ExecuteAndLogPerformance.executeThrowable;
 
 @Aspect
 @Component
@@ -15,12 +17,33 @@ class SpringSchedulerLoggingAspect {
     
     @Around ("@annotation(org.springframework.scheduling.annotation.Scheduled)")
     public Object logScheduler (ProceedingJoinPoint joinPoint) throws Throwable {
-        return ExecuteAndLogPerformance.executeThrowable(joinPoint::proceed);
+        logScheduledTaskDetails(joinPoint);
+        
+        PerformanceTimer timer = PerformanceTimer.newInstance();
+        
+        Object result;
+        try {
+            timer.startTimer();
+            result = executeThrowable(joinPoint::proceed);
+        }
+        finally {
+            stopTimerAndLogExecutionDuration(joinPoint, timer);
+        }
+        return result;
     }
     
-    private String initJobName (JoinPoint joinPoint) {
+    private void logScheduledTaskDetails (JoinPoint joinPoint) {
+        log.info("Running = {}", getJobName(joinPoint));
+    }
+    
+    private void stopTimerAndLogExecutionDuration (JoinPoint joinPoint, PerformanceTimer timer) {
+        timer.stopTimer();
+        timer.logMethodPerformance(getJobName(joinPoint));
+    }
+    
+    private String getJobName (JoinPoint joinPoint) {
         final String classPath = joinPoint.getSignature()
             .getDeclaringTypeName();
-        return "The scheduled task: %s".formatted(classPath);
+        return "Scheduled task: %s".formatted(classPath);
     }
 }
