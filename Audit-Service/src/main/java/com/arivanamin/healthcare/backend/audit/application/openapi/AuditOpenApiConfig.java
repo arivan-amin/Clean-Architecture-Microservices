@@ -12,20 +12,20 @@ import static com.arivanamin.healthcare.backend.base.application.openapi.OpenApi
 
 @Configuration
 class AuditOpenApiConfig {
-    
+
     @Bean
     public OpenAPI myOpenAPI () {
         Server server = new Server();
         server.setUrl("localhost:8080/");
         server.setDescription("Server URL");
-        
+
         Info info = new Info().title("Audit Service API")
             .description("Provides all the API related to Audit service")
             .version("1.0")
             .contact(getOpenApiContactDetails())
             .termsOfService(getOpenApiTermsOfService())
             .license(getOpenApiLicence());
-        
+
         return new OpenAPI().info(info)
             .servers(List.of(server));
     }

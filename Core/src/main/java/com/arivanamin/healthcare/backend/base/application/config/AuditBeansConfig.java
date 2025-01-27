@@ -11,13 +11,13 @@ import org.springframework.stereotype.Component;
 
 @Component
 class AuditBeansConfig {
-    
+
     @Bean
     public AuditDataExtractor auditDataExtractor (
         @Value ("${spring.application.name}") String appName) {
         return new AuditDataExtractor(appName);
     }
-    
+
     @Bean
     public AuditEventPublisher publisher (KafkaTemplate<String, AuditEvent> kafkaTemplate) {
         return new KafkaAuditEventPublisher(kafkaTemplate);

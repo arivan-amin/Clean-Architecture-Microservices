@@ -6,12 +6,12 @@ import org.modelmapper.ModelMapper;
 
 @Value
 public class AuditEventCriteria {
-    
+
     String serviceName;
     String location;
     String action;
     String data;
-    
+
     public AuditEvent toDomain () {
         return new ModelMapper().map(this, AuditEvent.class);
     }

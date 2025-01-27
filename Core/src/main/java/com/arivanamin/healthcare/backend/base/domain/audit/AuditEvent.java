@@ -7,7 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AuditEvent {
-    
+
     private String id;
     private String serviceName;
     private String location;
@@ -17,4 +17,3 @@ public class AuditEvent {
     private long duration;
     private String response;
 }
-

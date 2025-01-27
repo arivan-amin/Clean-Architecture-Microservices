@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.time.LocalDateTime;
 
 public interface AuditEventRepository extends MongoRepository<JpaAuditEvent, String> {
-    
+
     Page<JpaAuditEvent> findAllByRecordedAtBetween (LocalDateTime start, LocalDateTime end,
                                                     Pageable pageable);
 }

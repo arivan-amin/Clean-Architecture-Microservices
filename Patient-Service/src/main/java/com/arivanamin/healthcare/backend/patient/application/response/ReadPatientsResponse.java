@@ -9,10 +9,10 @@ import java.util.List;
 
 @Value
 public class ReadPatientsResponse {
-    
+
     PageData pageData;
     List<PatientResponse> patients;
-    
+
     public static ReadPatientsResponse of (PaginatedResponse<Patient> paginatedResponse) {
         return new ReadPatientsResponse(paginatedResponse.getPageData(),
             paginatedResponse.getContent()

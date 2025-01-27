@@ -21,11 +21,11 @@ import static com.arivanamin.healthcare.backend.audit.application.config.AuditAp
 @RequiredArgsConstructor
 @Slf4j
 class AuditEventController {
-    
+
     private final ReadAuditEventsQuery readQuery;
     private final ReadAuditEventsByCriteriaQuery readByCriteriaQuery;
     private final ReadAuditEventByIdQuery readByIdQuery;
-    
+
     @GetMapping (GET_EVENTS_URL)
     @Operation (summary = "Get a list of auditEvents")
     @ResponseStatus (HttpStatus.OK)
@@ -36,7 +36,7 @@ class AuditEventController {
         return ReadAuditEventsResponse.of(
             readQuery.execute(AuditPeriod.of(start, end), PaginationCriteria.of(page, size)));
     }
-    
+
     @GetMapping (GET_EVENT_BY_CRITERIA_URL)
     @Operation (summary = "Get a list of auditEvents by criteria")
     @ResponseStatus (HttpStatus.OK)
@@ -46,7 +46,7 @@ class AuditEventController {
         return ReadAuditEventsResponse.of(
             readByCriteriaQuery.execute(criteria.toDomain(), PaginationCriteria.of(page, size)));
     }
-    
+
     @GetMapping (GET_EVENT_BY_ID_URL)
     @Operation (summary = "Get a single auditEvent by id")
     @ResponseStatus (HttpStatus.OK)

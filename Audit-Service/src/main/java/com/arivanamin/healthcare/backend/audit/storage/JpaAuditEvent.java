@@ -17,7 +17,7 @@ import static com.arivanamin.healthcare.backend.base.domain.dates.TimestampHelpe
 @Data
 @Builder
 public class JpaAuditEvent {
-    
+
     @Id
     String id;
     private String serviceName;
@@ -27,13 +27,13 @@ public class JpaAuditEvent {
     private LocalDateTime recordedAt;
     private long duration;
     private String response;
-    
+
     public static JpaAuditEvent fromDomain (AuditEvent event) {
         JpaAuditEvent jpaEvent = new ModelMapper().map(event, JpaAuditEvent.class);
         jpaEvent.setRecordedAt(toLocalDateTime(event.getTimestamp()));
         return jpaEvent;
     }
-    
+
     public AuditEvent toDomain () {
         AuditEvent event = new ModelMapper().map(this, AuditEvent.class);
         event.setTimestamp(toTimestampInMilliseconds(recordedAt));

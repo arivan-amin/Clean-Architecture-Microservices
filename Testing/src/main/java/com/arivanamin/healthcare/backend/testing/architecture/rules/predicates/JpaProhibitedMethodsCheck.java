@@ -8,14 +8,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class JpaProhibitedMethodsCheck extends ArchCondition<JavaClass> {
-    
+
     private final Set<String> prohibitedJpaMethods;
-    
+
     public JpaProhibitedMethodsCheck (Set<String> prohibitedJpaMethods) {
         super("");
         this.prohibitedJpaMethods = new HashSet<>(prohibitedJpaMethods);
     }
-    
+
     @Override
     public void check (JavaClass javaClass, ConditionEvents conditionEvents) {
         for (JavaMethod method : javaClass.getMethods()) {
@@ -26,7 +26,7 @@ public class JpaProhibitedMethodsCheck extends ArchCondition<JavaClass> {
             }
         }
     }
-    
+
     private boolean isProhibitedMethodImplemented (JavaClass javaClass, JavaMethod method) {
         return prohibitedJpaMethods.contains(method.getName()) && method.getOwner()
             .equals(javaClass);

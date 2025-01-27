@@ -8,5 +8,5 @@ import static com.arivanamin.healthcare.backend.base.domain.config.CoreApplicati
 
 @AnalyzeClasses (packages = BASE_PACKAGE, importOptions = ImportOption.OnlyIncludeTests.class)
 class PatientTestingBestPracticeRulesTest implements TestingBestPracticeRules {
-    
+
 }

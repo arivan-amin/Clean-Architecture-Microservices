@@ -22,7 +22,7 @@ import static org.springframework.http.ProblemDetail.forStatusAndDetail;
 @RestControllerAdvice
 @NoArgsConstructor (access = AccessLevel.PRIVATE)
 public final class PatientControllerAdvice {
-    
+
     @ExceptionHandler (PatientNotFoundException.class)
     ProblemDetail handlePatientNotFound (PatientNotFoundException exception) {
         ProblemDetail detail = forStatusAndDetail(NOT_FOUND, exception.getMessage());
@@ -35,7 +35,7 @@ public final class PatientControllerAdvice {
         log.error("PatientNotFoundException advice", exception);
         return detail;
     }
-    
+
     @ExceptionHandler (PatientAlreadyExistsException.class)
     ProblemDetail handlePatientNotFound (PatientAlreadyExistsException exception) {
         ProblemDetail detail = forStatusAndDetail(CONFLICT, exception.getMessage());
@@ -48,7 +48,7 @@ public final class PatientControllerAdvice {
         log.error("PatientAlreadyExistsException advice", exception);
         return detail;
     }
-    
+
     @ExceptionHandler (MissingPathVariableException.class)
     ProblemDetail handleMissingPathVariable (MissingPathVariableException exception) {
         ProblemDetail detail = forStatusAndDetail(BAD_REQUEST, exception.getMessage());
@@ -62,7 +62,7 @@ public final class PatientControllerAdvice {
         log.error("MissingPathVariableException advice", exception);
         return detail;
     }
-    
+
     @ExceptionHandler (HttpMessageNotReadableException.class)
     ProblemDetail handleMissingRequestBody (HttpMessageNotReadableException exception) {
         ProblemDetail detail = forStatusAndDetail(BAD_REQUEST, exception.getMessage());
@@ -76,7 +76,7 @@ public final class PatientControllerAdvice {
         log.error("HttpMessageNotReadableException advice", exception);
         return detail;
     }
-    
+
     @ExceptionHandler (MethodArgumentNotValidException.class)
     ProblemDetail handleMethodArgumentNotValid (MethodArgumentNotValidException exception) {
         ProblemDetail detail = forStatusAndDetail(BAD_REQUEST, exception.getMessage());
@@ -90,7 +90,7 @@ public final class PatientControllerAdvice {
         log.error("MethodArgumentNotValidException advice", exception);
         return detail;
     }
-    
+
     @ExceptionHandler (MissingServletRequestParameterException.class)
     ProblemDetail handleMissingParameterException (
         MissingServletRequestParameterException exception) {
@@ -105,7 +105,7 @@ public final class PatientControllerAdvice {
         log.error("MissingServletRequestParameterException advice", exception);
         return detail;
     }
-    
+
     @ExceptionHandler (NoResourceFoundException.class)
     ProblemDetail handleResourceNotFound (NoResourceFoundException exception) {
         ProblemDetail detail = forStatusAndDetail(NOT_FOUND, exception.getMessage());
@@ -120,7 +120,7 @@ public final class PatientControllerAdvice {
         log.error("NoResourceFoundException advice", exception);
         return detail;
     }
-    
+
     @ExceptionHandler (Exception.class)
     ProblemDetail handleGeneralExceptions (Exception exception) {
         ProblemDetail detail = forStatusAndDetail(INTERNAL_SERVER_ERROR, exception.getMessage());

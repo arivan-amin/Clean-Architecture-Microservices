@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.util.Arrays;
 
 public class RequestBodyArchCondition extends ArchCondition<JavaMethod> {
-    
+
     public RequestBodyArchCondition () {
         super("");
     }
-    
+
     @Override
     public void check (JavaMethod method, ConditionEvents events) {
         var requestBodyParameter = Arrays.stream(method.reflect()
@@ -20,7 +20,7 @@ public class RequestBodyArchCondition extends ArchCondition<JavaMethod> {
             .filter(parameter -> parameter.isAnnotationPresent(RequestBody.class))
             .findFirst()
             .orElse(null);
-        
+
         if (requestBodyParameter != null &&
             !requestBodyParameter.isAnnotationPresent(Valid.class)) {
             String message = ("Method %s uses a @RequestBody parameter but is missing the @Valid " +

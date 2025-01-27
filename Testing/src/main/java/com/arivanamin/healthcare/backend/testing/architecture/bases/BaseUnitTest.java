@@ -10,12 +10,12 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @SuppressWarnings ("NewClassNamingConvention")
 @ExtendWith (MockitoExtension.class)
 public interface BaseUnitTest {
-    
+
     Faker FAKER = new Faker();
-    
+
     EasyRandom RANDOM = new EasyRandom();
-    
+
     PaginationCriteria PAGINATION_CRITERIA = PaginationCriteria.of(0, 10);
-    
+
     PageData PAGE_DATA = PageData.of(5, 15, 3, 0);
 }

@@ -11,7 +11,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Patient {
-    
+
     UUID id;
     String firstName;
     String lastName;

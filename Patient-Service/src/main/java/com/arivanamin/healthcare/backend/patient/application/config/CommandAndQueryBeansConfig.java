@@ -11,32 +11,32 @@ import org.springframework.stereotype.Component;
 
 @Component
 class CommandAndQueryBeansConfig {
-    
+
     @Bean
     public PatientStorage storage (PatientRepository repository) {
         return new JpaPatientStorage(repository);
     }
-    
+
     @Bean
     public ReadPatientsQuery readPatientsQuery (PatientStorage storage) {
         return new ReadPatientsQuery(storage);
     }
-    
+
     @Bean
     public ReadPatientByIdQuery readPatientByIdQuery (PatientStorage storage) {
         return new ReadPatientByIdQuery(storage);
     }
-    
+
     @Bean
     public CreatePatientCommand createPatientCommand (PatientStorage storage) {
         return new CreatePatientCommand(storage);
     }
-    
+
     @Bean
     public UpdatePatientCommand updatePatientCommand (PatientStorage storage) {
         return new UpdatePatientCommand(storage);
     }
-    
+
     @Bean
     public DeletePatientCommand deletePatientCommand (PatientStorage storage) {
         return new DeletePatientCommand(storage);

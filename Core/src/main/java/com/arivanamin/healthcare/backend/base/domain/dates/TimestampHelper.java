@@ -13,11 +13,11 @@ import static lombok.AccessLevel.PRIVATE;
 @Slf4j
 @NoArgsConstructor (access = PRIVATE)
 public final class TimestampHelper {
-    
+
     public static LocalDateTime toLocalDateTime (long timestamp) {
         return ofInstant(ofEpochMilli(timestamp), DEFAULT_ZONE_ID);
     }
-    
+
     public static Long toTimestampInMilliseconds (LocalDateTime dateTime) {
         return dateTime.atZone(DEFAULT_ZONE_ID)
             .toInstant()

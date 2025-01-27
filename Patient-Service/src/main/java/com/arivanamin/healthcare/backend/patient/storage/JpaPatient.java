@@ -20,33 +20,33 @@ import java.util.UUID;
 @Builder
 @ToString
 public class JpaPatient {
-    
+
     @Id
     @UuidGenerator
     UUID id;
-    
+
     @NotBlank
     String firstName;
-    
+
     @NotBlank
     String lastName;
-    
+
     @Email
     String email;
-    
+
     @Past
     LocalDate dateOfBirth;
-    
+
     @NotNull
     Gender gender;
-    
+
     @NotBlank
     String address;
-    
+
     public static JpaPatient fromDomain (Patient patient) {
         return new ModelMapper().map(patient, JpaPatient.class);
     }
-    
+
     public Patient toDomain () {
         return new ModelMapper().map(this, Patient.class);
     }

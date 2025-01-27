@@ -25,13 +25,13 @@ import static com.arivanamin.healthcare.backend.patient.application.config.Patie
 @RequiredArgsConstructor
 @Slf4j
 class PatientController {
-    
+
     private final ReadPatientsQuery readQuery;
     private final ReadPatientByIdQuery readByIdQuery;
     private final CreatePatientCommand createCommand;
     private final UpdatePatientCommand updateCommand;
     private final DeletePatientCommand deleteCommand;
-    
+
     @GetMapping (GET_PATIENTS_URL)
     @Cacheable (cacheNames = "patientsCache")
     @Operation (summary = "Get a list of patients")
@@ -40,7 +40,7 @@ class PatientController {
                                                 @RequestParam Integer size) {
         return ReadPatientsResponse.of(readQuery.execute(PaginationCriteria.of(page, size)));
     }
-    
+
     @GetMapping (GET_PATIENT_BY_ID_URL)
     @Cacheable (cacheNames = "patientByIdCache")
     @Operation (summary = "Get a single patient by id")
@@ -48,7 +48,7 @@ class PatientController {
     public PatientResponse getPatientById (@PathVariable UUID id) {
         return PatientResponse.of(readByIdQuery.execute(id));
     }
-    
+
     @PostMapping (CREATE_PATIENT_URL)
     @Operation (summary = "Creates a patient")
     @ResponseStatus (HttpStatus.CREATED)
@@ -56,7 +56,7 @@ class PatientController {
         UUID createdPatientId = createCommand.execute(request.toEntity());
         return CreatePatientResponse.of(createdPatientId);
     }
-    
+
     @PutMapping (UPDATE_PATIENT_URL)
     @Operation (summary = "Updates a patient")
     @ResponseStatus (HttpStatus.OK)
@@ -64,7 +64,7 @@ class PatientController {
                                @RequestBody @Valid UpdatePatientRequest request) {
         updateCommand.execute(request.toEntity(id));
     }
-    
+
     @DeleteMapping (DELETE_PATIENT_URL)
     @Operation (summary = "Deletes a patient")
     @ResponseStatus (HttpStatus.NO_CONTENT)

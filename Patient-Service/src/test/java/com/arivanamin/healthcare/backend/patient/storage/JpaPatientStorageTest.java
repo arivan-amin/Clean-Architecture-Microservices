@@ -6,19 +6,19 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
 class JpaPatientStorageTest implements BaseUnitTest {
-    
+
     @Mock
     PatientRepository repository;
-    
+
     @InjectMocks
     JpaPatientStorage persistence;
-    
+
     @Test
     void shouldReturnAllPatientsFromRepository () {
         // given
-        
+
         // when
-        
+
         // then
     }
 }

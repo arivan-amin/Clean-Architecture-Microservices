@@ -4,14 +4,14 @@ import com.tngtech.archunit.core.domain.JavaMethod;
 import com.tngtech.archunit.lang.*;
 
 public class ResponseWrapperArchCondition extends ArchCondition<JavaMethod> {
-    
+
     private final String apiResponseSuffix;
-    
+
     public ResponseWrapperArchCondition (String apiResponseSuffix) {
         super("");
         this.apiResponseSuffix = apiResponseSuffix;
     }
-    
+
     @Override
     public void check (JavaMethod method, ConditionEvents events) {
         String returnType = method.getRawReturnType()

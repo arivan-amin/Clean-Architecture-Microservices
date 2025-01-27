@@ -13,35 +13,35 @@ import java.util.UUID;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class JpaAuditEventStorageIntegrationTest implements BaseMongoDatabaseTest {
-    
+
     @Autowired
     private AuditEventRepository repository;
-    
+
     private JpaAuditEventStorage persistence;
-    
+
     private int numberOfSavedEntities;
     private UUID expectedId;
-    
+
     private List<AuditEvent> expectedAuditEvents;
     private AuditEvent expectedAuditEvent;
-    
+
     @BeforeEach
     void setUp () {
         persistence = new JpaAuditEventStorage(repository);
     }
-    
+
     @AfterEach
     void tearDown () {
         repository.deleteAll();
     }
-    
+
     @Test
     void shouldReturnAllAuditEventsWhenFindAllIsCalled () {
         givenRepositoryWithSavedAuditEvents();
         whenFindAllIsCalled();
         thenAssertThatAllEntitiesOfRepositoryAreReturned(expectedAuditEvents);
     }
-    
+
     private void givenRepositoryWithSavedAuditEvents () {
         numberOfSavedEntities = FAKER.number()
             .numberBetween(3, 10);
@@ -50,17 +50,17 @@ class JpaAuditEventStorageIntegrationTest implements BaseMongoDatabaseTest {
             repository.save(entity);
         }
     }
-    
+
     private void whenFindAllIsCalled () {
         expectedAuditEvents = persistence.findAll(LocalDateTime.now()
                 .minusDays(1), LocalDateTime.now(), PAGINATION_CRITERIA)
             .getContent();
     }
-    
+
     private void thenAssertThatAllEntitiesOfRepositoryAreReturned (List<AuditEvent> result) {
         assertThat(result.size()).isEqualTo(numberOfSavedEntities);
     }
-    
+
     private static JpaAuditEvent createSampleAuditEvent () {
         JpaAuditEvent entity = RANDOM.nextObject(JpaAuditEvent.class);
         entity.setId(null);
