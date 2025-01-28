@@ -18,16 +18,16 @@ import static com.arivanamin.healthcare.backend.base.domain.dates.TimestampHelpe
 @RequiredArgsConstructor
 @Slf4j
 public class AuditDataExtractor {
-    
+
     private final String serviceName;
-    
+
     public AuditEvent extractAuditData (ProceedingJoinPoint joinPoint, Object result,
                                         long duration) {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
         String requestURL = extractRequestUrl(method);
         String requestAnnotation = extractRequestAnnotation(method);
-        
+
         AuditEvent event = new AuditEvent();
         event.setServiceName(serviceName);
         event.setTimestamp(toTimestampInMilliseconds(LocalDateTime.now()));
@@ -39,11 +39,11 @@ public class AuditDataExtractor {
         event.setData(data);
         event.setResponse(result == null ? "Void" : result.toString());
         event.setDuration(duration);
-        
+
         log.info("Created AuditEvent to be published = {}", event);
         return event;
     }
-    
+
     private String extractRequestUrl (Method method) {
         if (method.isAnnotationPresent(GetMapping.class)) {
             return extractUrl(method.getAnnotation(GetMapping.class)
@@ -67,7 +67,7 @@ public class AuditDataExtractor {
         }
         return "";
     }
-    
+
     private String extractRequestAnnotation (AnnotatedElement method) {
         if (method.isAnnotationPresent(GetMapping.class)) {
             return "Read";
@@ -86,7 +86,7 @@ public class AuditDataExtractor {
         }
         return "";
     }
-    
+
     private String extractUrl (String[] paths) {
         if (paths != null && paths.length > 0) {
             return String.join(", ", paths);

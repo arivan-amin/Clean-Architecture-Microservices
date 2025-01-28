@@ -12,7 +12,7 @@ import static com.arivanamin.healthcare.backend.base.domain.dates.TimestampHelpe
 @NoArgsConstructor
 @AllArgsConstructor
 public class AuditEventResponse {
-    
+
     private String id;
     private String serviceName;
     private String location;
@@ -21,7 +21,7 @@ public class AuditEventResponse {
     private LocalDateTime creationDate;
     private String duration;
     private String response;
-    
+
     public static AuditEventResponse of (AuditEvent event) {
         AuditEventResponse response = new ModelMapper().map(event, AuditEventResponse.class);
         response.setCreationDate(toLocalDateTime(event.getTimestamp()));

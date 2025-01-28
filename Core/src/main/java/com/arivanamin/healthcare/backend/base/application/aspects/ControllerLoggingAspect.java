@@ -22,10 +22,10 @@ import static com.arivanamin.healthcare.backend.base.domain.audit.AuditTopics.AP
 @RequiredArgsConstructor
 @Slf4j
 class ControllerLoggingAspect {
-    
+
     private final AuditEventPublisher publisher;
     private final AuditDataExtractor dataExtractor;
-    
+
     @Around ("""
             @annotation(org.springframework.web.bind.annotation.GetMapping)
             or @annotation(org.springframework.web.bind.annotation.PostMapping)
@@ -36,7 +36,7 @@ class ControllerLoggingAspect {
     public Object logEndpoint (ProceedingJoinPoint joinPoint) throws Throwable {
         logIncomingRequestDetails(joinPoint);
         PerformanceTimer timer = PerformanceTimer.newInstance();
-        
+
         Object result = null;
         try {
             timer.startTimer();
@@ -52,24 +52,24 @@ class ControllerLoggingAspect {
         }
         return result;
     }
-    
+
     private static void logIncomingRequestDetails (JoinPoint joinPoint) {
         log.info("Incoming request to: {}, with parameters: {}", joinPoint.getSignature(),
             List.of(joinPoint.getArgs()));
     }
-    
+
     private static void stopTimerAndLogExecutionDuration (JoinPoint joinPoint,
                                                           PerformanceTimer timer) {
         timer.stopTimer();
         timer.logMethodPerformance(getMethodName(joinPoint));
     }
-    
+
     private void sendAuditEventThroughPublisher (ProceedingJoinPoint joinPoint, Object result,
                                                  long duration) {
         AuditEvent event = dataExtractor.extractAuditData(joinPoint, result, duration);
         publisher.sendAuditLog(API_AUDIT_TOPIC, event);
     }
-    
+
     private static String getMethodName (JoinPoint joinPoint) {
         return "Controller endpoint %s ".formatted(joinPoint.getSignature());
     }

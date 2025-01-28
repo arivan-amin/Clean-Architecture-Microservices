@@ -9,10 +9,10 @@ import java.util.List;
 
 @Value
 public class ReadAuditEventsResponse {
-    
+
     PageData pageData;
     List<AuditEventResponse> events;
-    
+
     public static ReadAuditEventsResponse of (PaginatedResponse<AuditEvent> paginatedResponse) {
         return new ReadAuditEventsResponse(paginatedResponse.getPageData(),
             paginatedResponse.getContent()

@@ -14,13 +14,13 @@ import static com.arivanamin.healthcare.backend.base.domain.aspects.ExecuteAndLo
 @Component
 @Slf4j
 class SpringSchedulerLoggingAspect {
-    
+
     @Around ("@annotation(org.springframework.scheduling.annotation.Scheduled)")
     public Object logScheduler (ProceedingJoinPoint joinPoint) throws Throwable {
         logScheduledTaskDetails(joinPoint);
-        
+
         PerformanceTimer timer = PerformanceTimer.newInstance();
-        
+
         Object result;
         try {
             timer.startTimer();
@@ -31,16 +31,16 @@ class SpringSchedulerLoggingAspect {
         }
         return result;
     }
-    
+
     private void logScheduledTaskDetails (JoinPoint joinPoint) {
         log.info("Running = {}", getJobName(joinPoint));
     }
-    
+
     private void stopTimerAndLogExecutionDuration (JoinPoint joinPoint, PerformanceTimer timer) {
         timer.stopTimer();
         timer.logMethodPerformance(getJobName(joinPoint));
     }
-    
+
     private String getJobName (JoinPoint joinPoint) {
         final String classPath = joinPoint.getSignature()
             .getDeclaringTypeName();
