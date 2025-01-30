@@ -1,5 +1,6 @@
 package com.arivanamin.healthcare.backend.api.gateway.application.routing;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.cloud.gateway.route.Route;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.*;
@@ -11,11 +12,14 @@ import java.util.function.Function;
 import static java.lang.System.getenv;
 
 @Configuration
+@RequiredArgsConstructor
 public class ApiGatewayRouting {
 
     public static final String EUREKA_HOST = getenv().getOrDefault("EUREKA_HOST", "localhost");
 
     public static final String EUREKA_URL = "http://%s:8761".formatted(EUREKA_HOST);
+
+    private final RoutingHelper routingHelper;
 
     @Bean
     public RouteLocator routeLocator (RouteLocatorBuilder builder) {
@@ -43,37 +47,26 @@ public class ApiGatewayRouting {
     }
 
     private Function<PredicateSpec, Buildable<Route>> getPatientServiceRoute () {
-        return r -> r.path("/patients/**")
-            .uri("lb://patient-service");
+        return routingHelper.createApiRouteForService("patient");
     }
 
     private Function<PredicateSpec, Buildable<Route>> getPatientServiceApiDocRoute () {
-        return r -> r.path("/patient-service/api-docs")
-            .filters(f -> f.setPath("/v3/api-docs"))
-            .uri("lb://patient-service");
+        return routingHelper.createApiDocRouteForService("patient");
     }
 
     private Function<PredicateSpec, Buildable<Route>> getPatientServiceActuatorRoute () {
-        return r -> r.path("/actuator/patients/**")
-            .filters(
-                f -> f.rewritePath("/actuator/patients/(?<segment>.*)", "/actuator/${segment}"))
-            .uri("lb://patient-service");
+        return routingHelper.createActuatorRouteForService("patient");
     }
 
     private Function<PredicateSpec, Buildable<Route>> getAuditServiceRoute () {
-        return r -> r.path("/audits/**")
-            .uri("lb://audit-service");
+        return routingHelper.createApiRouteForService("audit");
     }
 
     private Function<PredicateSpec, Buildable<Route>> getAuditServiceApiDocRoute () {
-        return r -> r.path("/audit-service/api-docs")
-            .filters(f -> f.setPath("/v3/api-docs"))
-            .uri("lb://audit-service");
+        return routingHelper.createApiDocRouteForService("audit");
     }
 
     private Function<PredicateSpec, Buildable<Route>> getAuditServiceActuatorRoute () {
-        return r -> r.path("/actuator/audits/**")
-            .filters(f -> f.rewritePath("/actuator/audits/(?<segment>.*)", "/actuator/${segment}"))
-            .uri("lb://audit-service");
+        return routingHelper.createActuatorRouteForService("audit");
     }
 }
