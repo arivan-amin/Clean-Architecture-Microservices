@@ -12,11 +12,12 @@ class RoutingConfig {
 
     @Bean
     public RedisRateLimiter rateLimiter () {
-        return new RedisRateLimiter(1, 10);
+        return new RedisRateLimiter(1, 1);
     }
 
     @Bean
     public KeyResolver ipKeyResolver () {
+        // todo 1/31/25 - later when security is added, keyResolver should depend on user ID
         return exchange -> Mono.just(exchange.getRequest()
             .getRemoteAddress()
             .getAddress()

@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # Define the base URL of the API
-BASE_URL="http://localhost:8080/api/patients/v1"
+BASE_URL="localhost:8080/patients/protected/v1"
 
 # Endpoints and corresponding methods
 declare -A endpoints=(
-    ["/profiles"]="GET"
-    ["/profiles/f8c3de3d-1fea-4d7c-a8b0-29f63c4c2387"]="DELETE"
-    ["/profiles/f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454"]="GET"
+#    ["/profiles"]="GET"
+#    ["/profiles/f8c3de3d-1fea-4d7c-a8b0-29f63c4c2387"]="DELETE"
+    ["/accounts/715223be-45b5-43a3-bcb5-2d75b04a0c42"]="GET"
 #    ["/profiles"]="POST"
 #    ["/profiles/f8c3de3d-1fea-4d7c-a8b0-29f63c4c9876"]="PUT"
 )
@@ -53,5 +53,5 @@ while true; do
 
     echo -e "Iteration finished \n"
     echo -e "\n"
-    sleep 5
+    sleep 0.5
 done
