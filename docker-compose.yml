@@ -2,6 +2,7 @@ volumes:
   app-logs:
   mysql-data:
   mongo-data:
+  redis-data:
 
 services:
   discovery-server:
@@ -27,6 +28,7 @@ services:
       - app-logs:/root/Apps/Healthcare/Logs/
     depends_on:
       - discovery-server
+      - redis
 
   tempo:
     container_name: healthcare-tempo
@@ -122,6 +124,16 @@ services:
       ME_CONFIG_BASICAUTH_PASSWORD: healthcare
     depends_on:
       - mongo
+
+  redis:
+    container_name: healthcare-redis-server
+    restart: unless-stopped
+    image: redis:7.4.2
+    ports:
+      - "6379:6379"
+    command: [ "redis-server", "--appendonly", "yes" ]
+    volumes:
+      - redis-data:/data
 
   # Kafka
   zookeeper:
