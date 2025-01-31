@@ -39,6 +39,7 @@ modern **Java** and **Spring Boot** and follow some of the best practices in dev
   response pojo.
 - **Core Entity and Jpa separation**: core entities have no association with JPA and are never
   annotated with @Entity.
+- Rate limiting in the API Gateway using redis rate limiter
 
 ## Sample audit log from Audit-Service captured from API calls in Patient-Service
 
@@ -90,6 +91,7 @@ modern **Java** and **Spring Boot** and follow some of the best practices in dev
 - **Loose Coupling of Components**
 - **Spring Dependency Injection**
 - **Aspect-Oriented Programming (AOP)**
+- **Rate Limiting API**
 
 ---
 
