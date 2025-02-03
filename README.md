@@ -18,9 +18,9 @@ modern **Java** and **Spring Boot** and follow some of the best practices in dev
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
 ![License](https://img.shields.io/badge/license-MIT-brightgreen)
 
-![Last Commit](https://img.shields.io/github/last-commit/arivan-amin/Healthcare-Clean-Microservices)
-![Repo Size](https://img.shields.io/github/repo-size/arivan-amin/Healthcare-Clean-Microservices)
-![Contributors](https://img.shields.io/github/contributors/arivan-amin/Healthcare-Clean-Microservices)
+![Last Commit](https://img.shields.io/github/last-commit/arivan-amin/Clean-Architecture-Microservices)
+![Repo Size](https://img.shields.io/github/repo-size/arivan-amin/Clean-Architecture-Microservices)
+![Contributors](https://img.shields.io/github/contributors/arivan-amin/Clean-Architecture-Microservices)
 ![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20Windows%20%7C%20MacOS-informational)
 
 ## Notable Features
@@ -136,7 +136,7 @@ modern **Java** and **Spring Boot** and follow some of the best practices in dev
 
 ## Grafana Monitoring Sample
 
-![image](https://raw.githubusercontent.com/arivan-amin/Healthcare-Management-Microservices/master/Docs/Grafana/Grafana-Dashboard-1.png)
+![image](https://raw.githubusercontent.com/arivan-amin/Clean-Architecture-Microservices/master/Docs/Grafana/Grafana-Dashboard-1.png)
 
 ## 🚀 Installation Guide
 
@@ -152,8 +152,8 @@ modern **Java** and **Spring Boot** and follow some of the best practices in dev
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/arivan-amin/Healthcare-Clean-Microservices.git
-   cd Healthcare-Clean-Microservices
+   git clone https://github.com/arivan-amin/Clean-Architecture-Microservices.git
+   cd Clean-Architecture-Microservices
    ```
 
 2. **Build Core Module:**
