@@ -17,7 +17,6 @@ import static org.springframework.data.domain.ExampleMatcher.StringMatcher.CONTA
 import static org.springframework.data.domain.PageRequest.of;
 
 @RequiredArgsConstructor
-@Transactional
 @Slf4j
 public class JpaAuditEventStorage implements AuditEventStorage {
 
@@ -84,6 +83,7 @@ public class JpaAuditEventStorage implements AuditEventStorage {
             .map(JpaAuditEvent::toDomain);
     }
 
+    @Transactional
     @Override
     public String create (AuditEvent event) {
         return repository.save(fromDomain(event))
