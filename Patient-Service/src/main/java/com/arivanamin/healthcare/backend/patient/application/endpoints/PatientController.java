@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -51,6 +52,7 @@ class PatientController {
 
     @PostMapping (CREATE_PATIENT_URL)
     @Operation (summary = "Creates a patient")
+    @CacheEvict
     @ResponseStatus (HttpStatus.CREATED)
     public CreatePatientResponse createPatient (@RequestBody @Valid CreatePatientRequest request) {
         UUID createdPatientId = createCommand.execute(request.toEntity());
@@ -59,6 +61,7 @@ class PatientController {
 
     @PutMapping (UPDATE_PATIENT_URL)
     @Operation (summary = "Updates a patient")
+    @CacheEvict
     @ResponseStatus (HttpStatus.OK)
     public void updatePatient (@PathVariable UUID id,
                                @RequestBody @Valid UpdatePatientRequest request) {
@@ -67,6 +70,7 @@ class PatientController {
 
     @DeleteMapping (DELETE_PATIENT_URL)
     @Operation (summary = "Deletes a patient")
+    @CacheEvict
     @ResponseStatus (HttpStatus.NO_CONTENT)
     public void deletePatient (@PathVariable UUID id) {
         deleteCommand.execute(id);
