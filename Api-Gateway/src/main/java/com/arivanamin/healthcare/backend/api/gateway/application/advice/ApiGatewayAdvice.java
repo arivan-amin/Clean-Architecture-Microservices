@@ -11,6 +11,9 @@ import org.springframework.web.reactive.resource.NoResourceFoundException;
 import java.net.URI;
 import java.time.Instant;
 
+import static com.arivanamin.healthcare.backend.base.application.advice.ProblemDetailCategories.RESOURCE_NOT_FOUND;
+import static com.arivanamin.healthcare.backend.base.application.advice.ProblemDetailProperties.CATEGORY;
+import static com.arivanamin.healthcare.backend.base.application.advice.ProblemDetailProperties.TIMESTAMP;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.http.ProblemDetail.forStatusAndDetail;
 
@@ -22,13 +25,13 @@ public final class ApiGatewayAdvice {
     @ExceptionHandler (NoResourceFoundException.class)
     ProblemDetail handleResourceNotFound (NoResourceFoundException exception) {
         ProblemDetail detail = forStatusAndDetail(NOT_FOUND, exception.getMessage());
-        detail.setTitle("Resource Not Found");
+        detail.setTitle("Requested Resource Not Found");
         detail.setType(URI.create(
             "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework" +
                 "/web/reactive/resource/NoResourceFoundException.html"));
-        detail.setProperty("errorCategory", "Resource Not Found");
-        detail.setProperty("timestamp", Instant.now());
-        detail.setDetail(exception.getMessage());
+        detail.setProperty(CATEGORY, RESOURCE_NOT_FOUND);
+        detail.setProperty(TIMESTAMP, Instant.now());
+        log.error(exception.getMessage(), exception);
         return detail;
     }
 }

@@ -11,6 +11,9 @@ import org.springframework.web.servlet.resource.NoResourceFoundException;
 import java.net.URI;
 import java.time.Instant;
 
+import static com.arivanamin.healthcare.backend.base.application.advice.ProblemDetailCategories.*;
+import static com.arivanamin.healthcare.backend.base.application.advice.ProblemDetailProperties.CATEGORY;
+import static com.arivanamin.healthcare.backend.base.application.advice.ProblemDetailProperties.TIMESTAMP;
 import static org.springframework.http.HttpStatus.*;
 import static org.springframework.http.ProblemDetail.forStatusAndDetail;
 
@@ -21,15 +24,14 @@ public final class CommonProblemDetails {
     public static ProblemDetail getResourceNotFoundProblemDetail (
         NoResourceFoundException exception) {
         ProblemDetail detail = forStatusAndDetail(NOT_FOUND, exception.getMessage());
-        detail.setTitle("Resource not found");
+        detail.setTitle("Requested Resource not found");
         detail.setType(URI.create(
             "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework" +
                 "/web/servlet/resource/NoResourceFoundException.html" +
                 ".base/java/lang/RuntimeException.html"));
-        detail.setProperty("errorCategory", "Resource not found");
-        detail.setProperty("timestamp", Instant.now());
-        detail.setDetail(exception.getMessage());
-        log.error("NoResourceFoundException advice", exception);
+        detail.setProperty(CATEGORY, RESOURCE_NOT_FOUND);
+        detail.setProperty(TIMESTAMP, Instant.now());
+        log.error(exception.getMessage(), exception);
         return detail;
     }
 
@@ -40,10 +42,9 @@ public final class CommonProblemDetails {
         detail.setType(URI.create(
             "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework" +
                 "/web/bind/MissingServletRequestParameterException.html"));
-        detail.setProperty("errorCategory", "Missing Parameter");
-        detail.setProperty("timestamp", Instant.now());
-        detail.setDetail(exception.getMessage());
-        log.error("MissingServletRequestParameterException advice", exception);
+        detail.setProperty(CATEGORY, MISSING_PARAMETER);
+        detail.setProperty(TIMESTAMP, Instant.now());
+        log.error(exception.getMessage(), exception);
         return detail;
     }
 
@@ -54,10 +55,9 @@ public final class CommonProblemDetails {
         detail.setType(URI.create(
             "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework" +
                 "/messaging/handler/annotation/support/MethodArgumentNotValidException.html"));
-        detail.setProperty("errorCategory", "Missing Parameter");
-        detail.setProperty("timestamp", Instant.now());
-        detail.setDetail(exception.getMessage());
-        log.error("MethodArgumentNotValidException advice", exception);
+        detail.setProperty(CATEGORY, MISSING_PARAMETER);
+        detail.setProperty(TIMESTAMP, Instant.now());
+        log.error(exception.getMessage(), exception);
         return detail;
     }
 
@@ -68,10 +68,9 @@ public final class CommonProblemDetails {
         detail.setType(URI.create(
             "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework" +
                 "/http/converter/HttpMessageNotReadableException.html"));
-        detail.setProperty("errorCategory", "Missing Parameter");
-        detail.setProperty("timestamp", Instant.now());
-        detail.setDetail(exception.getMessage());
-        log.error("HttpMessageNotReadableException advice", exception);
+        detail.setProperty(CATEGORY, MISSING_PARAMETER);
+        detail.setProperty(TIMESTAMP, Instant.now());
+        log.error(exception.getMessage(), exception);
         return detail;
     }
 
@@ -82,10 +81,9 @@ public final class CommonProblemDetails {
         detail.setType(URI.create(
             "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework" +
                 "/web/bind/MissingPathVariableException.html"));
-        detail.setProperty("errorCategory", "Missing Parameter");
-        detail.setProperty("timestamp", Instant.now());
-        detail.setDetail(exception.getMessage());
-        log.error("MissingPathVariableException advice", exception);
+        detail.setProperty(CATEGORY, MISSING_PARAMETER);
+        detail.setProperty(TIMESTAMP, Instant.now());
+        log.error(exception.getMessage(), exception);
         return detail;
     }
 
@@ -95,10 +93,9 @@ public final class CommonProblemDetails {
         detail.setType(URI.create(
             "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Exception" +
                 ".html"));
-        detail.setProperty("errorCategory", "Internal Error");
-        detail.setProperty("timestamp", Instant.now());
-        detail.setDetail(exception.getMessage());
-        log.error("Exception advice", exception);
+        detail.setProperty(CATEGORY, INTERNAL_ERROR);
+        detail.setProperty(TIMESTAMP, Instant.now());
+        log.error(exception.getMessage(), exception);
         return detail;
     }
 }

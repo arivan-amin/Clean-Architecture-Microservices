@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.net.URI;
 import java.time.Instant;
 
+import static com.arivanamin.healthcare.backend.base.application.advice.ProblemDetailCategories.RESOURCE_NOT_FOUND;
+import static com.arivanamin.healthcare.backend.base.application.advice.ProblemDetailProperties.CATEGORY;
+import static com.arivanamin.healthcare.backend.base.application.advice.ProblemDetailProperties.TIMESTAMP;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.http.ProblemDetail.forStatusAndDetail;
 
@@ -22,13 +25,12 @@ public final class AuditControllerAdvice {
     @ExceptionHandler (AuditEventNotFoundException.class)
     ProblemDetail handleAuditEventNotFound (AuditEventNotFoundException exception) {
         ProblemDetail detail = forStatusAndDetail(NOT_FOUND, exception.getMessage());
-        detail.setTitle("Bad Request, Audit Event not found");
+        detail.setTitle("Audit Event Not Found");
         detail.setType(URI.create("https://docs.oracle.com/en/java/javase/21/docs/api/java" +
             ".base/java/lang/RuntimeException.html"));
-        detail.setProperty("errorCategory", "Resource not found");
-        detail.setProperty("timestamp", Instant.now());
-        detail.setDetail(exception.getMessage());
-        log.error("AuditEventNotFoundException advice", exception);
+        detail.setProperty(CATEGORY, RESOURCE_NOT_FOUND);
+        detail.setProperty(TIMESTAMP, Instant.now());
+        log.error(exception.getMessage(), exception);
         return detail;
     }
 }
