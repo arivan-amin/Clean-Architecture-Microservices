@@ -34,7 +34,7 @@ class PatientController {
     private final DeletePatientCommand deleteCommand;
 
     @GetMapping (GET_PATIENTS_URL)
-    @Cacheable (cacheNames = "patientsCache")
+    @Cacheable ("patientsCache")
     @Operation (summary = "Get a list of patients")
     @ResponseStatus (HttpStatus.OK)
     public ReadPatientsResponse getAllPatients (@RequestParam Integer page,
@@ -43,7 +43,7 @@ class PatientController {
     }
 
     @GetMapping (GET_PATIENT_BY_ID_URL)
-    @Cacheable (cacheNames = "patientByIdCache")
+    @Cacheable ("patientByIdCache")
     @Operation (summary = "Get a single patient by id")
     @ResponseStatus (HttpStatus.OK)
     public PatientResponse getPatientById (@PathVariable UUID id) {
@@ -52,7 +52,7 @@ class PatientController {
 
     @PostMapping (CREATE_PATIENT_URL)
     @Operation (summary = "Creates a patient")
-    @CacheEvict
+    @CacheEvict (cacheNames = "patientsCache", allEntries = true)
     @ResponseStatus (HttpStatus.CREATED)
     public CreatePatientResponse createPatient (@RequestBody @Valid CreatePatientRequest request) {
         UUID createdPatientId = createCommand.execute(request.toEntity());
@@ -61,7 +61,7 @@ class PatientController {
 
     @PutMapping (UPDATE_PATIENT_URL)
     @Operation (summary = "Updates a patient")
-    @CacheEvict
+    @CacheEvict (cacheNames = "patientsCache", allEntries = true)
     @ResponseStatus (HttpStatus.OK)
     public void updatePatient (@PathVariable UUID id,
                                @RequestBody @Valid UpdatePatientRequest request) {
@@ -70,7 +70,7 @@ class PatientController {
 
     @DeleteMapping (DELETE_PATIENT_URL)
     @Operation (summary = "Deletes a patient")
-    @CacheEvict
+    @CacheEvict (cacheNames = "patientsCache", allEntries = true)
     @ResponseStatus (HttpStatus.NO_CONTENT)
     public void deletePatient (@PathVariable UUID id) {
         deleteCommand.execute(id);
