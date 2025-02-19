@@ -160,11 +160,11 @@ services:
       DB_USER: keycloak
       DB_PASSWORD: password
       KEYCLOAK_ADMIN: admin
-      KEYCLOAK_ADMIN_PASSWORD: admin
+      KEYCLOAK_ADMIN_PASSWORD: Admin@pass123
     ports:
       - "8181:8080"
     volumes:
-      - ./docker/keycloak/realms/:/opt/keycloak/data/import/
+      - ./Docker/keycloak/realms/:/opt/keycloak/data/import/
     depends_on:
       - keycloak-mysql
 
