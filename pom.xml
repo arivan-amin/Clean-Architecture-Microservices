@@ -55,6 +55,7 @@
         <module>Core</module>
         <module>Testing</module>
         <module>Audit-Service</module>
+        <module>SSO-Service</module>
         <module>Patient-Service</module>
     </modules>
 
