@@ -39,7 +39,41 @@ modern **Java** and **Spring Boot** and follow some of the best practices in dev
   response pojo.
 - **Core Entity and Jpa separation**: core entities have no association with JPA and are never
   annotated with @Entity.
-- Rate limiting in the API Gateway using redis rate limiter
+- **Rate limiting** in the API Gateway using **Redis Rate Limiter**
+
+## Architecture Overview
+
+```
+                                  +----------------+
+                                  |    Keycloak    |
+                                  | (Auth Server)  |
+                                  +-------+--------+
+                                          |
+                                          v
+                                  +-------+--------+             +-------------------+
+        Client Request            |   API Gateway  | ----------> |  Discovery Server |
+------------------------------->  |    (Spring)    | <---------- |      (EUREKA)     |
+                                  +-------+--------+             +-------------------+
+                                          |
+                                          | (Authenticated Request)
+                                          |
+                                          v
+                   Actuator     +---------+---------+     AOP     +-----------------+
+            --------------------|  Patient Service  | ----------> | Audit Log Event |
+            |     Prometheus    |   (RESTful API)   | <---------- |     (Kafka)     |
+            v                   +---------+---------+             +--------+--------+
+  +---------+--------+                     |                               |
+  |      Grafana     |                     |                               | Consume
+  |  Metrics & Logs  |                     | Write                         |
+  |  Visualization   |                     | Logs                          v
+  +---------+--------+                     |                       +--------+--------+
+            |                              |                       |  Audit Service  |
+            | Read Logs                    v                       +--------+--------+
+            |                      +-------+-------+               
+            ---------------------> | Docker Volume |                
+                                   +-------+-------+
+                                  
+```
 
 ## Sample audit log from Audit-Service captured from API calls in Patient-Service
 
@@ -182,14 +216,35 @@ modern **Java** and **Spring Boot** and follow some of the best practices in dev
    docker compose up -d
    ```
 
-6. **Access the Services:**
-    - **API Gateway:** [http://localhost:8080](http://localhost:8080)
-    - **Eureka Dashboard:** [http://localhost:8080/eureka/web](http://localhost:8080/eureka/web)
-    - **Swagger UI:** [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
-    - **Grafana Dashboard:** [http://localhost:3000/dashboards](http://localhost:3000/dashboards)
+# Access the Services
 
-7. **Grafana Dashboard Setup:**
-    - Import pre-built dashboard JSON configuration from `docker/grafana/` folder.
+## API Gateway
+
+```
+http://localhost:8080
+```
+
+## Eureka Dashboard
+
+```
+http://localhost:8080/eureka/web
+```
+
+## API Documentation
+
+#### OpenAPI documentation is available via Swagger UI
+
+```
+http://localhost:8080/swagger-ui.html
+```
+
+## Grafana Dashboard
+
+#### Import pre-built dashboard JSON configuration from `docker/grafana/` folder
+
+```
+http://localhost:3000/dashboards
+```
 
 ---
 
