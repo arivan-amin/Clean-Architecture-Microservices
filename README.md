@@ -25,36 +25,35 @@ modern **Java** and **Spring Boot** and follow some of the best practices in dev
 ## Architecture Overview
 
 ```
-                                  +----------------+
-                                  |    Keycloak    |
-                                  | (Auth Server)  |
-                                  +-------+--------+
-                                          |
-                                          v
-                                  +-------+--------+             +-------------------+
-        Client Request            |   API Gateway  | ----------> | Discovery Server  |<-----------
-------------------------------->  |    (Spring)    | <---------- |      (EUREKA)     |<--------- |
-                                  +-------+--------+             +-------------------+         | |
-                                          |                                                    | |
-                            Authenticated | Request                                            | |
-                                          |                                                    | |
-                                          v                                                    | |
-                   Actuator     +---------+---------+     AOP     +-----------------+          | |
-            --------------------|  Patient Service  | ----------> | Audit Log Event |          | |
-            |     Prometheus    |   (RESTful API)   | <---------- |     (Kafka)     |          | |
-            v                   +---------+---------+             +--------+--------+          | |
-  +---------+--------+                     |     |                         |                   | |
-  |      Grafana     |                     |     --------------            | Consume           | |
-  |  Metrics & Logs  |                     |                  |            |                   | |
-  |  Visualization   |               Write |                  |            v                   | |
-  +---------+--------+               Logs  |   Write Logs     |   +--------+--------+          | |
-            |                              |  ----------------|---|  Audit Service  |----------- |
-            | Read Logs                    v  v               |   +--------+--------+            |
-            |                      +-------+-------+          |                                  |
-            ---------------------> | Docker Volume |          |                                  |
-                                   +-------+-------+          ------------------------------------ 
-                                                                      Register with Eureka
-
+                               +----------------+
+                               |    Keycloak    |
+                               | (Auth Server)  |
+                               +-------+--------+
+                                       |
+                                       v
+                               +-------+--------+             +-------------------+
+      Client Request           |   API Gateway  | ----------> | Discovery Server  |<---
+---------------------------->  |    (Spring)    | <---------- |      (EUREKA)     |<- |
+                               +-------+--------+             +-------------------+ | |
+                                       |                                            | |
+                         Authenticated | Request                                    | |
+                                       |                                            | |
+                                       v                                            | |
+                 Actuator    +---------+---------+     AOP     +-----------------+  | |
+          -------------------|  Patient Service  | ----------> | Audit Log Event |  | |
+          |     Prometheus   |   (RESTful API)   | <---------- |     (Kafka)     |  | |
+          v                  +---------+---------+             +--------+--------+  | |
++---------+--------+                    |     |                         |           | |
+|      Grafana     |                    |     ------------              | Consume   | |
+|  Metrics & Logs  |                    |                |              |           | |
+|  Visualization   |              Write |                |              v           | |
++---------+--------+              Logs  |   Write Logs   |     +--------+--------+  | |
+          |                             |  --------------|-----|  Audit Service  |--- |
+          | Read Logs                   v  v             |     +--------+--------+    |
+          |                     +-------+-------+        |                            |
+          --------------------> | Docker Volume |        |                            |
+                                +-------+-------+        ------------------------------ 
+                                                               Register with Eureka
 ```
 
 ## Notable Features
@@ -100,6 +99,7 @@ Decouples core business logic from presentation using request and response pojo.
 Core entities have no association with JPA and are never annotated with @Entity.
 
 ## Sample audit log from Audit-Service captured from API calls in Patient-Service
+
 ```
         // Create Patient Endpoint
         {
