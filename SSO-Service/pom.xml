@@ -10,34 +10,20 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>api-gateway</artifactId>
-    <version>1.0.0</version>
-    <name>API-Gateway</name>
-    <description>API-Gateway</description>
+    <artifactId>sso-service</artifactId>
+    <version>0.1</version>
+    <name>SSO-Service</name>
+    <description>SSO Service Module</description>
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-gateway</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-starter-webflux-ui</artifactId>
-            <version>${springdoc-web-flux-version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis-reactive</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
         </dependency>
 
         <dependency>
@@ -50,6 +36,11 @@
             <artifactId>Testing</artifactId>
             <version>${testing-module-version}</version>
         </dependency>
-    </dependencies>
 
+        <dependency>
+            <groupId>org.keycloak</groupId>
+            <artifactId>keycloak-admin-client</artifactId>
+            <version>26.0.4</version>
+        </dependency>
+    </dependencies>
 </project>

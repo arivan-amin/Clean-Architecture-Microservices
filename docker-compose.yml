@@ -6,7 +6,7 @@ volumes:
 
 services:
   discovery-server:
-    container_name: healthcare-discovery-server
+    container_name: discovery-server
     restart: unless-stopped
     image: arivanamin/healthcare-discovery-server
     ports:
@@ -17,7 +17,7 @@ services:
       - app-logs:/root/Apps/Healthcare/Logs/
 
   api-gateway:
-    container_name: healthcare-api-gateway
+    container_name: api-gateway
     restart: unless-stopped
     image: arivanamin/healthcare-api-gateway
     ports:
@@ -31,7 +31,7 @@ services:
       - redis
 
   tempo:
-    container_name: healthcare-tempo
+    container_name: tempo
     restart: unless-stopped
     image: grafana/tempo:2.3.0
     command: [ "-config.file=/etc/tempo.yaml" ]
@@ -42,7 +42,7 @@ services:
       - "9411:9411" # zipkin
 
   loki:
-    container_name: healthcare-loki
+    container_name: loki
     restart: unless-stopped
     image: grafana/loki:3.2.0
     command: [ "-config.file=/etc/loki/local-config.yaml" ]
@@ -50,7 +50,7 @@ services:
       - "3100:3100"
 
   promtail:
-    container_name: healthcare-promtail
+    container_name: promtail
     restart: unless-stopped
     image: grafana/promtail:3.2.0
     volumes:
@@ -60,7 +60,7 @@ services:
     command: -config.file=/etc/promtail/config.yml
 
   prometheus:
-    container_name: healthcare-prometheus
+    container_name: prometheus
     restart: unless-stopped
     image: prom/prometheus:v2.54.1
     command:
@@ -72,7 +72,7 @@ services:
       - "9090:9090"
 
   grafana:
-    container_name: healthcare-grafana
+    container_name: grafana
     restart: unless-stopped
     image: grafana/grafana:11.2.0
     volumes:
@@ -85,7 +85,7 @@ services:
       - "3000:3000"
   
   mysql:
-    container_name: healthcare-mysql
+    container_name: mysql
     restart: unless-stopped
     image: mysql:9.1.0
     environment:
@@ -97,7 +97,7 @@ services:
       - ./Docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
   
   mongo:
-    container_name: healthcare-mongo
+    container_name: mongo
     restart: unless-stopped
     image: mongo:8.0.0
     ports:
@@ -109,7 +109,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: mongo
   
   mongo-express:
-    container_name: healthcare-mongo-express
+    container_name: mongo-express
     restart: unless-stopped
     image: mongo-express:latest
     ports:
@@ -126,7 +126,7 @@ services:
       - mongo
 
   redis:
-    container_name: healthcare-redis-server
+    container_name: redis-server
     restart: unless-stopped
     image: redis:7.4.2
     ports:
@@ -135,9 +135,42 @@ services:
     volumes:
       - redis-data:/data
 
+  # KeyCloak
+  keycloak-mysql:
+    container_name: keycloak-mysql
+    restart: unless-stopped
+    image: mysql:9.1.0
+    #    volumes:
+    #      - ./volume-data/mysql_keycloak_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: keycloak
+      MYSQL_USER: keycloak
+      MYSQL_PASSWORD: password
+  
+  keycloak:
+    container_name: keycloak
+    restart: unless-stopped
+    image: keycloak/keycloak:26.1
+    command: [ "start-dev", "--import-realm" ]
+    environment:
+      DB_VENDOR: MYSQL
+      DB_ADDR: mysql
+      DB_DATABASE: keycloak
+      DB_USER: keycloak
+      DB_PASSWORD: password
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: Admin@pass123
+    ports:
+      - "8181:8080"
+    volumes:
+      - ./Docker/keycloak/realms/:/opt/keycloak/data/import/
+    depends_on:
+      - keycloak-mysql
+
   # Kafka
   zookeeper:
-    container_name: healthcare-zookeeper
+    container_name: zookeeper
     restart: unless-stopped
     image: confluentinc/cp-zookeeper:7.5.0
     hostname: zookeeper
@@ -148,7 +181,7 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
 
   broker:
-    container_name: healthcare-broker
+    container_name: broker
     restart: unless-stopped
     image: confluentinc/cp-kafka:7.5.0
     ports:
@@ -164,7 +197,7 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
 
   schema-registry:
-    container_name: healthcare-schema-registry
+    container_name: schema-registry
     restart: unless-stopped
     image: confluentinc/cp-schema-registry:7.5.0
     hostname: schema-registry
@@ -178,7 +211,7 @@ services:
       SCHEMA_REGISTRY_LISTENERS: http://schema-registry:8081
 
   kafka-ui:
-    container_name: healthcare-kafka-ui
+    container_name: kafka-ui
     restart: unless-stopped
     image: provectuslabs/kafka-ui:latest
     ports:

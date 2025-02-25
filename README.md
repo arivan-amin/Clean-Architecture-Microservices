@@ -2,10 +2,9 @@
 
 ## Overview
 
-This project is a **Sample Healthcare System** developed as a **Microservices**
-using **Java** and **Clean Architecture**.
+This is a **Modern Microservices Back-End** application using **Java** and **Spring Boot**.
 
-It serves as a practice project to demonstrate the implementation of microservices using
+It serves as a template to demonstrate the implementation of microservices using
 modern **Java** and **Spring Boot** and follow some of the best practices in development.
 
 ---
@@ -23,26 +22,84 @@ modern **Java** and **Spring Boot** and follow some of the best practices in dev
 ![Contributors](https://img.shields.io/github/contributors/arivan-amin/Clean-Architecture-Microservices)
 ![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20Windows%20%7C%20MacOS-informational)
 
+## Architecture Overview
+
+```
+                                  +----------------+
+                                  |    Keycloak    |
+                                  | (Auth Server)  |
+                                  +-------+--------+
+                                          |
+                                          v
+                                  +-------+--------+             +-------------------+
+        Client Request            |   API Gateway  | ----------> | Discovery Server  |<-----------
+------------------------------->  |    (Spring)    | <---------- |      (EUREKA)     |<--------- |
+                                  +-------+--------+             +-------------------+         | |
+                                          |                                                    | |
+                            Authenticated | Request                                            | |
+                                          |                                                    | |
+                                          v                                                    | |
+                   Actuator     +---------+---------+     AOP     +-----------------+          | |
+            --------------------|  Patient Service  | ----------> | Audit Log Event |          | |
+            |     Prometheus    |   (RESTful API)   | <---------- |     (Kafka)     |          | |
+            v                   +---------+---------+             +--------+--------+          | |
+  +---------+--------+                     |     |                         |                   | |
+  |      Grafana     |                     |     --------------            | Consume           | |
+  |  Metrics & Logs  |                     |                  |            |                   | |
+  |  Visualization   |               Write |                  |            v                   | |
+  +---------+--------+               Logs  |   Write Logs     |   +--------+--------+          | |
+            |                              |  ----------------|---|  Audit Service  |----------- |
+            | Read Logs                    v  v               |   +--------+--------+            |
+            |                      +-------+-------+          |                                  |
+            ---------------------> | Docker Volume |          |                                  |
+                                   +-------+-------+          ------------------------------------ 
+                                                                      Register with Eureka
+
+```
+
 ## Notable Features
 
-- **Automatic Audit Logs Recording**: Uses Spring **AOP** to create Audit Events automatically
-  whenever any API in any of the services are called and uses **Kafka** to send them to the **Audit
-  Service** to be recorded, allowing the controllers to be clutter-free and simple.
-- **Clean and concise Restful API in all services**: the API follows the modern best practices in
-  Restful services recommendations like using **ResponseEntity** and returning **ProblemDetails**.
-- **CQRS**: Command and Query Separation Principle to implement Business logic.
-- **ArchUnit**: to validate architectural boundaries and verify adherence to best coding standards
-- **@RestControllerAdvice**: to handle specific exceptions and return a unified and standard error
-  response instead of an exception stack trace using Spring **ProblemDetail**.
-- **OpenAPI and Swagger Docs**: to provide detailed documentation for all endpoints.
-- **Entity and DTO separation**: decouples core business logic from presentation using request and
-  response pojo.
-- **Core Entity and Jpa separation**: core entities have no association with JPA and are never
-  annotated with @Entity.
-- Rate limiting in the API Gateway using redis rate limiter
+### Automatic Audit Logs Recording
+
+Uses Spring **AOP** to create Audit Events automatically whenever any API in any of the services are
+called and uses **Kafka** to send them to the **Audit Service** to be recorded, allowing the
+controllers to be clutter-free and simple.
+
+### Clean Restful API in all services
+
+The API follows the modern best practices in Restful services recommendations like using *
+*ResponseEntity** and returning **ProblemDetail**.
+
+### CQRS
+
+Command and Query Separation Principle to implement Business logic.
+
+### Rate Limiting
+
+Implemented in **API Gateway** using **Redis Rate Limiter**
+
+### ArchUnit
+
+Validate architectural boundaries and verify adherence to best coding standards
+
+### RestControllerAdvice
+
+Handle specific exceptions and return a unified and standard error response instead of an exception
+stack trace using Spring **ProblemDetail**.
+
+### OpenAPI and Swagger Docs
+
+Provide detailed documentation for all endpoints.
+
+### Entity and DTO separation
+
+Decouples core business logic from presentation using request and response pojo.
+
+### Core Entity and Jpa separation
+
+Core entities have no association with JPA and are never annotated with @Entity.
 
 ## Sample audit log from Audit-Service captured from API calls in Patient-Service
-
 ```
         // Create Patient Endpoint
         {
@@ -81,7 +138,7 @@ modern **Java** and **Spring Boot** and follow some of the best practices in dev
         }
 ```
 
-## 🛠️ Architecture concepts demonstrated and implemented
+## Architecture concepts demonstrated and implemented
 
 - **Microservices**
 - **Clean Architecture**
@@ -95,7 +152,7 @@ modern **Java** and **Spring Boot** and follow some of the best practices in dev
 
 ---
 
-## 🛠️ Technical Features Implemented
+## Technical Features Implemented
 
 - **Microservices Architecture**.
 - **Automatic Audit Logs recording**: Uses Spring AOP to automatically store audit logs.
@@ -113,6 +170,7 @@ modern **Java** and **Spring Boot** and follow some of the best practices in dev
 - API Gateway
 - Patient Service
 - Audit Service
+- SSO Service
 
 ---
 
@@ -125,6 +183,7 @@ modern **Java** and **Spring Boot** and follow some of the best practices in dev
 - **MySQL**: Services data storage.
 - **MongoDB**: Storage for Audit logs.
 - **Kafka**: Event streaming for microservices.
+- **Keycloak**: Authentication and SSO provider.
 - **Docker**
 - **Grafana, Loki, Tempo**: Observability stack for metrics, logging, and tracing.
 - **JUnit & Mockito**: Unit testing and Mocking.
@@ -182,14 +241,25 @@ modern **Java** and **Spring Boot** and follow some of the best practices in dev
    docker compose up -d
    ```
 
-6. **Access the Services:**
-    - **API Gateway:** [http://localhost:8080](http://localhost:8080)
-    - **Eureka Dashboard:** [http://localhost:8080/eureka/web](http://localhost:8080/eureka/web)
-    - **Swagger UI:** [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
-    - **Grafana Dashboard:** [http://localhost:3000/dashboards](http://localhost:3000/dashboards)
+# Access the Services
 
-7. **Grafana Dashboard Setup:**
-    - Import pre-built dashboard JSON configuration from `docker/grafana/` folder.
+## API Gateway
+
+[http://localhost:8080](http://localhost:8080)
+
+## Eureka Dashboard
+
+[http://localhost:8080/eureka/web](http://localhost:8080/eureka/web)
+
+## API Documentation
+
+[http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
+
+## Grafana Dashboard
+
+#### Import pre-built dashboard JSON configuration from `docker/grafana/` folder
+
+[http://localhost:3000/dashboards](http://localhost:3000/dashboards)
 
 ---
 
@@ -209,6 +279,7 @@ modern **Java** and **Spring Boot** and follow some of the best practices in dev
 - **Core Module**: Shared utilities and functionality.
 - **Patient Service**: Manages patient data.
 - **Audit Service**: Logs events and ensures compliance.
+- **SSO Service**: Handles authentication and authorization using Keycloak.
 
 ---
 
@@ -231,4 +302,3 @@ For questions or inquiries:
 
 - **Name:** Arivan Amin
 - **Email:** [arivanamin@gmail.com](mailto:arivanamin@gmail.com)
-
