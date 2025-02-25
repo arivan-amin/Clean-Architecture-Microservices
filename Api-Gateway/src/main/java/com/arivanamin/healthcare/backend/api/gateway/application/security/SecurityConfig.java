@@ -20,7 +20,7 @@ class SecurityConfig {
                 authorize -> authorize.pathMatchers(publicResourceUrls)
                     .permitAll()
                     .anyExchange()
-                    .authenticated())
+                    .permitAll())
             .oauth2ResourceServer(oauth2 -> oauth2.jwt(withDefaults()))
             .build();
     }

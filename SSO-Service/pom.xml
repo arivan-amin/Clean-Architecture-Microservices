@@ -36,5 +36,11 @@
             <artifactId>Testing</artifactId>
             <version>${testing-module-version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.keycloak</groupId>
+            <artifactId>keycloak-admin-client</artifactId>
+            <version>26.0.4</version>
+        </dependency>
     </dependencies>
 </project>
