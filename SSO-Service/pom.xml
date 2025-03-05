@@ -40,7 +40,7 @@
         <dependency>
             <groupId>org.keycloak</groupId>
             <artifactId>keycloak-admin-client</artifactId>
-            <version>26.0.4</version>
+            <version>${keycloak-version}</version>
         </dependency>
     </dependencies>
 </project>
