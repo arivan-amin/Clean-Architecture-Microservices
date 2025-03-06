@@ -1,4 +1,4 @@
-package com.arivanamin.healthcare.backend.base.domain.audit;
+package com.arivanamin.healthcare.backend.base.domain.topics;
 
 public interface AuditTopics {
 
