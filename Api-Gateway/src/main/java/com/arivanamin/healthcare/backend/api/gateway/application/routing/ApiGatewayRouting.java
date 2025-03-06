@@ -32,6 +32,9 @@ public class ApiGatewayRouting {
             .route(getAuditServiceRoute())
             .route(getAuditServiceApiDocRoute())
             .route(getAuditServiceActuatorRoute())
+            .route(getNotificationServiceRoute())
+            .route(getNotificationServiceApiDocRoute())
+            .route(getNotificationServiceActuatorRoute())
             .build();
     }
 
@@ -68,5 +71,17 @@ public class ApiGatewayRouting {
 
     private Function<PredicateSpec, Buildable<Route>> getAuditServiceActuatorRoute () {
         return routingHelper.createActuatorRouteForService("audit");
+    }
+
+    private Function<PredicateSpec, Buildable<Route>> getNotificationServiceRoute () {
+        return routingHelper.createApiRouteForService("notification");
+    }
+
+    private Function<PredicateSpec, Buildable<Route>> getNotificationServiceApiDocRoute () {
+        return routingHelper.createApiDocRouteForService("notification");
+    }
+
+    private Function<PredicateSpec, Buildable<Route>> getNotificationServiceActuatorRoute () {
+        return routingHelper.createActuatorRouteForService("notification");
     }
 }
