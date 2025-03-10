@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor (access = AccessLevel.PRIVATE)
 public final class OpenApiDetails {
 
+    public static final String APPLICATION_SERVER_URL = "localhost:8080/";
+
     public static Contact getOpenApiContactDetails () {
         Contact contact = new Contact();
         contact.setEmail("arivanamin@gmail.com");

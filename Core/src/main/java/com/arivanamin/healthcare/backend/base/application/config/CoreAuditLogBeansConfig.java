@@ -10,16 +10,17 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
-class AuditBeansConfig {
+class CoreAuditLogBeansConfig {
 
     @Bean
     public AuditDataExtractor auditDataExtractor (
-        @Value ("${spring.application.name}") String appName) {
-        return new AuditDataExtractor(appName);
+        @Value ("${spring.application.name}") String serviceName) {
+        return new AuditDataExtractor(serviceName);
     }
 
     @Bean
-    public AuditEventPublisher publisher (KafkaTemplate<String, AuditEvent> kafkaTemplate) {
+    public AuditEventPublisher auditEventPublisher (
+        KafkaTemplate<String, AuditEvent> kafkaTemplate) {
         return new KafkaAuditEventPublisher(kafkaTemplate);
     }
 }

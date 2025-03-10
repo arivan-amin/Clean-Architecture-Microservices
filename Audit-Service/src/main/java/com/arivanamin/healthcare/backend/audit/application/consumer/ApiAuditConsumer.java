@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
-import static com.arivanamin.healthcare.backend.base.domain.audit.AuditTopics.API_AUDIT_TOPIC;
+import static com.arivanamin.healthcare.backend.base.domain.topics.AuditTopics.API_AUDIT_TOPIC;
 
 @Service
 @RequiredArgsConstructor

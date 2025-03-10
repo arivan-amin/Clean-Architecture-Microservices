@@ -16,7 +16,8 @@ class SecurityConfig {
 
     @Bean
     public SecurityWebFilterChain securityFilterChain (ServerHttpSecurity httpSecurity) {
-        return httpSecurity.authorizeExchange(
+        return httpSecurity.csrf(ServerHttpSecurity.CsrfSpec::disable)
+            .authorizeExchange(
                 authorize -> authorize.pathMatchers(publicResourceUrls)
                     .permitAll()
                     .anyExchange()

@@ -16,7 +16,7 @@ class SsoOpenApiConfig {
     @Bean
     public OpenAPI myOpenAPI () {
         Server server = new Server();
-        server.setUrl("localhost:8080/");
+        server.setUrl(APPLICATION_SERVER_URL);
         server.setDescription("Server URL");
 
         Info info = new Info().title("SSO Service API")

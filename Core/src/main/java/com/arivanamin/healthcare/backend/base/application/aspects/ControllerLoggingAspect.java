@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 import static com.arivanamin.healthcare.backend.base.domain.aspects.ExecuteAndLogPerformance.executeThrowable;
-import static com.arivanamin.healthcare.backend.base.domain.audit.AuditTopics.API_AUDIT_TOPIC;
+import static com.arivanamin.healthcare.backend.base.domain.topics.AuditTopics.API_AUDIT_TOPIC;
 
 @Aspect
 @Component
