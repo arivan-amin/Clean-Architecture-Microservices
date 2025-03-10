@@ -1,5 +1,6 @@
 package com.arivanamin.healthcare.backend.patient.application.config;
 
+import com.arivanamin.healthcare.backend.base.domain.notification.NotificationPublisher;
 import com.arivanamin.healthcare.backend.patient.core.command.*;
 import com.arivanamin.healthcare.backend.patient.core.persistence.PatientStorage;
 import com.arivanamin.healthcare.backend.patient.core.query.ReadPatientByIdQuery;
@@ -28,8 +29,9 @@ class CommandAndQueryBeansConfig {
     }
 
     @Bean
-    public CreatePatientCommand createPatientCommand (PatientStorage storage) {
-        return new CreatePatientCommand(storage);
+    public CreatePatientCommand createPatientCommand (PatientStorage storage,
+                                                      NotificationPublisher notification) {
+        return new CreatePatientCommand(storage, notification);
     }
 
     @Bean

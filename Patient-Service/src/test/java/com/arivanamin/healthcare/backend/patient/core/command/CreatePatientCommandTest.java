@@ -1,5 +1,6 @@
 package com.arivanamin.healthcare.backend.patient.core.command;
 
+import com.arivanamin.healthcare.backend.base.domain.notification.NotificationPublisher;
 import com.arivanamin.healthcare.backend.patient.core.entity.Patient;
 import com.arivanamin.healthcare.backend.patient.core.exception.PatientAlreadyExistsException;
 import com.arivanamin.healthcare.backend.patient.core.persistence.PatientStorage;
@@ -19,6 +20,7 @@ class CreatePatientCommandTest implements BaseUnitTest {
     private final UUID createdPatientId = UUID.randomUUID();
 
     private PatientStorage persistence;
+    private NotificationPublisher publisher;
     private CreatePatientCommand command;
 
     private Patient patient;
@@ -32,7 +34,7 @@ class CreatePatientCommandTest implements BaseUnitTest {
 
     private void givenCommandWithMockFindByEmail () {
         persistence = mock(PatientStorage.class);
-        command = new CreatePatientCommand(persistence);
+        command = new CreatePatientCommand(persistence, publisher);
         Patient patient = RANDOM.nextObject(Patient.class);
         patient.setEmail(emailAddress);
         when(persistence.findByEmail(emailAddress)).thenReturn(Optional.of(patient));
@@ -57,7 +59,7 @@ class CreatePatientCommandTest implements BaseUnitTest {
 
     private void givenCommandWithMockPersistence () {
         persistence = mock(PatientStorage.class);
-        command = new CreatePatientCommand(persistence);
+        command = new CreatePatientCommand(persistence, publisher);
         when(persistence.create(any())).thenReturn(createdPatientId);
         patient = RANDOM.nextObject(Patient.class);
     }

@@ -14,8 +14,8 @@ class AuditBeansConfig {
 
     @Bean
     public AuditDataExtractor auditDataExtractor (
-        @Value ("${spring.application.name}") String appName) {
-        return new AuditDataExtractor(appName);
+        @Value ("${spring.application.name}") String serviceName) {
+        return new AuditDataExtractor(serviceName);
     }
 
     @Bean
