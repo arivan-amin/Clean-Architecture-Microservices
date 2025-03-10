@@ -7,7 +7,6 @@ import com.arivanamin.healthcare.backend.patient.core.exception.PatientAlreadyEx
 import com.arivanamin.healthcare.backend.patient.core.persistence.PatientStorage;
 import lombok.RequiredArgsConstructor;
 
-import java.util.Map;
 import java.util.UUID;
 
 import static com.arivanamin.healthcare.backend.base.domain.notification.NotificationChannel.EMAIL;
@@ -28,8 +27,8 @@ public class CreatePatientCommand {
         NotificationRequest notificationRequest = NotificationRequest.builder()
             .channel(EMAIL)
             .recipient(patient.getEmail())
-            .templateName("PATIENT_WELCOME_EMAIL")
-            .variables(Map.of("patientEmail", patient.getEmail()))
+            .content("Welcome")
+            .referenceId(patient.getEmail())
             .build();
 
         publisher.sendNotification(NOTIFICATION_TOPIC, notificationRequest);

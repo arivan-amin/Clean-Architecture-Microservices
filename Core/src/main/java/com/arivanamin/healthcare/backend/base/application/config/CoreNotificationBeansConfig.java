@@ -8,10 +8,10 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
-class NotificationBeansConfig {
+class CoreNotificationBeansConfig {
 
     @Bean
-    public NotificationPublisher publisher (
+    public NotificationPublisher notificationPublisher (
         KafkaTemplate<String, NotificationRequest> kafkaTemplate) {
         return new KafkaNotificationPublisher(kafkaTemplate);
     }

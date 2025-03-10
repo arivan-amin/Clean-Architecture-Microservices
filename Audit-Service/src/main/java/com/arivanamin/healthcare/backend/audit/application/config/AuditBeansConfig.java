@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 @Component
-class CommandAndQueryBeansConfig {
+class AuditBeansConfig {
 
     @Bean
     public AuditEventStorage storage (AuditEventRepository repository) {

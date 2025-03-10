@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 @Component
-class CommandAndQueryBeansConfig {
+class PatientBeansConfig {
 
     @Bean
     public PatientStorage storage (PatientRepository repository) {

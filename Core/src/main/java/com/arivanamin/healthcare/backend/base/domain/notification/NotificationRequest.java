@@ -1,17 +1,16 @@
 package com.arivanamin.healthcare.backend.base.domain.notification;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import lombok.*;
 
-import java.util.Map;
-
-@AllArgsConstructor
+@Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public final class NotificationRequest {
 
-    private final String templateName;
-    private final Map<String, String> variables;
     private NotificationChannel channel;
     private String recipient;
-    private String timestamp;
+    private String content;
+    private String referenceId;
+    private long timestamp;
 }

@@ -1,10 +1,12 @@
 package com.arivanamin.healthcare.backend.notification.application.consumer;
 
 import com.arivanamin.healthcare.backend.base.domain.aspects.LogExecutionTime;
+import com.arivanamin.healthcare.backend.base.domain.notification.NotificationRequest;
 import com.arivanamin.healthcare.backend.notification.core.command.CreateNotificationCommand;
 import com.arivanamin.healthcare.backend.notification.core.entity.Notification;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
@@ -23,12 +25,14 @@ public class NotificationConsumer {
 
     @KafkaListener (topics = NOTIFICATION_TOPIC, groupId = "notificationGroupId")
     @LogExecutionTime
-    public void consumeNotification (Notification notification) {
-        saveToStorage(notification);
+    public void consumeNotification (NotificationRequest request) {
+        saveToStorage(request);
     }
 
-    private void saveToStorage (Notification notification) {
-        String savedEventId = command.execute(notification);
-        log.info("createdNotificationId = {}", savedEventId);
+    private void saveToStorage (NotificationRequest request) {
+        Notification notification = new ModelMapper().map(request, Notification.class);
+        log.info("Consumed notification = {}", notification);
+        String savedNotificationId = command.execute(notification);
+        log.info("savedNotificationId = {}", savedNotificationId);
     }
 }
