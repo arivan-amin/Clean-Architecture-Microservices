@@ -34,6 +34,7 @@ class CreatePatientCommandTest implements BaseUnitTest {
 
     private void givenCommandWithMockFindByEmail () {
         persistence = mock(PatientStorage.class);
+        publisher = mock(NotificationPublisher.class);
         command = new CreatePatientCommand(persistence, publisher);
         Patient patient = RANDOM.nextObject(Patient.class);
         patient.setEmail(emailAddress);
@@ -59,6 +60,7 @@ class CreatePatientCommandTest implements BaseUnitTest {
 
     private void givenCommandWithMockPersistence () {
         persistence = mock(PatientStorage.class);
+        publisher = mock(NotificationPublisher.class);
         command = new CreatePatientCommand(persistence, publisher);
         when(persistence.create(any())).thenReturn(createdPatientId);
         patient = RANDOM.nextObject(Patient.class);
