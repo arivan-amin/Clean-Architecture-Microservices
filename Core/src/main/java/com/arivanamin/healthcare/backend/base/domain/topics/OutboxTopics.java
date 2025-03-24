@@ -2,5 +2,7 @@ package com.arivanamin.healthcare.backend.base.domain.topics;
 
 public interface OutboxTopics {
 
-    String OUTBOX_TOPIC = "outbox-topic";
+    String PATIENT_CREATED_TOPIC = "patient-created-topic";
+
+    String PATIENT_DELETED_TOPIC = "patient-deleted-topic";
 }
