@@ -2,6 +2,7 @@ package com.arivanamin.healthcare.backend.patient.storage;
 
 import com.arivanamin.healthcare.backend.patient.core.entity.Patient;
 import com.arivanamin.healthcare.backend.testing.architecture.bases.BaseDatabaseTest;
+import org.instancio.Instancio;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -59,7 +60,7 @@ class JpaPatientStorageIntegrationTest implements BaseDatabaseTest {
     }
 
     private static JpaPatient createSamplePatient () {
-        JpaPatient entity = RANDOM.nextObject(JpaPatient.class);
+        JpaPatient entity = Instancio.create(JpaPatient.class);
         entity.setId(null);
         entity.setEmail(FAKER.internet()
             .emailAddress());

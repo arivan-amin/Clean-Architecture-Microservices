@@ -5,6 +5,7 @@ import com.arivanamin.healthcare.backend.patient.core.entity.Patient;
 import com.arivanamin.healthcare.backend.patient.core.exception.PatientAlreadyExistsException;
 import com.arivanamin.healthcare.backend.patient.core.persistence.PatientStorage;
 import com.arivanamin.healthcare.backend.testing.architecture.bases.BaseUnitTest;
+import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
@@ -36,13 +37,13 @@ class CreatePatientCommandTest implements BaseUnitTest {
         persistence = mock(PatientStorage.class);
         publisher = mock(NotificationPublisher.class);
         command = new CreatePatientCommand(persistence, publisher);
-        Patient patient = RANDOM.nextObject(Patient.class);
+        Patient patient = Instancio.create(Patient.class);
         patient.setEmail(emailAddress);
         when(persistence.findByEmail(emailAddress)).thenReturn(Optional.of(patient));
     }
 
     private void whenEmailIsDuplicate () {
-        patient = RANDOM.nextObject(Patient.class);
+        patient = Instancio.create(Patient.class);
         patient.setEmail(emailAddress);
     }
 
@@ -63,7 +64,7 @@ class CreatePatientCommandTest implements BaseUnitTest {
         publisher = mock(NotificationPublisher.class);
         command = new CreatePatientCommand(persistence, publisher);
         when(persistence.create(any())).thenReturn(createdPatientId);
-        patient = RANDOM.nextObject(Patient.class);
+        patient = Instancio.create(Patient.class);
     }
 
     private UUID whenCommandIsExecuted () {

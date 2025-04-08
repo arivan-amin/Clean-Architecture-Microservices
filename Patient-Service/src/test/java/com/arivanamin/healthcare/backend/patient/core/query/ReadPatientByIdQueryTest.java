@@ -4,6 +4,7 @@ import com.arivanamin.healthcare.backend.patient.core.entity.Patient;
 import com.arivanamin.healthcare.backend.patient.core.exception.PatientNotFoundException;
 import com.arivanamin.healthcare.backend.patient.core.persistence.PatientStorage;
 import com.arivanamin.healthcare.backend.testing.architecture.bases.BaseUnitTest;
+import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
@@ -15,7 +16,7 @@ import static org.mockito.Mockito.*;
 
 class ReadPatientByIdQueryTest implements BaseUnitTest {
 
-    private final Patient patient = RANDOM.nextObject(Patient.class);
+    private final Patient patient = Instancio.create(Patient.class);
     private final UUID id = UUID.randomUUID();
 
     private PatientStorage persistence;

@@ -2,6 +2,7 @@ package com.arivanamin.healthcare.backend.audit.storage;
 
 import com.arivanamin.healthcare.backend.base.domain.audit.AuditEvent;
 import com.arivanamin.healthcare.backend.testing.architecture.bases.BaseMongoDatabaseTest;
+import org.instancio.Instancio;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -62,7 +63,7 @@ class JpaAuditEventStorageIntegrationTest implements BaseMongoDatabaseTest {
     }
 
     private static JpaAuditEvent createSampleAuditEvent () {
-        JpaAuditEvent entity = RANDOM.nextObject(JpaAuditEvent.class);
+        JpaAuditEvent entity = Instancio.create(JpaAuditEvent.class);
         entity.setId(null);
         entity.setRecordedAt(LocalDate.now()
             .atStartOfDay()

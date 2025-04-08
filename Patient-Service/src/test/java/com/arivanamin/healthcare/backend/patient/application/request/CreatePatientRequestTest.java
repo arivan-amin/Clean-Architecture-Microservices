@@ -3,6 +3,7 @@ package com.arivanamin.healthcare.backend.patient.application.request;
 import com.arivanamin.healthcare.backend.patient.core.entity.Patient;
 import com.arivanamin.healthcare.backend.testing.architecture.bases.BaseUnitTest;
 import lombok.extern.slf4j.Slf4j;
+import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
@@ -17,7 +18,7 @@ class CreatePatientRequestTest implements BaseUnitTest {
     @Test
     void shouldMapRequestToEntityCorrectly () {
         // given
-        CreatePatientRequest request = RANDOM.nextObject(CreatePatientRequest.class);
+        CreatePatientRequest request = Instancio.create(CreatePatientRequest.class);
         request.setDateOfBirth(toTimestampInMilliseconds(LocalDateTime.now()));
 
         // when
