@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.4.3</version>
+        <version>3.4.4</version>
         <relativePath />
     </parent>
 
@@ -21,34 +21,30 @@
 
     <properties>
         <java.version>21</java.version>
-        <spring-cloud-bom-version>2024.0.0</spring-cloud-bom-version>
+        <spring-cloud-bom-version>2024.0.1</spring-cloud-bom-version>
         <!-- Other dependency versions -->
-        <springdoc-web-mvc-version>2.8.3</springdoc-web-mvc-version>
-        <springdoc-web-flux-version>2.7.0</springdoc-web-flux-version>
+        <springdoc-web-mvc-version>2.8.6</springdoc-web-mvc-version>
+        <springdoc-web-flux-version>2.8.6</springdoc-web-flux-version>
         <caffeine-cache-version>3.2.0</caffeine-cache-version>
+        <instancio-version>5.4.1</instancio-version>
         <java-faker-version>1.0.2</java-faker-version>
-        <easy-random-version>5.0.0</easy-random-version>
-        <vavr-version>0.10.5</vavr-version>
-        <commons-lang-version>3.17.0</commons-lang-version>
-        <commons-text-version>1.12.0</commons-text-version>
-        <commons-collections-version>4.4</commons-collections-version>
-        <commons-validator-version>1.9.0</commons-validator-version>
-        <commons-io-version>2.18.0</commons-io-version>
+        <vavr-version>0.10.6</vavr-version>
+        <google-guava-version>33.4.6-jre</google-guava-version>
         <datasource-micrometer-version>1.0.6</datasource-micrometer-version>
         <model-mapper-version>3.2.2</model-mapper-version>
-        <arch-unit-version>1.3.0</arch-unit-version>
-        <testcontainers-bom-version>1.20.4</testcontainers-bom-version>
-        <liquibase-version>4.31.0</liquibase-version>
+        <arch-unit-version>1.4.0</arch-unit-version>
+        <testcontainers-bom-version>1.20.6</testcontainers-bom-version>
+        <liquibase-version>4.31.1</liquibase-version>
         <!-- Security Dependencies -->
         <keycloak-version>26.0.4</keycloak-version>
         <!-- Plugin versions -->
-        <jib-plugin-version>3.4.4</jib-plugin-version>
-        <jacoco-plugin-ver>0.8.12</jacoco-plugin-ver>
+        <jib-plugin-version>3.3.2</jib-plugin-version>
+        <jacoco-plugin-ver>0.8.13</jacoco-plugin-ver>
         <maven-resources-version>3.3.1</maven-resources-version>
         <!-- Inherited dependency versions -->
         <core-module-version>1.0.0</core-module-version>
         <testing-module-version>1.0.0</testing-module-version>
-        <mysql-version>9.1.0</mysql-version>
+        <mysql-version>9.2.0</mysql-version>
     </properties>
 
     <modules>
@@ -139,24 +135,15 @@
             <optional>true</optional>
         </dependency>
         <dependency>
+            <groupId>org.instancio</groupId>
+            <artifactId>instancio-junit</artifactId>
+            <version>${instancio-version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>com.github.javafaker</groupId>
             <artifactId>javafaker</artifactId>
             <version>${java-faker-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jeasy</groupId>
-            <artifactId>easy-random-core</artifactId>
-            <version>${easy-random-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jeasy</groupId>
-            <artifactId>easy-random-randomizers</artifactId>
-            <version>${easy-random-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jeasy</groupId>
-            <artifactId>easy-random-bean-validation</artifactId>
-            <version>${easy-random-version}</version>
         </dependency>
         <dependency>
             <groupId>io.vavr</groupId>
@@ -164,29 +151,9 @@
             <version>${vavr-version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>${commons-lang-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-text</artifactId>
-            <version>${commons-text-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-collections4</artifactId>
-            <version>${commons-collections-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-validator</groupId>
-            <artifactId>commons-validator</artifactId>
-            <version>${commons-validator-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>${commons-io-version}</version>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${google-guava-version}</version>
         </dependency>
         <!--    Spring Observability Dependencies    -->
         <dependency>
