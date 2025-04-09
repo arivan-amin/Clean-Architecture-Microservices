@@ -1,5 +1,0 @@
-[client]
-user=root
-password=mysql
-[collect]
-include = '*'
