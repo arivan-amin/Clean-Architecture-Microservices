@@ -166,9 +166,9 @@ services:
       CLUSTER_ID: 'db505f3e-6f2a-43e2-ab7d-f29cc04ce30f'
       KAFKA_PROCESS_ROLES: broker,controller
       KAFKA_CONTROLLER_QUORUM_VOTERS: 1@localhost:9093
-      KAFKA_LISTENERS: PLAINTEXT://:9092,CONTROLLER://:9093
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_LISTENERS: PLAINTEXT://:9092,PLAINTEXT_INTERNAL://:29092,CONTROLLER://:9093
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,PLAINTEXT_INTERNAL://kafka:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
       KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
@@ -189,7 +189,7 @@ services:
     env_file:
       - .env
     volumes:
-      - app-logs:/root/Apps/app-name/Logs/
+      - app-logs:/root/Apps/Healthcare/Logs/
     depends_on:
       - discovery-server
   
@@ -200,6 +200,6 @@ services:
     env_file:
       - .env
     volumes:
-      - app-logs:/root/Apps/app-name/Logs/
+      - app-logs:/root/Apps/Healthcare/Logs/
     depends_on:
       - discovery-server
