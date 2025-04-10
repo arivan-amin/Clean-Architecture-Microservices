@@ -1,19 +1,10 @@
 
-EEEEEEEEEEEEEEEEEEEEEE                                                                     kkkkkkkk                           
-E::::::::::::::::::::E                                                                     k::::::k                           
-E::::::::::::::::::::E                                                                     k::::::k                           
-EE::::::EEEEEEEEE::::E                                                                     k::::::k                           
-  E:::::E       EEEEEE   uuuuuu    uuuuuu    rrrrr   rrrrrrrrr          eeeeeeeeeeee       k:::::k    kkkkk   kkaaaaaaaaaaaaa   
-  E:::::E                u::::u    u::::u    r::::rrr:::::::::r       ee::::::::::::ee     k:::::k   k:::::   k a::::::::::::a  
-  E::::::EEEEEEEEEE      u::::u    u::::u    r:::::::::::::::::r     e::::::eeeee:::::ee   k:::::k  k:::::k     aaaaaaaaa:::::a 
-  E:::::::::::::::E      u::::u    u::::u    rr::::::rrrrr::::::r   e::::::e     e:::::e   k:::::k k:::::k               a::::a 
-  E:::::::::::::::E      u::::u    u::::u     r:::::r     r:::::r   e:::::::eeeee::::::e   k::::::k:::::k         aaaaaaa:::::a 
-  E::::::EEEEEEEEEE      u::::u    u::::u     r:::::r     rrrrrrr   e:::::::::::::::::e    k:::::::::::k        aa::::::::::::a 
-  E:::::E                u::::u    u::::u     r:::::r               e::::::eeeeeeeeeee     k:::::::::::k       a::::aaaa::::::a 
-  E:::::E       EEEEEE   u:::::uuuu:::::u     r:::::r               e:::::::e              k::::::k:::::k     a::::a    a:::::a 
-EE::::::EEEEEEEE:::::E   u:::::::::::::::   uur:::::r               e::::::::e         k   ::::::k k:::::k    a::::a    a:::::a 
-E::::::::::::::::::::E    u::::::::::::::   :ur:::::r                e::::::::eeeeeeee k   ::::::k  k:::::k   a:::::aaaa::::::a 
-E::::::::::::::::::::E     uu::::::::uu::   :ur:::::r                 ee:::::::::::::e k   ::::::k   k:::::   ka::::::::::aa:::a
-EEEEEEEEEEEEEEEEEEEEEE       uuuuuuuu  uu   uurrrrrrr                   eeeeeeeeeeeeee k   kkkkkkk    kkkkk   kkaaaaaaaaaa  aaaa
-
+`7MM"""YMM                                `7MM               
+  MM    `7                                  MM               
+  MM   d    `7MM  `7MM  `7Mb,od8  .gP"Ya    MM  ,MP' ,6"Yb.  
+  MMmmMM      MM    MM    MM' "' ,M'   Yb   MM ;Y   8)   MM  
+  MM   Y  ,   MM    MM    MM     8M""""""   MM;Mm    ,pm9MM  
+  MM     ,M   MM    MM    MM     YM.    ,   MM `Mb. 8M   MM  
+.JMMmmmmMMM   `Mbod"YML..JMML.    `Mbmmd' .JMML. YA.`Moo9^Yo.
+                                                             
 Spring Boot Version:${spring-boot.formatted-version}

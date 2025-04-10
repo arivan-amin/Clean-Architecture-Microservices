@@ -1,9 +1,10 @@
-
-███████╗███████╗ ██████╗ 
-██╔════╝██╔════╝██╔═══██╗
-███████╗███████╗██║   ██║
-╚════██║╚════██║██║   ██║
-███████║███████║╚██████╔╝
-╚══════╝╚══════╝ ╚═════╝ 
-                                                       
+                                 
+ .M"""bgd  .M"""bgd   .g8""8q.   
+,MI    "Y ,MI    "Y .dP'    `YM. 
+`MMb.     `MMb.     dM'      `MM 
+  `YMMNq.   `YMMNq. MM        MM 
+.     `MM .     `MM MM.      ,MP 
+Mb     dM Mb     dM `Mb.    ,dP' 
+P"Ybmmd"  P"Ybmmd"    `"bmmd"'   
+                                                                                        
 Spring Boot Version:${spring-boot.formatted-version}

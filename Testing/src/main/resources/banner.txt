@@ -1,8 +1,13 @@
-.___________. _______     _______.___________. __  .__   __.   _______ 
-|           ||   ____|   /       |           ||  | |  \ |  |  /  _____|
-`---|  |----`|  |__     |   (----`---|  |----`|  | |   \|  | |  |  __  
-    |  |     |   __|     \   \       |  |     |  | |  . `  | |  | |_ | 
-    |  |     |  |____.----)   |      |  |     |  | |  |\   | |  |__| | 
-    |__|     |_______|_______/       |__|     |__| |__| \__|  \______| 
+                                                                  
+                                        ,,                        
+MMP""MM""YMM                    mm      db                        
+P'   MM   `7                    MM                                
+     MM       .gP"Ya  ,pP"Ybd mmMMmm  `7MM  `7MMpMMMb.   .P"Ybmmm 
+     MM      ,M'   Yb 8I   `"   MM      MM    MM    MM  :MI  I8   
+     MM      8M"""""" `YMMMa.   MM      MM    MM    MM   WmmmP"   
+     MM      YM.    , L.   I8   MM      MM    MM    MM  8M        
+   .JMML.     `Mbmmd' M9mmmP'   `Mbmo .JMML..JMML  JMML. YMMMMMb  
+                                                        6'     dP 
+                                                        Ybmmmd'   
                                                                        
 Spring Boot Version:${spring-boot.formatted-version}

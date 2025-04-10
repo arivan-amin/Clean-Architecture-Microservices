@@ -1,9 +1,11 @@
 
-███╗   ██╗ ██████╗ ████████╗██╗███████╗██╗ ██████╗ █████╗ ████████╗██╗ ██████╗ ███╗   ██╗
-████╗  ██║██╔═══██╗╚══██╔══╝██║██╔════╝██║██╔════╝██╔══██╗╚══██╔══╝██║██╔═══██╗████╗  ██║
-██╔██╗ ██║██║   ██║   ██║   ██║█████╗  ██║██║     ███████║   ██║   ██║██║   ██║██╔██╗ ██║
-██║╚██╗██║██║   ██║   ██║   ██║██╔══╝  ██║██║     ██╔══██║   ██║   ██║██║   ██║██║╚██╗██║
-██║ ╚████║╚██████╔╝   ██║   ██║██║     ██║╚██████╗██║  ██║   ██║   ██║╚██████╔╝██║ ╚████║
-╚═╝  ╚═══╝ ╚═════╝    ╚═╝   ╚═╝╚═╝     ╚═╝ ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚═╝ ╚═════╝ ╚═╝  ╚═══╝
-                                     
+                                 ,,      ,...  ,,                              ,,                        
+`7MN.   `7MF'            mm      db    .d' ""  db                      mm      db                        
+  MMN.    M              MM            dM`                             MM                                
+  M YMb   M   ,pW"Wq.  mmMMmm  `7MM   mMMmm  `7MM   ,p6"bo   ,6"Yb.  mmMMmm  `7MM   ,pW"Wq.  `7MMpMMMb.  
+  M  `MN. M  6W'   `Wb   MM      MM    MM      MM  6M'  OO  8)   MM    MM      MM  6W'   `Wb   MM    MM  
+  M   `MM.M  8M     M8   MM      MM    MM      MM  8M        ,pm9MM    MM      MM  8M     M8   MM    MM  
+  M     YMM  YA.   ,A9   MM      MM    MM      MM  YM.    , 8M   MM    MM      MM  YA.   ,A9   MM    MM  
+.JML.    YM   `Ybmd9'    `Mbmo .JMML..JMML.  .JMML. YMbmd'  `Moo9^Yo.  `Mbmo .JMML. `Ybmd9'  .JMML  JMML.
+                                                                                                                                              
 Spring Boot Version:${spring-boot.formatted-version}

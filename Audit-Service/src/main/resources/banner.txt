@@ -1,9 +1,11 @@
-
- █████╗ ██╗   ██╗██████╗ ██╗████████╗
-██╔══██╗██║   ██║██╔══██╗██║╚══██╔══╝
-███████║██║   ██║██║  ██║██║   ██║   
-██╔══██║██║   ██║██║  ██║██║   ██║   
-██║  ██║╚██████╔╝██████╔╝██║   ██║   
-╚═╝  ╚═╝ ╚═════╝ ╚═════╝ ╚═╝   ╚═╝   
-                                     
+                                                   
+                                 ,,    ,,          
+      db                       `7MM    db    mm    
+     ;MM:                        MM          MM    
+    ,V^MM.    `7MM  `7MM    ,M""bMM  `7MM  mmMMmm  
+   ,M  `MM      MM    MM  ,AP    MM    MM    MM    
+   AbmmmqMA     MM    MM  8MI    MM    MM    MM    
+  A'     VML    MM    MM  `Mb    MM    MM    MM    
+.AMA.   .AMMA.  `Mbod"YML. `Wbmd"MML..JMML.  `Mbmo 
+                                                                                        
 Spring Boot Version:${spring-boot.formatted-version}
