@@ -159,19 +159,19 @@ services:
     image: confluentinc/cp-kafka:7.9.0
     ports:
       - "9092:9092" # For localhost access
+      - "9093:9093" # For controllers
       - "29092:29092" # For internal docker use
     environment:
-      KAFKA_NODE_ID: 1
       KAFKA_BROKER_ID: 1
       CLUSTER_ID: 'db505f3e-6f2a-43e2-ab7d-f29cc04ce30f'
       KAFKA_PROCESS_ROLES: broker,controller
-      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@localhost:9093
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
       KAFKA_LISTENERS: PLAINTEXT://:9092,PLAINTEXT_INTERNAL://:29092,CONTROLLER://:9093
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,PLAINTEXT_INTERNAL://kafka:29092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,PLAINTEXT_INTERNAL://kafka:29092,CONTROLLER://kafka:9093
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
       KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
-      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'true'
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
@@ -182,24 +182,24 @@ services:
     volumes:
       - kafka-data:/var/lib/kafka
 
-  patient-service:
-    container_name: patient-service
-    restart: unless-stopped
-    image: arivanamin/healthcare-patient-service
-    env_file:
-      - .env
-    volumes:
-      - app-logs:/root/Apps/Healthcare/Logs/
-    depends_on:
-      - discovery-server
-  
-  audit-service:
-    container_name: audit-service
-    restart: unless-stopped
-    image: arivanamin/healthcare-audit-service
-    env_file:
-      - .env
-    volumes:
-      - app-logs:/root/Apps/Healthcare/Logs/
-    depends_on:
-      - discovery-server
+#  patient-service:
+#    container_name: patient-service
+#    restart: unless-stopped
+#    image: arivanamin/healthcare-patient-service
+#    env_file:
+#      - .env
+#    volumes:
+#      - app-logs:/root/Apps/Healthcare/Logs/
+#    depends_on:
+#      - discovery-server
+#  
+#  audit-service:
+#    container_name: audit-service
+#    restart: unless-stopped
+#    image: arivanamin/healthcare-audit-service
+#    env_file:
+#      - .env
+#    volumes:
+#      - app-logs:/root/Apps/Healthcare/Logs/
+#    depends_on:
+#      - discovery-server

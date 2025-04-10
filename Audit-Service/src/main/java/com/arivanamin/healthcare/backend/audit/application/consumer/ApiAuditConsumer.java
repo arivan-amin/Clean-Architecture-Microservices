@@ -17,7 +17,7 @@ public class ApiAuditConsumer {
 
     private final CreateAuditEventCommand command;
 
-    @KafkaListener (topics = API_AUDIT_TOPIC, groupId = "api-audit-group")
+    @KafkaListener (topics = API_AUDIT_TOPIC)
     @LogExecutionTime
     public void consumeAuditEvent (AuditEvent auditEvent) {
         saveToStorage(auditEvent);
