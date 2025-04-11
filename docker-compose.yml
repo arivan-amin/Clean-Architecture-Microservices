@@ -5,30 +5,31 @@ volumes:
   redis-data:
   kafka-data:
 
+x-base-service: &base-service
+  restart: unless-stopped
+  env_file:
+    - .env
+  volumes:
+    - app-logs:/root/Apps/Healthcare/Logs/
+  depends_on:
+    - discovery-server
+
 services:
   discovery-server:
+    <<: *base-service
     container_name: discovery-server
-    restart: unless-stopped
     image: arivanamin/healthcare-discovery-server
     ports:
       - "8761:8761"
-    env_file:
-      - .env
-    volumes:
-      - app-logs:/root/Apps/Healthcare/Logs/
+    depends_on: [ ]
 
   api-gateway:
+    <<: *base-service
     container_name: api-gateway
-    restart: unless-stopped
     image: arivanamin/healthcare-api-gateway
     ports:
       - "8080:8080"
-    env_file:
-      - .env
-    volumes:
-      - app-logs:/root/Apps/Healthcare/Logs/
     depends_on:
-      - discovery-server
       - redis
 
   tempo:
@@ -169,46 +170,22 @@ services:
       - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true
 
 ### Uncomment below if you want to start all services through docker compose 
-#  patient-service:
-#    container_name: patient-service
-#    restart: unless-stopped
-#    image: arivanamin/healthcare-patient-service
-#    env_file:
-#      - .env
-#    volumes:
-#      - app-logs:/root/Apps/Healthcare/Logs/
-#    depends_on:
-#      - discovery-server
+  patient-service:
+    <<: *base-service
+    container_name: patient-service
+    image: arivanamin/healthcare-patient-service
+
+  audit-service:
+    <<: *base-service
+    container_name: audit-service
+    image: arivanamin/healthcare-audit-service
 #
-#  audit-service:
-#    container_name: audit-service
-#    restart: unless-stopped
-#    image: arivanamin/healthcare-audit-service
-#    env_file:
-#      - .env
-#    volumes:
-#      - app-logs:/root/Apps/Healthcare/Logs/
-#    depends_on:
-#      - discovery-server
-#  
 #  notification-service:
+#    <<: *base-service
 #    container_name: notification-service
-#    restart: unless-stopped
 #    image: arivanamin/healthcare-notification-service
-#    env_file:
-#      - .env
-#    volumes:
-#      - app-logs:/root/Apps/Healthcare/Logs/
-#    depends_on:
-#      - discovery-server
-#  
+#    
 #  sso-service:
+#    <<: *base-service
 #    container_name: sso-service
-#    restart: unless-stopped
 #    image: arivanamin/healthcare-sso-service
-#    env_file:
-#      - .env
-#    volumes:
-#      - app-logs:/root/Apps/Healthcare/Logs/
-#    depends_on:
-#      - discovery-server
