@@ -41,6 +41,7 @@
         <jib-plugin-version>3.3.2</jib-plugin-version>
         <jacoco-plugin-ver>0.8.13</jacoco-plugin-ver>
         <maven-resources-version>3.3.1</maven-resources-version>
+        <pitest-version>1.19.1</pitest-version>
         <!-- Inherited dependency versions -->
         <core-module-version>1.0.0</core-module-version>
         <testing-module-version>1.0.0</testing-module-version>
@@ -191,6 +192,13 @@
             <groupId>org.springframework.kafka</groupId>
             <artifactId>spring-kafka</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.pitest</groupId>
+            <artifactId>pitest-junit5-plugin</artifactId>
+            <version>1.2.2</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>
@@ -272,6 +280,38 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-maven</artifactId>
+                <version>${pitest-version}</version>
+                <configuration>
+                    <timestampedReports>false</timestampedReports>
+                    <withHistory>false</withHistory>
+                    <mutators>
+                        <mutator>STRONGER</mutator>
+                        <mutator>REMOVE_CONDITIONALS_EQUAL_IF</mutator>
+                        <mutator>REMOVE_CONDITIONALS_ORDER_IF</mutator>
+                    </mutators>
+                    <targetClasses>
+                        <param>com.arivanamin.healthcare.backend.*</param>
+                    </targetClasses>
+                    <targetTests>
+                        <param>com.arivanamin.healthcare.backend.*</param>
+                    </targetTests>
+                    <excludedTestClasses>
+                        <excludedTestClass>
+                            com.arivanamin.healthcare.backend.**.**IntegrationTest
+                        </excludedTestClass>
+                    </excludedTestClasses>
+                    <avoidCallsTo>
+                        <avoidCallsTo>java.util.logging</avoidCallsTo>
+                        <avoidCallsTo>org.apache.log4j</avoidCallsTo>
+                        <avoidCallsTo>org.slf4j</avoidCallsTo>
+                        <avoidCallsTo>org.apache.commons.logging</avoidCallsTo>
+                    </avoidCallsTo>
+                </configuration>
+            </plugin>
         </plugins>
 
         <pluginManagement>
@@ -304,5 +344,22 @@
             </plugins>
         </pluginManagement>
     </build>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-maven</artifactId>
+                <version>${pitest-version}</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>report</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+        </plugins>
+    </reporting>
 
 </project>
