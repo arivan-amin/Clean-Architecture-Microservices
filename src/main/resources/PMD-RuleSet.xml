@@ -128,11 +128,8 @@
     </rule>
 
     <!--  Design  -->
-    <!-- # -->
-    <rule ref="category/java/design.xml/CollapsibleIfStatements" />
-    <rule ref="category/java/design.xml/SimplifiedTernary" />
-    <rule ref="category/java/design.xml/UselessOverridingMethod" />
     <rule ref="category/java/design.xml/AbstractClassWithoutAnyMethod" />
+    <rule ref="category/java/design.xml/AvoidCatchingGenericException" />
     <rule ref="category/java/design.xml/AvoidDeeplyNestedIfStmts" />
     <rule ref="category/java/design.xml/AvoidRethrowingException" />
     <rule ref="category/java/design.xml/AvoidThrowingNewInstanceOfSameException" />
@@ -140,44 +137,96 @@
     <rule ref="category/java/design.xml/AvoidThrowingRawExceptionTypes" />
     <rule ref="category/java/design.xml/AvoidUncheckedExceptionsInSignatures" />
     <rule ref="category/java/design.xml/ClassWithOnlyPrivateConstructorsShouldBeFinal" />
-    <rule ref="category/java/design.xml/DoNotExtendJavaLangError" />
-    <rule ref="category/java/design.xml/ExceptionAsFlowControl" />
-    <rule ref="category/java/design.xml/ImmutableField" />
-    <rule ref="category/java/design.xml/LogicInversion" />
-    <rule ref="category/java/design.xml/SimplifyBooleanExpressions" />
-    <rule ref="category/java/design.xml/SimplifyBooleanReturns" />
-    <rule ref="category/java/design.xml/SimplifyConditional" />
-    <rule ref="category/java/design.xml/SwitchDensity" />
-    <rule ref="category/java/design.xml/TooManyFields" />
-    <rule ref="category/java/design.xml/UseObjectForClearerAPI" />
-    <rule ref="category/java/design.xml/UseUtilityClass" />
-    <rule ref="category/java/design.xml/SignatureDeclareThrowsException">
+    <rule ref="category/java/design.xml/CognitiveComplexity">
         <properties>
-            <property name="IgnoreJUnitCompletely" value="true" />
+            <property name="reportLevel" value="15" />
         </properties>
     </rule>
-    <rule ref="category/java/design.xml/ExcessiveParameterList">
+    <rule ref="category/java/design.xml/CollapsibleIfStatements" />
+    <rule ref="category/java/design.xml/CouplingBetweenObjects">
         <properties>
-            <property name="minimum" value="4.0" />
+            <property name="threshold" value="20" />
         </properties>
     </rule>
     <rule ref="category/java/design.xml/CyclomaticComplexity">
         <properties>
             <property name="classReportLevel" value="80" />
             <property name="methodReportLevel" value="10" />
-            <property name="reportLevel" value="10" />
+            <property name="cycloOptions" value="" />
         </properties>
     </rule>
-    <rule ref="category/java/design.xml/CouplingBetweenObjects">
+    <rule ref="category/java/design.xml/DataClass" />
+    <rule ref="category/java/design.xml/DoNotExtendJavaLangError" />
+    <rule ref="category/java/design.xml/ExceptionAsFlowControl" />
+    <rule ref="category/java/design.xml/ExcessiveImports" />
+    <rule ref="category/java/design.xml/ExcessiveParameterList">
         <properties>
-            <property name="threshold" value="20" />
+            <property name="minimum" value="10" />
         </properties>
     </rule>
-    <rule ref="category/java/design.xml/CognitiveComplexity">
+    <rule ref="category/java/design.xml/ExcessivePublicCount">
         <properties>
-            <property name="reportLevel" value="5" />
+            <property name="minimum" value="45" />
         </properties>
     </rule>
+    <rule ref="category/java/design.xml/FinalFieldCouldBeStatic" />
+    <rule ref="category/java/design.xml/GodClass" />
+    <rule ref="category/java/design.xml/ImmutableField" />
+    <rule ref="category/java/design.xml/LawOfDemeter">
+        <properties>
+            <property name="trustRadius" value="1" />
+        </properties>
+    </rule>
+    <rule ref="category/java/design.xml/LogicInversion" />
+    <rule ref="category/java/design.xml/MutableStaticState" />
+    <rule ref="category/java/design.xml/NcssCount">
+        <properties>
+            <property name="methodReportLevel" value="60" />
+            <property name="classReportLevel" value="1500" />
+            <property name="ncssOptions" value="" />
+        </properties>
+    </rule>
+    <rule ref="category/java/design.xml/NPathComplexity">
+        <properties>
+            <property name="reportLevel" value="200" />
+        </properties>
+    </rule>
+    <rule ref="category/java/design.xml/SignatureDeclareThrowsException">
+        <properties>
+            <property name="IgnoreJUnitCompletely" value="true" />
+        </properties>
+    </rule>
+    <rule ref="category/java/design.xml/SimplifiedTernary" />
+    <rule ref="category/java/design.xml/SimplifyBooleanExpressions" />
+    <rule ref="category/java/design.xml/SimplifyBooleanReturns" />
+    <rule ref="category/java/design.xml/SimplifyConditional" />
+    <rule ref="category/java/design.xml/SingularField" />
+    <rule ref="category/java/design.xml/SwitchDensity">
+        <properties>
+            <property name="minimum" value="10" />
+        </properties>
+    </rule>
+    <rule ref="category/java/design.xml/TooManyFields">
+        <properties>
+            <property name="maxfields" value="15" />
+        </properties>
+    </rule>
+    <rule ref="category/java/design.xml/TooManyMethods">
+        <properties>
+            <property name="maxmethods" value="10" />
+        </properties>
+    </rule>
+    <rule ref="category/java/design.xml/UselessOverridingMethod" />
+    <rule ref="category/java/design.xml/UseObjectForClearerAPI" />
+    <rule ref="category/java/design.xml/UseUtilityClass" />
+    <rule ref="category/java/design.xml/LogicInversion" />
+
+    <!--  Documentation  -->
+    <rule ref="category/java/documentation.xml/CommentContent" />
+    <rule ref="category/java/documentation.xml/CommentRequired" />
+    <rule ref="category/java/documentation.xml/CommentSize" />
+    <rule ref="category/java/documentation.xml/UncommentedEmptyConstructor" />
+    <rule ref="category/java/documentation.xml/UncommentedEmptyMethodBody" />
 
     <!--  Error Prone  -->
     <rule ref="category/java/errorprone.xml/AvoidBranchingStatementAsLastInLoop" />
@@ -288,11 +337,13 @@
     </rule>
 
     <!--  Performance  -->
-    <rule ref="category/java/performance.xml/BigIntegerInstantiation" />
     <rule ref="category/java/performance.xml/AddEmptyString" />
     <rule ref="category/java/performance.xml/AppendCharacterWithChar" />
     <rule ref="category/java/performance.xml/AvoidArrayLoops" />
     <rule ref="category/java/performance.xml/AvoidCalendarDateCreation" />
+    <rule ref="category/java/performance.xml/AvoidFileStream" />
+    <rule ref="category/java/performance.xml/AvoidInstantiatingObjectsInLoops" />
+    <rule ref="category/java/performance.xml/BigIntegerInstantiation" />
     <rule ref="category/java/performance.xml/ConsecutiveAppendsShouldReuse" />
     <rule ref="category/java/performance.xml/ConsecutiveLiteralAppends" />
     <rule ref="category/java/performance.xml/InefficientEmptyStringCheck" />
@@ -302,19 +353,28 @@
     <rule ref="category/java/performance.xml/RedundantFieldInitializer" />
     <rule ref="category/java/performance.xml/StringInstantiation" />
     <rule ref="category/java/performance.xml/StringToString" />
-    <rule ref="category/java/performance.xml/TooFewBranchesForASwitchStatement" />
+    <rule ref="category/java/performance.xml/TooFewBranchesForSwitch" />
     <rule ref="category/java/performance.xml/UseArrayListInsteadOfVector" />
     <rule ref="category/java/performance.xml/UseArraysAsList" />
     <rule ref="category/java/performance.xml/UseIndexOfChar" />
+    <rule ref="category/java/performance.xml/UseIOStreamsWithApacheCommonsFileItem" />
     <rule ref="category/java/performance.xml/UselessStringValueOf" />
 
     <!--  MultiThreading  -->
+    <rule ref="category/java/multithreading.xml/AvoidSynchronizedAtMethodLevel" />
+    <rule ref="category/java/multithreading.xml/AvoidSynchronizedStatement" />
     <rule ref="category/java/multithreading.xml/AvoidThreadGroup" />
+    <rule ref="category/java/multithreading.xml/AvoidUsingVolatile" />
+    <rule ref="category/java/multithreading.xml/DoNotUseThreads" />
     <rule ref="category/java/multithreading.xml/DontCallThreadRun" />
     <rule ref="category/java/multithreading.xml/DoubleCheckedLocking" />
-    <rule ref="category/java/multithreading.xml/AvoidUsingVolatile" />
     <rule ref="category/java/multithreading.xml/NonThreadSafeSingleton" />
     <rule ref="category/java/multithreading.xml/UnsynchronizedStaticFormatter" />
+    <rule ref="category/java/multithreading.xml/UseConcurrentHashMap" />
     <rule ref="category/java/multithreading.xml/UseNotifyAllInsteadOfNotify" />
+
+    <!--  Security  -->
+    <rule ref="category/java/security.xml/HardCodedCryptoKey" />
+    <rule ref="category/java/security.xml/InsecureCryptoIv" />
 
 </ruleset>
