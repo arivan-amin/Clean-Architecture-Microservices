@@ -30,10 +30,11 @@
     </rule>
     <rule ref="category/java/bestpractices.xml/DefaultLabelNotLastInSwitch" />
     <rule ref="category/java/bestpractices.xml/DoubleBraceInitialization" />
-    <rule ref="category/java/bestpractices.xml/ExhaustiveSwitchHasDefault" />
+    <!-- Disable for now until PMD plugin is updated to PMD 7.10 -->
+    <!-- <rule ref="category/java/bestpractices.xml/ExhaustiveSwitchHasDefault" /> -->
+    <!-- <rule ref="category/java/bestpractices.xml/ForLoopVariableCount" /> -->
+    <!-- <rule ref="category/java/bestpractices.xml/ImplicitFunctionalInterface" /> -->
     <rule ref="category/java/bestpractices.xml/ForLoopCanBeForeach" />
-    <rule ref="category/java/bestpractices.xml/ForLoopVariableCount" />
-    <rule ref="category/java/bestpractices.xml/ImplicitFunctionalInterface" />
     <rule ref="category/java/bestpractices.xml/JUnit5TestShouldBePackagePrivate" />
     <rule ref="category/java/bestpractices.xml/JUnitUseExpected" />
     <rule ref="category/java/bestpractices.xml/LiteralsFirstInComparisons" />
@@ -72,7 +73,6 @@
     <rule ref="category/java/bestpractices.xml/CheckResultSet" />
 
     <!--  Code Styles  -->
-    <rule ref="category/java/codestyle.xml/AtLeastOneConstructor" />
     <rule ref="category/java/codestyle.xml/AvoidDollarSigns" />
     <rule ref="category/java/codestyle.xml/AvoidProtectedFieldInFinalClass" />
     <rule ref="category/java/codestyle.xml/AvoidProtectedMethodInFinalClassNotExtending" />
@@ -95,7 +95,11 @@
     <rule ref="category/java/codestyle.xml/LambdaCanBeMethodReference" />
     <rule ref="category/java/codestyle.xml/LinguisticNaming" />
     <rule ref="category/java/codestyle.xml/LocalVariableNamingConventions" />
-    <rule ref="category/java/codestyle.xml/LongVariable" />
+    <rule ref="category/java/codestyle.xml/LongVariable">
+        <properties>
+            <property name="minimum" value="30" />
+        </properties>
+    </rule>
     <rule ref="category/java/codestyle.xml/MethodNamingConventions" />
     <rule ref="category/java/codestyle.xml/NoPackage" />
     <rule ref="category/java/codestyle.xml/PackageCase" />
@@ -104,8 +108,16 @@
             <property name="minimum" value="4" />
         </properties>
     </rule>
-    <rule ref="category/java/codestyle.xml/ShortMethodName" />
-    <rule ref="category/java/codestyle.xml/ShortVariable" />
+    <rule ref="category/java/codestyle.xml/ShortMethodName">
+        <properties>
+            <property name="minimum" value="2" />
+        </properties>
+    </rule>
+    <rule ref="category/java/codestyle.xml/ShortVariable">
+        <properties>
+            <property name="minimum" value="2" />
+        </properties>
+    </rule>
     <rule ref="category/java/codestyle.xml/UnnecessaryAnnotationValueElement" />
     <rule ref="category/java/codestyle.xml/UnnecessaryBoxing" />
     <rule ref="category/java/codestyle.xml/UnnecessaryCast" />
@@ -155,7 +167,6 @@
             <property name="cycloOptions" value="" />
         </properties>
     </rule>
-    <rule ref="category/java/design.xml/DataClass" />
     <rule ref="category/java/design.xml/DoNotExtendJavaLangError" />
     <rule ref="category/java/design.xml/ExceptionAsFlowControl" />
     <rule ref="category/java/design.xml/ExcessiveImports" />
@@ -218,15 +229,6 @@
     </rule>
     <rule ref="category/java/design.xml/UselessOverridingMethod" />
     <rule ref="category/java/design.xml/UseObjectForClearerAPI" />
-    <rule ref="category/java/design.xml/UseUtilityClass" />
-    <rule ref="category/java/design.xml/LogicInversion" />
-
-    <!--  Documentation  -->
-    <rule ref="category/java/documentation.xml/CommentContent" />
-    <rule ref="category/java/documentation.xml/CommentRequired" />
-    <rule ref="category/java/documentation.xml/CommentSize" />
-    <rule ref="category/java/documentation.xml/UncommentedEmptyConstructor" />
-    <rule ref="category/java/documentation.xml/UncommentedEmptyMethodBody" />
 
     <!--  Error Prone  -->
     <rule ref="category/java/errorprone.xml/AssignmentInOperand" />

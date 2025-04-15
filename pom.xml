@@ -320,9 +320,10 @@
                 <artifactId>maven-pmd-plugin</artifactId>
                 <version>${pmd-plugin-version}</version>
                 <configuration>
+                    <linkXRef>false</linkXRef>
                     <verbose>true</verbose>
                     <rulesets>
-                        <ruleset>${project.basedir}/src/main/resources/PMD-RuleSet.xml</ruleset>
+                        <ruleset>${project.basedir}/../src/main/resources/PMD-RuleSet.xml</ruleset>
                     </rulesets>
                 </configuration>
                 <executions>
