@@ -12,7 +12,7 @@ modern **Java** and **Spring Boot** and follow some of the best practices in dev
 ## Quick Info
 
 ![Java](https://img.shields.io/badge/java-21-brightgreen)
-![SpringBoot](https://img.shields.io/badge/spring--boot-3.4.1-brightgreen)
+![SpringBoot](https://img.shields.io/badge/spring--boot-3.4.4-brightgreen)
 ![Maven](https://img.shields.io/badge/Maven-3.9.9-blue)
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
 ![License](https://img.shields.io/badge/license-MIT-brightgreen)
