@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 import static com.arivanamin.healthcare.backend.patient.application.config.PatientApiURLs.*;
+import static com.arivanamin.healthcare.backend.patient.application.config.PatientCaches.GET_ALL_PATIENTS_CACHE;
+import static com.arivanamin.healthcare.backend.patient.application.config.PatientCaches.GET_PATIENT_BY_ID_CACHE;
 
 @Tag (name = "Patient Controller")
 @RestController
@@ -34,7 +36,7 @@ class PatientController {
     private final DeletePatientCommand deleteCommand;
 
     @GetMapping (GET_PATIENTS_URL)
-    @Cacheable ("patientsCache")
+    @Cacheable (GET_ALL_PATIENTS_CACHE)
     @Operation (summary = "Get a list of patients")
     @ResponseStatus (HttpStatus.OK)
     public ReadPatientsResponse getAllPatients (@RequestParam Integer page,
@@ -43,7 +45,7 @@ class PatientController {
     }
 
     @GetMapping (GET_PATIENT_BY_ID_URL)
-    @Cacheable ("patientByIdCache")
+    @Cacheable (GET_PATIENT_BY_ID_CACHE)
     @Operation (summary = "Get a single patient by id")
     @ResponseStatus (HttpStatus.OK)
     public PatientResponse getPatientById (@PathVariable UUID id) {
@@ -52,7 +54,8 @@ class PatientController {
 
     @PostMapping (CREATE_PATIENT_URL)
     @Operation (summary = "Creates a patient")
-    @CacheEvict (cacheNames = "patientsCache", allEntries = true)
+    @CacheEvict (cacheNames = { GET_ALL_PATIENTS_CACHE, GET_PATIENT_BY_ID_CACHE },
+        allEntries = true)
     @ResponseStatus (HttpStatus.CREATED)
     public CreatePatientResponse createPatient (@RequestBody @Valid CreatePatientRequest request) {
         UUID createdPatientId = createCommand.execute(request.toEntity());
@@ -61,7 +64,8 @@ class PatientController {
 
     @PutMapping (UPDATE_PATIENT_URL)
     @Operation (summary = "Updates a patient")
-    @CacheEvict (cacheNames = "patientsCache", allEntries = true)
+    @CacheEvict (cacheNames = { GET_ALL_PATIENTS_CACHE, GET_PATIENT_BY_ID_CACHE },
+        allEntries = true)
     @ResponseStatus (HttpStatus.OK)
     public void updatePatient (@PathVariable UUID id,
                                @RequestBody @Valid UpdatePatientRequest request) {
@@ -70,7 +74,8 @@ class PatientController {
 
     @DeleteMapping (DELETE_PATIENT_URL)
     @Operation (summary = "Deletes a patient")
-    @CacheEvict (cacheNames = "patientsCache", allEntries = true)
+    @CacheEvict (cacheNames = { GET_ALL_PATIENTS_CACHE, GET_PATIENT_BY_ID_CACHE },
+        allEntries = true)
     @ResponseStatus (HttpStatus.NO_CONTENT)
     public void deletePatient (@PathVariable UUID id) {
         deleteCommand.execute(id);
