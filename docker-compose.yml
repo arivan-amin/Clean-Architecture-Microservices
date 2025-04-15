@@ -168,8 +168,8 @@ services:
       - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,EXTERNAL:PLAINTEXT,PLAINTEXT:PLAINTEXT
       - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
       - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true
-
-### Uncomment below if you want to start all services through docker compose 
+  
+  ### Uncomment below if you want to start all services through docker compose 
   patient-service:
     <<: *base-service
     container_name: patient-service

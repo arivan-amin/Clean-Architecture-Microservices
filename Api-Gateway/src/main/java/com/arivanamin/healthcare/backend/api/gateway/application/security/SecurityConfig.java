@@ -17,11 +17,10 @@ class SecurityConfig {
     @Bean
     public SecurityWebFilterChain securityFilterChain (ServerHttpSecurity httpSecurity) {
         return httpSecurity.csrf(ServerHttpSecurity.CsrfSpec::disable)
-            .authorizeExchange(
-                authorize -> authorize.pathMatchers(publicResourceUrls)
-                    .permitAll()
-                    .anyExchange()
-                    .permitAll())
+            .authorizeExchange(authorize -> authorize.pathMatchers(publicResourceUrls)
+                .permitAll()
+                .anyExchange()
+                .permitAll())
             .oauth2ResourceServer(oauth2 -> oauth2.jwt(withDefaults()))
             .build();
     }
