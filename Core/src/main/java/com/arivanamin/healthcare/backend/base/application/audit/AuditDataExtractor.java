@@ -87,7 +87,7 @@ public class AuditDataExtractor {
         return "";
     }
 
-    private String extractUrl (String[] paths) {
+    private String extractUrl (String... paths) {
         if (paths != null && paths.length > 0) {
             return String.join(", ", paths);
         }

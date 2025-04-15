@@ -75,11 +75,15 @@ Command and Query Separation Principle to implement Business logic.
 
 ### Rate Limiting
 
-Implemented in **API Gateway** using **Redis Rate Limiter**
+Implemented in **API Gateway** using **Redis Rate Limiter**.
 
 ### ArchUnit
 
-Validate architectural boundaries and verify adherence to best coding standards
+Validate architectural boundaries and verify adherence to best coding standards.
+
+### PMD and Pitest
+
+Use PMD to verify the coding style and Pitest for mutation testing.
 
 ### RestControllerAdvice
 
@@ -143,6 +147,7 @@ Core entities have no association with JPA and are never annotated with @Entity.
 - **Microservices**
 - **Clean Architecture**
 - **Clean Code**
+- **Mutation Testing**
 - **Command-Query Responsibility Separation**
 - **Solid Principles**
 - **Loose Coupling of Components**
@@ -187,6 +192,9 @@ Core entities have no association with JPA and are never annotated with @Entity.
 - **Docker**
 - **Grafana, Loki, Tempo**: Observability stack for metrics, logging, and tracing.
 - **JUnit & Mockito**: Unit testing and Mocking.
+- **Pitest**: Mutation testing.
+- **ArchUnit**: Architecture boundaries testing and coding standards validation.
+- **PMD**: Validate coding standards and best practices.
 - **Swagger/OpenAPI**: API documentation.
 - **Liquibase**: Database Migrations.
 - **Lombok**: Cleaner code with reduced boilerplate.
@@ -215,9 +223,12 @@ Core entities have no association with JPA and are never annotated with @Entity.
    cd Clean-Architecture-Microservices
    ```
 
-2. **Build Core Module:**
+2. **Build Core and Testing Module:**
    ```bash
    cd Core
+   mvn clean install
+   cd ..
+   cd Testing
    mvn clean install
    cd ..
    ```

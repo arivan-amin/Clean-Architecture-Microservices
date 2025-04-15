@@ -29,8 +29,9 @@ public class ControllerUrlPrefixCheck extends ArchCondition<JavaMethod> {
                                             JavaMethod method, ConditionEvents events) {
         String[] mappings = (String[]) annotation.get("value")
             .orElse(null);
-        if (mappings == null || mappings.length == 0)
+        if (mappings == null || mappings.length == 0) {
             return;
+        }
 
         long validMappingsCount = Arrays.stream(mappings)
             .filter(mapping -> requiredApiPrefixes.stream()

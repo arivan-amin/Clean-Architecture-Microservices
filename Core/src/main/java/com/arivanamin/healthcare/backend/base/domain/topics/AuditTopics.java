@@ -1,6 +1,10 @@
 package com.arivanamin.healthcare.backend.base.domain.topics;
 
-public interface AuditTopics {
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
-    String API_AUDIT_TOPIC = "api-audit";
+@NoArgsConstructor (access = AccessLevel.PRIVATE)
+public final class AuditTopics {
+
+    public static final String API_AUDIT_TOPIC = "api-audit";
 }

@@ -21,13 +21,15 @@ import static org.springframework.http.ProblemDetail.forStatusAndDetail;
 @Slf4j
 public final class CommonProblemDetails {
 
+    public static final String SPRING_DOCS_URI =
+        "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework";
+
     public static ProblemDetail getResourceNotFoundProblemDetail (
         NoResourceFoundException exception) {
         ProblemDetail detail = forStatusAndDetail(NOT_FOUND, exception.getMessage());
         detail.setTitle("Requested Resource not found");
         detail.setType(URI.create(
-            "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework" +
-                "/web/servlet/resource/NoResourceFoundException.html" +
+            SPRING_DOCS_URI + "/web/servlet/resource/NoResourceFoundException.html" +
                 ".base/java/lang/RuntimeException.html"));
         detail.setProperty(CATEGORY, RESOURCE_NOT_FOUND);
         detail.setProperty(TIMESTAMP, Instant.now());
@@ -39,9 +41,8 @@ public final class CommonProblemDetails {
         MissingServletRequestParameterException exception) {
         ProblemDetail detail = forStatusAndDetail(BAD_REQUEST, exception.getMessage());
         detail.setTitle("Bad Request, Missing Parameter");
-        detail.setType(URI.create(
-            "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework" +
-                "/web/bind/MissingServletRequestParameterException.html"));
+        detail.setType(
+            URI.create(SPRING_DOCS_URI + "/web/bind/MissingServletRequestParameterException.html"));
         detail.setProperty(CATEGORY, MISSING_PARAMETER);
         detail.setProperty(TIMESTAMP, Instant.now());
         log.error(exception.getMessage(), exception);
@@ -52,9 +53,8 @@ public final class CommonProblemDetails {
         MethodArgumentNotValidException exception) {
         ProblemDetail detail = forStatusAndDetail(BAD_REQUEST, exception.getMessage());
         detail.setTitle("Bad Request, Validation failed for one or more arguments");
-        detail.setType(URI.create(
-            "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework" +
-                "/messaging/handler/annotation/support/MethodArgumentNotValidException.html"));
+        detail.setType(URI.create(SPRING_DOCS_URI +
+            "/messaging/handler/annotation/support/MethodArgumentNotValidException.html"));
         detail.setProperty(CATEGORY, MISSING_PARAMETER);
         detail.setProperty(TIMESTAMP, Instant.now());
         log.error(exception.getMessage(), exception);
@@ -65,9 +65,8 @@ public final class CommonProblemDetails {
         HttpMessageNotReadableException exception) {
         ProblemDetail detail = forStatusAndDetail(BAD_REQUEST, exception.getMessage());
         detail.setTitle("Bad Request, Required request body is missing or unreadable");
-        detail.setType(URI.create(
-            "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework" +
-                "/http/converter/HttpMessageNotReadableException.html"));
+        detail.setType(
+            URI.create(SPRING_DOCS_URI + "/http/converter/HttpMessageNotReadableException.html"));
         detail.setProperty(CATEGORY, MISSING_PARAMETER);
         detail.setProperty(TIMESTAMP, Instant.now());
         log.error(exception.getMessage(), exception);
@@ -78,9 +77,7 @@ public final class CommonProblemDetails {
         MissingPathVariableException exception) {
         ProblemDetail detail = forStatusAndDetail(BAD_REQUEST, exception.getMessage());
         detail.setTitle("Bad request, Missing required path variables");
-        detail.setType(URI.create(
-            "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework" +
-                "/web/bind/MissingPathVariableException.html"));
+        detail.setType(URI.create(SPRING_DOCS_URI + "/web/bind/MissingPathVariableException.html"));
         detail.setProperty(CATEGORY, MISSING_PARAMETER);
         detail.setProperty(TIMESTAMP, Instant.now());
         log.error(exception.getMessage(), exception);

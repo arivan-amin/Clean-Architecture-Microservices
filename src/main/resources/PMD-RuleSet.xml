@@ -23,11 +23,6 @@
     <rule ref="category/java/bestpractices.xml/AvoidReassigningParameters" />
     <rule ref="category/java/bestpractices.xml/AvoidStringBufferField" />
     <rule ref="category/java/bestpractices.xml/AvoidUsingHardCodedIP" />
-    <rule ref="category/java/bestpractices.xml/ConstantsInInterface">
-        <properties>
-            <property name="ignoreIfHasMethods" value="false" />
-        </properties>
-    </rule>
     <rule ref="category/java/bestpractices.xml/DefaultLabelNotLastInSwitch" />
     <rule ref="category/java/bestpractices.xml/DoubleBraceInitialization" />
     <!-- Disable for now until PMD plugin is updated to PMD 7.10 -->
@@ -95,11 +90,6 @@
     <rule ref="category/java/codestyle.xml/LambdaCanBeMethodReference" />
     <rule ref="category/java/codestyle.xml/LinguisticNaming" />
     <rule ref="category/java/codestyle.xml/LocalVariableNamingConventions" />
-    <rule ref="category/java/codestyle.xml/LongVariable">
-        <properties>
-            <property name="minimum" value="30" />
-        </properties>
-    </rule>
     <rule ref="category/java/codestyle.xml/MethodNamingConventions" />
     <rule ref="category/java/codestyle.xml/NoPackage" />
     <rule ref="category/java/codestyle.xml/PackageCase" />
@@ -129,19 +119,12 @@
     <rule ref="category/java/codestyle.xml/UnnecessaryReturn" />
     <rule ref="category/java/codestyle.xml/UnnecessarySemicolon" />
     <rule ref="category/java/codestyle.xml/UseDiamondOperator" />
-    <rule ref="category/java/codestyle.xml/UseExplicitTypes" />
     <rule ref="category/java/codestyle.xml/UselessParentheses" />
     <rule ref="category/java/codestyle.xml/UselessQualifiedThis" />
     <rule ref="category/java/codestyle.xml/UseShortArrayInitializer" />
-    <rule ref="category/java/codestyle.xml/UseUnderscoresInNumericLiterals">
-        <properties>
-            <property name="acceptableDecimalLength" value="3" />
-        </properties>
-    </rule>
 
     <!--  Design  -->
     <rule ref="category/java/design.xml/AbstractClassWithoutAnyMethod" />
-    <rule ref="category/java/design.xml/AvoidCatchingGenericException" />
     <rule ref="category/java/design.xml/AvoidDeeplyNestedIfStmts" />
     <rule ref="category/java/design.xml/AvoidRethrowingException" />
     <rule ref="category/java/design.xml/AvoidThrowingNewInstanceOfSameException" />
@@ -185,7 +168,7 @@
     <rule ref="category/java/design.xml/ImmutableField" />
     <rule ref="category/java/design.xml/LawOfDemeter">
         <properties>
-            <property name="trustRadius" value="1" />
+            <property name="trustRadius" value="2" />
         </properties>
     </rule>
     <rule ref="category/java/design.xml/LogicInversion" />
@@ -200,11 +183,6 @@
     <rule ref="category/java/design.xml/NPathComplexity">
         <properties>
             <property name="reportLevel" value="200" />
-        </properties>
-    </rule>
-    <rule ref="category/java/design.xml/SignatureDeclareThrowsException">
-        <properties>
-            <property name="IgnoreJUnitCompletely" value="true" />
         </properties>
     </rule>
     <rule ref="category/java/design.xml/SimplifiedTernary" />
