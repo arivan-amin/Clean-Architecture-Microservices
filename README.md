@@ -1,4 +1,4 @@
-# Clean Architecture Microservices
+# Clean Architecture Microservices (CAM)
 
 ## Overview
 
@@ -29,7 +29,7 @@ modern **Java** and **Spring Boot** and follow some of the best practices in dev
                                |    Keycloak    |
                                | (Auth Server)  |
                                +-------+--------+
-                                       |
+                                       | Keycloak not yet implemented
                                        v
                                +-------+--------+             +-------------------+
       Client Request           |   API Gateway  | ----------> | Discovery Server  |<---
@@ -175,7 +175,6 @@ Core entities have no association with JPA and are never annotated with @Entity.
 - API Gateway
 - Patient Service
 - Audit Service
-- SSO Service
 
 ---
 
@@ -186,7 +185,6 @@ Core entities have no association with JPA and are never annotated with @Entity.
 - **Spring Cloud**
 - **Eureka**: Dynamic service registry.
 - **MySQL**: Services data storage.
-- **MongoDB**: Storage for Audit logs.
 - **Kafka**: Event streaming for microservices.
 - **Keycloak**: Authentication and SSO provider.
 - **Docker**
