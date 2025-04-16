@@ -1,31 +1,51 @@
-package com.arivanamin.healthcare.backend.audit.storage;
+package io.github.arivanamin.cam.backend.audit.storage;
 
-import com.arivanamin.healthcare.backend.base.domain.audit.AuditEvent;
-import jakarta.persistence.Id;
+import io.github.arivanamin.cam.backend.base.domain.audit.AuditEvent;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.*;
+import org.hibernate.annotations.UuidGenerator;
 import org.modelmapper.ModelMapper;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
-import static com.arivanamin.healthcare.backend.base.domain.dates.TimestampHelper.toLocalDateTime;
-import static com.arivanamin.healthcare.backend.base.domain.dates.TimestampHelper.toTimestampInMilliseconds;
+import static io.github.arivanamin.cam.backend.base.domain.dates.TimestampHelper.toLocalDateTime;
+import static io.github.arivanamin.cam.backend.base.domain.dates.TimestampHelper.toTimestampInMilliseconds;
 
-@Document
-@NoArgsConstructor
+@Entity
+@Table (name = "audit_events")
 @AllArgsConstructor
-@Data
+@NoArgsConstructor
+@Getter
+@Setter
 @Builder
+@ToString
 public class JpaAuditEvent {
 
     @Id
-    String id;
+    @UuidGenerator
+    UUID id;
+
+    @NotBlank
     private String serviceName;
+
+    @NotBlank
     private String location;
+
+    @NotBlank
     private String action;
+
+    @NotBlank
     private String data;
+
+    @Past
     private LocalDateTime recordedAt;
+
+    @Positive
     private long duration;
+
+    @NotBlank
     private String response;
 
     public static JpaAuditEvent fromDomain (AuditEvent event) {

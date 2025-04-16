@@ -1,18 +1,17 @@
-package com.arivanamin.healthcare.backend.audit.storage;
+package io.github.arivanamin.cam.backend.audit.storage;
 
-import com.arivanamin.healthcare.backend.audit.core.persistence.AuditEventStorage;
-import com.arivanamin.healthcare.backend.base.domain.audit.AuditEvent;
-import com.arivanamin.healthcare.backend.base.domain.pagination.*;
+import io.github.arivanamin.cam.backend.audit.core.persistence.AuditEventStorage;
+import io.github.arivanamin.cam.backend.base.domain.audit.AuditEvent;
+import io.github.arivanamin.cam.backend.base.domain.pagination.*;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
-import static com.arivanamin.healthcare.backend.audit.storage.JpaAuditEvent.fromDomain;
+import static io.github.arivanamin.cam.backend.audit.storage.JpaAuditEvent.fromDomain;
 import static org.springframework.data.domain.ExampleMatcher.StringMatcher.CONTAINING;
 import static org.springframework.data.domain.PageRequest.of;
 
@@ -85,7 +84,7 @@ public class JpaAuditEventStorage implements AuditEventStorage {
 
     @Transactional
     @Override
-    public String create (AuditEvent event) {
+    public UUID create (AuditEvent event) {
         return repository.save(fromDomain(event))
             .getId();
     }
