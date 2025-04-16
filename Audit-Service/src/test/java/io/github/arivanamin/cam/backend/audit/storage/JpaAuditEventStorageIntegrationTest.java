@@ -1,7 +1,7 @@
 package io.github.arivanamin.cam.backend.audit.storage;
 
 import io.github.arivanamin.cam.backend.base.domain.audit.AuditEvent;
-import io.github.arivanamin.cam.backend.testing.architecture.bases.BaseMongoDatabaseTest;
+import io.github.arivanamin.cam.backend.testing.architecture.bases.BaseDatabaseTest;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class JpaAuditEventStorageIntegrationTest implements BaseMongoDatabaseTest {
+class JpaAuditEventStorageIntegrationTest implements BaseDatabaseTest {
 
     @Autowired
     private AuditEventRepository repository;
