@@ -8,9 +8,11 @@
     <property name="logPattern"
               value="%d{yyyy-MM-dd HH:mm:ss:SSS} level=%5p {App: ${appName:-}, trace: %X{traceId:-}, span: %X{spanId:-}} %c{0} %M %line = %msg%n" />
 
+    <statusListener class="ch.qos.logback.core.status.NopStatusListener" />
+
     <appender class="ch.qos.logback.core.ConsoleAppender" name="Console">
         <encoder>
-            <pattern>${logPattern}%n</pattern>
+            <pattern>${logPattern}%n%n</pattern>
         </encoder>
     </appender>
 
