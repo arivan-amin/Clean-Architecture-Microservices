@@ -6,6 +6,7 @@ import lombok.*;
 import org.modelmapper.ModelMapper;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
@@ -20,7 +21,9 @@ public class PatientResponse {
     LocalDate dateOfBirth;
     Gender gender;
     String address;
-
+    LocalDateTime createdAt;
+    LocalDateTime updatedAt;
+    
     public static PatientResponse of (Patient patient) {
         return new ModelMapper().map(patient, PatientResponse.class);
     }

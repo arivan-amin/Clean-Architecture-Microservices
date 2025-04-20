@@ -6,4 +6,5 @@
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.23.xsd">
 
     <include file="db/changelog/001-CAM-1-create-patients-table.xml" />
+    <include file="db/changelog/002-CAM-4-add-audit-fields-to-patients-table.xml" />
 </databaseChangeLog>

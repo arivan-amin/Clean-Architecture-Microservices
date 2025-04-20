@@ -1,6 +1,7 @@
 package io.github.arivanamin.cam.backend.patient.storage;
 
 import io.github.arivanamin.cam.backend.base.domain.gender.Gender;
+import io.github.arivanamin.cam.backend.base.domain.persistence.StorageAuditData;
 import io.github.arivanamin.cam.backend.patient.core.entity.Patient;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -18,8 +19,8 @@ import java.util.UUID;
 @Getter
 @Setter
 @Builder
-@ToString
-public class JpaPatient {
+@ToString (callSuper = true)
+public class JpaPatient extends StorageAuditData {
 
     @Id
     @UuidGenerator

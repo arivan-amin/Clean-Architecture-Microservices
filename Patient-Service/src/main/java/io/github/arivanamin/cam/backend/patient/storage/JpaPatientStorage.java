@@ -6,10 +6,12 @@ import io.github.arivanamin.cam.backend.patient.core.persistence.PatientStorage;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 
 import java.util.*;
 
+import static io.github.arivanamin.cam.backend.base.application.config.ModelMapperConditions.getConditionToSkipAuditDataFields;
 import static org.springframework.data.domain.PageRequest.of;
 
 @RequiredArgsConstructor
@@ -58,8 +60,22 @@ public class JpaPatientStorage implements PatientStorage {
 
     @Transactional
     @Override
-    public void update (Patient patient) {
-        repository.save(JpaPatient.fromDomain(patient));
+    public void update (Patient updatedPatient) {
+        JpaPatient storedPatient =
+            JpaPatient.fromDomain(findById(updatedPatient.getId()).orElseThrow());
+        updateChangedFields(updatedPatient, storedPatient);
+        updatePatientInStorage(storedPatient);
+    }
+
+    private static void updateChangedFields (Patient patient, JpaPatient patientFromStorage) {
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.getConfiguration()
+            .setPropertyCondition(getConditionToSkipAuditDataFields());
+        modelMapper.map(patient, patientFromStorage);
+    }
+
+    private void updatePatientInStorage (JpaPatient storedPatient) {
+        repository.save(storedPatient);
     }
 
     @Transactional

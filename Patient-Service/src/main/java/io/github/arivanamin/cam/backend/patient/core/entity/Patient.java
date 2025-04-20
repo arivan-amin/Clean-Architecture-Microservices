@@ -4,6 +4,7 @@ import io.github.arivanamin.cam.backend.base.domain.gender.Gender;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
@@ -19,4 +20,6 @@ public class Patient {
     LocalDate dateOfBirth;
     Gender gender;
     String address;
+    LocalDateTime createdAt;
+    LocalDateTime updatedAt;
 }
