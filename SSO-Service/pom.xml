@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.arivanamin.healthcare</groupId>
-        <artifactId>backend</artifactId>
+        <groupId>io.github.arivanamin.scm</groupId>
+        <artifactId>spring-clean-microservices</artifactId>
         <version>1.0.0</version>
     </parent>
 
@@ -27,13 +27,13 @@
         </dependency>
 
         <dependency>
-            <groupId>com.arivanamin.healthcare</groupId>
-            <artifactId>Core</artifactId>
+            <groupId>io.github.arivanamin.scm</groupId>
+            <artifactId>core</artifactId>
             <version>${core-module-version}</version>
         </dependency>
         <dependency>
-            <groupId>com.arivanamin.healthcare</groupId>
-            <artifactId>Testing</artifactId>
+            <groupId>io.github.arivanamin.scm</groupId>
+            <artifactId>testing</artifactId>
             <version>${testing-module-version}</version>
         </dependency>
 
