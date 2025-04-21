@@ -5,6 +5,8 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.23.xsd">
 
-    <include file="db/changelog/001-CAM-1-create-patients-table.xml" />
-    <include file="db/changelog/002-CAM-4-add-audit-fields-to-patients-table.xml" />
+    <include file="1-SCM-1-create-patients-table.xml" relativeToChangelogFile="true" />
+    <include file="2-SCM-4-add-audit-fields-to-patients-table.xml" relativeToChangelogFile="true" />
+    <include file="3-SCM-5-create-api-audit-events-outbox-table.xml"
+             relativeToChangelogFile="true" />
 </databaseChangeLog>

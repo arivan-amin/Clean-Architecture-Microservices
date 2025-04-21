@@ -5,16 +5,16 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.23.xsd">
 
-    <changeSet id="002-CAM-4-add-audit-fields-to-patients-table" author="Arivan-Amin">
+    <changeSet id="SCM-5-create-audit-log-outbox-table" author="Arivan-Amin">
 
-        <addColumn tableName="patients">
-            <column name="created_at" type="DATETIME">
+        <createTable tableName="api_audit_events_outbox">
+            <column name="id" type="BINARY(16)">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="message" type="VARCHAR(255)">
                 <constraints nullable="false" />
             </column>
-            <column name="updated_at" type="DATETIME">
-                <constraints nullable="true" />
-            </column>
-        </addColumn>
+        </createTable>
 
     </changeSet>
 </databaseChangeLog>
