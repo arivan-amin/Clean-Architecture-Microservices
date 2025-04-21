@@ -1,4 +1,4 @@
-package io.github.arivanamin.cam.backend.api.gateway.application.advice;
+package io.github.arivanamin.scm.backend.apigateway.application.advice;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -11,9 +11,9 @@ import org.springframework.web.reactive.resource.NoResourceFoundException;
 import java.net.URI;
 import java.time.Instant;
 
-import static io.github.arivanamin.cam.backend.base.application.advice.ProblemDetailCategories.RESOURCE_NOT_FOUND;
-import static io.github.arivanamin.cam.backend.base.application.advice.ProblemDetailProperties.CATEGORY;
-import static io.github.arivanamin.cam.backend.base.application.advice.ProblemDetailProperties.TIMESTAMP;
+import static io.github.arivanamin.scm.backend.base.application.advice.ProblemDetailCategories.RESOURCE_NOT_FOUND;
+import static io.github.arivanamin.scm.backend.base.application.advice.ProblemDetailProperties.CATEGORY;
+import static io.github.arivanamin.scm.backend.base.application.advice.ProblemDetailProperties.TIMESTAMP;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.http.ProblemDetail.forStatusAndDetail;
 

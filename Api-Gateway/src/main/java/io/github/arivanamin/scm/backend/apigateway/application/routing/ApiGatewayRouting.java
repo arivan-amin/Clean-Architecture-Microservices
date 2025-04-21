@@ -1,4 +1,4 @@
-package io.github.arivanamin.cam.backend.api.gateway.application.routing;
+package io.github.arivanamin.scm.backend.apigateway.application.routing;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.cloud.gateway.route.Route;

@@ -10,7 +10,7 @@ x-base-service: &base-service
   env_file:
     - .env
   volumes:
-    - app-logs:/root/Apps/Healthcare/Logs/
+    - app-logs:/root/Apps/Spring-Clean-Microservices/Logs/
   depends_on:
     - discovery-server
 
@@ -18,7 +18,7 @@ services:
   discovery-server:
     <<: *base-service
     container_name: discovery-server
-    image: arivanamin/healthcare-discovery-server
+    image: arivanamin/scm-discovery-server
     ports:
       - "8761:8761"
     depends_on: [ ]
@@ -26,7 +26,7 @@ services:
   api-gateway:
     <<: *base-service
     container_name: api-gateway
-    image: arivanamin/healthcare-api-gateway
+    image: arivanamin/scm-api-gateway
     ports:
       - "8080:8080"
     depends_on:
@@ -58,7 +58,7 @@ services:
     volumes:
       - ./Docker/promtail/promtail-config.yaml:/etc/promtail/config.yml
       - app-logs:/logs
-      - ${HOME}/Apps/Healthcare/Logs:/local-logs
+      - ${HOME}/Apps/Spring-Clean-Microservices/Logs:/local-logs
     command: -config.file=/etc/promtail/config.yml
 
   prometheus:
@@ -171,19 +171,19 @@ services:
 #  patient-service:
 #    <<: *base-service
 #    container_name: patient-service
-#    image: arivanamin/healthcare-patient-service
+#    image: arivanamin/scm-patient-service
 #
 #  audit-service:
 #    <<: *base-service
 #    container_name: audit-service
-#    image: arivanamin/healthcare-audit-service
+#    image: arivanamin/scm-audit-service
 #
 #  notification-service:
 #    <<: *base-service
 #    container_name: notification-service
-#    image: arivanamin/healthcare-notification-service
+#    image: arivanamin/scm-notification-service
 #    
 #  sso-service:
 #    <<: *base-service
 #    container_name: sso-service
-#    image: arivanamin/healthcare-sso-service
+#    image: arivanamin/scm-sso-service
