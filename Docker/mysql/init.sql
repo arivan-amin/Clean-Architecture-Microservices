@@ -1,2 +1,3 @@
 CREATE DATABASE IF NOT EXISTS patient_service;
 CREATE DATABASE IF NOT EXISTS audit_service;
+CREATE DATABASE IF NOT EXISTS outbox_database;

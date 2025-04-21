@@ -11,11 +11,11 @@
         <relativePath />
     </parent>
 
-    <groupId>com.arivanamin.healthcare</groupId>
-    <artifactId>backend</artifactId>
+    <groupId>io.github.arivanamin.scm</groupId>
+    <artifactId>spring-clean-microservices</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
-    <name>Backend</name>
+    <name>Spring-Clean-Microservices</name>
     <description>Backend Parent Module</description>
     <url>https://github.com/arivan-amin/Clean-Architecture-Microservices</url>
 
@@ -48,6 +48,7 @@
         <!-- Inherited dependency versions -->
         <core-module-version>1.0.0</core-module-version>
         <testing-module-version>1.0.0</testing-module-version>
+        <storage-common-module-version>1.0.0</storage-common-module-version>
         <mysql-version>9.2.0</mysql-version>
     </properties>
 
@@ -56,6 +57,7 @@
         <module>Api-Gateway</module>
         <module>Core</module>
         <module>Testing</module>
+        <module>Storage-Common</module>
         <module>Audit-Service</module>
         <module>SSO-Service</module>
         <module>Patient-Service</module>
@@ -224,7 +226,7 @@
     </dependencyManagement>
 
     <build>
-        <finalName>Healthcare-${project.artifactId}</finalName>
+        <finalName>scm-${project.artifactId}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -259,10 +261,10 @@
                 <version>${jib-plugin-version}</version>
                 <configuration>
                     <from>
-                        <image>eclipse-temurin:21-jre-alpine</image>
+                        <image>bellsoft/liberica-openjre-alpine:21</image>
                     </from>
                     <to>
-                        <image>arivanamin/healthcare-${project.artifactId}</image>
+                        <image>arivanamin/scm-${project.artifactId}</image>
                     </to>
                 </configuration>
                 <executions>
@@ -308,14 +310,14 @@
                         <mutator>REMOVE_CONDITIONALS_ORDER_IF</mutator>
                     </mutators>
                     <targetClasses>
-                        <param>com.arivanamin.healthcare.backend.*</param>
+                        <param>io.github.arivanamin.scm.backend.*</param>
                     </targetClasses>
                     <targetTests>
-                        <param>com.arivanamin.healthcare.backend.*</param>
+                        <param>io.github.arivanamin.scm.backend.*</param>
                     </targetTests>
                     <excludedTestClasses>
                         <excludedTestClass>
-                            com.arivanamin.healthcare.backend.**.**IntegrationTest
+                            io.github.arivanamin.scm.backend.**.**IntegrationTest
                         </excludedTestClass>
                     </excludedTestClasses>
                     <avoidCallsTo>
