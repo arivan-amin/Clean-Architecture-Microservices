@@ -89,6 +89,19 @@ Use PMD to verify the coding style and Pitest for mutation testing.
 
 Handle specific exceptions and return a unified and standard error response instead of an exception
 stack trace using Spring **ProblemDetail**.
+Example of API response for every error.
+
+```
+{
+    "type": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/RuntimeException.html",
+    "title": "Requested Patient Not Found",
+    "status": 404,
+    "detail": "Patient by the requested id not found",
+    "instance": "/patients/protected/v1/accounts/33bff7c7-77ee-4c51-9ee0-c870b437f82e",
+    "category": "Resource Not Found",
+    "timestamp": "2025-04-22T18:45:43.927431130Z"
+}
+```
 
 ### OpenAPI and Swagger Docs
 
@@ -161,9 +174,9 @@ Core entities have no association with JPA and are never annotated with @Entity.
 
 - **Microservices Architecture**.
 - **Automatic Audit Logs recording**: Uses Spring AOP to automatically store audit logs.
-- **Robust Monitoring**: Real-time monitoring with Grafana, Loki, and Tempo.
 - **Event-Driven Communication**: Using Kafka.
-- **Centralized Logging & Tracing**: Using Logback and Tempo.
+- **Robust Monitoring**: Real-time monitoring with Grafana, Loki, and Tempo.
+- **Centralized Logging & Distributed Tracing**: Using Loki and Tempo.
 - **Database Migrations**: Using Liquibase.
 - **Dockerized Deployment**: Using Docker and Docker Compose.
 
@@ -190,9 +203,9 @@ Core entities have no association with JPA and are never annotated with @Entity.
 - **Docker**
 - **Grafana, Loki, Tempo**: Observability stack for metrics, logging, and tracing.
 - **JUnit & Mockito**: Unit testing and Mocking.
-- **Pitest**: Mutation testing.
 - **ArchUnit**: Architecture boundaries testing and coding standards validation.
 - **PMD**: Validate coding standards and best practices.
+- **Pitest**: Mutation testing.
 - **Swagger/OpenAPI**: API documentation.
 - **Liquibase**: Database Migrations.
 - **Lombok**: Cleaner code with reduced boilerplate.
@@ -216,28 +229,18 @@ Core entities have no association with JPA and are never annotated with @Entity.
 ### Steps to Get Started
 
 1. **Clone the Repository:**
-   ```bash
+   ```
    git clone https://github.com/arivan-amin/Spring-Clean-Microservices.git
    cd Spring-Clean-Microservices
    ```
 
-2. **Build Core and Testing Module:**
-   ```bash
-   cd Core
+2. **Build and deploy the services to docker using JIB:**
+   ```
    mvn clean install
-   cd ..
-   cd Testing
-   mvn clean install
-   cd ..
    ```
 
-3. **Build and Package the Project:**
-   ```bash
-   mvn clean package
+3. **Set Environment Variables (Linux/MacOS):**
    ```
-
-4. **Set Environment Variables (Linux/MacOS):**
-   ```bash
    export EUREKA_USER=admin
    export EUREKA_PASSWORD=admin
    ```
@@ -245,8 +248,8 @@ Core entities have no association with JPA and are never annotated with @Entity.
    *(For Windows, use `set` command)*
    ```
 
-5. **Run Services with Docker Compose:**
-   ```bash
+4. **Run essential services with Docker Compose:**
+   ```
    docker compose up -d
    ```
 
