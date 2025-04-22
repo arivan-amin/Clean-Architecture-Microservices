@@ -2,6 +2,7 @@ package io.github.arivanamin.scm.backend.patient.storage;
 
 import io.github.arivanamin.scm.backend.patient.core.entity.Patient;
 import io.github.arivanamin.scm.backend.testing.architecture.bases.BaseDatabaseTest;
+import lombok.extern.slf4j.Slf4j;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,8 @@ import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class JpaPatientStorageIntegrationTest implements BaseDatabaseTest {
+@Slf4j
+class JpaPatientStorageIntegrationTest extends BaseDatabaseTest {
 
     @Autowired
     private PatientRepository repository;

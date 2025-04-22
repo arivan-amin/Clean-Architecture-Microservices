@@ -2,6 +2,7 @@ package io.github.arivanamin.scm.backend.audit.storage;
 
 import io.github.arivanamin.scm.backend.base.domain.audit.AuditEvent;
 import io.github.arivanamin.scm.backend.testing.architecture.bases.BaseDatabaseTest;
+import lombok.extern.slf4j.Slf4j;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,8 @@ import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class JpaAuditEventStorageIntegrationTest implements BaseDatabaseTest {
+@Slf4j
+class JpaAuditEventStorageIntegrationTest extends BaseDatabaseTest {
 
     @Autowired
     private AuditEventRepository repository;

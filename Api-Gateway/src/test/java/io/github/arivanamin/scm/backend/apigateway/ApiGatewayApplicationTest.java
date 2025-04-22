@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 @Slf4j
-class ApiGatewayApplicationTest implements BaseIntegrationTest {
+class ApiGatewayApplicationTest extends BaseIntegrationTest {
 
     @Test
     void should () {

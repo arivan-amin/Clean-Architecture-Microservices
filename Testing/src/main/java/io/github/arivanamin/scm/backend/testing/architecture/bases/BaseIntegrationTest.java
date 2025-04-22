@@ -11,10 +11,14 @@ import org.testcontainers.kafka.KafkaContainer;
 @SuppressWarnings ({ "NewClassNamingConvention" })
 @SpringBootTest
 @ExtendWith (SpringExtension.class)
-public interface BaseIntegrationTest extends BaseUnitTest {
+public abstract class BaseIntegrationTest implements BaseUnitTest {
 
     @Container
-    KafkaContainer KAFKA_CONTAINER = new KafkaContainer("apache/kafka:4.0.0");
+    static final KafkaContainer KAFKA_CONTAINER = new KafkaContainer("apache/kafka:4.0.0");
+
+    static {
+        KAFKA_CONTAINER.start();
+    }
 
     @DynamicPropertySource
     static void registerProperties (DynamicPropertyRegistry registry) {
@@ -22,5 +26,9 @@ public interface BaseIntegrationTest extends BaseUnitTest {
             KAFKA_CONTAINER::getBootstrapServers);
         registry.add("spring.kafka.consumer.bootstrap-servers",
             KAFKA_CONTAINER::getBootstrapServers);
+
+        registry.add("eureka.client.enabled", () -> "false");
+        registry.add("eureka.client.register-with-eureka", () -> "false");
+        registry.add("eureka.client.fetch-registry", () -> "false");
     }
 }
