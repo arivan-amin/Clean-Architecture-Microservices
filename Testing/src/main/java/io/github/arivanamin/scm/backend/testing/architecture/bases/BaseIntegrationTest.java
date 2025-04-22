@@ -1,10 +1,26 @@
 package io.github.arivanamin.scm.backend.testing.architecture.bases;
 
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.DynamicPropertyRegistry;
+import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.kafka.KafkaContainer;
 
-@SuppressWarnings ({ "MarkerInterface", "NewClassNamingConvention" })
+@SuppressWarnings ({ "NewClassNamingConvention" })
+@SpringBootTest
 @ExtendWith (SpringExtension.class)
 public interface BaseIntegrationTest extends BaseUnitTest {
 
+    @Container
+    KafkaContainer KAFKA_CONTAINER = new KafkaContainer("apache/kafka:4.0.0");
+
+    @DynamicPropertySource
+    static void registerProperties (DynamicPropertyRegistry registry) {
+        registry.add("spring.kafka.producer.bootstrap-servers",
+            KAFKA_CONTAINER::getBootstrapServers);
+        registry.add("spring.kafka.consumer.bootstrap-servers",
+            KAFKA_CONTAINER::getBootstrapServers);
+    }
 }
