@@ -1,43 +1,30 @@
 package io.github.arivanamin.scm.backend.notification.storage;
 
-import io.github.arivanamin.scm.backend.base.domain.notification.NotificationChannel;
-import io.github.arivanamin.scm.backend.notification.core.entity.Notification;
-import jakarta.persistence.Id;
+import io.github.arivanamin.scm.backend.common.domain.persistence.StorageAuditData;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
-import org.modelmapper.ModelMapper;
-import org.springframework.data.mongodb.core.mapping.Document;
+import org.hibernate.annotations.UuidGenerator;
 
-import java.time.LocalDateTime;
-import java.util.Map;
+import java.util.UUID;
 
-import static io.github.arivanamin.scm.backend.base.domain.dates.TimestampHelper.toLocalDateTime;
-import static io.github.arivanamin.scm.backend.base.domain.dates.TimestampHelper.toTimestampInMilliseconds;
-
-@Document
-@NoArgsConstructor
+@Entity
+@Table (name = "notifications")
 @AllArgsConstructor
-@Data
+@NoArgsConstructor
+@Getter
+@Setter
 @Builder
-public class JpaNotification {
+@ToString (callSuper = true)
+public class JpaNotification extends StorageAuditData {
 
     @Id
-    String id;
-    private NotificationChannel channel;
+    @UuidGenerator
+    UUID id;
+
+    @NotBlank
     private String recipient;
-    private LocalDateTime recordedAt;
-    private String templateName;
-    private Map<String, String> variables;
 
-    public static JpaNotification fromDomain (Notification notification) {
-        JpaNotification jpaNotification =
-            new ModelMapper().map(notification, JpaNotification.class);
-        jpaNotification.setRecordedAt(toLocalDateTime(notification.getTimestamp()));
-        return jpaNotification;
-    }
-
-    public Notification toDomain () {
-        Notification notification = new ModelMapper().map(this, Notification.class);
-        notification.setTimestamp(toTimestampInMilliseconds(recordedAt));
-        return notification;
-    }
+    @NotBlank
+    private String content;
 }
