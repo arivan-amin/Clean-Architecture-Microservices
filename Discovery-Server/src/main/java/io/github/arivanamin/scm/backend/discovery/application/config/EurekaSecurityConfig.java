@@ -16,10 +16,10 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @Configuration
 public class EurekaSecurityConfig {
 
-    @Value ("${EUREKA_USER:admin}")
+    @Value ("${EUREKA_USER}")
     private String userName;
 
-    @Value ("${EUREKA_PASSWORD:admin}")
+    @Value ("${EUREKA_PASSWORD}")
     private String password;
 
     @Bean
