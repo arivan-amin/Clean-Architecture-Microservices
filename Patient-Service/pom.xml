@@ -11,7 +11,7 @@
     </parent>
 
     <artifactId>patient-service</artifactId>
-    <version>0.1</version>
+    <version>1.0.0</version>
     <name>Patient-Service</name>
     <description>Patient Service Module</description>
 

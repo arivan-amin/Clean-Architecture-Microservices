@@ -11,7 +11,7 @@
     </parent>
 
     <artifactId>sso-service</artifactId>
-    <version>0.1</version>
+    <version>1.0.0</version>
     <name>SSO-Service</name>
     <description>SSO Service Module</description>
 
