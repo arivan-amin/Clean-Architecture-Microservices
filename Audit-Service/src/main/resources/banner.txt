@@ -1,11 +1,29 @@
-                                                   
-                                 ,,    ,,          
-      db                       `7MM    db    mm    
-     ;MM:                        MM          MM    
-    ,V^MM.    `7MM  `7MM    ,M""bMM  `7MM  mmMMmm  
-   ,M  `MM      MM    MM  ,AP    MM    MM    MM    
-   AbmmmqMA     MM    MM  8MI    MM    MM    MM    
-  A'     VML    MM    MM  `Mb    MM    MM    MM    
-.AMA.   .AMMA.  `Mbod"YML. `Wbmd"MML..JMML.  `Mbmo 
-                                                                                        
+
+                         (
+                           )     (
+                    ___...(-------)-....___
+                .-""       )    (          ""-.
+          .-'``'|-._             )         _.-|
+         /  .--.|   `""---...........---""`   |
+        /  /    |                             |
+        |  |    |                             |
+         \  \   |                             |
+          `\ `\ |                             |
+            `\ `|                             |
+            _/ /\                             /
+           (__/  \                           /
+        _..---""` \                         /`""---.._
+     .-'           \                       /          '-.
+    :               `-.__             __.-'              :
+    :                  ) ""---...---"" (                 :
+     '._               `"--...___...--"`              _.'
+       \""--..__                              __..--""/
+        '._     """----.....______.....----"""     _.'
+           `""--..,,_____            _____,,..--""`
+                         `"""----"""`
+
+Java Version:${java.version}
 Spring Boot Version:${spring-boot.formatted-version}
+Application: ${project-name}
+Service: ${service-name}
+Version: ${service-version}

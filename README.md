@@ -261,6 +261,9 @@ Core entities have no association with JPA and are never annotated with @Entity.
 
 ## Eureka Dashboard
 
+#### Username: admin
+
+#### Password: admin
 [http://localhost:8080/eureka/web](http://localhost:8080/eureka/web)
 
 ## API Documentation
