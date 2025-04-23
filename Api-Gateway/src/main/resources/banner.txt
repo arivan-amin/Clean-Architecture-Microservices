@@ -1,12 +1,33 @@
-
-      db      `7MM"""Mq. `7MMF'      .g8"""bgd             mm                                                   
-     ;MM:       MM   `MM.  MM      .dP'     `M             MM                                                   
-    ,V^MM.      MM   ,M9   MM      dM'       `   ,6"Yb.  mmMMmm   .gP"Ya  `7M'    ,A    `MF' ,6"Yb.  `7M'   `MF'
-   ,M  `MM      MMmmdM9    MM      MM           8)   MM    MM    ,M'   Yb   VA   ,VAA   ,V  8)   MM    VA   ,V  
-   AbmmmqMA     MM         MM      MM.    `7MMF' ,pm9MM    MM    8M""""""    VA ,V  VA ,V    ,pm9MM     VA ,V   
-  A'     VML    MM         MM      `Mb.     MM  8M   MM    MM    YM.    ,     VVV    VVV    8M   MM      VVV    
-.AMA.   .AMMA..JMML.     .JMML.      `"bmmmdPY  `Moo9^Yo.  `Mbmo  `Mbmmd'      W      W     `Moo9^Yo.    ,V     
-                                                                                                        ,V      
-                                                                                                     OOb"       
-                                                                                                                          
+   
+                                 _                                   
+                                | `--------+                         
+                                | Homepage |                         
+                                +----------+                         
+                                .-'  |  `-._                         
+                             .-'     |      `-._                     
+                          .-'        |          `-._                 
+                   _   .-'           |             _`-.              
+                  | `-'--+     +-----+------+     | `--`-+           
+                  | docs |     | index.html |     | pics |           
+                  +------+     +------------+     +------+           
+                 _.-' | `.                       .-'    \            
+             _.-'     |   `.                  .-'        \           
+         _.-'         |     `.        _    .-'         _  \          
+   +----'-------+-----+----+--`----+ | `--'--+        | `--`-+       
+   |friends.html|links.html|me.html| | icons |        | misc |       
+   +------------+----------+-------+ +-------+        +------+       
+                                   _.-'.'/ \             | \         
+                               _.-'  .' /   \            |  \        
+                           _.-'   .-'  /     \           |   \       
+                       _.-'    .-'    /       \          |    \      
+                   _.-'     .-'      /         \         |     \     
+               _.-'      .-'        /           \        |      \    
+         .----'---.-----'---.------'-----.-------`--.----+---.---`--.
+         |home.gif|links.gif|roadkill.gif|smiley.gif|logo.gif|me.gif|
+         `--------^---------^------------^----------^--------^------'
+      
+Java Version:${java.version}
 Spring Boot Version:${spring-boot.formatted-version}
+Application: ${project-name}
+Service: ${service-name}
+Version: ${service-version}
