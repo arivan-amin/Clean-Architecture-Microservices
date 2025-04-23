@@ -6,6 +6,6 @@
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.23.xsd">
 
     <include file="1-SCM-3-create-api-audit-events-table.xml" relativeToChangelogFile="true" />
-    <include file="2-SCM-5-create-api-audit-events-outbox-table.xml"
+    <include file="SCM-8-create-api-audit-events-outbox-table.xml"
              relativeToChangelogFile="true" />
 </databaseChangeLog>
