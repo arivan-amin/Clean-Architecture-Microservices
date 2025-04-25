@@ -1,6 +1,5 @@
 package io.github.arivanamin.scm.backend.patient.application.beans;
 
-import io.github.arivanamin.scm.backend.base.domain.notification.NotificationPublisher;
 import io.github.arivanamin.scm.backend.patient.core.command.*;
 import io.github.arivanamin.scm.backend.patient.core.persistence.PatientStorage;
 import io.github.arivanamin.scm.backend.patient.core.query.ReadPatientByIdQuery;
@@ -29,9 +28,8 @@ class PatientBeansConfig {
     }
 
     @Bean
-    public CreatePatientCommand createPatientCommand (PatientStorage storage,
-                                                      NotificationPublisher notification) {
-        return new CreatePatientCommand(storage, notification);
+    public CreatePatientCommand createPatientCommand (PatientStorage storage) {
+        return new CreatePatientCommand(storage);
     }
 
     @Bean

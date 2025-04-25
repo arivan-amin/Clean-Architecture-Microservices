@@ -1,6 +1,5 @@
 package io.github.arivanamin.scm.backend.patient.core.command;
 
-import io.github.arivanamin.scm.backend.base.domain.notification.NotificationPublisher;
 import io.github.arivanamin.scm.backend.patient.core.entity.Patient;
 import io.github.arivanamin.scm.backend.patient.core.exception.PatientAlreadyExistsException;
 import io.github.arivanamin.scm.backend.patient.core.persistence.PatientStorage;
@@ -12,7 +11,6 @@ import java.util.UUID;
 public class CreatePatientCommand {
 
     private final PatientStorage storage;
-    private final NotificationPublisher publisher;
 
     public UUID execute (Patient patient) {
         if (doesPatientExist(patient)) {
