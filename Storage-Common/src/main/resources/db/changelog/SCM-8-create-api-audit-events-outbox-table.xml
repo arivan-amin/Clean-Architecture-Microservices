@@ -28,6 +28,9 @@
             <column name="response" type="LONGTEXT">
                 <constraints nullable="false" />
             </column>
+            <column name="status" type="TINYINT">
+                <constraints nullable="false" />
+            </column>
         </createTable>
 
     </changeSet>
