@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.4.4</version>
+        <version>3.4.5</version>
         <relativePath />
     </parent>
 
@@ -17,7 +17,7 @@
     <packaging>pom</packaging>
     <name>Spring-Clean-Microservices</name>
     <description>Backend Parent Module</description>
-    <url>https://github.com/arivan-amin/Clean-Architecture-Microservices</url>
+    <url>https://github.com/arivan-amin/Spring-Clean-Microservices</url>
 
     <properties>
         <java.version>21</java.version>
@@ -378,22 +378,5 @@
             </plugins>
         </pluginManagement>
     </build>
-
-    <!--<reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.pitest</groupId>
-                <artifactId>pitest-maven</artifactId>
-                <version>${}</version>
-                <reportSets>
-                    <reportSet>
-                        <reports>
-                            <report>report</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
-            </plugin>
-        </plugins>
-    </reporting>-->
 
 </project>
