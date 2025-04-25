@@ -16,7 +16,7 @@ public interface AuditEventStorage {
     PaginatedResponse<AuditEvent> findAllByCriteria (AuditEvent searchCriteria,
                                                      PaginationCriteria paginationCriteria);
 
-    Optional<AuditEvent> findById (String id);
+    Optional<AuditEvent> findById (UUID id);
 
     UUID create (AuditEvent event);
 }

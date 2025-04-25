@@ -5,6 +5,7 @@ import lombok.*;
 import org.modelmapper.ModelMapper;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import static io.github.arivanamin.scm.backend.base.domain.dates.TimestampHelper.toLocalDateTime;
 
@@ -13,7 +14,7 @@ import static io.github.arivanamin.scm.backend.base.domain.dates.TimestampHelper
 @AllArgsConstructor
 public class AuditEventResponse {
 
-    private String id;
+    private UUID id;
     private String serviceName;
     private String location;
     private String action;

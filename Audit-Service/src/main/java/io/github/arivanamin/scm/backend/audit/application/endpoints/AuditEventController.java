@@ -14,6 +14,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 import static io.github.arivanamin.scm.backend.audit.application.config.AuditApiURLs.*;
 
 @Tag (name = "Audit Event Controller")
@@ -50,7 +52,7 @@ class AuditEventController {
     @GetMapping (GET_EVENT_BY_ID_URL)
     @Operation (summary = "Get a single auditEvent by id")
     @ResponseStatus (HttpStatus.OK)
-    public AuditEventResponse getAuditEventById (@PathVariable String id) {
+    public AuditEventResponse getAuditEventById (@PathVariable UUID id) {
         return AuditEventResponse.of(readByIdQuery.execute(id));
     }
 }
