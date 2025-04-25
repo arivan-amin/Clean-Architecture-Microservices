@@ -4,6 +4,7 @@ import io.github.arivanamin.scm.backend.base.domain.audit.AuditEvent;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
+import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.UuidGenerator;
 import org.modelmapper.ModelMapper;
 
@@ -20,6 +21,7 @@ import static io.github.arivanamin.scm.backend.base.domain.dates.TimestampHelper
 @Getter
 @Setter
 @Builder
+@FieldDefaults (level = AccessLevel.PRIVATE)
 @ToString
 public class JpaAuditEvent {
 
@@ -28,25 +30,25 @@ public class JpaAuditEvent {
     UUID id;
 
     @NotBlank
-    private String serviceName;
+    String serviceName;
 
     @NotBlank
-    private String location;
+    String location;
 
     @NotBlank
-    private String action;
+    String action;
 
     @NotBlank
-    private String data;
+    String data;
 
     @Past
-    private LocalDateTime recordedAt;
+    LocalDateTime recordedAt;
 
     @Positive
-    private long duration;
+    long duration;
 
     @NotBlank
-    private String response;
+    String response;
 
     public static JpaAuditEvent fromDomain (AuditEvent event) {
         JpaAuditEvent jpaEvent = new ModelMapper().map(event, JpaAuditEvent.class);
