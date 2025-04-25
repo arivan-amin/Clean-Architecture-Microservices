@@ -3,7 +3,7 @@ package io.github.arivanamin.scm.backend.base.application.aspects;
 import io.github.arivanamin.scm.backend.base.application.audit.AuditDataExtractor;
 import io.github.arivanamin.scm.backend.base.domain.aspects.PerformanceTimer;
 import io.github.arivanamin.scm.backend.base.domain.audit.AuditEvent;
-import io.github.arivanamin.scm.backend.base.domain.audit.CreateAuditEventOutboxMessageCommand;
+import io.github.arivanamin.scm.backend.base.domain.audit.outbox.CreateAuditOutboxMessageCommand;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
@@ -22,7 +22,7 @@ import static io.github.arivanamin.scm.backend.base.domain.aspects.ExecuteAndLog
 @Slf4j
 class ControllerLoggingAspect {
 
-    private final CreateAuditEventOutboxMessageCommand command;
+    private final CreateAuditOutboxMessageCommand command;
     private final AuditDataExtractor dataExtractor;
 
     @Around ("""
