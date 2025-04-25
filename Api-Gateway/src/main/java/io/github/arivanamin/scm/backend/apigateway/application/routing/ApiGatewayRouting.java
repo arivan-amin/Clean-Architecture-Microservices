@@ -1,6 +1,7 @@
 package io.github.arivanamin.scm.backend.apigateway.application.routing;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.route.Route;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.*;
@@ -9,15 +10,19 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.function.Function;
 
-import static java.lang.System.getenv;
+import static io.github.arivanamin.scm.backend.base.domain.config.ServicesNamesHelper.*;
 
 @Configuration
 @RequiredArgsConstructor
 public class ApiGatewayRouting {
 
-    public static final String EUREKA_HOST = getenv().getOrDefault("EUREKA_HOST", "localhost");
+    @Value ("${EUREKA_HOST:localhost}")
+    private static String eurekaHost;
 
-    public static final String EUREKA_URL = "http://%s:8761".formatted(EUREKA_HOST);
+    @Value ("${EUREKA_PORT:8761}")
+    private static String eurekaPort;
+
+    public static final String EUREKA_URL = "http://%s:%s".formatted(eurekaHost, eurekaPort);
 
     private final RoutingHelper routingHelper;
 
@@ -50,38 +55,38 @@ public class ApiGatewayRouting {
     }
 
     private Function<PredicateSpec, Buildable<Route>> getPatientServiceRoute () {
-        return routingHelper.createApiRouteForService("patient");
+        return routingHelper.createApiRouteForService(PATIENT_SERVICE);
     }
 
     private Function<PredicateSpec, Buildable<Route>> getPatientServiceApiDocRoute () {
-        return routingHelper.createApiDocRouteForService("patient");
+        return routingHelper.createApiDocRouteForService(PATIENT_SERVICE);
     }
 
     private Function<PredicateSpec, Buildable<Route>> getPatientServiceActuatorRoute () {
-        return routingHelper.createActuatorRouteForService("patient");
+        return routingHelper.createActuatorRouteForService(PATIENT_SERVICE);
     }
 
     private Function<PredicateSpec, Buildable<Route>> getAuditServiceRoute () {
-        return routingHelper.createApiRouteForService("audit");
+        return routingHelper.createApiRouteForService(AUDIT_SERVICE);
     }
 
     private Function<PredicateSpec, Buildable<Route>> getAuditServiceApiDocRoute () {
-        return routingHelper.createApiDocRouteForService("audit");
+        return routingHelper.createApiDocRouteForService(AUDIT_SERVICE);
     }
 
     private Function<PredicateSpec, Buildable<Route>> getAuditServiceActuatorRoute () {
-        return routingHelper.createActuatorRouteForService("audit");
+        return routingHelper.createActuatorRouteForService(AUDIT_SERVICE);
     }
 
     private Function<PredicateSpec, Buildable<Route>> getNotificationServiceRoute () {
-        return routingHelper.createApiRouteForService("notification");
+        return routingHelper.createApiRouteForService(NOTIFICATION_SERVICE);
     }
 
     private Function<PredicateSpec, Buildable<Route>> getNotificationServiceApiDocRoute () {
-        return routingHelper.createApiDocRouteForService("notification");
+        return routingHelper.createApiDocRouteForService(NOTIFICATION_SERVICE);
     }
 
     private Function<PredicateSpec, Buildable<Route>> getNotificationServiceActuatorRoute () {
-        return routingHelper.createActuatorRouteForService("notification");
+        return routingHelper.createActuatorRouteForService(NOTIFICATION_SERVICE);
     }
 }

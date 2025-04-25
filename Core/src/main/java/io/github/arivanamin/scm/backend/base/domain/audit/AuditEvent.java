@@ -3,6 +3,8 @@ package io.github.arivanamin.scm.backend.base.domain.audit;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.UUID;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -10,7 +12,7 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults (level = AccessLevel.PRIVATE)
 public class AuditEvent {
 
-    String id;
+    UUID id;
     String serviceName;
     String location;
     String action;
