@@ -7,6 +7,7 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import static io.github.arivanamin.scm.backend.base.domain.config.CoreApplicationConfig.BASE_PACKAGE;
 
@@ -16,6 +17,7 @@ import static io.github.arivanamin.scm.backend.base.domain.config.CoreApplicatio
 @EnableDiscoveryClient
 @EnableCaching
 @EnableJpaAuditing
+@EnableScheduling
 public class PatientApplication {
 
     public static void main (String[] args) {
