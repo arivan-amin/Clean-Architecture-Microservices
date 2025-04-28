@@ -3,11 +3,11 @@ package io.github.arivanamin.scm.backend.patient.storage;
 import io.github.arivanamin.scm.backend.base.domain.pagination.*;
 import io.github.arivanamin.scm.backend.patient.core.entity.Patient;
 import io.github.arivanamin.scm.backend.patient.core.persistence.PatientStorage;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
@@ -64,7 +64,6 @@ public class JpaPatientStorage implements PatientStorage {
         JpaPatient storedPatient =
             JpaPatient.fromDomain(findById(updatedPatient.getId()).orElseThrow());
         updateChangedFields(updatedPatient, storedPatient);
-        updatePatientInStorage(storedPatient);
     }
 
     private static void updateChangedFields (Patient patient, JpaPatient patientFromStorage) {
@@ -72,10 +71,6 @@ public class JpaPatientStorage implements PatientStorage {
         modelMapper.getConfiguration()
             .setPropertyCondition(getConditionToSkipAuditDataFields());
         modelMapper.map(patient, patientFromStorage);
-    }
-
-    private void updatePatientInStorage (JpaPatient storedPatient) {
-        repository.save(storedPatient);
     }
 
     @Transactional

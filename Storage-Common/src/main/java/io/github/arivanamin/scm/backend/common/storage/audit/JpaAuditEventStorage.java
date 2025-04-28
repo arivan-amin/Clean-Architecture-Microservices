@@ -3,10 +3,10 @@ package io.github.arivanamin.scm.backend.common.storage.audit;
 import io.github.arivanamin.scm.backend.base.domain.audit.AuditEvent;
 import io.github.arivanamin.scm.backend.base.domain.audit.AuditEventStorage;
 import io.github.arivanamin.scm.backend.base.domain.pagination.*;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.*;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.*;
