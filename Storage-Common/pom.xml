@@ -26,6 +26,11 @@
             <artifactId>core</artifactId>
             <version>${core-module-version}</version>
         </dependency>
+        <dependency>
+            <groupId>io.github.arivanamin.scm</groupId>
+            <artifactId>testing</artifactId>
+            <version>${testing-module-version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -5,16 +5,16 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.23.xsd">
 
-    <changeSet id="SCM-3-create-api-audit-events-table" author="Arivan-Amin">
+    <changeSet id="SCM-3-create-audit-events-table" author="Arivan-Amin">
 
-        <createTable tableName="api_audit_events">
+        <createTable tableName="audit_events">
             <column name="id" type="BINARY(16)">
                 <constraints primaryKey="true" nullable="false" />
             </column>
             <column name="service_name" type="VARCHAR(255)">
                 <constraints nullable="false" />
             </column>
-            <column name="location" type="VARCHAR(255)">
+            <column name="location" type="VARCHAR(512)">
                 <constraints nullable="false" />
             </column>
             <column name="action" type="VARCHAR(255)">

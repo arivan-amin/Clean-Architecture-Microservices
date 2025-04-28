@@ -1,6 +1,6 @@
 package io.github.arivanamin.scm.backend.audit.application.advice;
 
-import io.github.arivanamin.scm.backend.audit.core.exception.AuditEventNotFoundException;
+import io.github.arivanamin.scm.backend.common.domain.exception.AuditEventNotFoundException;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

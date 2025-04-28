@@ -1,4 +1,4 @@
-package io.github.arivanamin.scm.backend.audit.storage;
+package io.github.arivanamin.scm.backend.common.storage.audit;
 
 import io.github.arivanamin.scm.backend.base.domain.audit.AuditEvent;
 import io.github.arivanamin.scm.backend.testing.architecture.bases.BaseDatabaseTest;
