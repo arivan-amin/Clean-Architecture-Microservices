@@ -78,6 +78,10 @@ Command and Query Separation Principle to implement Business logic.
 
 Implemented in **API Gateway** using **Redis Rate Limiter**.
 
+### Outbox Pattern
+
+Implements Transactional Outbox Pattern for sending events to guarantee 100% message delivery.
+
 ### ArchUnit
 
 Validate architectural boundaries and verify adherence to best coding standards.
@@ -156,24 +160,17 @@ Core entities have no association with JPA and are never annotated with @Entity.
         }
 ```
 
-## Architecture concepts demonstrated and implemented
+## Architecture concepts and technical features demonstrated and implemented
 
-- **Microservices**
-- **Clean Architecture**
-- **Clean Code**
+- **Microservices Architecture**.
+- **Clean Architecture & Clean Code**
+- **Command-Query Responsibility Separation (CQRS)**
+- **SOLID Principles**
+- **Outbox Pattern**
 - **Mutation Testing**
-- **Command-Query Responsibility Separation**
-- **Solid Principles**
-- **Loose Coupling of Components**
 - **Spring Dependency Injection**
 - **Aspect-Oriented Programming (AOP)**
 - **Rate Limiting API**
-
----
-
-## Technical Features Implemented
-
-- **Microservices Architecture**.
 - **Automatic Audit Logs recording**: Uses Spring AOP to automatically store audit logs.
 - **Event-Driven Communication**: Using Kafka.
 - **Robust Monitoring**: Real-time monitoring with Grafana, Loki, and Tempo.
@@ -249,7 +246,12 @@ Core entities have no association with JPA and are never annotated with @Entity.
    *(For Windows, use `set` command)*
    ```
 
-4. **Run essential services with Docker Compose:**
+4. **Start the required backbone apps with Docker Compose:**
+   ```
+   docker compose up -d
+   ```
+5. **Start the services(Patient, Audit,...) manually or uncomment the section in docker compose file
+   to run everything with docker compose:**
    ```
    docker compose up -d
    ```
@@ -294,8 +296,10 @@ Core entities have no association with JPA and are never annotated with @Entity.
 - **Discovery Server**: Dynamic service discovery and registry.
 - **API Gateway**: Centralized entry point for routing and security.
 - **Core Module**: Shared utilities and functionality.
+- **Storage Common Module**: Contains classes related to storage and database handling shared with
+  all modules.
 - **Patient Service**: Manages patient data.
-- **Audit Service**: Logs events and ensures compliance.
+- **Audit Service**: Stores Audit Events, ensures compliance and data integrity.
 - **SSO Service**: Handles authentication and authorization using Keycloak.
 
 ---
