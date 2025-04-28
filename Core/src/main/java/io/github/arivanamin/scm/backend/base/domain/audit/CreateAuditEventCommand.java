@@ -1,7 +1,5 @@
-package io.github.arivanamin.scm.backend.audit.core.command;
+package io.github.arivanamin.scm.backend.base.domain.audit;
 
-import io.github.arivanamin.scm.backend.audit.core.persistence.AuditEventStorage;
-import io.github.arivanamin.scm.backend.base.domain.audit.AuditEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
