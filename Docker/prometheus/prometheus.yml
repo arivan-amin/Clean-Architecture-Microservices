@@ -22,3 +22,27 @@ scrape_configs:
         labels:
           instance: 'Patient-Service'
           application: 'Patient-Service'
+
+  - job_name: 'audit-service'
+    metrics_path: '/actuator/audits/prometheus'
+    static_configs:
+      - targets: [ '172.17.0.1:8080' ]
+        labels:
+          instance: 'Audit-Service'
+          application: 'Audit-Service'
+
+  - job_name: 'notification-service'
+    metrics_path: '/actuator/notifications/prometheus'
+    static_configs:
+      - targets: [ '172.17.0.1:8080' ]
+        labels:
+          instance: 'Notification-Service'
+          application: 'Notification-Service'
+
+  - job_name: 'sso-service'
+    metrics_path: '/actuator/sso/prometheus'
+    static_configs:
+      - targets: [ '172.17.0.1:8080' ]
+        labels:
+          instance: 'SSO-Service'
+          application: 'SSO-Service'

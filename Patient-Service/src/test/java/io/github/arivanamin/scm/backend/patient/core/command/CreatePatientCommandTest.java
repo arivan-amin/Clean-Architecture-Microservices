@@ -1,6 +1,5 @@
 package io.github.arivanamin.scm.backend.patient.core.command;
 
-import io.github.arivanamin.scm.backend.base.domain.notification.NotificationPublisher;
 import io.github.arivanamin.scm.backend.patient.core.entity.Patient;
 import io.github.arivanamin.scm.backend.patient.core.exception.PatientAlreadyExistsException;
 import io.github.arivanamin.scm.backend.patient.core.persistence.PatientStorage;
@@ -21,7 +20,6 @@ class CreatePatientCommandTest implements BaseUnitTest {
     private final UUID createdPatientId = UUID.randomUUID();
 
     private PatientStorage persistence;
-    private NotificationPublisher publisher;
     private CreatePatientCommand command;
 
     private Patient patient;
@@ -35,8 +33,7 @@ class CreatePatientCommandTest implements BaseUnitTest {
 
     private void givenCommandWithMockFindByEmail () {
         persistence = mock(PatientStorage.class);
-        publisher = mock(NotificationPublisher.class);
-        command = new CreatePatientCommand(persistence, publisher);
+        command = new CreatePatientCommand(persistence);
         Patient patient = Instancio.create(Patient.class);
         patient.setEmail(emailAddress);
         when(persistence.findByEmail(emailAddress)).thenReturn(Optional.of(patient));
@@ -61,8 +58,7 @@ class CreatePatientCommandTest implements BaseUnitTest {
 
     private void givenCommandWithMockPersistence () {
         persistence = mock(PatientStorage.class);
-        publisher = mock(NotificationPublisher.class);
-        command = new CreatePatientCommand(persistence, publisher);
+        command = new CreatePatientCommand(persistence);
         when(persistence.create(any())).thenReturn(createdPatientId);
         patient = Instancio.create(Patient.class);
     }

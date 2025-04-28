@@ -2,6 +2,7 @@ package io.github.arivanamin.scm.backend.patient.core.entity;
 
 import io.github.arivanamin.scm.backend.base.domain.gender.Gender;
 import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -11,6 +12,7 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@FieldDefaults (level = AccessLevel.PRIVATE)
 public class Patient {
 
     UUID id;

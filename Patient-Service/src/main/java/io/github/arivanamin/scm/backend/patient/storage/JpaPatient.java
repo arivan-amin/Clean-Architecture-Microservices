@@ -6,6 +6,7 @@ import io.github.arivanamin.scm.backend.patient.core.entity.Patient;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
+import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.UuidGenerator;
 import org.modelmapper.ModelMapper;
 
@@ -19,6 +20,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Builder
+@FieldDefaults (level = AccessLevel.PRIVATE)
 @ToString (callSuper = true)
 public class JpaPatient extends StorageAuditData {
 

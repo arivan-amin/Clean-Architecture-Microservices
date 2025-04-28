@@ -4,6 +4,7 @@ import io.github.arivanamin.scm.backend.base.application.audit.AuditDataExtracto
 import io.github.arivanamin.scm.backend.base.application.audit.KafkaAuditEventPublisher;
 import io.github.arivanamin.scm.backend.base.domain.audit.AuditEvent;
 import io.github.arivanamin.scm.backend.base.domain.audit.AuditEventPublisher;
+import io.github.arivanamin.scm.backend.base.domain.audit.outbox.UpdateAuditOutboxMessageStatusCommand;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -19,8 +20,8 @@ class CoreAuditLogBeansConfig {
     }
 
     @Bean
-    public AuditEventPublisher auditEventPublisher (
-        KafkaTemplate<String, AuditEvent> kafkaTemplate) {
-        return new KafkaAuditEventPublisher(kafkaTemplate);
+    public AuditEventPublisher auditEventPublisher (KafkaTemplate<String, AuditEvent> kafkaTemplate,
+                                                    UpdateAuditOutboxMessageStatusCommand command) {
+        return new KafkaAuditEventPublisher(kafkaTemplate, command);
     }
 }

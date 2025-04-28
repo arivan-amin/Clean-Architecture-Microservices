@@ -77,7 +77,7 @@ public class JpaAuditEventStorage implements AuditEventStorage {
     }
 
     @Override
-    public Optional<AuditEvent> findById (String id) {
+    public Optional<AuditEvent> findById (UUID id) {
         return repository.findById(id)
             .map(JpaAuditEvent::toDomain);
     }

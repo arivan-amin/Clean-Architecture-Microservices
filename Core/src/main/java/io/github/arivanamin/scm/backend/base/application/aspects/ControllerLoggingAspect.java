@@ -3,7 +3,7 @@ package io.github.arivanamin.scm.backend.base.application.aspects;
 import io.github.arivanamin.scm.backend.base.application.audit.AuditDataExtractor;
 import io.github.arivanamin.scm.backend.base.domain.aspects.PerformanceTimer;
 import io.github.arivanamin.scm.backend.base.domain.audit.AuditEvent;
-import io.github.arivanamin.scm.backend.base.domain.audit.AuditEventPublisher;
+import io.github.arivanamin.scm.backend.base.domain.audit.outbox.CreateAuditOutboxMessageCommand;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
@@ -15,7 +15,6 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 import static io.github.arivanamin.scm.backend.base.domain.aspects.ExecuteAndLogPerformance.executeThrowable;
-import static io.github.arivanamin.scm.backend.base.domain.topics.AuditTopics.API_AUDIT_TOPIC;
 
 @Aspect
 @Component
@@ -23,7 +22,7 @@ import static io.github.arivanamin.scm.backend.base.domain.topics.AuditTopics.AP
 @Slf4j
 class ControllerLoggingAspect {
 
-    private final AuditEventPublisher publisher;
+    private final CreateAuditOutboxMessageCommand command;
     private final AuditDataExtractor dataExtractor;
 
     @Around ("""
@@ -67,7 +66,7 @@ class ControllerLoggingAspect {
     private void sendAuditEventThroughPublisher (ProceedingJoinPoint joinPoint, Object result,
                                                  long duration) {
         AuditEvent event = dataExtractor.extractAuditData(joinPoint, result, duration);
-        publisher.sendAuditLog(API_AUDIT_TOPIC, event);
+        command.execute(event);
     }
 
     private static String getMethodName (JoinPoint joinPoint) {

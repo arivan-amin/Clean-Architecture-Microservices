@@ -2,7 +2,8 @@
 
 ## Overview
 
-This is a **Modern Microservices Back-End** application using **Java** and **Spring Boot**.
+This is a **Modern Microservices Back-End** application using **Java** and **Spring Boot** following
+**Clean Architecture**.
 
 It serves as a template to demonstrate the implementation of microservices using
 modern **Java** and **Spring Boot** and follow some of the best practices in development.
@@ -264,6 +265,7 @@ Core entities have no association with JPA and are never annotated with @Entity.
 #### Username: admin
 
 #### Password: admin
+
 [http://localhost:8080/eureka/web](http://localhost:8080/eureka/web)
 
 ## API Documentation

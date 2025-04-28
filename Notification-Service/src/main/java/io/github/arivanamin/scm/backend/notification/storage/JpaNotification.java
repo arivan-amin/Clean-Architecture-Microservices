@@ -4,6 +4,7 @@ import io.github.arivanamin.scm.backend.common.domain.persistence.StorageAuditDa
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
+import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.UuidGenerator;
 
 import java.util.UUID;
@@ -15,6 +16,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Builder
+@FieldDefaults (level = AccessLevel.PRIVATE)
 @ToString (callSuper = true)
 public class JpaNotification extends StorageAuditData {
 
@@ -23,8 +25,8 @@ public class JpaNotification extends StorageAuditData {
     UUID id;
 
     @NotBlank
-    private String recipient;
+    String recipient;
 
     @NotBlank
-    private String content;
+    String content;
 }
