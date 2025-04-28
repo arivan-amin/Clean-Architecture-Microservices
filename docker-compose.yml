@@ -96,6 +96,18 @@ services:
     volumes:
       - mysql-data:/var/lib/mysql
       - ./Docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5.2.2
+    container_name: phpmyadmin
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: root
+      PMA_PASSWORD: mysql
+    ports:
+      - "9797:80"
+    depends_on:
+      - mysql
   
   mongo:
     container_name: mongo
