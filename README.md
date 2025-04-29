@@ -41,15 +41,16 @@ modern **Java** and **Spring Boot** and follow some of the best practices in dev
                                        |                                            | |
                                        v                                            | |
                  Actuator    +---------+---------+     AOP     +-----------------+  | |
-          -------------------|  Patient Service  | ----------> | Audit Log Event |  | |
-          |     Prometheus   |   (RESTful API)   | <---------- |     (Kafka)     |  | |
-          v                  +---------+---------+             +--------+--------+  | |
-+---------+--------+                    |     |                         |           | |
-|      Grafana     |                    |     ------------              | Consume   | |
-|  Metrics & Logs  |                    |                |              |           | |
-|  Visualization   |              Write |                |              v           | |
+          -------------------|  Patient Service  | ----------> |   Audit Events  |  | |
+          |     Prometheus   |   (RESTful API)   | <---------- |       Table     |  | |
+          v                  +---------+---------+    Aspect   +--------+--------+  | |
++---------+--------+                    |     |                         ^           | |
+|      Grafana     |                    |     ------------              |           | |
+|  Metrics & Logs  |                    |                |              | Query     | |
+|  Visualization   |              Write |                |              |           | |
 +---------+--------+              Logs  |   Write Logs   |     +--------+--------+  | |
           |                             |  --------------|-----|  Audit Service  |--- |
+          |                             |  |             |     |  (RESTful API)  |    |
           | Read Logs                   v  v             |     +--------+--------+    |
           |                     +-------+-------+        |                            |
           --------------------> | Docker Volume |        |                            |
@@ -62,13 +63,12 @@ modern **Java** and **Spring Boot** and follow some of the best practices in dev
 ### Automatic Audit Logs Recording
 
 Uses Spring **AOP** to create Audit Events automatically whenever any API in any of the services are
-called and uses **Kafka** to send them to the **Audit Service** to be recorded, allowing the
-controllers to be clutter-free and simple.
+called and save it to persistence, allowing the controllers to be clutter-free and simple.
 
 ### Clean Restful API in all services
 
-The API follows the modern best practices in Restful services recommendations like using *
-*ResponseEntity** and returning **ProblemDetail**.
+The API follows the modern best practices in Spring Restful services like using
+**ResponseEntity** and returning **ProblemDetail** for errors.
 
 ### CQRS
 
