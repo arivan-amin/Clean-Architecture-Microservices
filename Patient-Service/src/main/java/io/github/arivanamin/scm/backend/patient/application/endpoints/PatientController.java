@@ -58,7 +58,7 @@ class PatientController {
         allEntries = true)
     @ResponseStatus (HttpStatus.CREATED)
     public CreatePatientResponse createPatient (@RequestBody @Valid CreatePatientRequest request) {
-        UUID createdPatientId = createCommand.execute(request.toEntity());
+        UUID createdPatientId = createCommand.execute(request.toDomainEntity());
         return CreatePatientResponse.of(createdPatientId);
     }
 

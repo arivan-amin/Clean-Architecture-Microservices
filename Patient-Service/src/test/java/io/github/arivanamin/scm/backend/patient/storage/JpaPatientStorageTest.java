@@ -4,7 +4,6 @@ import io.github.arivanamin.scm.backend.patient.core.entity.Patient;
 import io.github.arivanamin.scm.backend.testing.architecture.bases.BaseUnitTest;
 import lombok.extern.slf4j.Slf4j;
 import org.instancio.Instancio;
-import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
 
@@ -24,7 +23,7 @@ class JpaPatientStorageTest implements BaseUnitTest {
     JpaPatientStorage storage;
 
     @Test
-    void shouldUpdateAllFieldsOfPatient () {
+    void updateShouldUpdateAllFieldsOfPatient () {
         // given
         ArgumentCaptor<JpaPatient> captor = ArgumentCaptor.forClass(JpaPatient.class);
         Patient patientToBeUpdated = Instancio.create(Patient.class);
@@ -45,12 +44,12 @@ class JpaPatientStorageTest implements BaseUnitTest {
         assertThat(result.getAddress()).isEqualTo(patientToBeUpdated.getAddress());
     }
 
-    private static @NotNull Optional<JpaPatient> createRandomPatient () {
+    private static Optional<JpaPatient> createRandomPatient () {
         return Optional.of(Instancio.create(JpaPatient.class));
     }
 
     @Test
-    void shouldPreventAuditDataModification () {
+    void updateShouldPreventAuditDataFromBeingModified () {
         // given
         ArgumentCaptor<JpaPatient> captor = ArgumentCaptor.forClass(JpaPatient.class);
 

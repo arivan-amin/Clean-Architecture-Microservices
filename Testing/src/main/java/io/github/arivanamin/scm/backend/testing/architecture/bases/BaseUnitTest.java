@@ -12,7 +12,7 @@ public interface BaseUnitTest {
 
     Faker FAKER = new Faker();
 
-    PaginationCriteria PAGINATION_CRITERIA = PaginationCriteria.of(0, 10);
+    PaginationCriteria PAGINATION_CRITERIA = PaginationCriteria.of(0, 5);
 
-    PageData PAGE_DATA = PageData.of(5, 15, 3, 0);
+    PageData PAGE_DATA = PageData.of(0, 5, 5, 25);
 }

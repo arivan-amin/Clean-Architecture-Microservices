@@ -19,7 +19,7 @@ public class CreatePatientRequest {
     Gender gender;
     String address;
 
-    public Patient toEntity () {
+    public Patient toDomainEntity () {
         Patient patient = new ModelMapper().map(this, Patient.class);
         patient.setDateOfBirth(toLocalDateTime(dateOfBirth).toLocalDate());
         return patient;

@@ -18,7 +18,7 @@ class JpaPatientStorageIntegrationTest extends BaseDatabaseTest {
 
     @Autowired
     private PatientRepository repository;
-    private JpaPatientStorage persistence;
+    private JpaPatientStorage storage;
 
     private int numberOfSavedEntities;
     private UUID expectedId;
@@ -28,7 +28,7 @@ class JpaPatientStorageIntegrationTest extends BaseDatabaseTest {
 
     @BeforeEach
     void setUp () {
-        persistence = new JpaPatientStorage(repository);
+        storage = new JpaPatientStorage(repository);
     }
 
     @AfterEach
@@ -37,7 +37,7 @@ class JpaPatientStorageIntegrationTest extends BaseDatabaseTest {
     }
 
     @Test
-    void shouldReturnAllPatientsWhenFindAllIsCalled () {
+    void findAllShouldReturnAllPatients () {
         givenRepositoryWithSavedPatients();
         whenFindAllIsCalled();
         thenAssertThatAllEntitiesOfRepositoryAreReturned(expectedPatients);
@@ -53,7 +53,7 @@ class JpaPatientStorageIntegrationTest extends BaseDatabaseTest {
     }
 
     private void whenFindAllIsCalled () {
-        expectedPatients = persistence.findAll(PAGINATION_CRITERIA)
+        expectedPatients = storage.findAll(PAGINATION_CRITERIA)
             .getContent();
     }
 
@@ -72,7 +72,7 @@ class JpaPatientStorageIntegrationTest extends BaseDatabaseTest {
     }
 
     @Test
-    void shouldReturnSinglePatientWhenFindByIdIsCalled () {
+    void findByIdShouldReturnSinglePatient () {
         givenRepositoryWithSamplePatientsAndOnePatientExtracted();
         whenFindByIdIsCalled(expectedId);
         thenAssertThatCorrectPatientIsReturned(expectedPatient);
@@ -94,7 +94,7 @@ class JpaPatientStorageIntegrationTest extends BaseDatabaseTest {
     }
 
     private void whenFindByIdIsCalled (UUID sampleId) {
-        expectedPatient = persistence.findById(sampleId)
+        expectedPatient = storage.findById(sampleId)
             .orElseThrow();
     }
 
@@ -103,25 +103,25 @@ class JpaPatientStorageIntegrationTest extends BaseDatabaseTest {
     }
 
     @Test
-    void shouldDeletePatientInRepositoryWhenDeleteIsCalled () {
+    void deleteShouldDeletePatientInRepository () {
         givenRepositoryWithSamplePatientsAndOnePatientExtracted();
         whenDeleteIsCalled();
         thenAssertThatEntityIsDeletedFromRepository();
     }
 
     private void whenDeleteIsCalled () {
-        persistence.delete(expectedId);
+        storage.delete(expectedId);
     }
 
     private void thenAssertThatEntityIsDeletedFromRepository () {
-        assertThat(persistence.findAll(PAGINATION_CRITERIA)
+        assertThat(storage.findAll(PAGINATION_CRITERIA)
             .getContent()
             .size()).isEqualTo(numberOfSavedEntities - 1);
         assertThat(repository.findById(expectedId)).isEmpty();
     }
 
     @Test
-    void shouldSavePatientInRepositoryWhenCreateIsCalled () {
+    void createShouldSavePatientInRepository () {
         givenValidSamplePatient();
         whenCreateIsCalled();
         thenAssertThatPatientIsCreatedInRepository();
@@ -134,7 +134,7 @@ class JpaPatientStorageIntegrationTest extends BaseDatabaseTest {
     }
 
     private void whenCreateIsCalled () {
-        persistence.create(expectedPatient);
+        storage.create(expectedPatient);
     }
 
     private void thenAssertThatPatientIsCreatedInRepository () {
@@ -143,7 +143,7 @@ class JpaPatientStorageIntegrationTest extends BaseDatabaseTest {
     }
 
     @Test
-    void shouldUpdatePatientInRepositoryWhenUpdateIsCalled () {
+    void updateShouldUpdatePatientInRepository () {
         givenRepositoryWithSamplePatientsAndOnePatientExtracted();
         whenUpdateIsCalledWithModifiedPatient();
         thenAssertThatPatientIsUpdatedInRepository();
@@ -152,7 +152,7 @@ class JpaPatientStorageIntegrationTest extends BaseDatabaseTest {
     private void whenUpdateIsCalledWithModifiedPatient () {
         expectedPatient.setFirstName(FAKER.zelda()
             .character());
-        persistence.update(expectedPatient);
+        storage.update(expectedPatient);
     }
 
     private void thenAssertThatPatientIsUpdatedInRepository () {

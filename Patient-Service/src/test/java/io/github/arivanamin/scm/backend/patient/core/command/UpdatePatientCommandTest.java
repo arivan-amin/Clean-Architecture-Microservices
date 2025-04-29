@@ -6,8 +6,7 @@ import io.github.arivanamin.scm.backend.testing.architecture.bases.BaseUnitTest;
 import org.assertj.core.api.Assertions;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentCaptor;
-import org.mockito.Mockito;
+import org.mockito.*;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
@@ -17,40 +16,41 @@ class UpdatePatientCommandTest implements BaseUnitTest {
 
     private final Patient patient = Instancio.create(Patient.class);
 
-    private PatientStorage persistence;
+    @Mock
+    private PatientStorage storage;
+
+    @InjectMocks
     private UpdatePatientCommand command;
 
     @Test
-    void shouldCallPersistenceUpdate () {
-        givenCommandWithMockPersistence();
+    void commandShouldCallStorageUpdate () {
+        givenCommandWithMockStorage();
         whenCommandIsExecuted();
-        thenVerifyCommandCallsPersistenceUpdate();
+        thenVerifyCommandCallsStorageUpdate();
     }
 
-    private void givenCommandWithMockPersistence () {
-        persistence = Mockito.mock(PatientStorage.class);
-        command = new UpdatePatientCommand(persistence);
+    private void givenCommandWithMockStorage () {
     }
 
     private void whenCommandIsExecuted () {
         command.execute(patient);
     }
 
-    private void thenVerifyCommandCallsPersistenceUpdate () {
-        verify(persistence, times(1)).update(any());
+    private void thenVerifyCommandCallsStorageUpdate () {
+        verify(storage, times(1)).update(any());
     }
 
     @Test
-    void shouldPassParameterToPersistence () {
-        givenCommandWithMockPersistence();
+    void commandShouldPassParameterToStorage () {
+        givenCommandWithMockStorage();
         whenCommandIsExecuted();
-        thenAssertCommandPassesParameterToPersistence();
+        thenAssertCommandPassesParameterToStorage();
     }
 
-    private void thenAssertCommandPassesParameterToPersistence () {
-        ArgumentCaptor<Patient> captor = ArgumentCaptor.forClass(Patient.class);
-        verify(persistence).update(captor.capture());
-        Patient result = captor.getValue();
+    private void thenAssertCommandPassesParameterToStorage () {
+        ArgumentCaptor<Patient> patientArgumentCaptor = ArgumentCaptor.forClass(Patient.class);
+        verify(storage).update(patientArgumentCaptor.capture());
+        Patient result = patientArgumentCaptor.getValue();
         Assertions.assertThat(result)
             .isSameAs(patient);
     }

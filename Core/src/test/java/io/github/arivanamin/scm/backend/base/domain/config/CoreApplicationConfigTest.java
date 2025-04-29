@@ -12,7 +12,7 @@ import static org.springframework.test.util.ReflectionTestUtils.invokeMethod;
 class CoreApplicationConfigTest {
 
     @Test
-    void getApplicationConfigDirectoryReturnsCorrectPath () {
+    void getApplicationConfigDirectoryShouldReturnCorrectPath () {
         String userHomeDirectory = System.getProperty(USER_HOME_DIRECTORY_PROPERTY);
         String expectedPath =
             userHomeDirectory + separator + "Apps" + separator + "Spring-Clean-Microservices";
@@ -23,7 +23,7 @@ class CoreApplicationConfigTest {
     }
 
     @Test
-    void getUserHomeDirectoryReturnsPathAsString () {
+    void getUserHomeDirectoryShouldReturnPathAsString () {
         String expectedUserHomeDirectory = System.getProperty(USER_HOME_DIRECTORY_PROPERTY);
 
         String actualUserHomeDirectory =

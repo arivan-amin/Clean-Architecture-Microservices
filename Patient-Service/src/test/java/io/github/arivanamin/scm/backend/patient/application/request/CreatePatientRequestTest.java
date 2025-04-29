@@ -16,13 +16,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 class CreatePatientRequestTest implements BaseUnitTest {
 
     @Test
-    void shouldMapRequestToEntityCorrectly () {
+    void ToDomainEntityShouldMapRequestCorrectly () {
         // given
         CreatePatientRequest request = Instancio.create(CreatePatientRequest.class);
         request.setDateOfBirth(toTimestampInMilliseconds(LocalDateTime.now()));
 
         // when
-        Patient entity = request.toEntity();
+        Patient entity = request.toDomainEntity();
 
         // then
         assertThat(request.getFirstName()).isEqualTo(entity.getFirstName());
