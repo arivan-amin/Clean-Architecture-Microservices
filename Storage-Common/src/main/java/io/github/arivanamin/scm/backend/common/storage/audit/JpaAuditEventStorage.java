@@ -2,7 +2,9 @@ package io.github.arivanamin.scm.backend.common.storage.audit;
 
 import io.github.arivanamin.scm.backend.base.domain.audit.AuditEvent;
 import io.github.arivanamin.scm.backend.base.domain.audit.AuditEventStorage;
-import io.github.arivanamin.scm.backend.base.domain.pagination.*;
+import io.github.arivanamin.scm.backend.base.domain.pagination.PaginatedResponse;
+import io.github.arivanamin.scm.backend.base.domain.pagination.PaginationCriteria;
+import io.github.arivanamin.scm.backend.common.domain.util.PaginationHelper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.*;
@@ -11,8 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.*;
 
+import static io.github.arivanamin.scm.backend.common.domain.util.CriteriaHelper.createExampleFromEntity;
 import static io.github.arivanamin.scm.backend.common.storage.audit.JpaAuditEvent.fromDomain;
-import static org.springframework.data.domain.ExampleMatcher.StringMatcher.CONTAINING;
 import static org.springframework.data.domain.PageRequest.of;
 
 @RequiredArgsConstructor
@@ -24,13 +26,15 @@ public class JpaAuditEventStorage implements AuditEventStorage {
     @Override
     public PaginatedResponse<AuditEvent> findAll (LocalDateTime start, LocalDateTime end,
                                                   PaginationCriteria criteria) {
-        Page<JpaAuditEvent> page = fetchPaginatedEvents(criteria);
+        Page<JpaAuditEvent> page = fetchPaginatedEvents(start, end, criteria);
         List<AuditEvent> events = mapToDomainEntities(page.getContent());
-        return buildPaginatedResponse(page, events);
+        return PaginationHelper.buildPaginatedResponse(events, page);
     }
 
-    private Page<JpaAuditEvent> fetchPaginatedEvents (PaginationCriteria criteria) {
-        return repository.findAll(of(criteria.getPage(), criteria.getSize()));
+    private Page<JpaAuditEvent> fetchPaginatedEvents (LocalDateTime start, LocalDateTime end,
+                                                      PaginationCriteria criteria) {
+        return repository.findAllByRecordedAtBetween(start, end,
+            of(criteria.getPage(), criteria.getSize()));
     }
 
     private static List<AuditEvent> mapToDomainEntities (List<JpaAuditEvent> page) {
@@ -39,41 +43,20 @@ public class JpaAuditEventStorage implements AuditEventStorage {
             .toList();
     }
 
-    private PaginatedResponse<AuditEvent> buildPaginatedResponse (Page<JpaAuditEvent> page,
-                                                                  List<AuditEvent> elements) {
-        return PaginatedResponse.of(extractPageData(page), elements);
-    }
-
-    public PageData extractPageData (Page<JpaAuditEvent> page) {
-        return PageData.of(page.getNumber(), page.getTotalPages(), page.getSize(),
-            page.getTotalElements());
-    }
-
     @Override
     public PaginatedResponse<AuditEvent> findAllByCriteria (AuditEvent searchCriteria,
                                                             PaginationCriteria paginationCriteria) {
         Page<JpaAuditEvent> page =
             fetchPaginatedEntitiesByCriteria(searchCriteria, paginationCriteria);
         List<AuditEvent> events = mapToDomainEntities(page.getContent());
-        return buildPaginatedResponse(page, events);
+        return PaginationHelper.buildPaginatedResponse(events, page);
     }
 
-    private Page<JpaAuditEvent> fetchPaginatedEntitiesByCriteria (AuditEvent searchCriteria,
-                                                                  PaginationCriteria paginationCriteria) {
-        PageRequest pageable = of(paginationCriteria.getPage(), paginationCriteria.getSize());
-        return repository.findAll(createExampleFromEvent(searchCriteria), pageable);
-    }
-
-    private static Example<JpaAuditEvent> createExampleFromEvent (AuditEvent event) {
-        return Example.of(fromDomain(event), getExampleMatcher());
-    }
-
-    private static ExampleMatcher getExampleMatcher () {
-        return ExampleMatcher.matching()
-            .withIgnorePaths("id", "recordedAt")
-            .withIgnoreNullValues()
-            .withIgnoreCase()
-            .withStringMatcher(CONTAINING);
+    private Page<JpaAuditEvent> fetchPaginatedEntitiesByCriteria (AuditEvent event,
+                                                                  PaginationCriteria criteria) {
+        PageRequest pageable = of(criteria.getPage(), criteria.getSize());
+        Example<JpaAuditEvent> example = createExampleFromEntity(event, JpaAuditEvent::fromDomain);
+        return repository.findAll(example, pageable);
     }
 
     @Override

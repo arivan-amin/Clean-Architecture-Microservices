@@ -3,6 +3,7 @@ package io.github.arivanamin.scm.backend.base.domain.audit;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
@@ -17,7 +18,7 @@ public class AuditEvent {
     String location;
     String action;
     String data;
-    long timestamp;
+    LocalDateTime recordedAt;
     long duration;
     String response;
 }
