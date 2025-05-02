@@ -7,8 +7,6 @@ import org.modelmapper.ModelMapper;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import static io.github.arivanamin.scm.backend.base.domain.dates.TimestampHelper.toLocalDateTime;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,14 +17,13 @@ public class AuditEventResponse {
     private String location;
     private String action;
     private String data;
-    private LocalDateTime creationDate;
+    private LocalDateTime recordedAt;
     private String duration;
     private String response;
 
     public static AuditEventResponse of (AuditEvent event) {
         AuditEventResponse response = new ModelMapper().map(event, AuditEventResponse.class);
-        response.setCreationDate(toLocalDateTime(event.getTimestamp()));
-        response.setDuration(event.getDuration() + "ms");
+        response.setDuration("%dms".formatted(event.getDuration()));
         return response;
     }
 }

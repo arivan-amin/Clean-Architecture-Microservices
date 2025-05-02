@@ -1,4 +1,4 @@
-package io.github.arivanamin.scm.backend.audit.storage;
+package io.github.arivanamin.scm.backend.common.storage.audit;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

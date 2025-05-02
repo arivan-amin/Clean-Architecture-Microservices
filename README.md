@@ -5,7 +5,8 @@
 This is a **Spring Microservices Back-End** using **Java** and **Spring Boot** following
 **Clean Architecture** and **SOLID Principles**.
 
-It serves as a template to demonstrate the implementation of microservices following some of the best development practices.
+It serves as a template to demonstrate the implementation of microservices following some of the
+best development practices.
 
 ---
 
@@ -40,13 +41,13 @@ It serves as a template to demonstrate the implementation of microservices follo
                                        |                                            | |
                                        v                                            | |
                  Actuator    +---------+---------+     AOP     +-----------------+  | |
-          -------------------|  Patient Service  | ----------> | Audit Log Event |  | |
-          |     Prometheus   |   (RESTful API)   | <---------- |     (Kafka)     |  | |
-          v                  +---------+---------+             +--------+--------+  | |
-+---------+--------+                    |     |                         |           | |
-|      Grafana     |                    |     ------------              | Consume   | |
-|  Metrics & Logs  |                    |                |              |           | |
-|  Visualization   |              Write |                |              v           | |
+          -------------------|  Patient Service  | ----------> |   Audit Events  |  | |
+          |     Prometheus   |   (RESTful API)   | <---------- |       Table     |  | |
+          v                  +---------+---------+    Aspect   +--------+--------+  | |
++---------+--------+                    |     |                         ^           | |
+|      Grafana     |                    |     ------------              |           | |
+|  Metrics & Logs  |                    |                |              | Query     | |
+|  Visualization   |              Write |                |              |           | |
 +---------+--------+              Logs  |   Write Logs   |     +--------+--------+  | |
           |                             |  --------------|-----|  Audit Service  |--- |
           | Read Logs                   v  v             |     +--------+--------+    |
@@ -60,9 +61,8 @@ It serves as a template to demonstrate the implementation of microservices follo
 
 ### Automatic Audit Logs Recording
 
-Uses Spring **AOP** to create Audit Events automatically whenever any API in any of the services is
-called and uses **Kafka** to send them to the **Audit Service** to be recorded, allowing the
-controllers to be clutter-free and simple.
+Uses Spring **AOP** to create Audit Events automatically whenever any API in any of the services are
+called and save it to persistence, allowing the controllers to be clutter-free and simple.
 
 ### Clean Restful API in all services
 

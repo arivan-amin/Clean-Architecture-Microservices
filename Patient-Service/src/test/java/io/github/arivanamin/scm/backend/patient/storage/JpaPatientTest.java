@@ -12,14 +12,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 class JpaPatientTest implements BaseUnitTest {
 
     @Test
-    void fromDomainShouldMapCorrectly () {
+    void fromDomainShouldMapPatientCorrectly () {
         // given
         Patient patient = Instancio.create(Patient.class);
-        log.info("patient = {}", patient);
 
         // when
         JpaPatient jpaPatient = JpaPatient.fromDomain(patient);
-        log.info("JpaPatient.fromDomain = {}", jpaPatient);
 
         // then
         assertThat(jpaPatient.getId()).isEqualTo(patient.getId());
@@ -34,13 +32,11 @@ class JpaPatientTest implements BaseUnitTest {
     }
 
     @Test
-    void toDomainShouldMapCorrectly () {
+    void toDomainShouldMapPatientCorrectly () {
         // given
         JpaPatient jpaPatient = Instancio.create(JpaPatient.class);
-        log.info("jpaPatient = {}", jpaPatient);
         // when
         Patient patient = jpaPatient.toDomain();
-        log.info("Patient made with toDomain = {}", patient);
 
         // then
         assertThat(patient.getId()).isEqualTo(jpaPatient.getId());

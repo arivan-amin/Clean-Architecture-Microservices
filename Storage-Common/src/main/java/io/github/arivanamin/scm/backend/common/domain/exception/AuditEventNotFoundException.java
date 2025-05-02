@@ -1,4 +1,4 @@
-package io.github.arivanamin.scm.backend.audit.core.exception;
+package io.github.arivanamin.scm.backend.common.domain.exception;
 
 public class AuditEventNotFoundException extends RuntimeException {
 

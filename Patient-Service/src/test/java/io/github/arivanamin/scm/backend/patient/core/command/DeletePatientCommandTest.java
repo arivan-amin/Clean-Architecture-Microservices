@@ -3,30 +3,32 @@ package io.github.arivanamin.scm.backend.patient.core.command;
 import io.github.arivanamin.scm.backend.patient.core.persistence.PatientStorage;
 import io.github.arivanamin.scm.backend.testing.architecture.bases.BaseUnitTest;
 import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentCaptor;
+import org.mockito.*;
 
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 class DeletePatientCommandTest implements BaseUnitTest {
 
     private final UUID id = UUID.randomUUID();
 
-    private PatientStorage persistence;
+    @Mock
+    private PatientStorage storage;
+
+    @InjectMocks
     private DeletePatientCommand command;
 
     @Test
-    void shouldCallPersistenceDelete () {
-        givenCommandWithMockPersistence();
+    void commandShouldCallStorageDelete () {
+        givenCommandWithMockStorage();
         whenCommandIsExecuted(id);
         thenVerifyCommandCallsDelete();
     }
 
-    private void givenCommandWithMockPersistence () {
-        persistence = mock(PatientStorage.class);
-        command = new DeletePatientCommand(persistence);
+    private void givenCommandWithMockStorage () {
     }
 
     private void whenCommandIsExecuted (UUID id) {
@@ -34,21 +36,21 @@ class DeletePatientCommandTest implements BaseUnitTest {
     }
 
     private void thenVerifyCommandCallsDelete () {
-        verify(persistence, times(1)).delete(id);
+        verify(storage, times(1)).delete(id);
     }
 
     @Test
-    void shouldSendIdToPersistence () {
-        givenCommandWithMockPersistence();
+    void commandShouldSendIdParameterToStorage () {
+        givenCommandWithMockStorage();
         whenCommandIsExecuted(id);
-        thenVerifyIdIsSentToPersistence();
+        thenVerifyIdIsSentToStorage();
     }
 
-    private void thenVerifyIdIsSentToPersistence () {
-        ArgumentCaptor<UUID> idCaptor = ArgumentCaptor.forClass(UUID.class);
-        verify(persistence).delete(idCaptor.capture());
+    private void thenVerifyIdIsSentToStorage () {
+        ArgumentCaptor<UUID> idArgumentCaptor = ArgumentCaptor.forClass(UUID.class);
+        verify(storage).delete(idArgumentCaptor.capture());
 
-        UUID capturedId = idCaptor.getValue();
+        UUID capturedId = idArgumentCaptor.getValue();
         assertThat(id).isSameAs(capturedId);
     }
 }

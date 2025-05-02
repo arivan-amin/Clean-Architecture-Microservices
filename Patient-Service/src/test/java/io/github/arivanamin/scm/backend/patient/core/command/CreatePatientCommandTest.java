@@ -6,6 +6,8 @@ import io.github.arivanamin.scm.backend.patient.core.persistence.PatientStorage;
 import io.github.arivanamin.scm.backend.testing.architecture.bases.BaseUnitTest;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -16,27 +18,29 @@ import static org.mockito.Mockito.*;
 
 class CreatePatientCommandTest implements BaseUnitTest {
 
-    private final String emailAddress = "echo@mail.com";
     private final UUID createdPatientId = UUID.randomUUID();
+    private final String emailAddress = FAKER.internet()
+        .emailAddress();
 
-    private PatientStorage persistence;
+    @Mock
+    private PatientStorage storage;
+
+    @InjectMocks
     private CreatePatientCommand command;
 
     private Patient patient;
 
     @Test
-    void shouldThrowExceptionWhenPatientExists () {
+    void commandShouldThrowExceptionWhenPatientExists () {
         givenCommandWithMockFindByEmail();
         whenEmailIsDuplicate();
         thenThrowPatientAlreadyExistsException();
     }
 
     private void givenCommandWithMockFindByEmail () {
-        persistence = mock(PatientStorage.class);
-        command = new CreatePatientCommand(persistence);
         Patient patient = Instancio.create(Patient.class);
         patient.setEmail(emailAddress);
-        when(persistence.findByEmail(emailAddress)).thenReturn(Optional.of(patient));
+        when(storage.findByEmail(emailAddress)).thenReturn(Optional.of(patient));
     }
 
     private void whenEmailIsDuplicate () {
@@ -50,16 +54,14 @@ class CreatePatientCommandTest implements BaseUnitTest {
     }
 
     @Test
-    void shouldCallPersistenceCreate () {
-        givenCommandWithMockPersistence();
+    void commandShouldCallStorageCreate () {
+        givenCommandWithMockStorage();
         whenCommandIsExecuted();
         thenVerifyCommandCallsCreate();
     }
 
-    private void givenCommandWithMockPersistence () {
-        persistence = mock(PatientStorage.class);
-        command = new CreatePatientCommand(persistence);
-        when(persistence.create(any())).thenReturn(createdPatientId);
+    private void givenCommandWithMockStorage () {
+        when(storage.create(any())).thenReturn(createdPatientId);
         patient = Instancio.create(Patient.class);
     }
 
@@ -68,12 +70,12 @@ class CreatePatientCommandTest implements BaseUnitTest {
     }
 
     private void thenVerifyCommandCallsCreate () {
-        verify(persistence, times(1)).create(patient);
+        verify(storage, times(1)).create(patient);
     }
 
     @Test
-    void shouldReturnResultOfPersistenceCreate () {
-        givenCommandWithMockPersistence();
+    void commandShouldReturnResultOfStorageCreate () {
+        givenCommandWithMockStorage();
         UUID resultId = whenCommandIsExecuted();
         thenVerifyCreateResultIsReturned(resultId);
     }

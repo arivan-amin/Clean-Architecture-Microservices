@@ -5,6 +5,9 @@ import io.github.arivanamin.scm.backend.base.domain.pagination.PageData;
 import io.github.arivanamin.scm.backend.base.domain.pagination.PaginationCriteria;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.PageRequest;
+
+import static org.springframework.data.domain.PageRequest.of;
 
 @SuppressWarnings ("NewClassNamingConvention")
 @ExtendWith (MockitoExtension.class)
@@ -12,7 +15,9 @@ public interface BaseUnitTest {
 
     Faker FAKER = new Faker();
 
-    PaginationCriteria PAGINATION_CRITERIA = PaginationCriteria.of(0, 10);
+    PaginationCriteria PAGINATION_CRITERIA = PaginationCriteria.of(0, 5);
 
-    PageData PAGE_DATA = PageData.of(5, 15, 3, 0);
+    PageRequest PAGE_REQUEST = of(PAGINATION_CRITERIA.getPage(), PAGINATION_CRITERIA.getSize());
+
+    PageData PAGE_DATA = PageData.of(0, 5, 5, 25);
 }

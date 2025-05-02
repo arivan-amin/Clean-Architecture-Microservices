@@ -13,8 +13,6 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-import static io.github.arivanamin.scm.backend.base.domain.dates.TimestampHelper.toTimestampInMilliseconds;
-
 @RequiredArgsConstructor
 @Slf4j
 public class AuditDataExtractor {
@@ -28,17 +26,18 @@ public class AuditDataExtractor {
         String requestURL = extractRequestUrl(method);
         String requestAnnotation = extractRequestAnnotation(method);
 
-        AuditEvent event = new AuditEvent();
-        event.setServiceName(serviceName);
-        event.setTimestamp(toTimestampInMilliseconds(LocalDateTime.now()));
-        event.setLocation(requestURL);
-        event.setAction(requestAnnotation);
-        String data = Arrays.stream(joinPoint.getArgs())
-            .map(String::valueOf)
-            .collect(Collectors.joining(","));
-        event.setData(data);
-        event.setResponse(result == null ? "Void" : result.toString());
-        event.setDuration(duration);
+        String parameters = getMethodParameters(joinPoint);
+        String response = getMethodReturnType(result);
+
+        AuditEvent event = AuditEvent.builder()
+            .serviceName(serviceName)
+            .recordedAt(LocalDateTime.now())
+            .location(requestURL)
+            .action(requestAnnotation)
+            .data(parameters)
+            .response(response)
+            .duration(duration)
+            .build();
 
         log.info("Created AuditEvent to be published = {}", event);
         return event;
@@ -85,6 +84,16 @@ public class AuditDataExtractor {
             return "Patch";
         }
         return "";
+    }
+
+    private static String getMethodParameters (ProceedingJoinPoint joinPoint) {
+        return Arrays.stream(joinPoint.getArgs())
+            .map(String::valueOf)
+            .collect(Collectors.joining(","));
+    }
+
+    private static String getMethodReturnType (Object result) {
+        return result == null ? "Void" : result.toString();
     }
 
     private String extractUrl (String... paths) {
