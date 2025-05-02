@@ -2,6 +2,7 @@ package io.github.arivanamin.scm.backend.common.storage.audit;
 
 import io.github.arivanamin.scm.backend.base.domain.audit.AuditEvent;
 import io.github.arivanamin.scm.backend.base.domain.audit.AuditEventStorage;
+import io.github.arivanamin.scm.backend.base.domain.dates.DateTimeRange;
 import io.github.arivanamin.scm.backend.base.domain.pagination.PaginatedResponse;
 import io.github.arivanamin.scm.backend.base.domain.pagination.PaginationCriteria;
 import io.github.arivanamin.scm.backend.common.domain.util.PaginationHelper;
@@ -10,7 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.*;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.*;
 
 import static io.github.arivanamin.scm.backend.common.domain.util.CriteriaHelper.createExampleFromEntity;
@@ -24,16 +24,16 @@ public class JpaAuditEventStorage implements AuditEventStorage {
     private final AuditEventRepository repository;
 
     @Override
-    public PaginatedResponse<AuditEvent> findAll (LocalDateTime start, LocalDateTime end,
+    public PaginatedResponse<AuditEvent> findAll (DateTimeRange range,
                                                   PaginationCriteria criteria) {
-        Page<JpaAuditEvent> page = fetchPaginatedEvents(start, end, criteria);
+        Page<JpaAuditEvent> page = fetchPaginatedEvents(range, criteria);
         List<AuditEvent> events = mapToDomainEntities(page.getContent());
         return PaginationHelper.buildPaginatedResponse(events, page);
     }
 
-    private Page<JpaAuditEvent> fetchPaginatedEvents (LocalDateTime start, LocalDateTime end,
+    private Page<JpaAuditEvent> fetchPaginatedEvents (DateTimeRange range,
                                                       PaginationCriteria criteria) {
-        return repository.findAllByRecordedAtBetween(start, end,
+        return repository.findAllByRecordedAtBetween(range.getStart(), range.getEnd(),
             of(criteria.getPage(), criteria.getSize()));
     }
 
