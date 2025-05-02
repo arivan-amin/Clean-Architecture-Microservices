@@ -1,12 +1,12 @@
-# Spring Clean Microservices (SCM)
+# Spring Microservices
 
 ## Overview
 
-This is a **Modern Microservices Back-End** application using **Java** and **Spring Boot** following
-**Clean Architecture**.
+This is a **Spring Microservices Back-End** using **Java** and **Spring Boot** following
+**Clean Architecture** and **SOLID Principles**.
 
-It serves as a template to demonstrate the implementation of microservices using
-modern **Java** and **Spring Boot** and follow some of the best practices in development.
+It serves as a template to demonstrate the implementation of microservices following some of the
+best development practices.
 
 ---
 
@@ -50,7 +50,6 @@ modern **Java** and **Spring Boot** and follow some of the best practices in dev
 |  Visualization   |              Write |                |              |           | |
 +---------+--------+              Logs  |   Write Logs   |     +--------+--------+  | |
           |                             |  --------------|-----|  Audit Service  |--- |
-          |                             |  |             |     |  (RESTful API)  |    |
           | Read Logs                   v  v             |     +--------+--------+    |
           |                     +-------+-------+        |                            |
           --------------------> | Docker Volume |        |                            |
@@ -67,8 +66,8 @@ called and save it to persistence, allowing the controllers to be clutter-free a
 
 ### Clean Restful API in all services
 
-The API follows the modern best practices in Spring Restful services like using
-**ResponseEntity** and returning **ProblemDetail** for errors.
+The API follows the modern best practices in RESTful services recommendations,
+like using **ResponseEntity** and returning **ProblemDetail**.
 
 ### CQRS
 
@@ -110,13 +109,13 @@ Example of API response for every error.
 
 ### OpenAPI and Swagger Docs
 
-Provide detailed documentation for all endpoints.
+Provides detailed documentation for all endpoints.
 
 ### Entity and DTO separation
 
-Decouples core business logic from presentation using request and response pojo.
+Decouples core business logic from presentation using request and response POJO.
 
-### Core Entity and Jpa separation
+### Core Entity and JPA separation
 
 Core entities have no association with JPA and are never annotated with @Entity.
 
@@ -171,7 +170,7 @@ Core entities have no association with JPA and are never annotated with @Entity.
 - **Spring Dependency Injection**
 - **Aspect-Oriented Programming (AOP)**
 - **Rate Limiting API**
-- **Automatic Audit Logs recording**: Uses Spring AOP to automatically store audit logs.
+- **Automatic Audit Logs recording**: Uses Spring AOP to store audit logs automatically.
 - **Event-Driven Communication**: Using Kafka.
 - **Robust Monitoring**: Real-time monitoring with Grafana, Loki, and Tempo.
 - **Centralized Logging & Distributed Tracing**: Using Loki and Tempo.
@@ -180,7 +179,7 @@ Core entities have no association with JPA and are never annotated with @Entity.
 
 ---
 
-### Currently, the following services are implemented, other services will be added:
+### Currently, the following services are implemented; other services will be added:
 
 - Discovery Server
 - API Gateway
@@ -232,7 +231,7 @@ Core entities have no association with JPA and are never annotated with @Entity.
    cd Spring-Clean-Microservices
    ```
 
-2. **Build and deploy the services to docker using JIB:**
+2. **Build and deploy the services to Docker using JIB:**
    ```
    mvn clean install
    ```
@@ -251,7 +250,7 @@ Core entities have no association with JPA and are never annotated with @Entity.
    docker compose up -d
    ```
 5. **Start the services(Patient, Audit,...) manually or uncomment the section in docker compose file
-   to run everything with docker compose:**
+   to run everything with Docker Compose:**
    ```
    docker compose up -d
    ```
@@ -276,7 +275,7 @@ Core entities have no association with JPA and are never annotated with @Entity.
 
 ## Grafana Dashboard
 
-#### Import pre-built dashboard JSON configuration from `docker/grafana/` folder
+#### Import pre-built dashboard JSON configuration from the `docker/grafana/` folder
 
 [http://localhost:3000/dashboards](http://localhost:3000/dashboards)
 
@@ -299,7 +298,7 @@ Core entities have no association with JPA and are never annotated with @Entity.
 - **Storage Common Module**: Contains classes related to storage and database handling shared with
   all modules.
 - **Patient Service**: Manages patient data.
-- **Audit Service**: Stores Audit Events, ensures compliance and data integrity.
+- **Audit Service**: Stores Audit Events, ensures compliance, and data integrity.
 - **SSO Service**: Handles authentication and authorization using Keycloak.
 
 ---
