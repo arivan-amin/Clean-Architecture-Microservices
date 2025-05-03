@@ -64,6 +64,7 @@ public class JpaPatientStorage implements PatientStorage {
         JpaPatient storedPatient =
             JpaPatient.fromDomain(findById(updatedPatient.getId()).orElseThrow());
         updateChangedFields(updatedPatient, storedPatient);
+        repository.save(storedPatient);
     }
 
     private static void updateChangedFields (Patient patient, JpaPatient patientFromStorage) {

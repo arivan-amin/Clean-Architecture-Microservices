@@ -1,5 +1,6 @@
 package io.github.arivanamin.scm.backend.patient.storage;
 
+import io.github.arivanamin.scm.backend.base.domain.pagination.PaginationCriteria;
 import io.github.arivanamin.scm.backend.patient.core.entity.Patient;
 import io.github.arivanamin.scm.backend.testing.architecture.bases.BaseDatabaseTest;
 import lombok.extern.slf4j.Slf4j;
@@ -53,7 +54,7 @@ class JpaPatientStorageIntegrationTest extends BaseDatabaseTest {
     }
 
     private void whenFindAllIsCalled () {
-        expectedPatients = storage.findAll(PAGINATION_CRITERIA)
+        expectedPatients = storage.findAll(PaginationCriteria.of(0, numberOfSavedEntities))
             .getContent();
     }
 
@@ -114,7 +115,7 @@ class JpaPatientStorageIntegrationTest extends BaseDatabaseTest {
     }
 
     private void thenAssertThatEntityIsDeletedFromRepository () {
-        assertThat(storage.findAll(PAGINATION_CRITERIA)
+        assertThat(storage.findAll(PaginationCriteria.of(0, numberOfSavedEntities))
             .getContent()
             .size()).isEqualTo(numberOfSavedEntities - 1);
         assertThat(repository.findById(expectedId)).isEmpty();
