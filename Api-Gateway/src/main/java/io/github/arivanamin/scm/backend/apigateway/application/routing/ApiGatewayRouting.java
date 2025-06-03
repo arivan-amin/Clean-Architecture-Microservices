@@ -1,6 +1,7 @@
 package io.github.arivanamin.scm.backend.apigateway.application.routing;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.route.Route;
 import org.springframework.cloud.gateway.route.RouteLocator;
@@ -12,19 +13,18 @@ import java.util.function.Function;
 
 import static io.github.arivanamin.scm.backend.base.domain.config.ServicesNamesHelper.*;
 
+@Slf4j
 @Configuration
 @RequiredArgsConstructor
 public class ApiGatewayRouting {
 
+    private final RoutingHelper routingHelper;
+
     @Value ("${EUREKA_HOST:localhost}")
-    private static String eurekaHost;
+    private String eurekaHost;
 
     @Value ("${EUREKA_PORT:8761}")
-    private static String eurekaPort;
-
-    public static final String EUREKA_URL = "http://%s:%s".formatted(eurekaHost, eurekaPort);
-
-    private final RoutingHelper routingHelper;
+    private String eurekaPort;
 
     @Bean
     public RouteLocator routeLocator (RouteLocatorBuilder builder) {
@@ -46,12 +46,11 @@ public class ApiGatewayRouting {
     private Function<PredicateSpec, Buildable<Route>> getDiscoveryServerRoute () {
         return r -> r.path("/eureka/web")
             .filters(f -> f.setPath("/"))
-            .uri(EUREKA_URL);
+            .uri(getEurekaUrl());
     }
 
-    private Function<PredicateSpec, Buildable<Route>> getDiscoveryServerStaticResourcesRoute () {
-        return r -> r.path("/eureka/**")
-            .uri(EUREKA_URL);
+    private String getEurekaUrl () {
+        return "http://%s:%s".formatted(eurekaHost, eurekaPort);
     }
 
     private Function<PredicateSpec, Buildable<Route>> getPatientServiceRoute () {
@@ -88,5 +87,10 @@ public class ApiGatewayRouting {
 
     private Function<PredicateSpec, Buildable<Route>> getNotificationServiceActuatorRoute () {
         return routingHelper.createActuatorRouteForService(NOTIFICATION_SERVICE);
+    }
+
+    private Function<PredicateSpec, Buildable<Route>> getDiscoveryServerStaticResourcesRoute () {
+        return r -> r.path("/eureka/**")
+            .uri(getEurekaUrl());
     }
 }
