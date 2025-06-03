@@ -1,6 +1,7 @@
 package io.github.arivanamin.scm.backend.audit.application.beans;
 
-import io.github.arivanamin.scm.backend.audit.core.query.*;
+import io.github.arivanamin.scm.backend.audit.core.query.ReadAuditEventByIdQuery;
+import io.github.arivanamin.scm.backend.audit.core.query.ReadAuditEventsQuery;
 import io.github.arivanamin.scm.backend.base.domain.audit.AuditEventStorage;
 import io.github.arivanamin.scm.backend.common.storage.audit.AuditEventRepository;
 import io.github.arivanamin.scm.backend.common.storage.audit.JpaAuditEventStorage;
@@ -18,11 +19,6 @@ class AuditBeansConfig {
     @Bean
     public ReadAuditEventsQuery readAuditEventsQuery (AuditEventStorage storage) {
         return new ReadAuditEventsQuery(storage);
-    }
-
-    @Bean
-    public ReadAuditEventsByCriteriaQuery readByCriteriaQuery (AuditEventStorage storage) {
-        return new ReadAuditEventsByCriteriaQuery(storage);
     }
 
     @Bean

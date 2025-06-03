@@ -8,12 +8,11 @@ import io.github.arivanamin.scm.backend.base.domain.pagination.PaginationCriteri
 import io.github.arivanamin.scm.backend.common.domain.util.PaginationHelper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.*;
+import org.springframework.data.domain.Page;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
-import static io.github.arivanamin.scm.backend.common.domain.util.CriteriaHelper.createExampleFromEntity;
 import static io.github.arivanamin.scm.backend.common.storage.audit.JpaAuditEvent.fromDomain;
 import static org.springframework.data.domain.PageRequest.of;
 
@@ -41,22 +40,6 @@ public class JpaAuditEventStorage implements AuditEventStorage {
         return page.stream()
             .map(JpaAuditEvent::toDomain)
             .toList();
-    }
-
-    @Override
-    public PaginatedResponse<AuditEvent> findAllByCriteria (AuditEvent searchCriteria,
-                                                            PaginationCriteria paginationCriteria) {
-        Page<JpaAuditEvent> page =
-            fetchPaginatedEntitiesByCriteria(searchCriteria, paginationCriteria);
-        List<AuditEvent> events = mapToDomainEntities(page.getContent());
-        return PaginationHelper.buildPaginatedResponse(events, page);
-    }
-
-    private Page<JpaAuditEvent> fetchPaginatedEntitiesByCriteria (AuditEvent event,
-                                                                  PaginationCriteria criteria) {
-        PageRequest pageable = of(criteria.getPage(), criteria.getSize());
-        Example<JpaAuditEvent> example = createExampleFromEntity(event, JpaAuditEvent::fromDomain);
-        return repository.findAll(example, pageable);
     }
 
     @Override

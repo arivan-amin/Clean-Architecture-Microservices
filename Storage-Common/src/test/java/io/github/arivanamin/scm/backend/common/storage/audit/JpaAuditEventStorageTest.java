@@ -3,6 +3,7 @@ package io.github.arivanamin.scm.backend.common.storage.audit;
 import io.github.arivanamin.scm.backend.base.domain.audit.AuditEvent;
 import io.github.arivanamin.scm.backend.base.domain.dates.DateTimeRange;
 import io.github.arivanamin.scm.backend.base.domain.pagination.PaginatedResponse;
+import io.github.arivanamin.scm.backend.common.domain.exception.AuditEventNotFoundException;
 import io.github.arivanamin.scm.backend.testing.architecture.bases.BaseUnitTest;
 import lombok.extern.slf4j.Slf4j;
 import org.instancio.Instancio;
@@ -11,13 +12,15 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.when;
+import static org.springframework.data.domain.PageRequest.of;
 
 @Slf4j
 class JpaAuditEventStorageTest implements BaseUnitTest {
@@ -50,7 +53,8 @@ class JpaAuditEventStorageTest implements BaseUnitTest {
     @Test
     void findAllShouldReturnResultOfRepository () {
         // given
-        when(repository.findAllByRecordedAtBetween(start, end, PAGE_REQUEST)).thenReturn(
+        PageRequest pageRequest = of(PAGINATION_CRITERIA.getPage(), PAGINATION_CRITERIA.getSize());
+        when(repository.findAllByRecordedAtBetween(start, end, pageRequest)).thenReturn(
             new PageImpl(events));
 
         // when
@@ -60,5 +64,16 @@ class JpaAuditEventStorageTest implements BaseUnitTest {
         // then
         assertThat(response.getContent()
             .size()).isSameAs(events.size());
+    }
+
+    @Test
+    void findByIdShouldThrowExceptionWhenIdNotFound () {
+        // given
+        UUID id = UUID.randomUUID();
+        when(repository.findById(id)).thenThrow(AuditEventNotFoundException.class);
+
+        // when & then
+        assertThatThrownBy(() -> storage.findById(id)).isInstanceOf(
+            AuditEventNotFoundException.class);
     }
 }
