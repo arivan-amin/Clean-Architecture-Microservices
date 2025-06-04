@@ -61,7 +61,6 @@
         <module>Audit-Service</module>
         <module>SSO-Service</module>
         <module>Patient-Service</module>
-        <module>Notification-Service</module>
     </modules>
 
     <dependencies>

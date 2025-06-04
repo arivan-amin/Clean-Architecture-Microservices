@@ -11,7 +11,8 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.function.Function;
 
-import static io.github.arivanamin.scm.backend.base.domain.config.ServicesNamesHelper.*;
+import static io.github.arivanamin.scm.backend.base.domain.config.ServicesNamesHelper.AUDIT_SERVICE;
+import static io.github.arivanamin.scm.backend.base.domain.config.ServicesNamesHelper.PATIENT_SERVICE;
 
 @Slf4j
 @Configuration
@@ -37,9 +38,6 @@ public class ApiGatewayRouting {
             .route(getAuditServiceRoute())
             .route(getAuditServiceApiDocRoute())
             .route(getAuditServiceActuatorRoute())
-            .route(getNotificationServiceRoute())
-            .route(getNotificationServiceApiDocRoute())
-            .route(getNotificationServiceActuatorRoute())
             .build();
     }
 
@@ -75,18 +73,6 @@ public class ApiGatewayRouting {
 
     private Function<PredicateSpec, Buildable<Route>> getAuditServiceActuatorRoute () {
         return routingHelper.createActuatorRouteForService(AUDIT_SERVICE);
-    }
-
-    private Function<PredicateSpec, Buildable<Route>> getNotificationServiceRoute () {
-        return routingHelper.createApiRouteForService(NOTIFICATION_SERVICE);
-    }
-
-    private Function<PredicateSpec, Buildable<Route>> getNotificationServiceApiDocRoute () {
-        return routingHelper.createApiDocRouteForService(NOTIFICATION_SERVICE);
-    }
-
-    private Function<PredicateSpec, Buildable<Route>> getNotificationServiceActuatorRoute () {
-        return routingHelper.createActuatorRouteForService(NOTIFICATION_SERVICE);
     }
 
     private Function<PredicateSpec, Buildable<Route>> getDiscoveryServerStaticResourcesRoute () {

@@ -8,5 +8,4 @@ public final class ServicesNamesHelper {
 
     public static final String PATIENT_SERVICE = "patient";
     public static final String AUDIT_SERVICE = "audit";
-    public static final String NOTIFICATION_SERVICE = "notification";
 }

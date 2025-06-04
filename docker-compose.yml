@@ -188,11 +188,6 @@ services:
 #    <<: *base-service
 #    container_name: audit-service
 #    image: arivanamin/scm-audit-service
-#
-#  notification-service:
-#    <<: *base-service
-#    container_name: notification-service
-#    image: arivanamin/scm-notification-service
 #    
 #  sso-service:
 #    <<: *base-service

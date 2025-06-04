@@ -77,10 +77,6 @@ Command and Query Separation Principle to implement Business logic.
 
 Implemented in **API Gateway** using **Redis Rate Limiter**.
 
-### Outbox Pattern
-
-Implements Transactional Outbox Pattern for sending events to guarantee 100% message delivery.
-
 ### ArchUnit
 
 Validate architectural boundaries and verify adherence to best coding standards.
@@ -165,7 +161,6 @@ Core entities have no association with JPA and are never annotated with @Entity.
 - **Clean Architecture & Clean Code**
 - **Command-Query Responsibility Separation (CQRS)**
 - **SOLID Principles**
-- **Outbox Pattern**
 - **Mutation Testing**
 - **Spring Dependency Injection**
 - **Aspect-Oriented Programming (AOP)**
