@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 class AuditBeansConfig {
 
     @Bean
-    public AuditEventStorage storage (AuditEventRepository repository) {
+    public AuditEventStorage auditEventStorage (AuditEventRepository repository) {
         return new JpaAuditEventStorage(repository);
     }
 

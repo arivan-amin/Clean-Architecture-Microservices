@@ -25,7 +25,7 @@ class CoreAuditLogBeansConfig {
 
     @Bean
     @ConditionalOnMissingBean (AuditEventStorage.class)
-    public AuditEventStorage auditEventStorage () {
+    public AuditEventStorage dummyAuditEventStorage () {
         return new NoOpAuditEventStorage();
     }
 }
