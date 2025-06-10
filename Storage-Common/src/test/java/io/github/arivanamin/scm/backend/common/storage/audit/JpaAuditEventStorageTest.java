@@ -17,9 +17,11 @@ import org.springframework.data.domain.PageRequest;
 import java.time.LocalDateTime;
 import java.util.*;
 
+import static io.github.arivanamin.scm.backend.common.storage.audit.JpaAuditEvent.fromDomain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 import static org.springframework.data.domain.PageRequest.of;
 
 @Slf4j
@@ -67,7 +69,7 @@ class JpaAuditEventStorageTest implements BaseUnitTest {
     }
 
     @Test
-    void findByIdShouldThrowExceptionWhenIdNotFound () {
+    void findByIdShouldThrowExceptionWhenEventNotFound () {
         // given
         UUID id = UUID.randomUUID();
         when(repository.findById(id)).thenThrow(AuditEventNotFoundException.class);
@@ -75,5 +77,44 @@ class JpaAuditEventStorageTest implements BaseUnitTest {
         // when & then
         assertThatThrownBy(() -> storage.findById(id)).isInstanceOf(
             AuditEventNotFoundException.class);
+    }
+
+    @Test
+    void findByIdShouldReturnAuditEventFromRepository () {
+        // given
+        UUID id = UUID.randomUUID();
+        JpaAuditEvent event = Instancio.create(JpaAuditEvent.class);
+        when(repository.findById(id)).thenReturn(Optional.of(event));
+
+        // when
+        AuditEvent result = storage.findById(id)
+            .orElseThrow();
+
+        // then
+        assertThat(result).isEqualTo(event.toDomain());
+    }
+
+    @Test
+    void createShouldPassAuditEventToRepository () {
+        // given
+        AuditEvent event = Instancio.create(AuditEvent.class);
+        when(repository.save(any())).thenReturn(fromDomain(event));
+
+        // when & then
+        storage.create(event);
+        verify(repository, times(1)).save(any());
+    }
+
+    @Test
+    void createShouldReturnIdOfCreatedRecord () {
+        // given
+        AuditEvent eventToBeCreated = Instancio.create(AuditEvent.class);
+        when(repository.save(any())).thenReturn(fromDomain(eventToBeCreated));
+
+        // when
+        UUID resultId = storage.create(eventToBeCreated);
+
+        // then
+        assertThat(resultId).isEqualTo(eventToBeCreated.getId());
     }
 }

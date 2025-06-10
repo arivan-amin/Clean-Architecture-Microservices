@@ -47,8 +47,9 @@ public class ApiGatewayRouting {
             .uri(getEurekaUrl());
     }
 
-    private String getEurekaUrl () {
-        return "http://%s:%s".formatted(eurekaHost, eurekaPort);
+    private Function<PredicateSpec, Buildable<Route>> getDiscoveryServerStaticResourcesRoute () {
+        return r -> r.path("/eureka/**")
+            .uri(getEurekaUrl());
     }
 
     private Function<PredicateSpec, Buildable<Route>> getPatientServiceRoute () {
@@ -75,8 +76,7 @@ public class ApiGatewayRouting {
         return routingHelper.createActuatorRouteForService(AUDIT_SERVICE);
     }
 
-    private Function<PredicateSpec, Buildable<Route>> getDiscoveryServerStaticResourcesRoute () {
-        return r -> r.path("/eureka/**")
-            .uri(getEurekaUrl());
+    private String getEurekaUrl () {
+        return "http://%s:%s".formatted(eurekaHost, eurekaPort);
     }
 }
