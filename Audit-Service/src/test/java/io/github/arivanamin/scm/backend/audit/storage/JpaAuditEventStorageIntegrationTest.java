@@ -115,4 +115,21 @@ class JpaAuditEventStorageIntegrationTest extends BaseDatabaseTest {
         createAuditEventsAndSaveToStorage(3, start.minusMinutes(1));
         createAuditEventsAndSaveToStorage(3, end.plusMinutes(1));
     }
+
+    @Test
+    void findByIdShouldReturnCorrectEvent () {
+        // given
+        repository.save(createSampleEvent(LocalDateTime.now()));
+        JpaAuditEvent savedEvent = repository.findAll()
+            .stream()
+            .findFirst()
+            .orElseThrow();
+
+        // when
+        AuditEvent result = storage.findById(savedEvent.getId())
+            .orElseThrow();
+
+        // then
+        assertThat(result).isEqualTo(savedEvent.toDomain());
+    }
 }

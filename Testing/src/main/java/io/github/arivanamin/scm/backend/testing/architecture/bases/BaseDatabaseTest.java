@@ -14,8 +14,7 @@ public abstract class BaseDatabaseTest extends BaseIntegrationTest {
     static final MySQLContainer<?> MYSQL_CONTAINER =
         new MySQLContainer<>("mysql:9.2.0").withDatabaseName("service_database")
             .withUsername("root")
-            .withPassword("mysql")
-            .withReuse(true);
+            .withPassword("mysql");
 
     static {
         MYSQL_CONTAINER.start();
