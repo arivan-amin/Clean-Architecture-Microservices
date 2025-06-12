@@ -9,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 class DiscoveryServerApplicationTest {
 
     @Test
-    void should () {
+    void mainShouldInitializeContext () {
         // given
 
         // when

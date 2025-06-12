@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 class ApiGatewayApplicationTest extends BaseIntegrationTest {
 
     @Test
-    void should () {
+    void mainShouldInitializeContext () {
         // given
 
         // when

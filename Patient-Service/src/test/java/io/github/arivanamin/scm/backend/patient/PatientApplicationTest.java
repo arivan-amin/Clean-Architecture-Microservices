@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 class PatientApplicationTest extends BaseDatabaseTest {
 
     @Test
-    void should () {
+    void mainShouldInitializeContext () {
         // given
 
         // when

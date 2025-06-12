@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class CreatePatientRequestTest implements BaseUnitTest {
 
     @Test
-    void ToDomainEntityShouldMapRequestCorrectly () {
+    void ToDomainEntityShouldMapRequestToDomainEntity () {
         // given
         CreatePatientRequest request = Instancio.create(CreatePatientRequest.class);
         request.setDateOfBirth(toTimestampInMilliseconds(LocalDateTime.now()));
