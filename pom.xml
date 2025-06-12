@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.4.6</version>
+        <version>3.5.0</version>
         <relativePath />
     </parent>
 
@@ -17,15 +17,16 @@
     <packaging>pom</packaging>
     <name>Spring-Clean-Microservices</name>
     <description>Backend Parent Module</description>
-    <url>https://github.com/arivan-amin/Spring-Clean-Microservices</url>
+    <url>https://github.com/arivan-amin/Clean-Architecture-Microservices</url>
 
     <properties>
         <java.version>21</java.version>
-        <spring-cloud-bom-version>2024.0.1</spring-cloud-bom-version>
+        <spring-cloud-bom-version>2025.0.0</spring-cloud-bom-version>
+        <testcontainers-bom-version>1.21.1</testcontainers-bom-version>
         <!-- Other dependency versions -->
-        <springdoc-web-mvc-version>2.8.8</springdoc-web-mvc-version>
-        <springdoc-web-flux-version>2.8.8</springdoc-web-flux-version>
-        <caffeine-cache-version>3.2.0</caffeine-cache-version>
+        <springdoc-web-mvc-version>2.8.9</springdoc-web-mvc-version>
+        <springdoc-web-flux-version>2.8.9</springdoc-web-flux-version>
+        <caffeine-cache-version>3.2.1</caffeine-cache-version>
         <instancio-version>5.4.1</instancio-version>
         <java-faker-version>1.0.2</java-faker-version>
         <vavr-version>0.10.6</vavr-version>
@@ -33,8 +34,8 @@
         <datasource-micrometer-version>1.1.1</datasource-micrometer-version>
         <model-mapper-version>3.2.3</model-mapper-version>
         <arch-unit-version>1.4.1</arch-unit-version>
-        <testcontainers-bom-version>1.21.0</testcontainers-bom-version>
         <liquibase-version>4.32.0</liquibase-version>
+        <mysql-version>9.3.0</mysql-version>
         <!-- Security Dependencies -->
         <keycloak-version>26.0.5</keycloak-version>
         <!-- Plugin versions -->
@@ -42,14 +43,13 @@
         <jib-plugin-version>3.3.2</jib-plugin-version>
         <jacoco-plugin-ver>0.8.13</jacoco-plugin-ver>
         <maven-resources-version>3.3.1</maven-resources-version>
-        <pitest-plugin-version>1.19.4</pitest-plugin-version>
+        <pitest-plugin-version>1.19.5</pitest-plugin-version>
         <pitest-plugin-junit5-version>1.2.3</pitest-plugin-junit5-version>
         <pmd-plugin-version>3.26.0</pmd-plugin-version>
         <!-- Inherited dependency versions -->
         <core-module-version>1.0.0</core-module-version>
         <testing-module-version>1.0.0</testing-module-version>
         <storage-common-module-version>1.0.0</storage-common-module-version>
-        <mysql-version>9.3.0</mysql-version>
     </properties>
 
     <modules>
@@ -121,11 +121,6 @@
         <dependency>
             <groupId>org.testcontainers</groupId>
             <artifactId>mysql</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.testcontainers</groupId>
-            <artifactId>mongodb</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
