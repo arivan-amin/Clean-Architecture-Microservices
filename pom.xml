@@ -35,7 +35,7 @@
         <model-mapper-version>3.2.3</model-mapper-version>
         <arch-unit-version>1.4.1</arch-unit-version>
         <liquibase-version>4.32.0</liquibase-version>
-        <mysql-version>9.3.0</mysql-version>
+        <mysql-version>9.2.0</mysql-version>
         <!-- Security Dependencies -->
         <keycloak-version>26.0.5</keycloak-version>
         <!-- Plugin versions -->
