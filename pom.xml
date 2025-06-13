@@ -40,6 +40,7 @@
         <keycloak-version>26.0.5</keycloak-version>
         <!-- Plugin versions -->
         <surefire-plugin-version>3.5.3</surefire-plugin-version>
+        <failsafe-plugin-version>3.5.3</failsafe-plugin-version>
         <jib-plugin-version>3.3.2</jib-plugin-version>
         <jacoco-plugin-ver>0.8.13</jacoco-plugin-ver>
         <maven-resources-version>3.3.1</maven-resources-version>
@@ -240,6 +241,19 @@
                         -Xshare:off
                     </argLine>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>${failsafe-plugin-version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.graalvm.buildtools</groupId>
