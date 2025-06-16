@@ -26,6 +26,7 @@ https://central.sonatype.com/artifact/org.keycloak/keycloak-admin-client
 # Plugins
 
 https://central.sonatype.com/artifact/org.apache.maven.plugins/maven-surefire-plugin
+https://central.sonatype.com/artifact/org.apache.maven.plugins/maven-failsafe-plugin
 https://central.sonatype.com/artifact/com.google.cloud.tools/jib-maven-plugin
 https://central.sonatype.com/artifact/org.jacoco/jacoco-maven-plugin
 https://central.sonatype.com/artifact/org.apache.maven.plugins/maven-resources-plugin

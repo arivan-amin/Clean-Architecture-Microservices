@@ -12,41 +12,42 @@ import static org.assertj.core.api.Assertions.assertThat;
 class JpaPatientTest implements BaseUnitTest {
 
     @Test
-    void fromDomainShouldMapPatientCorrectly () {
+    void fromDomainShouldMapDomainEntityToStorageEntity () {
         // given
-        Patient patient = Instancio.create(Patient.class);
+        Patient domainEntity = Instancio.create(Patient.class);
 
         // when
-        JpaPatient jpaPatient = JpaPatient.fromDomain(patient);
+        JpaPatient storageEntity = JpaPatient.fromDomain(domainEntity);
 
         // then
-        assertThat(jpaPatient.getId()).isEqualTo(patient.getId());
-        assertThat(jpaPatient.getFirstName()).isEqualTo(patient.getFirstName());
-        assertThat(jpaPatient.getLastName()).isEqualTo(patient.getLastName());
-        assertThat(jpaPatient.getEmail()).isEqualTo(patient.getEmail());
-        assertThat(jpaPatient.getDateOfBirth()).isEqualTo(patient.getDateOfBirth());
-        assertThat(jpaPatient.getGender()).isEqualTo(patient.getGender());
-        assertThat(jpaPatient.getAddress()).isEqualTo(patient.getAddress());
-        assertThat(jpaPatient.getCreatedAt()).isEqualTo(patient.getCreatedAt());
-        assertThat(jpaPatient.getUpdatedAt()).isEqualTo(patient.getUpdatedAt());
+        assertThat(storageEntity.getId()).isEqualTo(domainEntity.getId());
+        assertThat(storageEntity.getFirstName()).isEqualTo(domainEntity.getFirstName());
+        assertThat(storageEntity.getLastName()).isEqualTo(domainEntity.getLastName());
+        assertThat(storageEntity.getEmail()).isEqualTo(domainEntity.getEmail());
+        assertThat(storageEntity.getDateOfBirth()).isEqualTo(domainEntity.getDateOfBirth());
+        assertThat(storageEntity.getGender()).isEqualTo(domainEntity.getGender());
+        assertThat(storageEntity.getAddress()).isEqualTo(domainEntity.getAddress());
+        assertThat(storageEntity.getCreatedAt()).isEqualTo(domainEntity.getCreatedAt());
+        assertThat(storageEntity.getUpdatedAt()).isEqualTo(domainEntity.getUpdatedAt());
     }
 
     @Test
-    void toDomainShouldMapPatientCorrectly () {
+    void toDomainShouldMapStorageEntityToDomainEntity () {
         // given
-        JpaPatient jpaPatient = Instancio.create(JpaPatient.class);
+        JpaPatient storageEntity = Instancio.create(JpaPatient.class);
+
         // when
-        Patient patient = jpaPatient.toDomain();
+        Patient domainEntity = storageEntity.toDomain();
 
         // then
-        assertThat(patient.getId()).isEqualTo(jpaPatient.getId());
-        assertThat(patient.getFirstName()).isEqualTo(jpaPatient.getFirstName());
-        assertThat(patient.getLastName()).isEqualTo(jpaPatient.getLastName());
-        assertThat(patient.getEmail()).isEqualTo(jpaPatient.getEmail());
-        assertThat(patient.getDateOfBirth()).isEqualTo(jpaPatient.getDateOfBirth());
-        assertThat(patient.getGender()).isEqualTo(jpaPatient.getGender());
-        assertThat(patient.getAddress()).isEqualTo(jpaPatient.getAddress());
-        assertThat(patient.getCreatedAt()).isEqualTo(jpaPatient.getCreatedAt());
-        assertThat(patient.getUpdatedAt()).isEqualTo(jpaPatient.getUpdatedAt());
+        assertThat(domainEntity.getId()).isEqualTo(storageEntity.getId());
+        assertThat(domainEntity.getFirstName()).isEqualTo(storageEntity.getFirstName());
+        assertThat(domainEntity.getLastName()).isEqualTo(storageEntity.getLastName());
+        assertThat(domainEntity.getEmail()).isEqualTo(storageEntity.getEmail());
+        assertThat(domainEntity.getDateOfBirth()).isEqualTo(storageEntity.getDateOfBirth());
+        assertThat(domainEntity.getGender()).isEqualTo(storageEntity.getGender());
+        assertThat(domainEntity.getAddress()).isEqualTo(storageEntity.getAddress());
+        assertThat(domainEntity.getCreatedAt()).isEqualTo(storageEntity.getCreatedAt());
+        assertThat(domainEntity.getUpdatedAt()).isEqualTo(storageEntity.getUpdatedAt());
     }
 }

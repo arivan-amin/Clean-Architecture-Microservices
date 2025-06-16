@@ -7,9 +7,9 @@ import io.github.arivanamin.scm.backend.base.domain.audit.CreateAuditEventComman
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 
-@Component
+@Configuration
 class CoreAuditLogBeansConfig {
 
     @Bean

@@ -1,5 +1,6 @@
 package io.github.arivanamin.scm.backend.patient.storage;
 
+import io.github.arivanamin.scm.backend.base.domain.gender.Gender;
 import io.github.arivanamin.scm.backend.base.domain.pagination.PaginationCriteria;
 import io.github.arivanamin.scm.backend.patient.core.entity.Patient;
 import io.github.arivanamin.scm.backend.testing.architecture.bases.BaseDatabaseTest;
@@ -12,6 +13,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
+import static io.github.arivanamin.scm.backend.patient.PatientTestingUtility.createSamplePatient;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
@@ -21,7 +23,7 @@ class JpaPatientStorageIntegrationTest extends BaseDatabaseTest {
     private PatientRepository repository;
     private JpaPatientStorage storage;
 
-    private int numberOfSavedEntities;
+    private int entitiesCount;
     private UUID expectedId;
 
     private List<Patient> expectedPatients;
@@ -45,31 +47,21 @@ class JpaPatientStorageIntegrationTest extends BaseDatabaseTest {
     }
 
     private void givenRepositoryWithSavedPatients () {
-        numberOfSavedEntities = FAKER.number()
+        entitiesCount = FAKER.number()
             .numberBetween(3, 10);
-        for (int i = 0; i < numberOfSavedEntities; i++) {
-            JpaPatient entity = createSamplePatient();
+        for (int i = 0; i < entitiesCount; i++) {
+            JpaPatient entity = JpaPatient.fromDomain(createSamplePatient());
             repository.save(entity);
         }
     }
 
     private void whenFindAllIsCalled () {
-        expectedPatients = storage.findAll(PaginationCriteria.of(0, numberOfSavedEntities))
+        expectedPatients = storage.findAll(PaginationCriteria.of(0, entitiesCount))
             .getContent();
     }
 
     private void thenAssertThatAllEntitiesOfRepositoryAreReturned (List<Patient> result) {
-        assertThat(result.size()).isEqualTo(numberOfSavedEntities);
-    }
-
-    private static JpaPatient createSamplePatient () {
-        JpaPatient entity = Instancio.create(JpaPatient.class);
-        entity.setId(null);
-        entity.setEmail(FAKER.internet()
-            .emailAddress());
-        entity.setDateOfBirth(LocalDate.now()
-            .minusYears(25));
-        return entity;
+        assertThat(result.size()).isEqualTo(entitiesCount);
     }
 
     @Test
@@ -83,7 +75,7 @@ class JpaPatientStorageIntegrationTest extends BaseDatabaseTest {
         givenRepositoryWithSavedPatients();
         expectedId = repository.findAll()
             .get(FAKER.number()
-                .numberBetween(0, numberOfSavedEntities))
+                .numberBetween(0, entitiesCount))
             .getId();
         expectedPatient = repository.findAll()
             .stream()
@@ -115,9 +107,9 @@ class JpaPatientStorageIntegrationTest extends BaseDatabaseTest {
     }
 
     private void thenAssertThatEntityIsDeletedFromRepository () {
-        assertThat(storage.findAll(PaginationCriteria.of(0, numberOfSavedEntities))
+        assertThat(storage.findAll(PaginationCriteria.of(0, entitiesCount))
             .getContent()
-            .size()).isEqualTo(numberOfSavedEntities - 1);
+            .size()).isEqualTo(entitiesCount - 1);
         assertThat(repository.findById(expectedId)).isEmpty();
     }
 
@@ -129,9 +121,7 @@ class JpaPatientStorageIntegrationTest extends BaseDatabaseTest {
     }
 
     private void givenValidSamplePatient () {
-        expectedPatient = createSamplePatient().toDomain();
-        expectedPatient.setEmail(FAKER.internet()
-            .emailAddress());
+        expectedPatient = createSamplePatient();
     }
 
     private void whenCreateIsCalled () {
@@ -151,8 +141,14 @@ class JpaPatientStorageIntegrationTest extends BaseDatabaseTest {
     }
 
     private void whenUpdateIsCalledWithModifiedPatient () {
-        expectedPatient.setFirstName(FAKER.zelda()
-            .character());
+        expectedPatient.setFirstName(Instancio.create(String.class));
+        expectedPatient.setLastName(Instancio.create(String.class));
+        expectedPatient.setEmail(FAKER.internet()
+            .emailAddress());
+        expectedPatient.setDateOfBirth(LocalDate.now()
+            .minusYears(25));
+        expectedPatient.setGender(Instancio.create(Gender.class));
+        expectedPatient.setAddress(Instancio.create(String.class));
         storage.update(expectedPatient);
     }
 
@@ -160,5 +156,10 @@ class JpaPatientStorageIntegrationTest extends BaseDatabaseTest {
         JpaPatient result = repository.findById(expectedId)
             .orElseThrow();
         assertThat(result.getFirstName()).isEqualTo(expectedPatient.getFirstName());
+        assertThat(result.getLastName()).isEqualTo(expectedPatient.getLastName());
+        assertThat(result.getEmail()).isEqualTo(expectedPatient.getEmail());
+        assertThat(result.getDateOfBirth()).isEqualTo(expectedPatient.getDateOfBirth());
+        assertThat(result.getGender()).isEqualTo(expectedPatient.getGender());
+        assertThat(result.getAddress()).isEqualTo(expectedPatient.getAddress());
     }
 }

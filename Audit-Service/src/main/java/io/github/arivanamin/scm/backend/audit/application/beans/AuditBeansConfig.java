@@ -6,9 +6,9 @@ import io.github.arivanamin.scm.backend.base.domain.audit.AuditEventStorage;
 import io.github.arivanamin.scm.backend.common.storage.audit.AuditEventRepository;
 import io.github.arivanamin.scm.backend.common.storage.audit.JpaAuditEventStorage;
 import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 
-@Component
+@Configuration
 class AuditBeansConfig {
 
     @Bean

@@ -1,14 +1,14 @@
-package io.github.arivanamin.scm.backend.sso;
+package io.github.arivanamin.scm.backend.apigateway;
 
 import io.github.arivanamin.scm.backend.testing.architecture.bases.BaseIntegrationTest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 @Slf4j
-class SsoApplicationTest extends BaseIntegrationTest {
+class ApiGatewayApplicationIntegrationTest extends BaseIntegrationTest {
 
     @Test
-    void should () {
+    void mainShouldInitializeContext () {
         // given
 
         // when

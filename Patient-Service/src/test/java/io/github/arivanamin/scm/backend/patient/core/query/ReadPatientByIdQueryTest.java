@@ -49,7 +49,7 @@ class ReadPatientByIdQueryTest implements BaseUnitTest {
     }
 
     @Test
-    void shouldReturnResultFromStorageFindById () {
+    void executeShouldReturnResultFromStorageFindById () {
         givenQueryWithMockStorage();
         Patient result = whenQueryIsExecuted();
         thenVerifyFindByIdResultIsReturned(result);

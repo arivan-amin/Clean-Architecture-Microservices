@@ -87,7 +87,7 @@ services:
   mysql:
     container_name: MySQL
     restart: unless-stopped
-    image: mysql:9.3.0
+    image: mysql:9.2.0
     environment:
       MYSQL_ROOT_PASSWORD: mysql
     ports:
@@ -97,7 +97,7 @@ services:
       - ./Docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
 
   phpmyadmin:
-    container_name: Phpmyadmin
+    container_name: PhpMyAdmin
     restart: unless-stopped
     image: phpmyadmin/phpmyadmin:5.2.2
     environment:
@@ -110,7 +110,7 @@ services:
       - mysql
 
   redis:
-    container_name: Redis-server
+    container_name: Redis-Server
     restart: unless-stopped
     image: redis:7.4.2
     ports:
