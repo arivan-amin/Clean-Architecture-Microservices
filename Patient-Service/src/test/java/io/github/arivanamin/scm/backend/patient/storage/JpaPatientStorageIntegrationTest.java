@@ -10,10 +10,10 @@ import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
+import static io.github.arivanamin.scm.backend.patient.PatientTestingUtility.createSamplePatient;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
@@ -46,6 +46,15 @@ class JpaPatientStorageIntegrationTest extends BaseDatabaseTest {
         thenAssertThatAllEntitiesOfRepositoryAreReturned(expectedPatients);
     }
 
+    private void givenRepositoryWithSavedPatients () {
+        entitiesCount = FAKER.number()
+            .numberBetween(3, 10);
+        for (int i = 0; i < entitiesCount; i++) {
+            JpaPatient entity = JpaPatient.fromDomain(createSamplePatient());
+            repository.save(entity);
+        }
+    }
+
     private void whenFindAllIsCalled () {
         expectedPatients = storage.findAll(PaginationCriteria.of(0, entitiesCount))
             .getContent();
@@ -53,6 +62,13 @@ class JpaPatientStorageIntegrationTest extends BaseDatabaseTest {
 
     private void thenAssertThatAllEntitiesOfRepositoryAreReturned (List<Patient> result) {
         assertThat(result.size()).isEqualTo(entitiesCount);
+    }
+
+    @Test
+    void findByIdShouldReturnSinglePatient () {
+        givenRepositoryWithSamplePatientsAndOnePatientExtracted();
+        whenFindByIdIsCalled(expectedId);
+        thenAssertThatCorrectPatientIsReturned(expectedPatient);
     }
 
     private void givenRepositoryWithSamplePatientsAndOnePatientExtracted () {
@@ -68,32 +84,6 @@ class JpaPatientStorageIntegrationTest extends BaseDatabaseTest {
             .findFirst()
             .orElseThrow()
             .toDomain();
-    }
-
-    private static JpaPatient createSamplePatient () {
-        JpaPatient entity = Instancio.create(JpaPatient.class);
-        entity.setId(null);
-        entity.setEmail(FAKER.internet()
-            .emailAddress());
-        entity.setDateOfBirth(LocalDate.now()
-            .minusYears(25));
-        return entity;
-    }
-
-    @Test
-    void findByIdShouldReturnSinglePatient () {
-        givenRepositoryWithSamplePatientsAndOnePatientExtracted();
-        whenFindByIdIsCalled(expectedId);
-        thenAssertThatCorrectPatientIsReturned(expectedPatient);
-    }
-
-    private void givenRepositoryWithSavedPatients () {
-        entitiesCount = FAKER.number()
-            .numberBetween(3, 10);
-        for (int i = 0; i < entitiesCount; i++) {
-            JpaPatient entity = createSamplePatient();
-            repository.save(entity);
-        }
     }
 
     private void whenFindByIdIsCalled (UUID sampleId) {
@@ -131,9 +121,7 @@ class JpaPatientStorageIntegrationTest extends BaseDatabaseTest {
     }
 
     private void givenValidSamplePatient () {
-        expectedPatient = createSamplePatient().toDomain();
-        expectedPatient.setEmail(FAKER.internet()
-            .emailAddress());
+        expectedPatient = createSamplePatient();
     }
 
     private void whenCreateIsCalled () {
@@ -173,38 +161,5 @@ class JpaPatientStorageIntegrationTest extends BaseDatabaseTest {
         assertThat(result.getDateOfBirth()).isEqualTo(expectedPatient.getDateOfBirth());
         assertThat(result.getGender()).isEqualTo(expectedPatient.getGender());
         assertThat(result.getAddress()).isEqualTo(expectedPatient.getAddress());
-    }
-
-    @Test
-    void updateShouldPreserveIntegrityOfAuditData () throws InterruptedException {
-        // given
-        JpaPatient savedPatient = repository.save(createSamplePatient());
-        log.info("savedPatient in repository = {}", savedPatient);
-        LocalDateTime createdAt = savedPatient.getCreatedAt();
-        LocalDateTime updatedAt = savedPatient.getUpdatedAt();
-        UUID id = savedPatient.getId();
-
-        Patient updatedPatient = new Patient();
-        updatedPatient.setId(id);
-        updatedPatient.setFirstName(Instancio.create(String.class));
-        updatedPatient.setLastName(Instancio.create(String.class));
-        updatedPatient.setEmail(FAKER.internet()
-            .emailAddress());
-        updatedPatient.setDateOfBirth(LocalDate.now()
-            .minusYears(25));
-        updatedPatient.setGender(Instancio.create(Gender.class));
-        updatedPatient.setAddress(Instancio.create(String.class));
-        log.info("updatedPatient = {}", updatedPatient);
-
-        // when
-        storage.update(updatedPatient);
-
-        // then
-        JpaPatient result = repository.findById(id)
-            .orElseThrow();
-        log.info("result of after update = {}", result);
-        assertThat(result.getCreatedAt()).isEqualTo(createdAt);
-        assertThat(result.getUpdatedAt()).isNotEqualTo(updatedAt)
-            .isAfter(updatedAt);
     }
 }

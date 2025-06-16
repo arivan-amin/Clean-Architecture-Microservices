@@ -26,7 +26,5 @@ public abstract class BaseDatabaseTest extends BaseIntegrationTest {
         registry.add("spring.datasource.username", MYSQL_CONTAINER::getUsername);
         registry.add("spring.datasource.password", MYSQL_CONTAINER::getPassword);
         registry.add("spring.datasource.driver-class-name", MYSQL_CONTAINER::getDriverClassName);
-        registry.add("spring.jpa.properties.hibernate.connection.provider_disables_autocommit",
-            () -> "false");
     }
 }

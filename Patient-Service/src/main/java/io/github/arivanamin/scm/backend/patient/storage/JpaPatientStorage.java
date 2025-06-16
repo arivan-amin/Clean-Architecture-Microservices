@@ -5,13 +5,11 @@ import io.github.arivanamin.scm.backend.patient.core.entity.Patient;
 import io.github.arivanamin.scm.backend.patient.core.persistence.PatientStorage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
-import static io.github.arivanamin.scm.backend.base.application.config.ModelMapperConditions.getConditionToSkipAuditDataFields;
 import static org.springframework.data.domain.PageRequest.of;
 
 @RequiredArgsConstructor
@@ -67,11 +65,13 @@ public class JpaPatientStorage implements PatientStorage {
         repository.save(storedPatient);
     }
 
-    private static void updateChangedFields (Patient patient, JpaPatient patientFromStorage) {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration()
-            .setPropertyCondition(getConditionToSkipAuditDataFields());
-        modelMapper.map(patient, patientFromStorage);
+    private static void updateChangedFields (Patient updatedPatient, JpaPatient storedPatient) {
+        storedPatient.setFirstName(updatedPatient.getFirstName());
+        storedPatient.setLastName(updatedPatient.getLastName());
+        storedPatient.setEmail(updatedPatient.getEmail());
+        storedPatient.setDateOfBirth(updatedPatient.getDateOfBirth());
+        storedPatient.setGender(updatedPatient.getGender());
+        storedPatient.setAddress(updatedPatient.getAddress());
     }
 
     @Transactional
