@@ -7,9 +7,9 @@ import io.github.arivanamin.scm.backend.patient.core.query.ReadPatientsQuery;
 import io.github.arivanamin.scm.backend.patient.storage.JpaPatientStorage;
 import io.github.arivanamin.scm.backend.patient.storage.PatientRepository;
 import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 
-@Component
+@Configuration
 class PatientBeansConfig {
 
     @Bean

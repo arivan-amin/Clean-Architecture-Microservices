@@ -5,14 +5,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.cloud.gateway.filter.ratelimit.KeyResolver;
 import org.springframework.cloud.gateway.filter.ratelimit.RedisRateLimiter;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
-import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
 import static java.util.Objects.requireNonNull;
 
-@Component
+@Configuration
 @RequiredArgsConstructor
 class RoutingBeansConfig {
 

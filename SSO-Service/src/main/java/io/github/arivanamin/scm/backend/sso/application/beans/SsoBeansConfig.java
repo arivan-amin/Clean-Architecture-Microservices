@@ -7,9 +7,9 @@ import io.github.arivanamin.scm.backend.sso.core.query.ReadClientByIdQuery;
 import io.github.arivanamin.scm.backend.sso.core.secret.ClientSecretGenerator;
 import io.github.arivanamin.scm.backend.sso.storage.KeycloakSsoStorage;
 import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 
-@Component
+@Configuration
 class SsoBeansConfig {
 
     @Bean
