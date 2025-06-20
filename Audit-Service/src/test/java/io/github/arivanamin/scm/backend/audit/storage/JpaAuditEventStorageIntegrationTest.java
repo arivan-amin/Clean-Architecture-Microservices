@@ -6,13 +6,14 @@ import io.github.arivanamin.scm.backend.base.domain.pagination.PaginationCriteri
 import io.github.arivanamin.scm.backend.common.storage.audit.*;
 import io.github.arivanamin.scm.backend.testing.architecture.bases.BaseDatabaseTest;
 import lombok.extern.slf4j.Slf4j;
-import org.instancio.Instancio;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static io.github.arivanamin.scm.backend.audit.AuditEventTestingUtility.createSampleEvent;
+import static io.github.arivanamin.scm.backend.common.storage.audit.JpaAuditEvent.fromDomain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
@@ -25,6 +26,7 @@ class JpaAuditEventStorageIntegrationTest extends BaseDatabaseTest {
     @Autowired
     private AuditEventRepository repository;
     private JpaAuditEventStorage storage;
+
     private int eventsCount;
     private List<AuditEvent> result;
 
@@ -33,10 +35,8 @@ class JpaAuditEventStorageIntegrationTest extends BaseDatabaseTest {
         storage = new JpaAuditEventStorage(repository);
         eventsCount = FAKER.number()
             .numberBetween(3, 10);
-        start = LocalDateTime.now()
-            .minusDays(2);
-        end = LocalDateTime.now()
-            .minusDays(1);
+        start = LocalDateTime.of(2025, 3, 4, 10, 0, 0);
+        end = LocalDateTime.of(2025, 3, 4, 11, 0, 0);
         dateTimeRange = DateTimeRange.of(start, end);
     }
 
@@ -58,24 +58,34 @@ class JpaAuditEventStorageIntegrationTest extends BaseDatabaseTest {
         thenAssertThatAllEventsWithinDateTimeRangeIsReturned();
     }
 
+    private void createEventsWithinDateTimeRange (int numberOfSavedEvents) {
+        createAuditEventsAndSaveToStorage(numberOfSavedEvents, start.plusMinutes(FAKER.number()
+            .numberBetween(1, 57)));
+    }
+
+    private void createAuditEventsAndSaveToStorage (int count, LocalDateTime recordedAt) {
+        for (int i = 0; i < count; i++) {
+            JpaAuditEvent entity = fromDomain(createSampleEvent(recordedAt));
+            repository.save(entity);
+        }
+    }
+
+    private void createEventsOutsideOfDateTimeRange () {
+        createAuditEventsAndSaveToStorage(3, start.minusMinutes(3));
+        createAuditEventsAndSaveToStorage(3, end.plusMinutes(3));
+    }
+
     @Test
     void findAllShouldBeInclusiveOnStartDate () {
         // given
         createAuditEventsAndSaveToStorage(eventsCount, start);
-        createAuditEventsAndSaveToStorage(eventsCount, start.minusMinutes(2));
+        createAuditEventsAndSaveToStorage(eventsCount, start.minusMinutes(3));
 
         // when
         whenFindAllIsCalled();
 
         // then
         thenAssertThatAllEventsWithinDateTimeRangeIsReturned();
-    }
-
-    private void createAuditEventsAndSaveToStorage (int count, LocalDateTime recordedAt) {
-        for (int i = 0; i < count; i++) {
-            JpaAuditEvent entity = createSampleEvent(recordedAt);
-            repository.save(entity);
-        }
     }
 
     private void whenFindAllIsCalled () {
@@ -87,18 +97,11 @@ class JpaAuditEventStorageIntegrationTest extends BaseDatabaseTest {
         assertThat(result.size()).isEqualTo(eventsCount);
     }
 
-    private JpaAuditEvent createSampleEvent (LocalDateTime recordedAt) {
-        JpaAuditEvent entity = Instancio.create(JpaAuditEvent.class);
-        entity.setId(null);
-        entity.setRecordedAt(recordedAt);
-        return entity;
-    }
-
     @Test
     void findAllShouldBeInclusiveOnEndDate () {
         // given
         createAuditEventsAndSaveToStorage(eventsCount, end);
-        createAuditEventsAndSaveToStorage(eventsCount, end.plusMinutes(2));
+        createAuditEventsAndSaveToStorage(eventsCount, end.plusMinutes(3));
 
         // when
         whenFindAllIsCalled();
@@ -107,19 +110,29 @@ class JpaAuditEventStorageIntegrationTest extends BaseDatabaseTest {
         thenAssertThatAllEventsWithinDateTimeRangeIsReturned();
     }
 
-    private void createEventsWithinDateTimeRange (int numberOfSavedEvents) {
-        createAuditEventsAndSaveToStorage(numberOfSavedEvents, start.plusMinutes(5));
-    }
+    @Test
+    void findAllShouldSortEventsBasedOnRecordedAtDescending () {
+        // given
+        repository.save(fromDomain(createSampleEvent(start.plusMinutes(10))));
+        repository.save(fromDomain(createSampleEvent(start.plusMinutes(5))));
+        repository.save(fromDomain(createSampleEvent(start.plusMinutes(15))));
 
-    private void createEventsOutsideOfDateTimeRange () {
-        createAuditEventsAndSaveToStorage(3, start.minusMinutes(1));
-        createAuditEventsAndSaveToStorage(3, end.plusMinutes(1));
+        // when
+        whenFindAllIsCalled();
+
+        // then
+        assertThat(result.get(0)
+            .getRecordedAt()).isEqualTo(start.plusMinutes(15));
+        assertThat(result.get(1)
+            .getRecordedAt()).isEqualTo(start.plusMinutes(10));
+        assertThat(result.get(2)
+            .getRecordedAt()).isEqualTo(start.plusMinutes(5));
     }
 
     @Test
     void findByIdShouldReturnCorrectEvent () {
         // given
-        repository.save(createSampleEvent(LocalDateTime.now()));
+        repository.save(fromDomain(createSampleEvent(LocalDateTime.now())));
         JpaAuditEvent savedEvent = repository.findAll()
             .stream()
             .findFirst()
@@ -131,5 +144,21 @@ class JpaAuditEventStorageIntegrationTest extends BaseDatabaseTest {
 
         // then
         assertThat(result).isEqualTo(savedEvent.toDomain());
+    }
+
+    @Test
+    void createShouldSaveEventInRepository () {
+        // given
+        LocalDateTime recordedAt = LocalDateTime.of(2025, 3, 4, 7, 9, 0);
+        AuditEvent event = createSampleEvent(recordedAt);
+
+        // when
+        storage.create(event);
+
+        // then
+        List<JpaAuditEvent> result = repository.findAll();
+        assertThat(result.size()).isOne();
+        assertThat(result.getFirst()
+            .getRecordedAt()).isEqualTo(recordedAt);
     }
 }

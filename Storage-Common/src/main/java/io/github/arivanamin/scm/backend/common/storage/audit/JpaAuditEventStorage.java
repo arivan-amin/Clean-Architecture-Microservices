@@ -8,7 +8,7 @@ import io.github.arivanamin.scm.backend.base.domain.pagination.PaginationCriteri
 import io.github.arivanamin.scm.backend.common.domain.util.PaginationHelper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Page;
+import org.springframework.data.domain.*;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
@@ -32,14 +32,22 @@ public class JpaAuditEventStorage implements AuditEventStorage {
 
     private Page<JpaAuditEvent> fetchPaginatedEvents (DateTimeRange range,
                                                       PaginationCriteria criteria) {
-        return repository.findAllByRecordedAtBetween(range.getStart(), range.getEnd(),
-            of(criteria.getPage(), criteria.getSize()));
+        PageRequest pageRequest = createPageRequestAndSortByRecordedAt(criteria);
+        return repository.findAllByRecordedAtBetween(range.getStart(), range.getEnd(), pageRequest);
     }
 
     private static List<AuditEvent> mapToDomainEntities (List<JpaAuditEvent> page) {
         return page.stream()
             .map(JpaAuditEvent::toDomain)
             .toList();
+    }
+
+    private PageRequest createPageRequestAndSortByRecordedAt (PaginationCriteria criteria) {
+        return of(criteria.getPage(), criteria.getSize(), sortByRecordedAtDescending());
+    }
+
+    private Sort sortByRecordedAtDescending () {
+        return Sort.by(Sort.Direction.DESC, "recordedAt");
     }
 
     @Override
