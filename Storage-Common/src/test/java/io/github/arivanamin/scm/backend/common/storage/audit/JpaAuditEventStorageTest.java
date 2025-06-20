@@ -11,8 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.*;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -55,7 +54,9 @@ class JpaAuditEventStorageTest implements BaseUnitTest {
     @Test
     void findAllShouldReturnResultOfRepository () {
         // given
-        PageRequest pageRequest = of(PAGINATION_CRITERIA.getPage(), PAGINATION_CRITERIA.getSize());
+        Sort sort = Sort.by(Sort.Direction.DESC, "recordedAt");
+        PageRequest pageRequest =
+            of(PAGINATION_CRITERIA.getPage(), PAGINATION_CRITERIA.getSize(), sort);
         when(repository.findAllByRecordedAtBetween(start, end, pageRequest)).thenReturn(
             new PageImpl(events));
 
