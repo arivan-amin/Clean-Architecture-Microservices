@@ -47,6 +47,7 @@
         <pitest-plugin-version>1.19.5</pitest-plugin-version>
         <pitest-plugin-junit5-version>1.2.3</pitest-plugin-junit5-version>
         <pmd-plugin-version>3.26.0</pmd-plugin-version>
+        <spotbugs-plugin-version>4.9.3.0</spotbugs-plugin-version>
         <!-- Inherited dependency versions -->
         <core-module-version>1.0.0</core-module-version>
         <testing-module-version>1.0.0</testing-module-version>
@@ -348,6 +349,29 @@
                     <execution>
                         <id>PMD-Check</id>
                         <phase>prepare-package</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
+                <version>${spotbugs-plugin-version}</version>
+                <configuration>
+                    <effort>Max</effort>
+                    <threshold>Low</threshold>
+                    <failOnError>false</failOnError>
+                    <xmlOutput>true</xmlOutput>
+                    <includeTests>true</includeTests>
+                    <excludeFilterFile>
+                        ${project.basedir}/../src/main/resources/Spotbugs-Exclude.xml
+                    </excludeFilterFile>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>test</phase>
                         <goals>
                             <goal>check</goal>
                         </goals>
