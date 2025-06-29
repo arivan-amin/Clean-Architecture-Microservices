@@ -33,3 +33,4 @@ https://central.sonatype.com/artifact/org.apache.maven.plugins/maven-resources-p
 https://central.sonatype.com/artifact/org.pitest/pitest-maven
 https://central.sonatype.com/artifact/org.pitest/pitest-junit5-plugin
 https://central.sonatype.com/artifact/org.apache.maven.plugins/maven-pmd-plugin
+https://central.sonatype.com/artifact/com.github.spotbugs/spotbugs-maven-plugin
