@@ -3,6 +3,7 @@ volumes:
   mysql-data:
   redis-data:
   kafka-data:
+  tempo-data:
 
 x-base-service: &base-service
   restart: unless-stopped
@@ -34,12 +35,14 @@ services:
   tempo:
     container_name: Tempo
     restart: unless-stopped
-    image: grafana/tempo:2.7.2
+    image: grafana/tempo:2.3.0
     command: [ "-config.file=/etc/tempo.yaml" ]
     volumes:
       - ./Docker/tempo/tempo.yml:/etc/tempo.yaml:ro
+      - tempo-data:/var/tempo
     ports:
       - "3110:3100"
+      - "9411:9411" # zipkin
 
   loki:
     container_name: Loki
@@ -53,11 +56,11 @@ services:
     container_name: Promtail
     restart: unless-stopped
     image: grafana/promtail:3.4.3
+    command: -config.file=/etc/promtail/config.yml
     volumes:
       - ./Docker/promtail/promtail-config.yaml:/etc/promtail/config.yml
       - app-logs:/logs
       - ${HOME}/Apps/Spring-Clean-Microservices/Logs:/local-logs
-    command: -config.file=/etc/promtail/config.yml
 
   prometheus:
     container_name: Prometheus
