@@ -35,14 +35,23 @@ services:
   tempo:
     container_name: Tempo
     restart: unless-stopped
-    image: grafana/tempo:2.3.0
+    image: grafana/tempo:2.4.1
     command: [ "-config.file=/etc/tempo.yaml" ]
     volumes:
       - ./Docker/tempo/tempo.yml:/etc/tempo.yaml:ro
       - tempo-data:/var/tempo
     ports:
-      - "3110:3100"
-      - "9411:9411" # zipkin
+      - "3200:3200"
+  
+  opentelemetry:
+    container_name: OpenTelemetry
+    restart: unless-stopped
+    image: otel/opentelemetry-collector:0.99.0
+    command: [ "--config=/etc/otel-collector-config.yaml" ]
+    volumes:
+      - ./Docker/opentelemetry/opentelemetry-config.yaml:/etc/otel-collector-config.yaml
+    ports:
+      - "4318:4318"
 
   loki:
     container_name: Loki
