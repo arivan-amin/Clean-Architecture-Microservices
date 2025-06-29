@@ -11,6 +11,7 @@ import java.util.Base64;
 public final class SecureRandomSecretGenerator implements ClientSecretGenerator {
 
     public static final int ENCODING_BYTES = 32;
+    private final SecureRandom secureRandom = new SecureRandom();
 
     public static SecureRandomSecretGenerator newInstance () {
         return new SecureRandomSecretGenerator();
@@ -22,13 +23,13 @@ public final class SecureRandomSecretGenerator implements ClientSecretGenerator 
         return encodeSecretToBase64(bytes);
     }
 
-    private static byte[] generateSecureRandomSecret () {
+    private byte[] generateSecureRandomSecret () {
         byte[] bytes = new byte[ENCODING_BYTES];
-        new SecureRandom().nextBytes(bytes);
+        secureRandom.nextBytes(bytes);
         return bytes;
     }
 
-    private static String encodeSecretToBase64 (byte[] bytes) {
+    private String encodeSecretToBase64 (byte[] bytes) {
         return Base64.getUrlEncoder()
             .withoutPadding()
             .encodeToString(bytes);
