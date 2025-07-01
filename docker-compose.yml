@@ -35,7 +35,7 @@ services:
   tempo:
     container_name: Tempo
     restart: unless-stopped
-    image: grafana/tempo:2.4.1
+    image: grafana/tempo:2.8.1
     command: [ "-config.file=/etc/tempo.yaml" ]
     volumes:
       - ./Docker/tempo/tempo.yml:/etc/tempo.yaml:ro
@@ -43,20 +43,22 @@ services:
     ports:
       - "3200:3200"
   
-  opentelemetry:
-    container_name: OpenTelemetry
+  otel:
+    container_name: Otel
     restart: unless-stopped
-    image: otel/opentelemetry-collector:0.99.0
+    image: otel/opentelemetry-collector:0.128.0
     command: [ "--config=/etc/otel-collector-config.yaml" ]
     volumes:
-      - ./Docker/opentelemetry/opentelemetry-config.yaml:/etc/otel-collector-config.yaml
+      - ./Docker/otel/otel-config.yaml:/etc/otel-collector-config.yaml
     ports:
       - "4318:4318"
+    depends_on:
+      - tempo
 
   loki:
     container_name: Loki
     restart: unless-stopped
-    image: grafana/loki:3.4.3
+    image: grafana/loki:3.5
     command: [ "-config.file=/etc/loki/local-config.yaml" ]
     ports:
       - "3100:3100"
@@ -64,7 +66,7 @@ services:
   promtail:
     container_name: Promtail
     restart: unless-stopped
-    image: grafana/promtail:3.4.3
+    image: grafana/promtail:3.5
     command: -config.file=/etc/promtail/config.yml
     volumes:
       - ./Docker/promtail/promtail-config.yaml:/etc/promtail/config.yml
@@ -74,7 +76,7 @@ services:
   prometheus:
     container_name: Prometheus
     restart: unless-stopped
-    image: prom/prometheus:v3.2.1
+    image: prom/prometheus:v3.4.2
     command:
       - --enable-feature=exemplar-storage
       - --config.file=/etc/prometheus/prometheus.yml
@@ -82,11 +84,11 @@ services:
       - ./Docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
     ports:
       - "9090:9090"
-
+  #
   grafana:
     container_name: Grafana
     restart: unless-stopped
-    image: grafana/grafana:11.6.0
+    image: grafana/grafana:12.0.2
     volumes:
       - ./Docker/grafana:/etc/grafana/provisioning/datasources:ro
     environment:
@@ -95,11 +97,11 @@ services:
       - GF_AUTH_DISABLE_LOGIN_FORM=true
     ports:
       - "3000:3000"
-  
+  #  
   mysql:
     container_name: MySQL
     restart: unless-stopped
-    image: mysql:9.2.0
+    image: mysql:9.3.0
     environment:
       MYSQL_ROOT_PASSWORD: mysql
     ports:
@@ -124,7 +126,7 @@ services:
   redis:
     container_name: Redis-Server
     restart: unless-stopped
-    image: redis:7.4.2
+    image: redis:8.0.2
     ports:
       - "6379:6379"
     command: [ "redis-server", "--appendonly", "yes" ]
@@ -134,7 +136,7 @@ services:
   kafka:
     container_name: Kafka
     restart: unless-stopped
-    image: 'bitnami/kafka:4.0.0'
+    image: bitnami/kafka:4.0.0
     ports:
       - '9092:9092'
       - '9094:9094'
@@ -149,11 +151,6 @@ services:
       - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true
 
   ### Uncomment below if you want to start all services through docker compose 
-#  patient-service:
-#    <<: *base-service
-#    container_name: Patient-Service
-#    image: arivanamin/scm-patient-service
-#
 #  audit-service:
 #    <<: *base-service
 #    container_name: Audit-Service
@@ -163,3 +160,8 @@ services:
 #    <<: *base-service
 #    container_name: SSO-Service
 #    image: arivanamin/scm-sso-service
+#
+#  patient-service:
+#    <<: *base-service
+#    container_name: Patient-Service
+#    image: arivanamin/scm-patient-service

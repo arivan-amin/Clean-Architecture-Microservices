@@ -34,3 +34,16 @@ https://central.sonatype.com/artifact/org.pitest/pitest-maven
 https://central.sonatype.com/artifact/org.pitest/pitest-junit5-plugin
 https://central.sonatype.com/artifact/org.apache.maven.plugins/maven-pmd-plugin
 https://central.sonatype.com/artifact/com.github.spotbugs/spotbugs-maven-plugin
+
+# Docker Images
+
+https://hub.docker.com/r/grafana/tempo/tags
+https://hub.docker.com/r/otel/opentelemetry-collector/tags
+https://hub.docker.com/r/grafana/loki/tags
+https://hub.docker.com/r/grafana/promtail/tags
+https://hub.docker.com/r/prom/prometheus/tags
+https://hub.docker.com/r/grafana/grafana/tags
+https://hub.docker.com/_/mysql/tags
+https://hub.docker.com/r/phpmyadmin/phpmyadmin/tags
+https://hub.docker.com/_/redis/tags
+https://hub.docker.com/r/bitnami/kafka/tags
