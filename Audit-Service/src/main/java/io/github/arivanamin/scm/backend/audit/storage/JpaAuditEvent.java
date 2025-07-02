@@ -1,4 +1,4 @@
-package io.github.arivanamin.scm.backend.common.storage.audit;
+package io.github.arivanamin.scm.backend.audit.storage;
 
 import io.github.arivanamin.scm.backend.base.domain.audit.AuditEvent;
 import jakarta.persistence.*;

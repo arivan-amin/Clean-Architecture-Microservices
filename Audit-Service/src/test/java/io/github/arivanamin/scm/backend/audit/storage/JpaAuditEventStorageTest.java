@@ -1,4 +1,4 @@
-package io.github.arivanamin.scm.backend.common.storage.audit;
+package io.github.arivanamin.scm.backend.audit.storage;
 
 import io.github.arivanamin.scm.backend.base.domain.audit.AuditEvent;
 import io.github.arivanamin.scm.backend.base.domain.dates.DateTimeRange;
@@ -16,7 +16,7 @@ import org.springframework.data.domain.*;
 import java.time.LocalDateTime;
 import java.util.*;
 
-import static io.github.arivanamin.scm.backend.common.storage.audit.JpaAuditEvent.fromDomain;
+import static io.github.arivanamin.scm.backend.audit.storage.JpaAuditEvent.fromDomain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;

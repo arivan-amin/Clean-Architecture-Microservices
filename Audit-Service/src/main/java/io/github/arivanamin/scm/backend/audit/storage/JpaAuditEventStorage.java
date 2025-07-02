@@ -1,7 +1,7 @@
-package io.github.arivanamin.scm.backend.common.storage.audit;
+package io.github.arivanamin.scm.backend.audit.storage;
 
+import io.github.arivanamin.scm.backend.audit.core.persistence.AuditEventStorage;
 import io.github.arivanamin.scm.backend.base.domain.audit.AuditEvent;
-import io.github.arivanamin.scm.backend.base.domain.audit.AuditEventStorage;
 import io.github.arivanamin.scm.backend.base.domain.dates.DateTimeRange;
 import io.github.arivanamin.scm.backend.base.domain.pagination.PaginatedResponse;
 import io.github.arivanamin.scm.backend.base.domain.pagination.PaginationCriteria;
@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
-import static io.github.arivanamin.scm.backend.common.storage.audit.JpaAuditEvent.fromDomain;
+import static io.github.arivanamin.scm.backend.audit.storage.JpaAuditEvent.fromDomain;
 import static org.springframework.data.domain.PageRequest.of;
 
 @RequiredArgsConstructor
