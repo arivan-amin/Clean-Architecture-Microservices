@@ -10,10 +10,10 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>storage-common</artifactId>
+    <artifactId>outbox-storage</artifactId>
     <version>1.0.0</version>
-    <name>Storage-Common</name>
-    <description>Storage Common Module</description>
+    <name>Outbox-Storage</name>
+    <description>Outbox Storage Module</description>
 
     <properties>
         <spring-boot.repackage.skip>true</spring-boot.repackage.skip>
