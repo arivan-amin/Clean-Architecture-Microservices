@@ -51,7 +51,7 @@
         <!-- Inherited dependency versions -->
         <core-module-version>1.0.0</core-module-version>
         <testing-module-version>1.0.0</testing-module-version>
-        <storage-common-module-version>1.0.0</storage-common-module-version>
+        <outbox-storage-module-version>1.0.0</outbox-storage-module-version>
     </properties>
 
     <modules>
@@ -59,7 +59,7 @@
         <module>Api-Gateway</module>
         <module>Core</module>
         <module>Testing</module>
-        <module>Storage-Common</module>
+        <module>Outbox-Storage</module>
         <module>Audit-Service</module>
         <module>SSO-Service</module>
         <module>Patient-Service</module>
