@@ -1,7 +1,7 @@
 package io.github.arivanamin.scm.backend.audit.core.query;
 
+import io.github.arivanamin.scm.backend.audit.core.persistence.AuditEventStorage;
 import io.github.arivanamin.scm.backend.base.domain.audit.AuditEvent;
-import io.github.arivanamin.scm.backend.base.domain.audit.AuditEventStorage;
 import io.github.arivanamin.scm.backend.base.domain.dates.DateTimeRange;
 import io.github.arivanamin.scm.backend.base.domain.pagination.PaginatedResponse;
 import io.github.arivanamin.scm.backend.base.domain.pagination.PaginationCriteria;

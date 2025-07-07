@@ -3,7 +3,7 @@ package io.github.arivanamin.scm.backend.base.application.aspects;
 import io.github.arivanamin.scm.backend.base.application.audit.AuditDataExtractor;
 import io.github.arivanamin.scm.backend.base.domain.aspects.PerformanceTimer;
 import io.github.arivanamin.scm.backend.base.domain.audit.AuditEvent;
-import io.github.arivanamin.scm.backend.base.domain.audit.CreateAuditEventCommand;
+import io.github.arivanamin.scm.backend.base.domain.command.CreateAuditOutboxMessageCommand;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
@@ -22,7 +22,7 @@ import static io.github.arivanamin.scm.backend.base.domain.aspects.ExecuteAndLog
 @Slf4j
 class ControllerLoggingAspect {
 
-    private final CreateAuditEventCommand createCommand;
+    private final CreateAuditOutboxMessageCommand command;
     private final AuditDataExtractor dataExtractor;
 
     @Around ("""
@@ -66,7 +66,7 @@ class ControllerLoggingAspect {
     private void extractAuditEventDetailsAndSaveToStorage (ProceedingJoinPoint joinPoint,
                                                            Object result, long duration) {
         AuditEvent event = dataExtractor.extractAuditData(joinPoint, result, duration);
-        createCommand.execute(event);
+        command.execute(event);
     }
 
     private static String getMethodName (JoinPoint joinPoint) {

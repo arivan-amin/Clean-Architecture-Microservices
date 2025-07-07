@@ -13,6 +13,8 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+import static io.github.arivanamin.scm.backend.base.domain.dates.TimestampHelper.toTimestampInMilliseconds;
+
 @RequiredArgsConstructor
 @Slf4j
 public class AuditDataExtractor {
@@ -31,12 +33,12 @@ public class AuditDataExtractor {
 
         AuditEvent event = AuditEvent.builder()
             .serviceName(serviceName)
-            .recordedAt(LocalDateTime.now())
             .location(requestURL)
             .action(requestAnnotation)
             .data(parameters)
-            .response(response)
+            .timestamp(toTimestampInMilliseconds(LocalDateTime.now()))
             .duration(duration)
+            .response(response)
             .build();
 
         log.info("Created AuditEvent to be published = {}", event);

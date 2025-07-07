@@ -37,9 +37,8 @@ class TimestampHelperTest {
     @Test
     void toTimestampInMillisecondsShouldGenerateSampleForTesting () {
         Long start =
-            TimestampHelper.toTimestampInMilliseconds(LocalDateTime.of(2024, 12, 25, 0, 0, 0));
-        Long end =
-            TimestampHelper.toTimestampInMilliseconds(LocalDateTime.of(2024, 12, 30, 0, 0, 0));
+            TimestampHelper.toTimestampInMilliseconds(LocalDateTime.of(2025, 1, 1, 0, 0, 0));
+        Long end = TimestampHelper.toTimestampInMilliseconds(LocalDateTime.of(2027, 1, 1, 0, 0, 0));
         log.info("start = {}", start);
         log.info("end = {}", end);
     }
