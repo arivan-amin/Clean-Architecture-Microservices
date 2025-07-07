@@ -63,16 +63,25 @@ class JpaAuditEventStorageIntegrationTest extends BaseDatabaseTest {
             .numberBetween(1, 57)));
     }
 
+    private void createEventsOutsideOfDateTimeRange () {
+        createAuditEventsAndSaveToStorage(3, start.minusMinutes(3));
+        createAuditEventsAndSaveToStorage(3, end.plusMinutes(3));
+    }
+
+    private void whenFindAllIsCalled () {
+        result = storage.findAll(dateTimeRange, PaginationCriteria.of(0, eventsCount))
+            .getContent();
+    }
+
+    private void thenAssertThatAllEventsWithinDateTimeRangeIsReturned () {
+        assertThat(result.size()).isEqualTo(eventsCount);
+    }
+
     private void createAuditEventsAndSaveToStorage (int count, LocalDateTime recordedAt) {
         for (int i = 0; i < count; i++) {
             JpaAuditEvent entity = fromDomain(createSampleEvent(recordedAt));
             repository.save(entity);
         }
-    }
-
-    private void createEventsOutsideOfDateTimeRange () {
-        createAuditEventsAndSaveToStorage(3, start.minusMinutes(3));
-        createAuditEventsAndSaveToStorage(3, end.plusMinutes(3));
     }
 
     @Test
@@ -86,15 +95,6 @@ class JpaAuditEventStorageIntegrationTest extends BaseDatabaseTest {
 
         // then
         thenAssertThatAllEventsWithinDateTimeRangeIsReturned();
-    }
-
-    private void whenFindAllIsCalled () {
-        result = storage.findAll(dateTimeRange, PaginationCriteria.of(0, eventsCount))
-            .getContent();
-    }
-
-    private void thenAssertThatAllEventsWithinDateTimeRangeIsReturned () {
-        assertThat(result.size()).isEqualTo(eventsCount);
     }
 
     @Test
