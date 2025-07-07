@@ -18,7 +18,7 @@ import static io.github.arivanamin.scm.backend.base.domain.topics.AuditTopics.AP
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class ApiAuditConsumer {
+public class AuditEventsConsumer {
 
     private final CreateAuditEventCommand createCommand;
     private final UpdateAuditOutboxMessageStatusCommand updateCommand;

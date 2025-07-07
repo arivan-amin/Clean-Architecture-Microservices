@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import org.hibernate.annotations.UuidGenerator;
 import org.modelmapper.ModelMapper;
 
 import java.time.LocalDateTime;
@@ -26,7 +25,6 @@ import static io.github.arivanamin.scm.backend.base.domain.dates.TimestampHelper
 public class JpaAuditEvent {
 
     @Id
-    @UuidGenerator
     UUID id;
 
     @NotBlank
