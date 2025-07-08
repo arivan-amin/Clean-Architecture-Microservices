@@ -43,6 +43,7 @@ public class JpaAuditOutboxMessageStorage implements AuditOutboxMessageStorage {
         repository.save(message);
     }
 
+    @Transactional
     @Override
     public void deleteAllCompleted () {
         List<JpaAuditOutboxMessage> completedMessages =

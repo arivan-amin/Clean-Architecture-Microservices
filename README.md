@@ -77,6 +77,10 @@ Command and Query Separation Principle to implement Business logic.
 
 Implemented in **API Gateway** using **Redis Rate Limiter**.
 
+### Outbox Pattern
+
+Implements Outbox Pattern for sending audit events to guarantee 100% message delivery.
+
 ### ArchUnit
 
 Validate architectural boundaries and verify adherence to best coding standards.
