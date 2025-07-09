@@ -19,20 +19,20 @@ import static io.github.arivanamin.scm.backend.base.domain.topics.AuditTopics.AP
 @Slf4j
 public class AuditEventsOutboxScheduler {
 
-    public static final int SCHEDULED_TIMING = 20_000;
-
+    private static final String SCHEDULER_CRONJOB = "${scheduler.cronjob}";
+    
     private final AuditEventPublisher publisher;
     private final ReadAuditOutboxMessageByStatusQuery query;
     private final DeleteCompletedAuditOutboxMessagesCommand deleteCommand;
 
-    @Scheduled (fixedRate = SCHEDULED_TIMING, initialDelay = SCHEDULED_TIMING)
+    @Scheduled (cron = SCHEDULER_CRONJOB)
     void sendEvents () {
         List<AuditEvent> auditEvents = query.execute(OutboxMessageStatus.PENDING);
         log.info("Pending auditEvents to be published = {}", auditEvents.size());
         auditEvents.forEach(event -> publisher.sendAuditLog(API_AUDIT_TOPIC, event));
     }
 
-    @Scheduled (fixedRate = SCHEDULED_TIMING, initialDelay = SCHEDULED_TIMING)
+    @Scheduled (cron = SCHEDULER_CRONJOB)
     void deleteCompletedEvents () {
         List<AuditEvent> completedEvents = query.execute(OutboxMessageStatus.COMPLETED);
         log.info("Completed events to be deleted = {}", completedEvents.size());
