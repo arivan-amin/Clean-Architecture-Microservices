@@ -1,4 +1,4 @@
-# Spring Microservices
+# Clean Architecture Microservices with Spring Boot
 
 ## Overview
 
@@ -31,8 +31,8 @@ best development practices.
 
 ### Automatic Audit Logs Recording
 
-Uses Spring **AOP** to create Audit Events automatically whenever any API in any of the services are
-called and save it to persistence, allowing the controllers to be clutter-free and simple.
+Use Spring **AOP** to create Audit Events automatically whenever any API in any of the services are
+called and save it to persistence, allowing the controllers to be clutter-free.
 
 ### Clean Restful API in all services
 
@@ -218,7 +218,8 @@ Core entities have no association with JPA and are never annotated with @Entity.
    ```
    docker compose up -d
    ```
-5. **Start the services(Patient, Audit,...) manually or uncomment the section in docker compose file
+5. **Start the services(Patient, Audit, ...) manually or uncomment the section in docker compose
+   file
    to run everything with Docker Compose:**
    ```
    docker compose up -d
@@ -267,7 +268,7 @@ Core entities have no association with JPA and are never annotated with @Entity.
 - **Storage Common Module**: Contains classes related to storage and database handling shared with
   all modules.
 - **Patient Service**: Manages patient data.
-- **Audit Service**: Stores Audit Events, ensures compliance, and data integrity.
+- **Audit Service**: Stores Audit Events, ensures compliance and data integrity.
 - **SSO Service**: Handles authentication and authorization using Keycloak.
 
 ---
