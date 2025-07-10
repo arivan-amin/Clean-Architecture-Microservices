@@ -25,37 +25,7 @@ best development practices.
 
 ## Architecture Overview
 
-```
-                               +----------------+
-                               |    Keycloak    |
-                               | (Auth Server)  |
-                               +-------+--------+
-                                       | Keycloak not yet implemented
-                                       v
-                               +-------+--------+             +-------------------+
-      Client Request           |   API Gateway  | ----------> | Discovery Server  |<---
----------------------------->  |    (Spring)    | <---------- |      (EUREKA)     |<- |
-                               +-------+--------+             +-------------------+ | |
-                                       |                                            | |
-                         Authenticated | Request                                    | |
-                                       |                                            | |
-                                       v                                            | |
-                 Actuator    +---------+---------+     AOP     +-----------------+  | |
-          -------------------|  Patient Service  | ----------> |   Audit Events  |  | |
-          |     Prometheus   |   (RESTful API)   | <---------- |       Table     |  | |
-          v                  +---------+---------+    Aspect   +--------+--------+  | |
-+---------+--------+                    |     |                         ^           | |
-|      Grafana     |                    |     ------------              |           | |
-|  Metrics & Logs  |                    |                |              | Query     | |
-|  Visualization   |              Write |                |              |           | |
-+---------+--------+              Logs  |   Write Logs   |     +--------+--------+  | |
-          |                             |  --------------|-----|  Audit Service  |--- |
-          | Read Logs                   v  v             |     +--------+--------+    |
-          |                     +-------+-------+        |                            |
-          --------------------> | Docker Volume |        |                            |
-                                +-------+-------+        ------------------------------ 
-                                                               Register with Eureka
-```
+![image](https://raw.githubusercontent.com/arivan-amin/Spring-Clean-Microservices/master/Docs/Diagram/Architecture-Diagram.jpg)
 
 ## Notable Features
 
