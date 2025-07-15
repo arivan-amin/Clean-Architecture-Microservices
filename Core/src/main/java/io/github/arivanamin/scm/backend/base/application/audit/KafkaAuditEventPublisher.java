@@ -17,7 +17,7 @@ public class KafkaAuditEventPublisher implements AuditEventPublisher {
 
     @Override
     public void sendAuditLog (String topic, AuditEvent event) {
-        log.info("event in publisher to be sent = {}", event);
+        log.info("Kafka received audit event to be sent = {}", event);
         kafkaTemplate.send(topic, event)
             .thenAccept(result -> {
                 updateCommand.execute(event.getId(), OutboxMessageStatus.SENT);

@@ -1,9 +1,11 @@
 package io.github.arivanamin.scm.backend.common.storage.audit;
 
 import io.github.arivanamin.scm.backend.base.domain.outbox.*;
+import jakarta.persistence.LockModeType;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.jpa.repository.Lock;
 
 import java.util.*;
 
@@ -13,6 +15,7 @@ public class JpaAuditOutboxMessageStorage implements AuditOutboxMessageStorage {
 
     private final AuditOutboxMessageRepository repository;
 
+    @Lock (LockModeType.PESSIMISTIC_WRITE)
     @Override
     public List<AuditOutboxMessage> findAllByStatus (OutboxMessageStatus status) {
         return repository.findAllByStatus(status)
@@ -34,6 +37,7 @@ public class JpaAuditOutboxMessageStorage implements AuditOutboxMessageStorage {
             .getId();
     }
 
+    @Lock (LockModeType.PESSIMISTIC_WRITE)
     @Transactional
     @Override
     public void updateMessageStatus (UUID messageId, OutboxMessageStatus status) {
@@ -43,6 +47,7 @@ public class JpaAuditOutboxMessageStorage implements AuditOutboxMessageStorage {
         repository.save(message);
     }
 
+    @Lock (LockModeType.PESSIMISTIC_WRITE)
     @Transactional
     @Override
     public void deleteAllCompleted () {

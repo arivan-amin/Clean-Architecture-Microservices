@@ -12,6 +12,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 
 import java.util.List;
 
+import static io.github.arivanamin.scm.backend.base.application.scheduler.SchedulerHelper.SCHEDULER_CRONJOB;
 import static io.github.arivanamin.scm.backend.base.domain.topics.AuditTopics.API_AUDIT_TOPIC;
 
 @Configuration
@@ -19,8 +20,6 @@ import static io.github.arivanamin.scm.backend.base.domain.topics.AuditTopics.AP
 @Slf4j
 public class AuditEventsOutboxScheduler {
 
-    private static final String SCHEDULER_CRONJOB = "${scheduler.cronjob}";
-    
     private final AuditEventPublisher publisher;
     private final ReadAuditOutboxMessageByStatusQuery query;
     private final DeleteCompletedAuditOutboxMessagesCommand deleteCommand;
