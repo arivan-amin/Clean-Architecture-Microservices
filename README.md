@@ -13,8 +13,8 @@ best development practices.
 ## Quick Info
 
 ![Java](https://img.shields.io/badge/java-21-brightgreen)
-![SpringBoot](https://img.shields.io/badge/spring--boot-3.5.4-brightgreen)
-![Maven](https://img.shields.io/badge/Maven-3.9.9-blue)
+![SpringBoot](https://img.shields.io/badge/spring--boot-3.5.5-brightgreen)
+![Maven](https://img.shields.io/badge/Maven-3.9.10-blue)
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
 ![License](https://img.shields.io/badge/license-MIT-brightgreen)
 
