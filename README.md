@@ -265,8 +265,8 @@ Core entities have no association with JPA and are never annotated with @Entity.
 - **Discovery Server**: Dynamic service discovery and registry.
 - **API Gateway**: Centralized entry point for routing and security.
 - **Core Module**: Shared utilities and functionality.
-- **Storage Common Module**: Contains classes related to storage and database handling shared with
-  all modules.
+- **Outbox Storage Module**: Contains classes related to outbox messages storage, shared with
+  all the modules.
 - **Patient Service**: Manages patient data.
 - **Audit Service**: Stores Audit Events, ensures compliance and data integrity.
 - **SSO Service**: Handles authentication and authorization using Keycloak.
