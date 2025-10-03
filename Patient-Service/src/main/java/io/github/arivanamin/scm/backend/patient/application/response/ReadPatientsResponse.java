@@ -1,7 +1,7 @@
 package io.github.arivanamin.scm.backend.patient.application.response;
 
-import io.github.arivanamin.scm.backend.base.domain.pagination.PageData;
-import io.github.arivanamin.scm.backend.base.domain.pagination.PaginatedResponse;
+import io.github.arivanamin.scm.backend.base.core.pagination.PageData;
+import io.github.arivanamin.scm.backend.base.core.pagination.PaginatedResponse;
 import io.github.arivanamin.scm.backend.patient.core.entity.Patient;
 import lombok.Value;
 

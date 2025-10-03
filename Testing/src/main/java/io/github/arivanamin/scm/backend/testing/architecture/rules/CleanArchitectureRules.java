@@ -1,8 +1,7 @@
 package io.github.arivanamin.scm.backend.testing.architecture.rules;
 
 import com.tngtech.archunit.base.DescribedPredicate;
-import com.tngtech.archunit.core.domain.JavaMethod;
-import com.tngtech.archunit.core.domain.JavaModifier;
+import com.tngtech.archunit.core.domain.*;
 import com.tngtech.archunit.junit.ArchTest;
 import com.tngtech.archunit.lang.ArchRule;
 import io.github.arivanamin.scm.backend.testing.architecture.rules.predicates.*;
@@ -10,6 +9,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.persistence.Entity;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.repository.Repository;
@@ -24,7 +24,7 @@ import static com.tngtech.archunit.core.domain.properties.CanBeAnnotated.Predica
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.*;
 import static com.tngtech.archunit.library.Architectures.layeredArchitecture;
 import static com.tngtech.archunit.library.ProxyRules.no_classes_should_directly_call_other_methods_declared_in_the_same_class_that_are_annotated_with;
-import static io.github.arivanamin.scm.backend.base.domain.config.CoreApplicationConfig.BASE_PACKAGE;
+import static io.github.arivanamin.scm.backend.base.core.config.CoreApplicationConfig.BASE_PACKAGE;
 
 public interface CleanArchitectureRules {
 
@@ -111,21 +111,24 @@ public interface CleanArchitectureRules {
         .resideInAPackage(STORAGE_PACKAGE)
         .should()
         .accessClassesThat()
-        .resideInAPackage(APPLICATION_PACKAGE);
+        .resideInAPackage(APPLICATION_PACKAGE)
+        .allowEmptyShould(true);
 
     @ArchTest
     ArchRule STORAGE_LAYER_SHOULD_NOT_DEPEND_ON_APPLICATION_LAYER = noClasses().that()
         .resideInAPackage(STORAGE_PACKAGE)
         .should()
         .dependOnClassesThat()
-        .resideInAPackage(APPLICATION_PACKAGE);
+        .resideInAPackage(APPLICATION_PACKAGE)
+        .allowEmptyShould(true);
 
     @ArchTest
     ArchRule STORAGE_LAYER_SHOULD_ONLY_BE_ACCESSED_BY_APPLICATION_LAYER = classes().that()
         .resideInAPackage(STORAGE_PACKAGE)
         .should()
         .onlyBeAccessed()
-        .byAnyPackage(APPLICATION_PACKAGE, STORAGE_PACKAGE);
+        .byAnyPackage(APPLICATION_PACKAGE, STORAGE_PACKAGE)
+        .allowEmptyShould(true);
 
     @ArchTest
     ArchRule INTERFACES_MUST_NOT_BE_PLACED_IN_IMPLEMENTATION_PACKAGES = noClasses().that()
@@ -169,9 +172,10 @@ public interface CleanArchitectureRules {
         .definedBy(BASE_PACKAGE + CORE_PACKAGE)
         .layer(STORAGE_LAYER)
         .definedBy(BASE_PACKAGE + STORAGE_PACKAGE)
-
         .whereLayer(APPLICATION_LAYER)
         .mayNotBeAccessedByAnyLayer()
+        .ignoreDependency(annotatedWith(SpringBootApplication.class),
+            JavaClass.Predicates.resideInAPackage(APPLICATION_PACKAGE))
         .whereLayer(STORAGE_LAYER)
         .mayOnlyBeAccessedByLayers(APPLICATION_LAYER);
 

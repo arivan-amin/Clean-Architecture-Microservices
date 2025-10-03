@@ -48,7 +48,7 @@ services:
       - "3200:3200"
   
   otel:
-    image: otel/opentelemetry-collector:0.133.0
+    image: otel/opentelemetry-collector:0.136.0
     container_name: Otel
     restart: unless-stopped
     command:
@@ -61,7 +61,7 @@ services:
       - tempo
 
   loki:
-    image: grafana/loki:3.5.3
+    image: grafana/loki:3.5.5
     container_name: Loki
     restart: unless-stopped
     command:
@@ -72,7 +72,7 @@ services:
       - "3100:3100"
 
   promtail:
-    image: grafana/promtail:3.5.3
+    image: grafana/promtail:3.5.5
     container_name: Promtail
     restart: unless-stopped
     command:
@@ -83,7 +83,7 @@ services:
       - ${HOME}/Apps/Spring-Clean-Microservices/Logs:/local-logs
 
   prometheus:
-    image: prom/prometheus:v3.5.0
+    image: prom/prometheus:v3.6.0
     container_name: Prometheus
     restart: unless-stopped
     command:
@@ -97,7 +97,7 @@ services:
 
 
   grafana:
-    image: grafana/grafana:12.1.1
+    image: grafana/grafana:12.2.0
     container_name: Grafana
     restart: unless-stopped
     volumes:
@@ -136,7 +136,7 @@ services:
       - mysql
 
   redis:
-    image: redis:8.0.3
+    image: redis:8.2.1
     container_name: Redis-Server
     restart: unless-stopped
     command:

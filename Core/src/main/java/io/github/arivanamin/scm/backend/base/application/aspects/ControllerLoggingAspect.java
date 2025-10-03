@@ -1,9 +1,9 @@
 package io.github.arivanamin.scm.backend.base.application.aspects;
 
 import io.github.arivanamin.scm.backend.base.application.audit.AuditDataExtractor;
-import io.github.arivanamin.scm.backend.base.domain.aspects.PerformanceTimer;
-import io.github.arivanamin.scm.backend.base.domain.audit.AuditEvent;
-import io.github.arivanamin.scm.backend.base.domain.command.CreateAuditOutboxMessageCommand;
+import io.github.arivanamin.scm.backend.base.core.aspects.PerformanceTimer;
+import io.github.arivanamin.scm.backend.base.core.audit.AuditEvent;
+import io.github.arivanamin.scm.backend.base.core.command.CreateAuditOutboxMessageCommand;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-import static io.github.arivanamin.scm.backend.base.domain.aspects.ExecuteAndLogPerformance.executeThrowable;
+import static io.github.arivanamin.scm.backend.base.core.aspects.ExecuteAndLogPerformance.executeThrowable;
 
 @Aspect
 @Component

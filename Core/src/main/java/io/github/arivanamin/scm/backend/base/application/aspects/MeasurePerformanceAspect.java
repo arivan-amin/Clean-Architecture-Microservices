@@ -1,6 +1,6 @@
 package io.github.arivanamin.scm.backend.base.application.aspects;
 
-import io.github.arivanamin.scm.backend.base.domain.aspects.PerformanceTimer;
+import io.github.arivanamin.scm.backend.base.core.aspects.PerformanceTimer;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-import static io.github.arivanamin.scm.backend.base.domain.aspects.ExecuteAndLogPerformance.executeThrowable;
-import static io.github.arivanamin.scm.backend.base.domain.config.CoreApplicationConfig.BASE_PACKAGE;
+import static io.github.arivanamin.scm.backend.base.core.aspects.ExecuteAndLogPerformance.executeThrowable;
+import static io.github.arivanamin.scm.backend.base.core.config.CoreApplicationConfig.BASE_PACKAGE;
 
 @Aspect
 @Component

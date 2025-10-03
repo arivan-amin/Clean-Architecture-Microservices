@@ -1,11 +1,11 @@
 package io.github.arivanamin.scm.backend.patient.application.request;
 
-import io.github.arivanamin.scm.backend.base.domain.gender.Gender;
+import io.github.arivanamin.scm.backend.base.core.gender.Gender;
 import io.github.arivanamin.scm.backend.patient.core.entity.Patient;
 import lombok.*;
 import org.modelmapper.ModelMapper;
 
-import static io.github.arivanamin.scm.backend.base.domain.dates.TimestampHelper.toLocalDateTime;
+import static io.github.arivanamin.scm.backend.base.core.dates.TimestampHelper.toLocalDateTime;
 
 @Data
 @NoArgsConstructor

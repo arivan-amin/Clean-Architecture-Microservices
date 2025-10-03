@@ -1,8 +1,8 @@
 package io.github.arivanamin.scm.backend.testing.architecture.bases;
 
 import com.github.javafaker.Faker;
-import io.github.arivanamin.scm.backend.base.domain.pagination.PageData;
-import io.github.arivanamin.scm.backend.base.domain.pagination.PaginationCriteria;
+import io.github.arivanamin.scm.backend.base.core.pagination.PageData;
+import io.github.arivanamin.scm.backend.base.core.pagination.PaginationCriteria;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.PageRequest;

@@ -1,6 +1,6 @@
 package io.github.arivanamin.scm.backend.base.application.outbox;
 
-import io.github.arivanamin.scm.backend.base.domain.outbox.*;
+import io.github.arivanamin.scm.backend.base.core.outbox.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 

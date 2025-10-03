@@ -1,6 +1,6 @@
 package io.github.arivanamin.scm.backend.patient.core.entity;
 
-import io.github.arivanamin.scm.backend.base.domain.gender.Gender;
+import io.github.arivanamin.scm.backend.base.core.gender.Gender;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 

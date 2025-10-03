@@ -8,8 +8,8 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 
-import static io.github.arivanamin.scm.backend.base.domain.dates.TimestampHelper.toLocalDateTime;
-import static io.github.arivanamin.scm.backend.base.domain.dates.TimestampHelper.toTimestampInMilliseconds;
+import static io.github.arivanamin.scm.backend.base.core.dates.TimestampHelper.toLocalDateTime;
+import static io.github.arivanamin.scm.backend.base.core.dates.TimestampHelper.toTimestampInMilliseconds;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j

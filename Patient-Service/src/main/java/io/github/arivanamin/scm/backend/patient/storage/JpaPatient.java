@@ -1,7 +1,7 @@
 package io.github.arivanamin.scm.backend.patient.storage;
 
-import io.github.arivanamin.scm.backend.base.domain.gender.Gender;
-import io.github.arivanamin.scm.backend.common.domain.persistence.StorageAuditData;
+import io.github.arivanamin.scm.backend.base.core.gender.Gender;
+import io.github.arivanamin.scm.backend.outbox.storage.audit.StorageAuditData;
 import io.github.arivanamin.scm.backend.patient.core.entity.Patient;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;

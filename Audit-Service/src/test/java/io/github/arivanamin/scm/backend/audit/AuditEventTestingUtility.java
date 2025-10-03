@@ -1,6 +1,6 @@
 package io.github.arivanamin.scm.backend.audit;
 
-import io.github.arivanamin.scm.backend.base.domain.audit.AuditEvent;
+import io.github.arivanamin.scm.backend.base.core.audit.AuditEvent;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.instancio.Instancio;
@@ -8,7 +8,7 @@ import org.instancio.Instancio;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import static io.github.arivanamin.scm.backend.base.domain.dates.TimestampHelper.toTimestampInMilliseconds;
+import static io.github.arivanamin.scm.backend.base.core.dates.TimestampHelper.toTimestampInMilliseconds;
 
 @NoArgsConstructor (access = AccessLevel.PRIVATE)
 public final class AuditEventTestingUtility {

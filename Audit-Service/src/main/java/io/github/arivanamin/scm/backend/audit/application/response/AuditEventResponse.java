@@ -1,6 +1,6 @@
 package io.github.arivanamin.scm.backend.audit.application.response;
 
-import io.github.arivanamin.scm.backend.base.domain.audit.AuditEvent;
+import io.github.arivanamin.scm.backend.base.core.audit.AuditEvent;
 import lombok.*;
 import org.modelmapper.ModelMapper;
 

@@ -5,7 +5,7 @@ import lombok.Value;
 
 import java.time.LocalDateTime;
 
-import static io.github.arivanamin.scm.backend.base.domain.dates.TimestampHelper.toLocalDateTime;
+import static io.github.arivanamin.scm.backend.base.core.dates.TimestampHelper.toLocalDateTime;
 
 @Value
 @AllArgsConstructor

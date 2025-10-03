@@ -1,8 +1,8 @@
 package io.github.arivanamin.scm.backend.audit.application.response;
 
-import io.github.arivanamin.scm.backend.base.domain.audit.AuditEvent;
-import io.github.arivanamin.scm.backend.base.domain.pagination.PageData;
-import io.github.arivanamin.scm.backend.base.domain.pagination.PaginatedResponse;
+import io.github.arivanamin.scm.backend.base.core.audit.AuditEvent;
+import io.github.arivanamin.scm.backend.base.core.pagination.PageData;
+import io.github.arivanamin.scm.backend.base.core.pagination.PaginatedResponse;
 import lombok.Value;
 
 import java.util.List;

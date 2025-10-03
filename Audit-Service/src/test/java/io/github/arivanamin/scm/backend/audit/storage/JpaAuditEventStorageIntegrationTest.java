@@ -1,9 +1,9 @@
 package io.github.arivanamin.scm.backend.audit.storage;
 
-import io.github.arivanamin.scm.backend.base.domain.audit.AuditEvent;
-import io.github.arivanamin.scm.backend.base.domain.dates.DateTimeRange;
-import io.github.arivanamin.scm.backend.base.domain.dates.TimestampHelper;
-import io.github.arivanamin.scm.backend.base.domain.pagination.PaginationCriteria;
+import io.github.arivanamin.scm.backend.base.core.audit.AuditEvent;
+import io.github.arivanamin.scm.backend.base.core.dates.DateTimeRange;
+import io.github.arivanamin.scm.backend.base.core.dates.TimestampHelper;
+import io.github.arivanamin.scm.backend.base.core.pagination.PaginationCriteria;
 import io.github.arivanamin.scm.backend.testing.architecture.bases.BaseDatabaseTest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;

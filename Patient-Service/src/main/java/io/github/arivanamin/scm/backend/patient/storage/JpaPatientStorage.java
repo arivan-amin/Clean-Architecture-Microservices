@@ -1,6 +1,6 @@
 package io.github.arivanamin.scm.backend.patient.storage;
 
-import io.github.arivanamin.scm.backend.base.domain.pagination.*;
+import io.github.arivanamin.scm.backend.base.core.pagination.*;
 import io.github.arivanamin.scm.backend.patient.core.entity.Patient;
 import io.github.arivanamin.scm.backend.patient.core.persistence.PatientStorage;
 import lombok.RequiredArgsConstructor;

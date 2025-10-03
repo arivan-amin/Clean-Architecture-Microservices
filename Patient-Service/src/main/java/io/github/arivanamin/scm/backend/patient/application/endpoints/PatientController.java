@@ -1,6 +1,6 @@
 package io.github.arivanamin.scm.backend.patient.application.endpoints;
 
-import io.github.arivanamin.scm.backend.base.domain.pagination.PaginationCriteria;
+import io.github.arivanamin.scm.backend.base.core.pagination.PaginationCriteria;
 import io.github.arivanamin.scm.backend.patient.application.request.CreatePatientRequest;
 import io.github.arivanamin.scm.backend.patient.application.request.UpdatePatientRequest;
 import io.github.arivanamin.scm.backend.patient.application.response.*;

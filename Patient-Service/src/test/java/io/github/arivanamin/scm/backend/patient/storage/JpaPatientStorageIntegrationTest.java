@@ -1,7 +1,7 @@
 package io.github.arivanamin.scm.backend.patient.storage;
 
-import io.github.arivanamin.scm.backend.base.domain.gender.Gender;
-import io.github.arivanamin.scm.backend.base.domain.pagination.PaginationCriteria;
+import io.github.arivanamin.scm.backend.base.core.gender.Gender;
+import io.github.arivanamin.scm.backend.base.core.pagination.PaginationCriteria;
 import io.github.arivanamin.scm.backend.patient.core.entity.Patient;
 import io.github.arivanamin.scm.backend.testing.architecture.bases.BaseDatabaseTest;
 import lombok.extern.slf4j.Slf4j;

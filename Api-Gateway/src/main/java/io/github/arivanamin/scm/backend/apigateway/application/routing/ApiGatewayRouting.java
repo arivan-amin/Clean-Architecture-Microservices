@@ -1,8 +1,8 @@
 package io.github.arivanamin.scm.backend.apigateway.application.routing;
 
+import io.github.arivanamin.scm.backend.apigateway.application.config.EurekaProperties;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.route.Route;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.*;
@@ -11,21 +11,16 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.function.Function;
 
-import static io.github.arivanamin.scm.backend.base.domain.config.ServicesNamesHelper.AUDIT_SERVICE;
-import static io.github.arivanamin.scm.backend.base.domain.config.ServicesNamesHelper.PATIENT_SERVICE;
+import static io.github.arivanamin.scm.backend.base.core.config.ServicesNamesHelper.AUDIT_SERVICE;
+import static io.github.arivanamin.scm.backend.base.core.config.ServicesNamesHelper.PATIENT_SERVICE;
 
 @Slf4j
 @Configuration
 @RequiredArgsConstructor
-public class ApiGatewayRouting {
+class ApiGatewayRouting {
 
     private final RoutingHelper routingHelper;
-
-    @Value ("${EUREKA_HOST:localhost}")
-    private String eurekaHost;
-
-    @Value ("${EUREKA_PORT:8761}")
-    private String eurekaPort;
+    private final EurekaProperties eurekaProperties;
 
     @Bean
     public RouteLocator routeLocator (RouteLocatorBuilder builder) {
@@ -77,6 +72,6 @@ public class ApiGatewayRouting {
     }
 
     private String getEurekaUrl () {
-        return "http://%s:%s".formatted(eurekaHost, eurekaPort);
+        return "http://%s:%s".formatted(eurekaProperties.host(), eurekaProperties.port());
     }
 }

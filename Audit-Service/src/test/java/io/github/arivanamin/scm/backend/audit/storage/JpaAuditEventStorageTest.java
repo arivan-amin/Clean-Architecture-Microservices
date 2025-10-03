@@ -1,9 +1,9 @@
 package io.github.arivanamin.scm.backend.audit.storage;
 
-import io.github.arivanamin.scm.backend.base.domain.audit.AuditEvent;
-import io.github.arivanamin.scm.backend.base.domain.dates.DateTimeRange;
-import io.github.arivanamin.scm.backend.base.domain.pagination.PaginatedResponse;
-import io.github.arivanamin.scm.backend.common.domain.exception.AuditEventNotFoundException;
+import io.github.arivanamin.scm.backend.audit.core.exception.AuditEventNotFoundException;
+import io.github.arivanamin.scm.backend.base.core.audit.AuditEvent;
+import io.github.arivanamin.scm.backend.base.core.dates.DateTimeRange;
+import io.github.arivanamin.scm.backend.base.core.pagination.PaginatedResponse;
 import io.github.arivanamin.scm.backend.testing.architecture.bases.BaseUnitTest;
 import lombok.extern.slf4j.Slf4j;
 import org.instancio.Instancio;

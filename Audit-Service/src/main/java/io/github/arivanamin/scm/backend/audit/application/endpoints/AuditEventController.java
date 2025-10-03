@@ -4,8 +4,8 @@ import io.github.arivanamin.scm.backend.audit.application.response.AuditEventRes
 import io.github.arivanamin.scm.backend.audit.application.response.ReadAuditEventsResponse;
 import io.github.arivanamin.scm.backend.audit.core.query.ReadAuditEventByIdQuery;
 import io.github.arivanamin.scm.backend.audit.core.query.ReadAuditEventsQuery;
-import io.github.arivanamin.scm.backend.base.domain.dates.DateTimeRange;
-import io.github.arivanamin.scm.backend.base.domain.pagination.PaginationCriteria;
+import io.github.arivanamin.scm.backend.base.core.dates.DateTimeRange;
+import io.github.arivanamin.scm.backend.base.core.pagination.PaginationCriteria;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;

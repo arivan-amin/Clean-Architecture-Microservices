@@ -1,11 +1,11 @@
 package io.github.arivanamin.scm.backend.audit.storage;
 
 import io.github.arivanamin.scm.backend.audit.core.persistence.AuditEventStorage;
-import io.github.arivanamin.scm.backend.base.domain.audit.AuditEvent;
-import io.github.arivanamin.scm.backend.base.domain.dates.DateTimeRange;
-import io.github.arivanamin.scm.backend.base.domain.pagination.PaginatedResponse;
-import io.github.arivanamin.scm.backend.base.domain.pagination.PaginationCriteria;
-import io.github.arivanamin.scm.backend.common.domain.util.PaginationHelper;
+import io.github.arivanamin.scm.backend.base.core.audit.AuditEvent;
+import io.github.arivanamin.scm.backend.base.core.dates.DateTimeRange;
+import io.github.arivanamin.scm.backend.base.core.pagination.PaginatedResponse;
+import io.github.arivanamin.scm.backend.base.core.pagination.PaginationCriteria;
+import io.github.arivanamin.scm.backend.outbox.storage.util.PaginationHelper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.*;

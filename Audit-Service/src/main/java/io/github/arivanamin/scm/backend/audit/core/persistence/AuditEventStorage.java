@@ -1,9 +1,9 @@
 package io.github.arivanamin.scm.backend.audit.core.persistence;
 
-import io.github.arivanamin.scm.backend.base.domain.audit.AuditEvent;
-import io.github.arivanamin.scm.backend.base.domain.dates.DateTimeRange;
-import io.github.arivanamin.scm.backend.base.domain.pagination.PaginatedResponse;
-import io.github.arivanamin.scm.backend.base.domain.pagination.PaginationCriteria;
+import io.github.arivanamin.scm.backend.base.core.audit.AuditEvent;
+import io.github.arivanamin.scm.backend.base.core.dates.DateTimeRange;
+import io.github.arivanamin.scm.backend.base.core.pagination.PaginatedResponse;
+import io.github.arivanamin.scm.backend.base.core.pagination.PaginationCriteria;
 
 import java.util.Optional;
 import java.util.UUID;

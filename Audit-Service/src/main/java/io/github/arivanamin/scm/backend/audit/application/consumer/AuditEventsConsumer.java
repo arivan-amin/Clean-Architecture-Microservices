@@ -1,10 +1,10 @@
 package io.github.arivanamin.scm.backend.audit.application.consumer;
 
 import io.github.arivanamin.scm.backend.audit.core.command.CreateAuditEventCommand;
-import io.github.arivanamin.scm.backend.base.domain.aspects.LogExecutionTime;
-import io.github.arivanamin.scm.backend.base.domain.audit.AuditEvent;
-import io.github.arivanamin.scm.backend.base.domain.command.UpdateAuditOutboxMessageStatusCommand;
-import io.github.arivanamin.scm.backend.base.domain.outbox.OutboxMessageStatus;
+import io.github.arivanamin.scm.backend.base.core.aspects.LogExecutionTime;
+import io.github.arivanamin.scm.backend.base.core.audit.AuditEvent;
+import io.github.arivanamin.scm.backend.base.core.command.UpdateAuditOutboxMessageStatusCommand;
+import io.github.arivanamin.scm.backend.base.core.outbox.OutboxMessageStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
-import static io.github.arivanamin.scm.backend.base.domain.topics.AuditTopics.API_AUDIT_TOPIC;
+import static io.github.arivanamin.scm.backend.base.core.topics.AuditTopics.API_AUDIT_TOPIC;
 
 @Service
 @RequiredArgsConstructor
@@ -25,6 +25,7 @@ public class AuditEventsConsumer {
     @KafkaListener (topics = API_AUDIT_TOPIC)
     @LogExecutionTime
     public void consumeAuditEvent (AuditEvent auditEvent) {
+        log.info("consumeAuditEvent called");
         saveToStorage(auditEvent);
         updateMessageStatusToCompleted(auditEvent.getId());
     }

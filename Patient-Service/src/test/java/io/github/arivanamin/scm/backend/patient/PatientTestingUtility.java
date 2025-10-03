@@ -1,6 +1,6 @@
 package io.github.arivanamin.scm.backend.patient;
 
-import io.github.arivanamin.scm.backend.base.domain.gender.Gender;
+import io.github.arivanamin.scm.backend.base.core.gender.Gender;
 import io.github.arivanamin.scm.backend.patient.core.entity.Patient;
 import io.github.arivanamin.scm.backend.testing.architecture.bases.BaseUnitTest;
 import org.instancio.Instancio;

@@ -1,6 +1,6 @@
 package io.github.arivanamin.scm.backend.base.application.audit;
 
-import io.github.arivanamin.scm.backend.base.domain.audit.AuditEvent;
+import io.github.arivanamin.scm.backend.base.core.audit.AuditEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-import static io.github.arivanamin.scm.backend.base.domain.dates.TimestampHelper.toTimestampInMilliseconds;
+import static io.github.arivanamin.scm.backend.base.core.dates.TimestampHelper.toTimestampInMilliseconds;
 
 @RequiredArgsConstructor
 @Slf4j
