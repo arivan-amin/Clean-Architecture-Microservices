@@ -46,4 +46,4 @@ https://hub.docker.com/r/grafana/grafana/tags
 https://hub.docker.com/_/mysql/tags
 https://hub.docker.com/r/phpmyadmin/phpmyadmin/tags
 https://hub.docker.com/_/redis/tags
-https://hub.docker.com/r/bitnami/kafka/tags
+https://hub.docker.com/r/apache/kafka/tags
