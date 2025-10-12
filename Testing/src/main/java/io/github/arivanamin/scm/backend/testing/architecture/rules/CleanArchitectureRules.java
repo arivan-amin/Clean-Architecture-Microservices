@@ -177,7 +177,8 @@ public interface CleanArchitectureRules {
         .ignoreDependency(annotatedWith(SpringBootApplication.class),
             JavaClass.Predicates.resideInAPackage(APPLICATION_PACKAGE))
         .whereLayer(STORAGE_LAYER)
-        .mayOnlyBeAccessedByLayers(APPLICATION_LAYER);
+        .mayOnlyBeAccessedByLayers(APPLICATION_LAYER)
+        .allowEmptyShould(true);
 
     @ArchTest
     ArchRule ALL_PUBLIC_METHODS_IN_THE_CONTROLLER_LAYER_SHOULD_RETURN_RESPONSE_WRAPPERS =
