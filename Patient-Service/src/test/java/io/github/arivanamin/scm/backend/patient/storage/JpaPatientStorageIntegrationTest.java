@@ -61,7 +61,7 @@ class JpaPatientStorageIntegrationTest extends BaseDatabaseTest {
     }
 
     private void thenAssertThatAllEntitiesOfRepositoryAreReturned (List<Patient> result) {
-        assertThat(result.size()).isEqualTo(entitiesCount);
+        assertThat(result).hasSize(entitiesCount);
     }
 
     @Test
@@ -108,8 +108,7 @@ class JpaPatientStorageIntegrationTest extends BaseDatabaseTest {
 
     private void thenAssertThatEntityIsDeletedFromRepository () {
         assertThat(storage.findAll(PaginationCriteria.of(0, entitiesCount))
-            .getContent()
-            .size()).isEqualTo(entitiesCount - 1);
+            .getContent()).hasSize(entitiesCount - 1);
         assertThat(repository.findById(expectedId)).isEmpty();
     }
 
