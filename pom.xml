@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.5.7</version>
+        <version>3.5.8</version>
         <relativePath />
     </parent>
 
@@ -20,7 +20,7 @@
     <url>https://github.com/arivan-amin/Clean-Architecture-Microservices</url>
 
     <properties>
-        <java.version>21</java.version>
+        <java.version>25</java.version>
         <spring-cloud-bom-version>2025.0.0</spring-cloud-bom-version>
         <testcontainers-bom-version>1.21.3</testcontainers-bom-version>
         <!-- Other dependency versions -->
@@ -39,6 +39,8 @@
         <!-- Security Dependencies -->
         <keycloak-version>26.0.6</keycloak-version>
         <!-- Plugin versions -->
+        <compiler-plugin-version>3.14.1</compiler-plugin-version>
+        <compiler-lombok-version>1.18.42</compiler-lombok-version>
         <surefire-plugin-version>3.5.4</surefire-plugin-version>
         <failsafe-plugin-version>3.5.4</failsafe-plugin-version>
         <jib-plugin-version>3.3.2</jib-plugin-version>
@@ -224,6 +226,22 @@
     <build>
         <finalName>scm-${project.artifactId}</finalName>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${compiler-plugin-version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${compiler-lombok-version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
