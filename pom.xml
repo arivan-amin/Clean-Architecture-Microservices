@@ -43,7 +43,7 @@
         <compiler-lombok-version>1.18.42</compiler-lombok-version>
         <surefire-plugin-version>3.5.4</surefire-plugin-version>
         <failsafe-plugin-version>3.5.4</failsafe-plugin-version>
-        <jib-plugin-version>3.3.2</jib-plugin-version>
+        <jib-plugin-version>3.5.1</jib-plugin-version>
         <jacoco-plugin-ver>0.8.13</jacoco-plugin-ver>
         <maven-resources-version>3.3.1</maven-resources-version>
         <pitest-plugin-version>1.20.3</pitest-plugin-version>
@@ -288,7 +288,7 @@
                 <version>${jib-plugin-version}</version>
                 <configuration>
                     <from>
-                        <image>bellsoft/liberica-openjre-alpine:21</image>
+                        <image>bellsoft/liberica-openjre-alpine:25</image>
                     </from>
                     <to>
                         <image>arivanamin/scm-${project.artifactId}</image>
