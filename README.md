@@ -5,16 +5,16 @@
 This is a **Spring Microservices Back-End** using **Java** and **Spring Boot** following
 **Clean Architecture** and **SOLID Principles**.
 
-It serves as a template to demonstrate the implementation of microservices following some of the
+It serves as a template to demonstrate the implementation of microservices, following some of the
 best development practices.
 
 ---
 
 ## Quick Info
 
-![Java](https://img.shields.io/badge/java-21-brightgreen)
-![SpringBoot](https://img.shields.io/badge/spring--boot-3.5.5-brightgreen)
-![Maven](https://img.shields.io/badge/Maven-3.9.10-blue)
+![Java](https://img.shields.io/badge/java-25-brightgreen)
+![SpringBoot](https://img.shields.io/badge/spring--boot-3.5.8-brightgreen)
+![Maven](https://img.shields.io/badge/Maven-3.9.11-blue)
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
 ![License](https://img.shields.io/badge/license-MIT-brightgreen)
 
@@ -31,7 +31,7 @@ best development practices.
 
 ### Automatic Audit Logs Recording
 
-Use Spring **AOP** to create Audit Events automatically whenever any API in any of the services are
+Use Spring **AOP** to create Audit Events automatically whenever any API in any of the services is
 called and save it to persistence, allowing the controllers to be clutter-free.
 
 ### Clean Restful API in all services
@@ -159,7 +159,7 @@ Core entities have no association with JPA and are never annotated with @Entity.
 
 ## Technologies used and their responsibility
 
-- **Java 21**
+- **Java 25**
 - **Spring Boot**
 - **Spring Cloud**
 - **Eureka**: Dynamic service registry.
@@ -186,7 +186,7 @@ Core entities have no association with JPA and are never annotated with @Entity.
 
 ### Prerequisites
 
-- **Java 21**
+- **Java 25**
 - **Maven**
 - **Docker** & **Docker Compose**
 
