@@ -26,30 +26,29 @@
         <!-- Other dependency versions -->
         <springdoc-web-mvc-version>2.8.13</springdoc-web-mvc-version>
         <springdoc-web-flux-version>2.8.13</springdoc-web-flux-version>
-        <caffeine-cache-version>3.2.2</caffeine-cache-version>
+        <caffeine-cache-version>3.2.3</caffeine-cache-version>
         <instancio-version>5.5.1</instancio-version>
         <java-faker-version>1.0.2</java-faker-version>
         <vavr-version>0.10.7</vavr-version>
         <google-guava-version>33.5.0-jre</google-guava-version>
         <datasource-micrometer-version>1.2.0</datasource-micrometer-version>
-        <model-mapper-version>3.2.5</model-mapper-version>
+        <model-mapper-version>3.2.6</model-mapper-version>
         <arch-unit-version>1.4.1</arch-unit-version>
-        <liquibase-version>5.0.0</liquibase-version>
-        <mysql-version>9.4.0</mysql-version>
+        <liquibase-version>5.0.1</liquibase-version>
+        <mysql-version>9.5.0</mysql-version>
         <!-- Security Dependencies -->
-        <keycloak-version>26.0.6</keycloak-version>
+        <keycloak-version>26.0.7</keycloak-version>
         <!-- Plugin versions -->
         <compiler-plugin-version>3.14.1</compiler-plugin-version>
-        <compiler-lombok-version>1.18.42</compiler-lombok-version>
         <surefire-plugin-version>3.5.4</surefire-plugin-version>
         <failsafe-plugin-version>3.5.4</failsafe-plugin-version>
         <jib-plugin-version>3.5.1</jib-plugin-version>
-        <jacoco-plugin-ver>0.8.13</jacoco-plugin-ver>
+        <jacoco-plugin-ver>0.8.14</jacoco-plugin-ver>
         <maven-resources-version>3.3.1</maven-resources-version>
-        <pitest-plugin-version>1.20.3</pitest-plugin-version>
+        <pitest-plugin-version>1.22.0</pitest-plugin-version>
         <pitest-plugin-junit5-version>1.2.3</pitest-plugin-junit5-version>
-        <pmd-plugin-version>3.27.0</pmd-plugin-version>
-        <spotbugs-plugin-version>4.9.6.0</spotbugs-plugin-version>
+        <pmd-plugin-version>3.28.0</pmd-plugin-version>
+        <spotbugs-plugin-version>4.9.8.2</spotbugs-plugin-version>
         <!-- Inherited dependency versions -->
         <core-module-version>1.0.0</core-module-version>
         <testing-module-version>1.0.0</testing-module-version>
@@ -119,16 +118,19 @@
         </dependency>
         <dependency>
             <groupId>org.testcontainers</groupId>
+            <!--            <artifactId>testcontainers-junit-jupiter</artifactId>-->
             <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.testcontainers</groupId>
+            <!--            <artifactId>testcontainers-mysql</artifactId>-->
             <artifactId>mysql</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.testcontainers</groupId>
+            <!--            <artifactId>testcontainers-kafka</artifactId>-->
             <artifactId>kafka</artifactId>
             <scope>test</scope>
         </dependency>
@@ -237,7 +239,7 @@
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
-                            <version>${compiler-lombok-version}</version>
+                            <version>${lombok.version}</version>
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
