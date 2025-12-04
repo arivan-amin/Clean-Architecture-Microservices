@@ -60,20 +60,22 @@
             <artifactId>spring-boot-testcontainers</artifactId>
             <scope>compile</scope>
         </dependency>
-        <!-- todo 11/30/25 - migrate to test containers 2 -->
         <dependency>
             <groupId>org.testcontainers</groupId>
-            <artifactId>junit-jupiter</artifactId>
+            <artifactId>testcontainers-junit-jupiter</artifactId>
+            <version>${testcontainers-bom-version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.testcontainers</groupId>
-            <artifactId>mysql</artifactId>
+            <artifactId>testcontainers-mysql</artifactId>
+            <version>${testcontainers-bom-version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.testcontainers</groupId>
-            <artifactId>kafka</artifactId>
+            <artifactId>testcontainers-kafka</artifactId>
+            <version>${testcontainers-bom-version}</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

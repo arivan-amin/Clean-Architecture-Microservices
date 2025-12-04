@@ -22,7 +22,7 @@
     <properties>
         <java.version>25</java.version>
         <spring-cloud-bom-version>2025.0.0</spring-cloud-bom-version>
-        <testcontainers-bom-version>1.21.3</testcontainers-bom-version>
+        <testcontainers-bom-version>2.0.2</testcontainers-bom-version>
         <!-- Other dependency versions -->
         <springdoc-web-mvc-version>2.8.13</springdoc-web-mvc-version>
         <springdoc-web-flux-version>2.8.13</springdoc-web-flux-version>
@@ -118,20 +118,17 @@
         </dependency>
         <dependency>
             <groupId>org.testcontainers</groupId>
-            <!--            <artifactId>testcontainers-junit-jupiter</artifactId>-->
-            <artifactId>junit-jupiter</artifactId>
+            <artifactId>testcontainers-junit-jupiter</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.testcontainers</groupId>
-            <!--            <artifactId>testcontainers-mysql</artifactId>-->
-            <artifactId>mysql</artifactId>
+            <artifactId>testcontainers-mysql</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.testcontainers</groupId>
-            <!--            <artifactId>testcontainers-kafka</artifactId>-->
-            <artifactId>kafka</artifactId>
+            <artifactId>testcontainers-kafka</artifactId>
             <scope>test</scope>
         </dependency>
 
