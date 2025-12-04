@@ -3,16 +3,16 @@ package io.github.arivanamin.scm.backend.testing.architecture.bases;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.transaction.annotation.Transactional;
-import org.testcontainers.containers.MySQLContainer;
 import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.mysql.MySQLContainer;
 
-@SuppressWarnings ("resource")
+@SuppressWarnings ({ "AbstractClassWithoutAbstractMethods" })
 @Transactional
 public abstract class BaseDatabaseTest extends BaseIntegrationTest {
 
     @Container
-    static final MySQLContainer<?> MYSQL_CONTAINER =
-        new MySQLContainer<>("mysql:9.2.0").withDatabaseName("service_database")
+    static final MySQLContainer MYSQL_CONTAINER =
+        new MySQLContainer("mysql:9.2.0").withDatabaseName("service_database")
             .withUsername("root")
             .withPassword("mysql");
 

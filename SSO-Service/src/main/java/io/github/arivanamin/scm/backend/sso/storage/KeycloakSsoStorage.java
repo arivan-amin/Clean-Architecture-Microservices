@@ -3,7 +3,6 @@ package io.github.arivanamin.scm.backend.sso.storage;
 import io.github.arivanamin.scm.backend.sso.core.entity.Client;
 import io.github.arivanamin.scm.backend.sso.core.persistence.SsoStorage;
 import io.github.arivanamin.scm.backend.sso.core.secret.ClientSecretGenerator;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,7 +20,6 @@ public class KeycloakSsoStorage implements SsoStorage {
         return Optional.of(null);
     }
 
-    @Transactional
     @Override
     public UUID create (Client client) {
         secretGenerator.generateSecret();

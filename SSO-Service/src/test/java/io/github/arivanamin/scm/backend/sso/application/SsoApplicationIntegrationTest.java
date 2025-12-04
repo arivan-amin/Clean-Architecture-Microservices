@@ -1,4 +1,4 @@
-package io.github.arivanamin.scm.backend.sso;
+package io.github.arivanamin.scm.backend.sso.application;
 
 import io.github.arivanamin.scm.backend.testing.architecture.bases.BaseIntegrationTest;
 import lombok.extern.slf4j.Slf4j;

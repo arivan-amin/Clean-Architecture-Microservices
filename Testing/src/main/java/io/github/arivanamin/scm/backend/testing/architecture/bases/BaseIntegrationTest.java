@@ -8,13 +8,15 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.kafka.KafkaContainer;
 
-@SuppressWarnings ({ "NewClassNamingConvention" })
+@SuppressWarnings ({ "NewClassNamingConvention", "AbstractClassWithoutAbstractMethods" })
 @SpringBootTest
 @ExtendWith (SpringExtension.class)
 public abstract class BaseIntegrationTest implements BaseUnitTest {
 
+    public static final String DISABLED_EUREKA_CONFIG_VALUE = "false";
+
     @Container
-    static final KafkaContainer KAFKA_CONTAINER = new KafkaContainer("apache/kafka:4.0.0");
+    static final KafkaContainer KAFKA_CONTAINER = new KafkaContainer("apache/kafka:4.1.0");
 
     static {
         KAFKA_CONTAINER.start();
@@ -27,8 +29,8 @@ public abstract class BaseIntegrationTest implements BaseUnitTest {
         registry.add("spring.kafka.consumer.bootstrap-servers",
             KAFKA_CONTAINER::getBootstrapServers);
 
-        registry.add("eureka.client.enabled", () -> "false");
-        registry.add("eureka.client.register-with-eureka", () -> "false");
-        registry.add("eureka.client.fetch-registry", () -> "false");
+        registry.add("eureka.client.enabled", () -> DISABLED_EUREKA_CONFIG_VALUE);
+        registry.add("eureka.client.register-with-eureka", () -> DISABLED_EUREKA_CONFIG_VALUE);
+        registry.add("eureka.client.fetch-registry", () -> DISABLED_EUREKA_CONFIG_VALUE);
     }
 }
