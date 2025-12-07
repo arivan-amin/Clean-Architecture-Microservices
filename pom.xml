@@ -31,6 +31,7 @@
         <java-faker-version>1.0.2</java-faker-version>
         <vavr-version>0.10.7</vavr-version>
         <google-guava-version>33.5.0-jre</google-guava-version>
+        <commons-io-version>2.21.0</commons-io-version>
         <datasource-micrometer-version>1.2.0</datasource-micrometer-version>
         <model-mapper-version>3.2.6</model-mapper-version>
         <arch-unit-version>1.4.1</arch-unit-version>
@@ -157,6 +158,11 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>${google-guava-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io-version}</version>
         </dependency>
         <!--    Spring Observability Dependencies    -->
         <dependency>
