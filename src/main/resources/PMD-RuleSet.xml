@@ -63,7 +63,6 @@
     <rule ref="category/java/bestpractices.xml/UseEnumCollections" />
     <rule ref="category/java/bestpractices.xml/UseStandardCharsets" />
     <rule ref="category/java/bestpractices.xml/UseTryWithResources" />
-    <rule ref="category/java/bestpractices.xml/UseVarargs" />
     <rule ref="category/java/bestpractices.xml/WhileLoopWithLiteralBoolean" />
     <rule ref="category/java/bestpractices.xml/CheckResultSet" />
 
@@ -85,7 +84,6 @@
     <rule ref="category/java/codestyle.xml/FinalParameterInAbstractMethod" />
     <rule ref="category/java/codestyle.xml/ForLoopShouldBeWhileLoop" />
     <rule ref="category/java/codestyle.xml/FormalParameterNamingConventions" />
-    <rule ref="category/java/codestyle.xml/GenericsNaming" />
     <rule ref="category/java/codestyle.xml/IdenticalCatchBranches" />
     <rule ref="category/java/codestyle.xml/LambdaCanBeMethodReference" />
     <rule ref="category/java/codestyle.xml/LinguisticNaming" />
@@ -114,7 +112,6 @@
     <rule ref="category/java/codestyle.xml/UnnecessaryConstructor" />
     <rule ref="category/java/codestyle.xml/UnnecessaryFullyQualifiedName" />
     <rule ref="category/java/codestyle.xml/UnnecessaryImport" />
-    <rule ref="category/java/codestyle.xml/UnnecessaryLocalBeforeReturn" />
     <rule ref="category/java/codestyle.xml/UnnecessaryModifier" />
     <rule ref="category/java/codestyle.xml/UnnecessaryReturn" />
     <rule ref="category/java/codestyle.xml/UnnecessarySemicolon" />
@@ -225,7 +222,6 @@
     <rule ref="category/java/errorprone.xml/AvoidInstanceofChecksInCatchClause" />
     <rule ref="category/java/errorprone.xml/AvoidLiteralsInIfCondition" />
     <rule ref="category/java/errorprone.xml/ProperLogger" />
-    <rule ref="category/java/errorprone.xml/AvoidLosingExceptionInformation" />
     <rule ref="category/java/errorprone.xml/AvoidMultipleUnaryOperators" />
     <rule ref="category/java/errorprone.xml/AvoidUsingOctalValues" />
     <rule ref="category/java/errorprone.xml/BrokenNullCheck" />
