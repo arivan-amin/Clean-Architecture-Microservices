@@ -18,7 +18,7 @@ import static io.github.arivanamin.scm.backend.base.core.config.CoreApplicationC
 @EnableScheduling
 public class AuditApplication {
 
-    public static void main (String[] args) {
+    static void main (String[] args) {
         SpringApplication.run(AuditApplication.class, args);
     }
 }

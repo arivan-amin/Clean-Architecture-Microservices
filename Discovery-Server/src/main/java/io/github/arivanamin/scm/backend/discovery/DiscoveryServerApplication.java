@@ -10,7 +10,7 @@ import static io.github.arivanamin.scm.backend.base.core.config.CoreApplicationC
 @EnableEurekaServer
 public class DiscoveryServerApplication {
 
-    public static void main (String[] args) {
+    static void main (String[] args) {
         SpringApplication.run(DiscoveryServerApplication.class, args);
     }
 }
