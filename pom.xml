@@ -24,17 +24,17 @@
         <spring-cloud-bom-version>2025.1.0</spring-cloud-bom-version>
         <testcontainers-bom-version>2.0.3</testcontainers-bom-version>
         <!-- Other dependency versions -->
-        <springdoc-web-mvc-version>3.0.0</springdoc-web-mvc-version>
-        <springdoc-web-flux-version>3.0.0</springdoc-web-flux-version>
-        <caffeine-cache-version>3.2.3</caffeine-cache-version>
         <instancio-version>5.5.1</instancio-version>
         <java-faker-version>1.0.2</java-faker-version>
+        <datasource-micrometer-version>2.0.1</datasource-micrometer-version>
+        <arch-unit-version>1.4.1</arch-unit-version>
+        <caffeine-cache-version>3.2.3</caffeine-cache-version>
+        <springdoc-web-mvc-version>3.0.0</springdoc-web-mvc-version>
+        <springdoc-web-flux-version>3.0.0</springdoc-web-flux-version>
+        <model-mapper-version>3.2.6</model-mapper-version>
         <vavr-version>0.11.0</vavr-version>
         <google-guava-version>33.5.0-jre</google-guava-version>
         <commons-io-version>2.21.0</commons-io-version>
-        <datasource-micrometer-version>2.0.1</datasource-micrometer-version>
-        <model-mapper-version>3.2.6</model-mapper-version>
-        <arch-unit-version>1.4.1</arch-unit-version>
         <mysql-version>9.5.0</mysql-version>
         <!-- Security Dependencies -->
         <keycloak-version>26.0.7</keycloak-version>
@@ -44,11 +44,11 @@
         <failsafe-plugin-version>3.5.4</failsafe-plugin-version>
         <jib-plugin-version>3.5.1</jib-plugin-version>
         <jacoco-plugin-ver>0.8.14</jacoco-plugin-ver>
-        <maven-resources-version>3.4.0</maven-resources-version>
         <pitest-plugin-version>1.22.0</pitest-plugin-version>
         <pitest-plugin-junit5-version>1.2.3</pitest-plugin-junit5-version>
         <pmd-plugin-version>3.28.0</pmd-plugin-version>
         <spotbugs-plugin-version>4.9.8.2</spotbugs-plugin-version>
+        <maven-resources-version>3.4.0</maven-resources-version>
         <!-- Inherited dependency versions -->
         <core-module-version>1.0.0</core-module-version>
         <testing-module-version>1.0.0</testing-module-version>

@@ -36,7 +36,7 @@ services:
       - redis
 
   tempo:
-    image: grafana/tempo:2.8.2
+    image: grafana/tempo:2.9.0
     container_name: Tempo
     restart: unless-stopped
     command:
@@ -48,7 +48,7 @@ services:
       - "3200:3200"
   
   otel:
-    image: otel/opentelemetry-collector:0.136.0
+    image: otel/opentelemetry-collector:0.142.0
     container_name: Otel
     restart: unless-stopped
     command:
@@ -61,7 +61,7 @@ services:
       - tempo
 
   loki:
-    image: grafana/loki:3.5.5
+    image: grafana/loki:3.6.3
     container_name: Loki
     restart: unless-stopped
     command:
@@ -72,7 +72,7 @@ services:
       - "3100:3100"
 
   promtail:
-    image: grafana/promtail:3.5.5
+    image: grafana/promtail:3.6.3
     container_name: Promtail
     restart: unless-stopped
     command:
@@ -83,7 +83,7 @@ services:
       - ${HOME}/Apps/Spring-Clean-Microservices/Logs:/local-logs
 
   prometheus:
-    image: prom/prometheus:v3.6.0
+    image: prom/prometheus:v3.8.1
     container_name: Prometheus
     restart: unless-stopped
     command:
@@ -97,7 +97,7 @@ services:
 
 
   grafana:
-    image: grafana/grafana:12.2.0
+    image: grafana/grafana:12.3.1
     container_name: Grafana
     restart: unless-stopped
     volumes:
@@ -123,7 +123,7 @@ services:
       - "3306:3306"
 
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin:5.2.2
+    image: phpmyadmin/phpmyadmin:5.2.3
     container_name: PhpMyAdmin
     restart: unless-stopped
     environment:
@@ -142,14 +142,14 @@ services:
     command:
       - redis-server
       - --appendonly
-      - yes
+      - "yes"
     volumes:
       - redis-data:/data
     ports:
       - "6379:6379"
 
   kafka:
-    image: apache/kafka:4.1.0
+    image: apache/kafka:4.1.1
     container_name: Kafka
     restart: unless-stopped
     environment:
