@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a **Spring Boot 4 Microservices Back-End** using **Java** and **Spring 7** following
+This is a **Spring Boot 4** Microservices Back-End using **Java** and **Spring 7** following
 **Clean Architecture** and **SOLID Principles**.
 
 It serves as a template to demonstrate the implementation of microservices, following some of the
@@ -25,7 +25,47 @@ best development practices.
 
 ## Architecture Overview
 
-![image](https://raw.githubusercontent.com/arivan-amin/Spring-Clean-Microservices/master/Docs/Diagram/Architecture-Diagram.jpg)
+![image](https://raw.githubusercontent.com/arivan-amin/Clean-Architecture-Microservices/master/Docs/Diagram/Architecture-Diagram.jpg)
+
+## Technologies used and their responsibility
+
+- **Java 25**
+- **Spring Boot 4**
+- **Spring Cloud 2025.1**
+- **MySQL 9.5**: Services data storage.
+- **Kafka 4.1**: Event streaming for microservices.
+- **Keycloak** 26.4: Authentication and SSO provider.
+- **Docker**
+- **Eureka**: Dynamic service registry.
+- **Grafana, Loki, Tempo**: Observability stack for metrics, logging, and tracing.
+- **JUnit & Mockito**: Unit testing and Mocking.
+- **ArchUnit**: Architecture boundaries testing and coding standards validation.
+- **PMD**: Validate coding standards and best practices.
+- **Pitest**: Mutation testing.
+- **Swagger/OpenAPI**: API documentation.
+- **Liquibase**: Database Migrations.
+- **Lombok**: Cleaner code with reduced boilerplate.
+
+---
+
+## Architecture concepts and technical features demonstrated and implemented
+
+- **Microservices Architecture**.
+- **Clean Architecture & Clean Code**
+- **Command-Query Responsibility Separation (CQRS)**
+- **SOLID Principles**
+- **Mutation Testing**
+- **Spring Dependency Injection**
+- **Aspect-Oriented Programming (AOP)**
+- **Rate Limiting API**
+- **Automatic Audit Logs recording**: Uses Spring AOP to store audit logs automatically.
+- **Event-Driven Communication**: Using Kafka.
+- **Robust Monitoring**: Real-time monitoring with Grafana, Loki, and Tempo.
+- **Centralized Logging & Distributed Tracing**: Using Loki and Tempo.
+- **Database Migrations**: Using Liquibase.
+- **Dockerized Deployment**: Using Docker and Docker Compose.
+
+---
 
 ## Notable Features
 
@@ -129,25 +169,6 @@ Core entities have no association with JPA and are never annotated with @Entity.
         }
 ```
 
-## Architecture concepts and technical features demonstrated and implemented
-
-- **Microservices Architecture**.
-- **Clean Architecture & Clean Code**
-- **Command-Query Responsibility Separation (CQRS)**
-- **SOLID Principles**
-- **Mutation Testing**
-- **Spring Dependency Injection**
-- **Aspect-Oriented Programming (AOP)**
-- **Rate Limiting API**
-- **Automatic Audit Logs recording**: Uses Spring AOP to store audit logs automatically.
-- **Event-Driven Communication**: Using Kafka.
-- **Robust Monitoring**: Real-time monitoring with Grafana, Loki, and Tempo.
-- **Centralized Logging & Distributed Tracing**: Using Loki and Tempo.
-- **Database Migrations**: Using Liquibase.
-- **Dockerized Deployment**: Using Docker and Docker Compose.
-
----
-
 ### Currently, the following services are implemented; other services will be added:
 
 - Discovery Server
@@ -157,30 +178,9 @@ Core entities have no association with JPA and are never annotated with @Entity.
 
 ---
 
-## Technologies used and their responsibility
-
-- **Java 25**
-- **Spring Boot**
-- **Spring Cloud**
-- **Eureka**: Dynamic service registry.
-- **MySQL**: Services data storage.
-- **Kafka**: Event streaming for microservices.
-- **Keycloak**: Authentication and SSO provider.
-- **Docker**
-- **Grafana, Loki, Tempo**: Observability stack for metrics, logging, and tracing.
-- **JUnit & Mockito**: Unit testing and Mocking.
-- **ArchUnit**: Architecture boundaries testing and coding standards validation.
-- **PMD**: Validate coding standards and best practices.
-- **Pitest**: Mutation testing.
-- **Swagger/OpenAPI**: API documentation.
-- **Liquibase**: Database Migrations.
-- **Lombok**: Cleaner code with reduced boilerplate.
-
----
-
 ## Grafana Monitoring Sample
 
-![image](https://raw.githubusercontent.com/arivan-amin/Spring-Clean-Microservices/master/Docs/Grafana/Grafana-Dashboard-1.png)
+![image](https://raw.githubusercontent.com/arivan-amin/Clean-Architecture-Microservices/master/Docs/Grafana/Grafana-Dashboard-1.png)
 
 ## Installation Guide
 
@@ -196,7 +196,7 @@ Core entities have no association with JPA and are never annotated with @Entity.
 
 1. **Clone the Repository:**
    ```
-   git clone https://github.com/arivan-amin/Spring-Clean-Microservices.git
+   git clone https://github.com/arivan-amin/Clean-Architecture-Microservices.git
    cd Spring-Clean-Microservices
    ```
 
