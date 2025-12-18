@@ -1,8 +1,8 @@
-# Clean Architecture Microservices with Spring Boot
+# Clean Architecture Microservices with Spring Boot 4
 
 ## Overview
 
-This is a **Spring Microservices Back-End** using **Java** and **Spring Boot** following
+This is a **Spring Boot 4 Microservices Back-End** using **Java** and **Spring 7** following
 **Clean Architecture** and **SOLID Principles**.
 
 It serves as a template to demonstrate the implementation of microservices, following some of the
@@ -13,7 +13,7 @@ best development practices.
 ## Quick Info
 
 ![Java](https://img.shields.io/badge/java-25-brightgreen)
-![SpringBoot](https://img.shields.io/badge/spring--boot-3.5.8-brightgreen)
+![SpringBoot](https://img.shields.io/badge/spring--boot-4.0.0-brightgreen)
 ![Maven](https://img.shields.io/badge/Maven-3.9.11-blue)
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
 ![License](https://img.shields.io/badge/license-MIT-brightgreen)
