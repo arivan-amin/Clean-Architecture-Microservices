@@ -177,11 +177,6 @@ services:
 #    <<: *base-service
 #    image: arivanamin/scm-audit-service
 #    container_name: Audit-Service
-#    
-#  sso-service:
-#    <<: *base-service
-#    image: arivanamin/scm-sso-service
-#    container_name: SSO-Service
 #
 #  patient-service:
 #    <<: *base-service

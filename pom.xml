@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>4.0.0</version>
+        <version>4.0.1</version>
         <relativePath />
     </parent>
 
@@ -62,7 +62,6 @@
         <module>Testing</module>
         <module>Outbox-Storage</module>
         <module>Audit-Service</module>
-        <module>SSO-Service</module>
         <module>Patient-Service</module>
     </modules>
 
@@ -150,6 +149,10 @@
             <groupId>net.ttddyy.observation</groupId>
             <artifactId>datasource-micrometer-spring-boot</artifactId>
             <version>${datasource-micrometer-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
         </dependency>
 
         <!-- ======================================================= -->

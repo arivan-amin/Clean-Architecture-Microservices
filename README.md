@@ -13,7 +13,7 @@ best development practices.
 ## Quick Info
 
 ![Java](https://img.shields.io/badge/java-25-brightgreen)
-![SpringBoot](https://img.shields.io/badge/spring--boot-4.0.0-brightgreen)
+![SpringBoot](https://img.shields.io/badge/spring--boot-4.0.1-brightgreen)
 ![Maven](https://img.shields.io/badge/Maven-3.9.11-blue)
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
 ![License](https://img.shields.io/badge/license-MIT-brightgreen)
@@ -34,7 +34,6 @@ best development practices.
 - **Spring Cloud 2025.1**
 - **MySQL 9.5**: Services data storage.
 - **Kafka 4.1**: Event streaming for microservices.
-- **Keycloak** 26.4: Authentication and SSO provider.
 - **Docker**
 - **Eureka**: Dynamic service registry.
 - **Grafana, Loki, Tempo**: Observability stack for metrics, logging, and tracing.
@@ -269,7 +268,6 @@ Core entities have no association with JPA and are never annotated with @Entity.
   all the modules.
 - **Patient Service**: Manages patient data.
 - **Audit Service**: Stores Audit Events, ensures compliance, and data integrity.
-- **SSO Service**: Handles authentication and authorization using Keycloak.
 
 ---
 
