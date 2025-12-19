@@ -25,7 +25,7 @@ best development practices.
 
 ## Architecture Overview
 
-![image](https://raw.githubusercontent.com/arivan-amin/Clean-Architecture-Microservices/master/Docs/Diagram/Architecture-Diagram.jpg)
+![image](https://raw.githubusercontent.com/arivan-amin/Clean-Architecture-Microservices/master/Docs/Diagram/Architecture-Diagram.png)
 
 ## Technologies used and their responsibility
 
