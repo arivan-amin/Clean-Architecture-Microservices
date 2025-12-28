@@ -13,6 +13,7 @@ import java.net.URI;
 import java.time.Instant;
 
 import static io.github.arivanamin.scm.backend.base.application.advice.ProblemDetailCategories.RESOURCE_NOT_FOUND;
+import static io.github.arivanamin.scm.backend.base.application.advice.ProblemDetailExceptionUrls.RUNTIME_EXCEPTION_URL;
 import static io.github.arivanamin.scm.backend.base.application.advice.ProblemDetailProperties.CATEGORY;
 import static io.github.arivanamin.scm.backend.base.application.advice.ProblemDetailProperties.TIMESTAMP;
 import static org.springframework.http.HttpStatus.CONFLICT;
@@ -28,8 +29,7 @@ public final class PatientControllerAdvice {
     ProblemDetail handlePatientNotFound (PatientNotFoundException exception) {
         ProblemDetail detail = forStatusAndDetail(NOT_FOUND, exception.getMessage());
         detail.setTitle("Requested Patient Not Found");
-        detail.setType(URI.create("https://docs.oracle.com/en/java/javase/21/docs/api/java" +
-            ".base/java/lang/RuntimeException.html"));
+        detail.setType(URI.create(RUNTIME_EXCEPTION_URL));
         detail.setProperty(CATEGORY, RESOURCE_NOT_FOUND);
         detail.setProperty(TIMESTAMP, Instant.now());
         log.error(exception.getMessage(), exception);
@@ -40,8 +40,7 @@ public final class PatientControllerAdvice {
     ProblemDetail handlePatientNotFound (PatientAlreadyExistsException exception) {
         ProblemDetail detail = forStatusAndDetail(CONFLICT, exception.getMessage());
         detail.setTitle("Conflict, Patient already exists");
-        detail.setType(URI.create("https://docs.oracle.com/en/java/javase/21/docs/api/java" +
-            ".base/java/lang/RuntimeException.html"));
+        detail.setType(URI.create(RUNTIME_EXCEPTION_URL));
         detail.setProperty(CATEGORY, "Patient Already Exists");
         detail.setProperty(TIMESTAMP, Instant.now());
         log.error(exception.getMessage(), exception);

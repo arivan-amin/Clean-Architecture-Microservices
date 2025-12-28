@@ -12,6 +12,7 @@ import java.net.URI;
 import java.time.Instant;
 
 import static io.github.arivanamin.scm.backend.base.application.advice.ProblemDetailCategories.RESOURCE_NOT_FOUND;
+import static io.github.arivanamin.scm.backend.base.application.advice.ProblemDetailExceptionUrls.RUNTIME_EXCEPTION_URL;
 import static io.github.arivanamin.scm.backend.base.application.advice.ProblemDetailProperties.CATEGORY;
 import static io.github.arivanamin.scm.backend.base.application.advice.ProblemDetailProperties.TIMESTAMP;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
@@ -26,8 +27,7 @@ public final class AuditControllerAdvice {
     ProblemDetail handleAuditEventNotFound (AuditEventNotFoundException exception) {
         ProblemDetail detail = forStatusAndDetail(NOT_FOUND, exception.getMessage());
         detail.setTitle("Audit Event Not Found");
-        detail.setType(URI.create("https://docs.oracle.com/en/java/javase/21/docs/api/java" +
-            ".base/java/lang/RuntimeException.html"));
+        detail.setType(URI.create(RUNTIME_EXCEPTION_URL));
         detail.setProperty(CATEGORY, RESOURCE_NOT_FOUND);
         detail.setProperty(TIMESTAMP, Instant.now());
         log.error(exception.getMessage(), exception);
