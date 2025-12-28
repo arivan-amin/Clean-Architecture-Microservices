@@ -12,6 +12,7 @@ import java.net.URI;
 import java.time.Instant;
 
 import static io.github.arivanamin.scm.backend.base.application.advice.ProblemDetailCategories.RESOURCE_NOT_FOUND;
+import static io.github.arivanamin.scm.backend.base.application.advice.ProblemDetailExceptionUrls.SPRING_REACTIVE_RESOURCE_NOT_FOUND_EXCEPTION_URL;
 import static io.github.arivanamin.scm.backend.base.application.advice.ProblemDetailProperties.CATEGORY;
 import static io.github.arivanamin.scm.backend.base.application.advice.ProblemDetailProperties.TIMESTAMP;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
@@ -26,9 +27,7 @@ public final class ApiGatewayAdvice {
     ProblemDetail handleResourceNotFound (NoResourceFoundException exception) {
         ProblemDetail detail = forStatusAndDetail(NOT_FOUND, exception.getMessage());
         detail.setTitle("Requested Resource Not Found");
-        detail.setType(URI.create(
-            "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework" +
-                "/web/reactive/resource/NoResourceFoundException.html"));
+        detail.setType(URI.create(SPRING_REACTIVE_RESOURCE_NOT_FOUND_EXCEPTION_URL));
         detail.setProperty(CATEGORY, RESOURCE_NOT_FOUND);
         detail.setProperty(TIMESTAMP, Instant.now());
         log.error(exception.getMessage(), exception);

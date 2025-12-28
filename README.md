@@ -106,7 +106,7 @@ Example of API response for every error.
 
 ```
 {
-    "type": "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/RuntimeException.html",
+    "type": "https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/RuntimeException.html",
     "title": "Requested Patient Not Found",
     "status": 404,
     "detail": "Patient by the requested id not found",
