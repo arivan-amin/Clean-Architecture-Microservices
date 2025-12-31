@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a **Spring Boot 4** Microservices Back-End using **Java** and **Spring 7** following
+This is a **Spring Boot 4** Microservices Back-End using **Java 25** and **Spring 7** following
 **Clean Architecture** and **SOLID Principles**.
 
 It serves as a template to demonstrate the implementation of microservices, following some of the
