@@ -8,6 +8,7 @@ https://central.sonatype.com/artifact/org.testcontainers/testcontainers-bom
 
 https://central.sonatype.com/artifact/org.instancio/instancio-junit
 https://central.sonatype.com/artifact/com.github.javafaker/javafaker
+https://central.sonatype.com/artifact/net.logstash.logback/logstash-logback-encoder
 https://central.sonatype.com/artifact/net.ttddyy.observation/datasource-micrometer-spring-boot
 https://central.sonatype.com/artifact/com.tngtech.archunit/archunit-junit5
 https://central.sonatype.com/artifact/com.github.ben-manes.caffeine/caffeine

@@ -26,6 +26,7 @@
         <!-- Other dependency versions -->
         <instancio-version>5.5.1</instancio-version>
         <java-faker-version>1.0.2</java-faker-version>
+        <logstash-encoder-version>9.0</logstash-encoder-version>
         <datasource-micrometer-version>2.0.1</datasource-micrometer-version>
         <arch-unit-version>1.4.1</arch-unit-version>
         <caffeine-cache-version>3.2.3</caffeine-cache-version>
@@ -146,13 +147,26 @@
             <artifactId>spring-boot-starter-micrometer-metrics</artifactId>
         </dependency>
         <dependency>
-            <groupId>net.ttddyy.observation</groupId>
-            <artifactId>datasource-micrometer-spring-boot</artifactId>
-            <version>${datasource-micrometer-version}</version>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
         </dependency>
         <dependency>
             <groupId>io.micrometer</groupId>
-            <artifactId>micrometer-registry-prometheus</artifactId>
+            <artifactId>micrometer-tracing-bridge-otel</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.opentelemetry</groupId>
+            <artifactId>opentelemetry-exporter-otlp</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <version>${logstash-encoder-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.ttddyy.observation</groupId>
+            <artifactId>datasource-micrometer-spring-boot</artifactId>
+            <version>${datasource-micrometer-version}</version>
         </dependency>
 
         <!-- ======================================================= -->
