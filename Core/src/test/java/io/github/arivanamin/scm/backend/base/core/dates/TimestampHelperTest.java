@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class TimestampHelperTest {
 
     @Test
-    void toTimestampInMillisecondsShouldConvertToLocalDateTime () {
+    void shouldConvertLocalDateTimeToTimestamp () {
         // given
         LocalDateTime dateTime = LocalDateTime.of(2019, 11, 15, 13, 15, 30);
 
@@ -23,7 +23,7 @@ class TimestampHelperTest {
     }
 
     @Test
-    void toLocalDateTimeShouldConvertToTimestampInMilliseconds () {
+    void shouldConvertTimestampToLocalDateTime () {
         // given
         long timestamp = 1573841730000L;
 
@@ -35,7 +35,7 @@ class TimestampHelperTest {
     }
 
     @Test
-    void toTimestampInMillisecondsShouldGenerateSampleForTesting () {
+    void shouldGenerateSampleForTesting () {
         Long start =
             TimestampHelper.toTimestampInMilliseconds(LocalDateTime.of(2025, 1, 1, 0, 0, 0));
         Long end = TimestampHelper.toTimestampInMilliseconds(LocalDateTime.of(2027, 1, 1, 0, 0, 0));
