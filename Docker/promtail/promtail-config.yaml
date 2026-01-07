@@ -14,12 +14,48 @@ scrape_configs:
       - targets:
           - localhost
         labels:
-          job: docker-logfiles
+          job: docker-logs
           __path__: /logs/*.log
+
+    pipeline_stages:
+      - json:
+          expressions:
+            timestamp: "[\"@timestamp\"]"
+            service: service
+            host: host
+            environment: environment
+            level: level
+            logger: logger_name
+            message: message
+      - timestamp:
+          source: timestamp
+          format: RFC3339Nano
+      - labels:
+          service:
+          environment:
+          level:
+
   - job_name: local-log-files
     static_configs:
       - targets:
           - localhost
         labels:
-          job: logfiles-local
+          job: local-logs
           __path__: /local-logs/*.log
+    pipeline_stages:
+      - json:
+          expressions:
+            timestamp: "[\"@timestamp\"]"
+            service: service
+            host: host
+            environment: environment
+            level: level
+            logger: logger_name
+            message: message
+      - timestamp:
+          source: timestamp
+          format: RFC3339Nano
+      - labels:
+          service:
+          environment:
+          level:
