@@ -1,10 +1,10 @@
 package io.github.arivanamin.scm.backend.patient.core.command;
 
+import io.github.arivanamin.scm.backend.patient.PatientTestData;
 import io.github.arivanamin.scm.backend.patient.core.entity.Patient;
 import io.github.arivanamin.scm.backend.patient.core.persistence.PatientStorage;
 import io.github.arivanamin.scm.backend.testing.architecture.bases.BaseUnitTest;
 import org.assertj.core.api.Assertions;
-import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
 
@@ -14,7 +14,7 @@ import static org.mockito.Mockito.verify;
 
 class UpdatePatientCommandTest implements BaseUnitTest {
 
-    private final Patient patient = Instancio.create(Patient.class);
+    private final Patient patient = PatientTestData.withDefaultEmail();
 
     @Mock
     private PatientStorage storage;

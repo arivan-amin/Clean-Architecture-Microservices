@@ -20,6 +20,7 @@ public class CreatePatientRequest {
     String address;
 
     public Patient toDomainEntity () {
+        // todo 1/7/26 - remove model mapper for better compile-time safety
         Patient patient = new ModelMapper().map(this, Patient.class);
         patient.setDateOfBirth(toLocalDateTime(dateOfBirth).toLocalDate());
         return patient;

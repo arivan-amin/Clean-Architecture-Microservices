@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.nio.file.Path;
 
+import static io.github.arivanamin.scm.backend.base.core.config.CoreApplicationConfig.APPLICATION_DIRECTORY_NAME;
 import static io.github.arivanamin.scm.backend.base.core.config.CoreApplicationConfig.USER_HOME_DIRECTORY_PROPERTY;
 import static java.io.File.separator;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -12,10 +13,10 @@ import static org.springframework.test.util.ReflectionTestUtils.invokeMethod;
 class CoreApplicationConfigTest {
 
     @Test
-    void getApplicationConfigDirectoryShouldReturnCorrectPath () {
+    void shouldReturnCorrectPath () {
         String userHomeDirectory = System.getProperty(USER_HOME_DIRECTORY_PROPERTY);
         String expectedPath =
-            userHomeDirectory + separator + "Apps" + separator + "Spring-Clean-Microservices";
+            userHomeDirectory + separator + "Apps" + separator + APPLICATION_DIRECTORY_NAME;
 
         Path actualPath = CoreApplicationConfig.getApplicationConfigDirectory();
 
@@ -23,7 +24,7 @@ class CoreApplicationConfigTest {
     }
 
     @Test
-    void getUserHomeDirectoryShouldReturnPathAsString () {
+    void shouldReturnPathAsString () {
         String expectedUserHomeDirectory = System.getProperty(USER_HOME_DIRECTORY_PROPERTY);
 
         String actualUserHomeDirectory =

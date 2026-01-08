@@ -1,9 +1,9 @@
 package io.github.arivanamin.scm.backend.patient.storage;
 
+import io.github.arivanamin.scm.backend.patient.PatientTestData;
 import io.github.arivanamin.scm.backend.patient.core.entity.Patient;
 import io.github.arivanamin.scm.backend.testing.architecture.bases.BaseUnitTest;
 import lombok.extern.slf4j.Slf4j;
-import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -14,7 +14,7 @@ class JpaPatientTest implements BaseUnitTest {
     @Test
     void fromDomainShouldMapDomainEntityToStorageEntity () {
         // given
-        Patient domainEntity = Instancio.create(Patient.class);
+        Patient domainEntity = PatientTestData.withDefaultEmail();
 
         // when
         JpaPatient storageEntity = JpaPatient.fromDomain(domainEntity);
@@ -34,7 +34,7 @@ class JpaPatientTest implements BaseUnitTest {
     @Test
     void toDomainShouldMapStorageEntityToDomainEntity () {
         // given
-        JpaPatient storageEntity = Instancio.create(JpaPatient.class);
+        JpaPatient storageEntity = JpaPatientTestData.defaultPatient();
 
         // when
         Patient domainEntity = storageEntity.toDomain();

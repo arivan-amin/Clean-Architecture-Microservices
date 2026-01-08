@@ -1,11 +1,11 @@
 package io.github.arivanamin.scm.backend.patient.core.query;
 
+import io.github.arivanamin.scm.backend.patient.PatientTestData;
 import io.github.arivanamin.scm.backend.patient.core.entity.Patient;
 import io.github.arivanamin.scm.backend.patient.core.exception.PatientNotFoundException;
 import io.github.arivanamin.scm.backend.patient.core.persistence.PatientStorage;
 import io.github.arivanamin.scm.backend.testing.architecture.bases.BaseUnitTest;
 import lombok.extern.slf4j.Slf4j;
-import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -21,7 +21,7 @@ import static org.mockito.Mockito.*;
 class ReadPatientByIdQueryTest implements BaseUnitTest {
 
     private final UUID id = UUID.randomUUID();
-    private final Patient patient = Instancio.create(Patient.class);
+    private final Patient patient = PatientTestData.withDefaultEmail();
 
     @Mock
     private PatientStorage storage;
