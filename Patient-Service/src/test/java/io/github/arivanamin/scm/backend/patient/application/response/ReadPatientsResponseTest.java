@@ -6,7 +6,7 @@ import io.github.arivanamin.scm.backend.testing.architecture.bases.BaseUnitTest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
-import static io.github.arivanamin.scm.backend.patient.PatientTestingUtility.createSamplePatientsList;
+import static io.github.arivanamin.scm.backend.patient.PatientTestData.patientsList;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
@@ -15,8 +15,7 @@ class ReadPatientsResponseTest implements BaseUnitTest {
     @Test
     void factoryMethodShouldMapDomainEntityToReadResponse () {
         // given
-        PaginatedResponse<Patient> response =
-            PaginatedResponse.of(PAGE_DATA, createSamplePatientsList());
+        PaginatedResponse<Patient> response = PaginatedResponse.of(PAGE_DATA, patientsList());
 
         // when
         ReadPatientsResponse result = ReadPatientsResponse.of(response);

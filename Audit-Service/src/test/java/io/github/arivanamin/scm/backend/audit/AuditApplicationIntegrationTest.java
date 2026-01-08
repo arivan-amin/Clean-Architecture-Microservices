@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 class AuditApplicationIntegrationTest extends BaseDatabaseTest {
 
     @Test
-    void mainShouldInitializeContext () {
+    void shouldInitializeContextAndStartup () {
         // given
 
         // when

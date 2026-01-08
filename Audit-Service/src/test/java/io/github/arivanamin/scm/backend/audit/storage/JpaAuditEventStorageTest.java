@@ -1,12 +1,12 @@
 package io.github.arivanamin.scm.backend.audit.storage;
 
+import io.github.arivanamin.scm.backend.audit.AuditEventTestData;
 import io.github.arivanamin.scm.backend.audit.core.exception.AuditEventNotFoundException;
 import io.github.arivanamin.scm.backend.base.core.audit.AuditEvent;
 import io.github.arivanamin.scm.backend.base.core.dates.DateTimeRange;
 import io.github.arivanamin.scm.backend.base.core.pagination.PaginatedResponse;
 import io.github.arivanamin.scm.backend.testing.architecture.bases.BaseUnitTest;
 import lombok.extern.slf4j.Slf4j;
-import org.instancio.Instancio;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -47,7 +47,7 @@ class JpaAuditEventStorageTest implements BaseUnitTest {
         int numberOfEntities = FAKER.number()
             .numberBetween(5, 15);
         for (int i = 0; i < numberOfEntities; i++) {
-            events.add(Instancio.create(JpaAuditEvent.class));
+            events.add(JpaAuditEventTestData.defaultEvent());
         }
     }
 
@@ -84,7 +84,7 @@ class JpaAuditEventStorageTest implements BaseUnitTest {
     void findByIdShouldReturnAuditEventFromRepository () {
         // given
         UUID id = UUID.randomUUID();
-        JpaAuditEvent event = Instancio.create(JpaAuditEvent.class);
+        JpaAuditEvent event = JpaAuditEventTestData.defaultEvent();
         when(repository.findById(id)).thenReturn(Optional.of(event));
 
         // when
@@ -98,7 +98,7 @@ class JpaAuditEventStorageTest implements BaseUnitTest {
     @Test
     void createShouldPassAuditEventToRepository () {
         // given
-        AuditEvent event = Instancio.create(AuditEvent.class);
+        AuditEvent event = AuditEventTestData.defaultEvent();
         when(repository.save(any())).thenReturn(fromDomain(event));
 
         // when & then
@@ -109,7 +109,7 @@ class JpaAuditEventStorageTest implements BaseUnitTest {
     @Test
     void createShouldReturnIdOfCreatedRecord () {
         // given
-        AuditEvent eventToBeCreated = Instancio.create(AuditEvent.class);
+        AuditEvent eventToBeCreated = AuditEventTestData.defaultEvent();
         when(repository.save(any())).thenReturn(fromDomain(eventToBeCreated));
 
         // when

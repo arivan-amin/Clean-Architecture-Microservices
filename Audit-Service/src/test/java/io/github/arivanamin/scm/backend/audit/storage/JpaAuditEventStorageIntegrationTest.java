@@ -1,5 +1,6 @@
 package io.github.arivanamin.scm.backend.audit.storage;
 
+import io.github.arivanamin.scm.backend.audit.AuditEventTestData;
 import io.github.arivanamin.scm.backend.base.core.audit.AuditEvent;
 import io.github.arivanamin.scm.backend.base.core.dates.DateTimeRange;
 import io.github.arivanamin.scm.backend.base.core.dates.TimestampHelper;
@@ -12,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static io.github.arivanamin.scm.backend.audit.AuditEventTestingUtility.createSampleEvent;
 import static io.github.arivanamin.scm.backend.audit.storage.JpaAuditEvent.fromDomain;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -79,7 +79,7 @@ class JpaAuditEventStorageIntegrationTest extends BaseDatabaseTest {
 
     private void createAuditEventsAndSaveToStorage (int count, LocalDateTime recordedAt) {
         for (int i = 0; i < count; i++) {
-            JpaAuditEvent entity = fromDomain(createSampleEvent(recordedAt));
+            JpaAuditEvent entity = fromDomain(AuditEventTestData.eventWithRecordedAt(recordedAt));
             repository.save(entity);
         }
     }
@@ -113,9 +113,9 @@ class JpaAuditEventStorageIntegrationTest extends BaseDatabaseTest {
     @Test
     void findAllShouldSortEventsBasedOnRecordedAtDescending () {
         // given
-        repository.save(fromDomain(createSampleEvent(start.plusMinutes(10))));
-        repository.save(fromDomain(createSampleEvent(start.plusMinutes(5))));
-        repository.save(fromDomain(createSampleEvent(start.plusMinutes(15))));
+        repository.save(fromDomain(AuditEventTestData.eventWithRecordedAt(start.plusMinutes(10))));
+        repository.save(fromDomain(AuditEventTestData.eventWithRecordedAt(start.plusMinutes(5))));
+        repository.save(fromDomain(AuditEventTestData.eventWithRecordedAt(start.plusMinutes(15))));
 
         // when
         whenFindAllIsCalled();
@@ -132,7 +132,7 @@ class JpaAuditEventStorageIntegrationTest extends BaseDatabaseTest {
     @Test
     void findByIdShouldReturnCorrectEvent () {
         // given
-        repository.save(fromDomain(createSampleEvent(LocalDateTime.now())));
+        repository.save(fromDomain(AuditEventTestData.eventWithRecordedAt(LocalDateTime.now())));
         JpaAuditEvent savedEvent = repository.findAll()
             .stream()
             .findFirst()
@@ -150,7 +150,7 @@ class JpaAuditEventStorageIntegrationTest extends BaseDatabaseTest {
     void createShouldSaveEventInRepository () {
         // given
         LocalDateTime recordedAt = LocalDateTime.of(2025, 3, 4, 7, 9, 0);
-        AuditEvent event = createSampleEvent(recordedAt);
+        AuditEvent event = AuditEventTestData.eventWithRecordedAt(recordedAt);
 
         // when
         storage.create(event);

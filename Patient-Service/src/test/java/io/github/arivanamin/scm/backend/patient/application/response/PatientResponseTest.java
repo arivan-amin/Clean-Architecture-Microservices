@@ -1,9 +1,9 @@
 package io.github.arivanamin.scm.backend.patient.application.response;
 
+import io.github.arivanamin.scm.backend.patient.PatientTestData;
 import io.github.arivanamin.scm.backend.patient.core.entity.Patient;
 import io.github.arivanamin.scm.backend.testing.architecture.bases.BaseUnitTest;
 import lombok.extern.slf4j.Slf4j;
-import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -14,7 +14,7 @@ class PatientResponseTest implements BaseUnitTest {
     @Test
     void factoryMethodShouldMapEntityToResponse () {
         // given
-        Patient patient = Instancio.create(Patient.class);
+        Patient patient = PatientTestData.withDefaultEmail();
 
         // when
         PatientResponse response = PatientResponse.of(patient);

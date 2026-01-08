@@ -1,10 +1,10 @@
 package io.github.arivanamin.scm.backend.patient.core.command;
 
+import io.github.arivanamin.scm.backend.patient.PatientTestData;
 import io.github.arivanamin.scm.backend.patient.core.entity.Patient;
 import io.github.arivanamin.scm.backend.patient.core.exception.PatientAlreadyExistsException;
 import io.github.arivanamin.scm.backend.patient.core.persistence.PatientStorage;
 import io.github.arivanamin.scm.backend.testing.architecture.bases.BaseUnitTest;
-import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -19,8 +19,7 @@ import static org.mockito.Mockito.*;
 class CreatePatientCommandTest implements BaseUnitTest {
 
     private final UUID createdPatientId = UUID.randomUUID();
-    private final String emailAddress = FAKER.internet()
-        .emailAddress();
+    private final String emailAddress = "christopher.nolan@example.com";
 
     @Mock
     private PatientStorage storage;
@@ -38,13 +37,13 @@ class CreatePatientCommandTest implements BaseUnitTest {
     }
 
     private void givenCommandWithMockFindByEmail () {
-        Patient patient = Instancio.create(Patient.class);
+        Patient patient = PatientTestData.withDefaultEmail();
         patient.setEmail(emailAddress);
         when(storage.findByEmail(emailAddress)).thenReturn(Optional.of(patient));
     }
 
     private void whenEmailIsDuplicate () {
-        patient = Instancio.create(Patient.class);
+        patient = PatientTestData.withDefaultEmail();
         patient.setEmail(emailAddress);
     }
 
@@ -62,7 +61,7 @@ class CreatePatientCommandTest implements BaseUnitTest {
 
     private void givenCommandWithMockStorage () {
         when(storage.create(any())).thenReturn(createdPatientId);
-        patient = Instancio.create(Patient.class);
+        patient = PatientTestData.withDefaultEmail();
     }
 
     private UUID whenCommandIsExecuted () {

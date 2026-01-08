@@ -1,9 +1,9 @@
 package io.github.arivanamin.scm.backend.patient.application.request;
 
+import io.github.arivanamin.scm.backend.base.core.gender.Gender;
 import io.github.arivanamin.scm.backend.patient.core.entity.Patient;
 import io.github.arivanamin.scm.backend.testing.architecture.bases.BaseUnitTest;
 import lombok.extern.slf4j.Slf4j;
-import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
 
 import java.util.UUID;
@@ -17,7 +17,7 @@ class UpdatePatientRequestTest implements BaseUnitTest {
     @Test
     void toEntityShouldMapRequestToDomainEntity () {
         // given
-        UpdatePatientRequest request = Instancio.create(UpdatePatientRequest.class);
+        UpdatePatientRequest request = createRequest();
         UUID id = UUID.randomUUID();
 
         // when
@@ -32,5 +32,10 @@ class UpdatePatientRequestTest implements BaseUnitTest {
             toLocalDateTime(request.getDateOfBirth()).toLocalDate());
         assertThat(entity.getGender()).isEqualTo(request.getGender());
         assertThat(entity.getAddress()).isEqualTo(request.getAddress());
+    }
+
+    private UpdatePatientRequest createRequest () {
+        return new UpdatePatientRequest("Chris", "Martin", "chris.martin@example.com", 1995,
+            Gender.MALE, "Woodward avenue 31th");
     }
 }
