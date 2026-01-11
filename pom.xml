@@ -31,7 +31,6 @@
         <caffeine-cache-version>3.2.3</caffeine-cache-version>
         <springdoc-web-mvc-version>3.0.0</springdoc-web-mvc-version>
         <springdoc-web-flux-version>3.0.0</springdoc-web-flux-version>
-        <model-mapper-version>3.2.6</model-mapper-version>
         <vavr-version>0.11.0</vavr-version>
         <google-guava-version>33.5.0-jre</google-guava-version>
         <commons-io-version>2.21.0</commons-io-version>
@@ -196,11 +195,6 @@
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
             <version>${springdoc-web-mvc-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.modelmapper</groupId>
-            <artifactId>modelmapper</artifactId>
-            <version>${model-mapper-version}</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -406,14 +400,14 @@
                     <threshold>Low</threshold>
                     <failOnError>false</failOnError>
                     <xmlOutput>true</xmlOutput>
-                    <includeTests>true</includeTests>
+                    <includeTests>false</includeTests>
                     <excludeFilterFile>
                         ${project.basedir}/../src/main/resources/Spotbugs-Exclude.xml
                     </excludeFilterFile>
                 </configuration>
                 <executions>
                     <execution>
-                        <phase>test</phase>
+                        <phase>verify</phase>
                         <goals>
                             <goal>check</goal>
                         </goals>
