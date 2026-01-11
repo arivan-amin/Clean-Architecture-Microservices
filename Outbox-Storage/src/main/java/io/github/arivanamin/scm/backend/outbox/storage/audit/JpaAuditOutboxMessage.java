@@ -7,7 +7,6 @@ import jakarta.validation.constraints.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.UuidGenerator;
-import org.modelmapper.ModelMapper;
 
 import java.util.UUID;
 
@@ -50,11 +49,14 @@ public class JpaAuditOutboxMessage {
     @NotNull
     OutboxMessageStatus status;
 
-    public static JpaAuditOutboxMessage fromDomain (AuditOutboxMessage event) {
-        return new ModelMapper().map(event, JpaAuditOutboxMessage.class);
+    public static JpaAuditOutboxMessage fromDomain (AuditOutboxMessage domain) {
+        return new JpaAuditOutboxMessage(domain.getId(), domain.getServiceName(),
+            domain.getLocation(), domain.getAction(), domain.getData(), domain.getTimestamp(),
+            domain.getDuration(), domain.getResponse(), domain.getStatus());
     }
 
     public AuditOutboxMessage toDomain () {
-        return new ModelMapper().map(this, AuditOutboxMessage.class);
+        return new AuditOutboxMessage(id, serviceName, location, action, data, timestamp, duration,
+            response, status);
     }
 }

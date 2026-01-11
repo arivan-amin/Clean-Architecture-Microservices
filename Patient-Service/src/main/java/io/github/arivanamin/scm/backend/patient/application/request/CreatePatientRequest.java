@@ -1,11 +1,11 @@
 package io.github.arivanamin.scm.backend.patient.application.request;
 
+import io.github.arivanamin.scm.backend.base.core.dates.TimestampHelper;
 import io.github.arivanamin.scm.backend.base.core.gender.Gender;
 import io.github.arivanamin.scm.backend.patient.core.entity.Patient;
 import lombok.*;
-import org.modelmapper.ModelMapper;
 
-import static io.github.arivanamin.scm.backend.base.core.dates.TimestampHelper.toLocalDateTime;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -20,9 +20,18 @@ public class CreatePatientRequest {
     String address;
 
     public Patient toDomainEntity () {
-        // todo 1/7/26 - remove model mapper for better compile-time safety
-        Patient patient = new ModelMapper().map(this, Patient.class);
-        patient.setDateOfBirth(toLocalDateTime(dateOfBirth).toLocalDate());
+        Patient patient = new Patient();
+        patient.setFirstName(firstName);
+        patient.setLastName(lastName);
+        patient.setEmail(email);
+        patient.setDateOfBirth(convertTimestampToLocalDate());
+        patient.setGender(gender);
+        patient.setAddress(address);
         return patient;
+    }
+
+    private LocalDate convertTimestampToLocalDate () {
+        return TimestampHelper.toLocalDateTime(dateOfBirth)
+            .toLocalDate();
     }
 }
