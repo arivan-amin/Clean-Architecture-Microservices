@@ -1,6 +1,6 @@
 package io.github.arivanamin.scm.backend.discovery.application.config;
 
-import org.springframework.beans.factory.annotation.Value;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,16 +14,13 @@ import org.springframework.security.web.SecurityFilterChain;
 import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
-public class EurekaSecurityConfig {
+@RequiredArgsConstructor
+class EurekaSecurityConfig {
 
-    @Value ("${EUREKA_USER}")
-    private String userName;
-
-    @Value ("${EUREKA_PASSWORD}")
-    private String password;
+    private final EurekaCredentialProperties credentialProperties;
 
     @Bean
-    public SecurityFilterChain filterChain (HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain (HttpSecurity http) {
         http.csrf(AbstractHttpConfigurer::disable)
             .authorizeHttpRequests((registry) -> registry.anyRequest()
                 .authenticated())
@@ -34,8 +31,8 @@ public class EurekaSecurityConfig {
     @Bean
     public UserDetailsService userDetailsService () {
         UserDetails user = User.builder()
-            .username(userName)
-            .password(passwordEncoder().encode(password))
+            .username(credentialProperties.username())
+            .password(passwordEncoder().encode(credentialProperties.password()))
             .roles("USER")
             .build();
 
