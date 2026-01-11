@@ -1,8 +1,8 @@
 package io.github.arivanamin.scm.backend.audit.application.response;
 
 import io.github.arivanamin.scm.backend.base.core.audit.AuditEvent;
+import io.github.arivanamin.scm.backend.base.core.dates.TimestampHelper;
 import lombok.*;
-import org.modelmapper.ModelMapper;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -22,8 +22,15 @@ public class AuditEventResponse {
     private String response;
 
     public static AuditEventResponse of (AuditEvent event) {
-        AuditEventResponse response = new ModelMapper().map(event, AuditEventResponse.class);
+        AuditEventResponse response = new AuditEventResponse();
+        response.setId(event.getId());
+        response.setServiceName(event.getServiceName());
+        response.setLocation(event.getLocation());
+        response.setAction(event.getAction());
+        response.setData(event.getData());
+        response.setRecordedAt(TimestampHelper.toLocalDateTime(event.getTimestamp()));
         response.setDuration("%dms".formatted(event.getDuration()));
+        response.setResponse(event.getResponse());
         return response;
     }
 }

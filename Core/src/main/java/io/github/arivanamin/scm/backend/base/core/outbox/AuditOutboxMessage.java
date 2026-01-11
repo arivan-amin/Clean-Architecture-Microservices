@@ -3,7 +3,6 @@ package io.github.arivanamin.scm.backend.base.core.outbox;
 import io.github.arivanamin.scm.backend.base.core.audit.AuditEvent;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import org.modelmapper.ModelMapper;
 
 import java.util.UUID;
 
@@ -25,10 +24,13 @@ public class AuditOutboxMessage {
     OutboxMessageStatus status;
 
     public static AuditOutboxMessage fromDomain (AuditEvent event) {
-        return new ModelMapper().map(event, AuditOutboxMessage.class);
+        return new AuditOutboxMessage(event.getId(), event.getServiceName(), event.getLocation(),
+            event.getAction(), event.getData(), event.getTimestamp(), event.getDuration(),
+            event.getResponse(), OutboxMessageStatus.PENDING);
     }
 
     public AuditEvent toDomain () {
-        return new ModelMapper().map(this, AuditEvent.class);
+        return new AuditEvent(id, serviceName, location, action, data, timestamp, duration,
+            response);
     }
 }

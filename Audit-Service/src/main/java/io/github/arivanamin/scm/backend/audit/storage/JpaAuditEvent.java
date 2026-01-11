@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import org.modelmapper.ModelMapper;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -48,15 +47,14 @@ public class JpaAuditEvent {
     @NotBlank
     String response;
 
-    public static JpaAuditEvent fromDomain (AuditEvent event) {
-        JpaAuditEvent jpaEvent = new ModelMapper().map(event, JpaAuditEvent.class);
-        jpaEvent.setRecordedAt(toLocalDateTime(event.getTimestamp()));
-        return jpaEvent;
+    public static JpaAuditEvent fromDomain (AuditEvent domain) {
+        return new JpaAuditEvent(domain.getId(), domain.getServiceName(), domain.getLocation(),
+            domain.getAction(), domain.getData(), toLocalDateTime(domain.getTimestamp()),
+            domain.getDuration(), domain.getResponse());
     }
 
     public AuditEvent toDomain () {
-        AuditEvent event = new ModelMapper().map(this, AuditEvent.class);
-        event.setTimestamp(toTimestampInMilliseconds(recordedAt));
-        return event;
+        return new AuditEvent(id, serviceName, location, action, data,
+            toTimestampInMilliseconds(recordedAt), duration, response);
     }
 }

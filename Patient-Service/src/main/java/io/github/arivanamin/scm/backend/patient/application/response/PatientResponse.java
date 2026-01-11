@@ -3,7 +3,6 @@ package io.github.arivanamin.scm.backend.patient.application.response;
 import io.github.arivanamin.scm.backend.base.core.gender.Gender;
 import io.github.arivanamin.scm.backend.patient.core.entity.Patient;
 import lombok.*;
-import org.modelmapper.ModelMapper;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -25,6 +24,8 @@ public class PatientResponse {
     LocalDateTime updatedAt;
 
     public static PatientResponse of (Patient patient) {
-        return new ModelMapper().map(patient, PatientResponse.class);
+        return new PatientResponse(patient.getId(), patient.getFirstName(), patient.getLastName(),
+            patient.getEmail(), patient.getDateOfBirth(), patient.getGender(), patient.getAddress(),
+            patient.getCreatedAt(), patient.getUpdatedAt());
     }
 }

@@ -8,7 +8,6 @@ import jakarta.validation.constraints.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.UuidGenerator;
-import org.modelmapper.ModelMapper;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -46,11 +45,13 @@ public class JpaPatient extends StorageAuditData {
     @NotBlank
     String address;
 
-    public static JpaPatient fromDomain (Patient patient) {
-        return new ModelMapper().map(patient, JpaPatient.class);
+    public static JpaPatient fromDomain (Patient domain) {
+        return new JpaPatient(domain.getId(), domain.getFirstName(), domain.getLastName(),
+            domain.getEmail(), domain.getDateOfBirth(), domain.getGender(), domain.getAddress());
     }
 
     public Patient toDomain () {
-        return new ModelMapper().map(this, Patient.class);
+        return new Patient(id, firstName, lastName, email, dateOfBirth, gender, address,
+            getCreatedAt(), getUpdatedAt());
     }
 }
