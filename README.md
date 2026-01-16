@@ -11,17 +11,17 @@ best development practices.
 ---
 
 ## Quick Info
-
 ![Java](https://img.shields.io/badge/java-25-brightgreen)
 ![SpringBoot](https://img.shields.io/badge/spring--boot-4.0.1-brightgreen)
 ![Maven](https://img.shields.io/badge/Maven-3.9.11-blue)
-![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
-![License](https://img.shields.io/badge/license-MIT-brightgreen)
 
+![Coverage](https://img.shields.io/badge/jacoco%20coverage-75%25-yellow)
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
+
+![License](https://img.shields.io/badge/license-MIT-brightgreen)
 ![Last Commit](https://img.shields.io/github/last-commit/arivan-amin/Spring-Clean-Microservices)
 ![Repo Size](https://img.shields.io/github/repo-size/arivan-amin/Spring-Clean-Microservices)
 ![Contributors](https://img.shields.io/github/contributors/arivan-amin/Spring-Clean-Microservices)
-![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20Windows%20%7C%20MacOS-informational)
 
 ## Architecture Overview
 

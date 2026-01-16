@@ -60,6 +60,7 @@
         <module>Core</module>
         <module>Testing</module>
         <module>Outbox-Storage</module>
+        <module>Coverage-Module</module>
         <module>Audit-Service</module>
         <module>Patient-Service</module>
     </modules>
@@ -272,12 +273,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${surefire-plugin-version}</version>
-                <configuration>
-                    <argLine>
-                        -javaagent:${settings.localRepository}/org/mockito/mockito-core/${mockito.version}/mockito-core-${mockito.version}.jar
-                        -Xshare:off
-                    </argLine>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -323,16 +318,8 @@
                 <version>${jacoco-plugin-ver}</version>
                 <executions>
                     <execution>
-                        <id>jacoco-initialize</id>
                         <goals>
                             <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>jacoco-report</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>report</goal>
                         </goals>
                     </execution>
                 </executions>
@@ -358,7 +345,7 @@
                     </targetTests>
                     <excludedTestClasses>
                         <excludedTestClass>
-                            io.github.arivanamin.scm.backend.**.**IntegrationTest
+                            io.github.arivanamin.scm.backend.**.**IT
                         </excludedTestClass>
                     </excludedTestClasses>
                     <avoidCallsTo>

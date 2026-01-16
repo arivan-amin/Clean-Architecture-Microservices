@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>io.github.arivanamin.scm</groupId>
+        <artifactId>spring-clean-microservices</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <artifactId>coverage-module</artifactId>
+    <version>1.0.0</version>
+    <name>Coverage-Module</name>
+    <description>Coverage Module</description>
+
+    <properties>
+        <spring-boot.repackage.skip>true</spring-boot.repackage.skip>
+        <jib.skip>true</jib.skip>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.github.arivanamin.scm</groupId>
+            <artifactId>core</artifactId>
+            <version>${core-module-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.arivanamin.scm</groupId>
+            <artifactId>testing</artifactId>
+            <version>${testing-module-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.arivanamin.scm</groupId>
+            <artifactId>outbox-storage</artifactId>
+            <version>${outbox-storage-module-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.arivanamin.scm</groupId>
+            <artifactId>discovery-server</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.arivanamin.scm</groupId>
+            <artifactId>api-gateway</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.arivanamin.scm</groupId>
+            <artifactId>audit-service</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.arivanamin.scm</groupId>
+            <artifactId>patient-service</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco-plugin-ver}</version>
+                <executions>
+                    <execution>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>report-aggregate</goal>
+                        </goals>
+                        <configuration>
+                            <dataFileIncludes>
+                                <dataFileInclude>**/jacoco.exec</dataFileInclude>
+                            </dataFileIncludes>
+                            <!--                            <outputDirectory>${project.reporting.outputDirectory}/jacoco-aggregate</outputDirectory>-->
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
