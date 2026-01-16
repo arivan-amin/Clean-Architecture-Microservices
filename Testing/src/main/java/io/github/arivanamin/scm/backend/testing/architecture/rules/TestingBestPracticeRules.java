@@ -16,7 +16,7 @@ public interface TestingBestPracticeRules extends BaseUnitTest {
 
     String TEST_SUFFIX = "Test";
 
-    String INTEGRATION_TEST_SUFFIX = "IntegrationTest";
+    String INTEGRATION_TEST_SUFFIX = "IT";
 
     @ArchTest
     ArchRule TEST_CLASSES_PLACEMENT = testClassesShouldResideInTheSamePackageAsImplementation();

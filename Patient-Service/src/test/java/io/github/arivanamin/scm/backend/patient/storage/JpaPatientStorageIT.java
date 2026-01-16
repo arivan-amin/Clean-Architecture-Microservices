@@ -17,7 +17,7 @@ import static io.github.arivanamin.scm.backend.patient.PatientTestData.withDefau
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
-class JpaPatientStorageIntegrationTest extends BaseDatabaseTest {
+class JpaPatientStorageIT extends BaseDatabaseTest {
 
     @Autowired
     private PatientRepository repository;

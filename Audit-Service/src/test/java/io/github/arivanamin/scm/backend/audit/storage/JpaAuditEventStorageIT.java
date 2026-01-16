@@ -17,7 +17,7 @@ import static io.github.arivanamin.scm.backend.audit.storage.JpaAuditEvent.fromD
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
-class JpaAuditEventStorageIntegrationTest extends BaseDatabaseTest {
+class JpaAuditEventStorageIT extends BaseDatabaseTest {
 
     LocalDateTime start;
     LocalDateTime end;
