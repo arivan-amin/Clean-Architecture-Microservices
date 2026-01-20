@@ -206,7 +206,7 @@ Core entities have no association with JPA and are never annotated with @Entity.
 
 3. **Set Environment Variables (Linux/MacOS):**
    ```
-   export EUREKA_USER=admin
+   export EUREKA_USERNAME=admin
    export EUREKA_PASSWORD=admin
    ```
    ```
