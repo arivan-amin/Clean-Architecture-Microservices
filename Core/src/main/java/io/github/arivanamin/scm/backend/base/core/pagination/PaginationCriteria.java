@@ -16,7 +16,7 @@ public class PaginationCriteria {
     }
 
     private static void validatePage (int page) {
-        if (isPageNegative(page)) {
+        if (page < 0) {
             throw new IllegalArgumentException("Page must be zero or larger");
         }
     }
@@ -26,27 +26,15 @@ public class PaginationCriteria {
         validateSizeLimit(size);
     }
 
-    private static boolean isPageNegative (int page) {
-        return page < 0;
-    }
-
     private static void validateSizeRange (int size) {
-        if (isSizeNegative(size)) {
+        if (size <= 0) {
             throw new IllegalArgumentException("Size must be larger than zero");
         }
     }
 
     private static void validateSizeLimit (int size) {
-        if (isSizeLargerThanMaxAllowedLimit(size)) {
+        if (size > MAX_SIZE) {
             throw new IllegalArgumentException("Page size can't be more than " + MAX_SIZE);
         }
-    }
-
-    private static boolean isSizeNegative (int size) {
-        return size <= 0;
-    }
-
-    private static boolean isSizeLargerThanMaxAllowedLimit (int size) {
-        return size > MAX_SIZE;
     }
 }
