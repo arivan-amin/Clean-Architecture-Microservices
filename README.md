@@ -11,6 +11,7 @@ best development practices.
 ---
 
 ## Quick Info
+
 ![Java](https://img.shields.io/badge/java-25-brightgreen)
 ![SpringBoot](https://img.shields.io/badge/spring--boot-4.0.1-brightgreen)
 ![Maven](https://img.shields.io/badge/Maven-3.9.11-blue)

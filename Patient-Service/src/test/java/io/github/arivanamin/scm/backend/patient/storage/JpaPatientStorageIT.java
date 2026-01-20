@@ -19,11 +19,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Slf4j
 class JpaPatientStorageIT extends BaseDatabaseTest {
 
+    private final int entitiesCount = 3;
+
     @Autowired
     private PatientRepository repository;
     private JpaPatientStorage storage;
-
-    private final int entitiesCount = 3;
     private UUID expectedId;
 
     private List<Patient> expectedPatients;
@@ -46,18 +46,14 @@ class JpaPatientStorageIT extends BaseDatabaseTest {
         thenAssertThatAllEntitiesOfRepositoryAreReturned(expectedPatients);
     }
 
-    private void givenRepositoryWithSamplePatientsAndOnePatientExtracted () {
-        givenRepositoryWithSavedPatients();
-        expectedId = repository.findAll()
-            .get(1)
-            .getId();
-        expectedPatient = repository.findAll()
-            .stream()
-            .filter(patient -> patient.getId()
-                .equals(expectedId))
-            .findFirst()
-            .orElseThrow()
-            .toDomain();
+    private void givenRepositoryWithSavedPatients () {
+        List<Patient> patients = patientsList();
+        patients.stream()
+            .map(JpaPatient::fromDomain)
+            .toList();
+        for (Patient patient : patients) {
+            repository.save(JpaPatient.fromDomain(patient));
+        }
     }
 
     private void whenFindAllIsCalled () {
@@ -76,14 +72,18 @@ class JpaPatientStorageIT extends BaseDatabaseTest {
         thenAssertThatCorrectPatientIsReturned(expectedPatient);
     }
 
-    private void givenRepositoryWithSavedPatients () {
-        List<Patient> patients = patientsList();
-        patients.stream()
-            .map(JpaPatient::fromDomain)
-            .toList();
-        for (Patient patient : patients) {
-            repository.save(JpaPatient.fromDomain(patient));
-        }
+    private void givenRepositoryWithSamplePatientsAndOnePatientExtracted () {
+        givenRepositoryWithSavedPatients();
+        expectedId = repository.findAll()
+            .get(1)
+            .getId();
+        expectedPatient = repository.findAll()
+            .stream()
+            .filter(patient -> patient.getId()
+                .equals(expectedId))
+            .findFirst()
+            .orElseThrow()
+            .toDomain();
     }
 
     private void whenFindByIdIsCalled (UUID sampleId) {
