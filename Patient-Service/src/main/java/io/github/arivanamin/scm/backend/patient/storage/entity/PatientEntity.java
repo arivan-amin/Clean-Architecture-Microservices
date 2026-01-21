@@ -1,7 +1,7 @@
-package io.github.arivanamin.scm.backend.patient.storage;
+package io.github.arivanamin.scm.backend.patient.storage.entity;
 
 import io.github.arivanamin.scm.backend.base.core.gender.Gender;
-import io.github.arivanamin.scm.backend.outbox.storage.audit.StorageAuditData;
+import io.github.arivanamin.scm.backend.outbox.storage.audit.AuditFields;
 import io.github.arivanamin.scm.backend.patient.core.entity.Patient;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -21,7 +21,7 @@ import java.util.UUID;
 @Builder
 @FieldDefaults (level = AccessLevel.PRIVATE)
 @ToString (callSuper = true)
-public class JpaPatient extends StorageAuditData {
+public class PatientEntity extends AuditFields {
 
     @Id
     @UuidGenerator
@@ -45,8 +45,8 @@ public class JpaPatient extends StorageAuditData {
     @NotBlank
     String address;
 
-    public static JpaPatient fromDomain (Patient domain) {
-        return new JpaPatient(domain.getId(), domain.getFirstName(), domain.getLastName(),
+    public static PatientEntity fromDomain (Patient domain) {
+        return new PatientEntity(domain.getId(), domain.getFirstName(), domain.getLastName(),
             domain.getEmail(), domain.getDateOfBirth(), domain.getGender(), domain.getAddress());
     }
 

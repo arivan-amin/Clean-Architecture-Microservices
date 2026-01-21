@@ -4,8 +4,8 @@ import io.github.arivanamin.scm.backend.patient.core.command.*;
 import io.github.arivanamin.scm.backend.patient.core.persistence.PatientStorage;
 import io.github.arivanamin.scm.backend.patient.core.query.ReadPatientByIdQuery;
 import io.github.arivanamin.scm.backend.patient.core.query.ReadPatientsQuery;
-import io.github.arivanamin.scm.backend.patient.storage.JpaPatientStorage;
-import io.github.arivanamin.scm.backend.patient.storage.PatientRepository;
+import io.github.arivanamin.scm.backend.patient.storage.DatabasePatientStorage;
+import io.github.arivanamin.scm.backend.patient.storage.repository.PatientRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -14,7 +14,7 @@ class PatientBeansConfig {
 
     @Bean
     public PatientStorage storage (PatientRepository repository) {
-        return new JpaPatientStorage(repository);
+        return new DatabasePatientStorage(repository);
     }
 
     @Bean

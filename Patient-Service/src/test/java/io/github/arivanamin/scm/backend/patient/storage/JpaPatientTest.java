@@ -2,6 +2,7 @@ package io.github.arivanamin.scm.backend.patient.storage;
 
 import io.github.arivanamin.scm.backend.patient.PatientTestData;
 import io.github.arivanamin.scm.backend.patient.core.entity.Patient;
+import io.github.arivanamin.scm.backend.patient.storage.entity.PatientEntity;
 import io.github.arivanamin.scm.backend.testing.architecture.bases.BaseUnitTest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -17,7 +18,7 @@ class JpaPatientTest implements BaseUnitTest {
         Patient domainEntity = PatientTestData.withDefaultEmail();
 
         // when
-        JpaPatient storageEntity = JpaPatient.fromDomain(domainEntity);
+        PatientEntity storageEntity = PatientEntity.fromDomain(domainEntity);
 
         // then
         assertThat(storageEntity.getId()).isEqualTo(domainEntity.getId());
@@ -34,7 +35,7 @@ class JpaPatientTest implements BaseUnitTest {
     @Test
     void toDomainShouldMapStorageEntityToDomainEntity () {
         // given
-        JpaPatient storageEntity = JpaPatientTestData.defaultPatient();
+        PatientEntity storageEntity = JpaPatientTestData.defaultPatient();
 
         // when
         Patient domainEntity = storageEntity.toDomain();
