@@ -3,6 +3,8 @@ package io.github.arivanamin.scm.backend.patient.storage;
 import io.github.arivanamin.scm.backend.base.core.gender.Gender;
 import io.github.arivanamin.scm.backend.base.core.pagination.PaginationCriteria;
 import io.github.arivanamin.scm.backend.patient.core.entity.Patient;
+import io.github.arivanamin.scm.backend.patient.storage.entity.PatientEntity;
+import io.github.arivanamin.scm.backend.patient.storage.repository.PatientRepository;
 import io.github.arivanamin.scm.backend.testing.architecture.bases.BaseDatabaseTest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
@@ -23,7 +25,7 @@ class JpaPatientStorageIT extends BaseDatabaseTest {
 
     @Autowired
     private PatientRepository repository;
-    private JpaPatientStorage storage;
+    private DatabasePatientStorage storage;
     private UUID expectedId;
 
     private List<Patient> expectedPatients;
@@ -31,7 +33,7 @@ class JpaPatientStorageIT extends BaseDatabaseTest {
 
     @BeforeEach
     void setUp () {
-        storage = new JpaPatientStorage(repository);
+        storage = new DatabasePatientStorage(repository);
     }
 
     @AfterEach
@@ -49,10 +51,10 @@ class JpaPatientStorageIT extends BaseDatabaseTest {
     private void givenRepositoryWithSavedPatients () {
         List<Patient> patients = patientsList();
         patients.stream()
-            .map(JpaPatient::fromDomain)
+            .map(PatientEntity::fromDomain)
             .toList();
         for (Patient patient : patients) {
-            repository.save(JpaPatient.fromDomain(patient));
+            repository.save(PatientEntity.fromDomain(patient));
         }
     }
 
@@ -151,7 +153,7 @@ class JpaPatientStorageIT extends BaseDatabaseTest {
     }
 
     private void thenAssertThatPatientIsUpdatedInRepository () {
-        JpaPatient result = repository.findById(expectedId)
+        PatientEntity result = repository.findById(expectedId)
             .orElseThrow();
         assertThat(result.getFirstName()).isEqualTo(expectedPatient.getFirstName());
         assertThat(result.getLastName()).isEqualTo(expectedPatient.getLastName());

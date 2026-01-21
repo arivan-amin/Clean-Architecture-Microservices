@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 @EntityListeners (AuditingEntityListener.class)
 @ToString
-public class StorageAuditData {
+public class AuditFields {
 
     @CreatedDate
     @Column (name = "created_at", nullable = false, updatable = false)
