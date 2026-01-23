@@ -5,9 +5,9 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.23.xsd">
 
-    <include file="001-Outbox-SCM-8-create-audit-events-outbox-table.xml"
+    <include file="001-Outbox-LMS-8-create-audit-events-outbox-table.xml"
              relativeToChangelogFile="true" />
-    <include file="001-Patient-SCM-1-create-patients-table.xml" relativeToChangelogFile="true" />
-    <include file="002-Patient-SCM-4-add-audit-fields-to-patients-table.xml"
+    <include file="001-Patient-LMS-1-create-patients-table.xml" relativeToChangelogFile="true" />
+    <include file="002-Patient-LMS-4-add-audit-fields-to-patients-table.xml"
              relativeToChangelogFile="true" />
 </databaseChangeLog>
