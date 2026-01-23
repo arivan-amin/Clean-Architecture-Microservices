@@ -1,19 +1,19 @@
-# Clean Architecture Microservices with Spring Boot 4
+# LMS Microservices
+
+## Clean Architecture with Spring Boot 4
 
 ## Overview
 
-This is a **Spring Boot 4** Microservices Back-End using **Java 25** and **Spring 7** following
-**Clean Architecture** and **SOLID Principles**.
-
-It serves as a template to demonstrate the implementation of microservices, following some of the
-best development practices.
+This codebase is designed for java backend developers interested in a **Microservices** application
+following on **Clean Architecture** and **SOLID** principles, built with **Spring Boot 4**, **Java
+25**, and **Spring Framework 7**.
 
 ---
 
 ## Quick Info
 
 ![Java](https://img.shields.io/badge/java-25-brightgreen)
-![SpringBoot](https://img.shields.io/badge/spring--boot-4.0.1-brightgreen)
+![SpringBoot](https://img.shields.io/badge/spring--boot-4.0.2-brightgreen)
 ![Maven](https://img.shields.io/badge/Maven-3.9.11-blue)
 
 ![Coverage](https://img.shields.io/badge/jacoco%20coverage-75%25-yellow)
@@ -108,10 +108,10 @@ Example of API response for every error.
 ```
 {
     "type": "https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/RuntimeException.html",
-    "title": "Requested Patient Not Found",
+    "title": "Requested Student Not Found",
     "status": 404,
-    "detail": "Patient by the requested id not found",
-    "instance": "/patients/protected/v1/accounts/33bff7c7-77ee-4c51-9ee0-c870b437f82e",
+    "detail": "Student by the requested id not found",
+    "instance": "/students/protected/v1/accounts/33bff7c7-77ee-4c51-9ee0-c870b437f82e",
     "category": "Resource Not Found",
     "timestamp": "2025-04-22T18:45:43.927431130Z"
 }
@@ -129,26 +129,26 @@ Decouples core business logic from presentation using request and response POJO.
 
 Core entities have no association with JPA and are never annotated with @Entity.
 
-## Sample audit log from Audit-Service captured from API calls in Patient-Service
+## Sample audit log from Audit-Service captured from API calls in Student-Service
 
 ```
-        // Create Patient Endpoint
+        // Create Student Endpoint
         {
             "id": "6797e0215829937787277607",
-            "serviceName": "patient-service",
-            "location": "/patients/protected/v1/accounts",
+            "serviceName": "student-service",
+            "location": "/students/protected/v1/accounts",
             "action": "Create",
-            "data": "CreatePatientRequest(firstName=Hayden, lastName=Ondricka, email=Helen21@gmail.com, dateOfBirth=977659882000, gender=MALE, address=Bernhard Cape)",
+            "data": "CreateStudentRequest(firstName=Hayden, lastName=Ondricka, email=Helen21@gmail.com, dateOfBirth=977659882000, gender=MALE, address=Bernhard Cape)",
             "creationDate": "2025-01-27T14:36:01.528",
             "duration": "50ms",
-            "response": "CreatePatientResponse(id=9622e5ef-5ab7-4faf-89db-7dd970ea8ef0)"
+            "response": "CreateStudentResponse(id=9622e5ef-5ab7-4faf-89db-7dd970ea8ef0)"
         }
 
-        // Delete Patient Endpoint
+        // Delete Student Endpoint
         {
             "id": "6797e0115829937787277605",
-            "serviceName": "patient-service",
-            "location": "/patients/protected/v1/accounts/{id}",
+            "serviceName": "student-service",
+            "location": "/students/protected/v1/accounts/{id}",
             "action": "Delete",
             "data": "e8cd23d1-4bad-44bb-9b58-a3ca89dbf793",
             "creationDate": "2025-01-27T14:35:45.631",
@@ -156,16 +156,16 @@ Core entities have no association with JPA and are never annotated with @Entity.
             "response": "Void"
         },
         
-        // Read Patient by ID Endpoint
+        // Read Student by ID Endpoint
         {
             "id": "6797e0145829937787277606",
-            "serviceName": "patient-service",
-            "location": "/patients/protected/v1/accounts/{id}",
+            "serviceName": "student-service",
+            "location": "/students/protected/v1/accounts/{id}",
             "action": "Read",
             "data": "e8cd23d1-4bad-44bb-9b58-a3ca89dbf793",
             "creationDate": "2025-01-27T14:35:48.66",
             "duration": "14ms",
-            "response": "Error: Patient by the requested id not found"
+            "response": "Error: Student by the requested id not found"
         }
 ```
 
@@ -173,7 +173,7 @@ Core entities have no association with JPA and are never annotated with @Entity.
 
 - Discovery Server
 - API Gateway
-- Patient Service
+- Student Service
 - Audit Service
 
 ---
@@ -218,7 +218,7 @@ Core entities have no association with JPA and are never annotated with @Entity.
    ```
    docker compose up -d
    ```
-5. **Start the services(Patient, Audit, ...) manually or uncomment the section in docker compose
+5. **Start the services(Students, Audit, ...) manually or uncomment the section in docker compose
    file
    to run everything with Docker Compose:**
    ```
@@ -267,7 +267,7 @@ Core entities have no association with JPA and are never annotated with @Entity.
 - **Core Module**: Shared utilities and functionality.
 - **Outbox Storage Module**: Contains classes related to outbox messages storage, shared with
   all the modules.
-- **Patient Service**: Manages patient data.
+- **Student Service**: Manages student data.
 - **Audit Service**: Stores Audit Events, ensures compliance, and data integrity.
 
 ---

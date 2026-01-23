@@ -1,2 +1,2 @@
 CREATE
-DATABASE IF NOT EXISTS scm_backend_database;
+DATABASE IF NOT EXISTS lms_backend_database;
