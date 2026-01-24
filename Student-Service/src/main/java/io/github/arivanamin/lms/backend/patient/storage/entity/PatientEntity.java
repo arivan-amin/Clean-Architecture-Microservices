@@ -34,9 +34,11 @@ public class PatientEntity extends AuditFields {
     String lastName;
 
     @Email
+    @Column (nullable = false)
     String email;
 
     @Past
+    @Column (nullable = false)
     LocalDate dateOfBirth;
 
     @NotNull

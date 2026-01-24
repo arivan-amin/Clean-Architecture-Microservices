@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
+import static io.github.arivanamin.lms.backend.base.application.openapi.OpenApiDetails.*;
+
 @Configuration
 class AuditOpenApiConfig {
 

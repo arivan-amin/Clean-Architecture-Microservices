@@ -39,6 +39,7 @@ public class JpaAuditEvent {
     String data;
 
     @PastOrPresent
+    @Column (nullable = false)
     LocalDateTime recordedAt;
 
     @Positive

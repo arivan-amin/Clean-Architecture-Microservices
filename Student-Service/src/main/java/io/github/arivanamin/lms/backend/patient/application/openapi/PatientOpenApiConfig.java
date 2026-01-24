@@ -1,5 +1,6 @@
 package io.github.arivanamin.lms.backend.patient.application.openapi;
 
+import io.github.arivanamin.lms.backend.base.application.openapi.OpenApiDetails;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.servers.Server;
@@ -14,15 +15,15 @@ class PatientOpenApiConfig {
     @Bean
     public OpenAPI myOpenAPI () {
         Server server = new Server();
-        server.setUrl(APPLICATION_SERVER_URL);
+        server.setUrl(OpenApiDetails.APPLICATION_SERVER_URL);
         server.setDescription("Server URL");
 
         Info info = new Info().title("Patient Service API")
             .description("Provides all the API related to Patient service")
             .version("1.0")
-            .contact(getOpenApiContactDetails())
-            .termsOfService(getOpenApiTermsOfService())
-            .license(getOpenApiLicence());
+            .contact(OpenApiDetails.getOpenApiContactDetails())
+            .termsOfService(OpenApiDetails.getOpenApiTermsOfService())
+            .license(OpenApiDetails.getOpenApiLicence());
 
         return new OpenAPI().info(info)
             .servers(List.of(server));

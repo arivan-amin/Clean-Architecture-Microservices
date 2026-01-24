@@ -43,7 +43,7 @@
         </encoder>
     </appender>
 
-    <root level="${APP_LOG_LEVEL:-DEBUG}">
+    <root level="${APP_LOG_LEVEL:-INFO}">
         <appender-ref ref="Console" />
         <appender-ref ref="JsonFile" />
     </root>

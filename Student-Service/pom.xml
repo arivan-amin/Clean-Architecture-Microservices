@@ -10,10 +10,10 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>patient-service</artifactId>
+    <artifactId>student-service</artifactId>
     <version>1.0.0</version>
-    <name>Patient-Service</name>
-    <description>Patient Service Module</description>
+    <name>Student-Service</name>
+    <description>Student Service Module</description>
 
     <dependencies>
         <dependency>
