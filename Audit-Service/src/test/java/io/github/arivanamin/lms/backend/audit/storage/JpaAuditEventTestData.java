@@ -7,8 +7,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @NoArgsConstructor (access = AccessLevel.PRIVATE)
-public enum JpaAuditEventTestData {
-    ;
+public final class JpaAuditEventTestData {
 
     public static JpaAuditEvent defaultEvent () {
         JpaAuditEvent event = new JpaAuditEvent();

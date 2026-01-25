@@ -5988,8 +5988,8 @@
       {
         "current": {
           "selected": false,
-          "text": "Patient-Service",
-          "value": "Patient-Service"
+          "text": "Student-Service",
+          "value": "Student-Service"
         },
         "datasource": {
           "type": "prometheus",
@@ -6019,8 +6019,8 @@
       {
         "current": {
           "selected": false,
-          "text": "Patient-Service",
-          "value": "Patient-Service"
+          "text": "Student-Service",
+          "value": "Student-Service"
         },
         "datasource": {
           "type": "prometheus",

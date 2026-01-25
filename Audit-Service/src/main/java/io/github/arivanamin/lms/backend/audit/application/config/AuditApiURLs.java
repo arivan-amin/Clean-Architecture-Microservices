@@ -4,8 +4,7 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor (access = AccessLevel.PRIVATE)
-public enum AuditApiURLs {
-    ;
+public final class AuditApiURLs {
 
     public static final String PROTECTED_API = "/audits/protected";
 

@@ -4,8 +4,7 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor (access = AccessLevel.PRIVATE)
-public enum ProblemDetailCategories {
-    ;
+public final class ProblemDetailCategories {
 
     public static final String RESOURCE_NOT_FOUND = "Resource Not Found";
 

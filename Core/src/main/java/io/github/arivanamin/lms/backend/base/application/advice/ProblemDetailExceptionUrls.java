@@ -4,8 +4,7 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor (access = AccessLevel.PRIVATE)
-public enum ProblemDetailExceptionUrls {
-    ;
+public final class ProblemDetailExceptionUrls {
 
     public static final String SPRING_DOCS_URI =
         "https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework";

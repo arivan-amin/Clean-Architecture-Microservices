@@ -12,8 +12,7 @@ import static lombok.AccessLevel.PRIVATE;
 
 @Slf4j
 @NoArgsConstructor (access = PRIVATE)
-public enum TimestampHelper {
-    ;
+public final class TimestampHelper {
 
     public static LocalDateTime toLocalDateTime (long timestamp) {
         return ofInstant(ofEpochMilli(timestamp), DEFAULT_ZONE_ID);

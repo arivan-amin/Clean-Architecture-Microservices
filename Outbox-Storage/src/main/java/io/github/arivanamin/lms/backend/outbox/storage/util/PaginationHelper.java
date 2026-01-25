@@ -9,8 +9,7 @@ import org.springframework.data.domain.Page;
 import java.util.List;
 
 @NoArgsConstructor (access = AccessLevel.PRIVATE)
-public enum PaginationHelper {
-    ;
+public final class PaginationHelper {
 
     public static <T> PaginatedResponse<T> buildPaginatedResponse (List<T> elements, Page<?> page) {
         return PaginatedResponse.of(extractPageData(page), elements);

@@ -10,8 +10,7 @@ import java.util.UUID;
 import static io.github.arivanamin.lms.backend.base.core.dates.TimestampHelper.toTimestampInMilliseconds;
 
 @NoArgsConstructor (access = AccessLevel.PRIVATE)
-public enum AuditEventTestData {
-    ;
+public final class AuditEventTestData {
 
     public static AuditEvent defaultEvent () {
         return initializeEvent();

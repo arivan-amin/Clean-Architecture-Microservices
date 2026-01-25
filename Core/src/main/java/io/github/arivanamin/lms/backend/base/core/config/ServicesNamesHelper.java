@@ -4,9 +4,8 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor (access = AccessLevel.PRIVATE)
-public enum ServicesNamesHelper {
-    ;
+public final class ServicesNamesHelper {
 
-    public static final String PATIENT_SERVICE = "patient";
+    public static final String STUDENT_SERVICE = "student";
     public static final String AUDIT_SERVICE = "audit";
 }

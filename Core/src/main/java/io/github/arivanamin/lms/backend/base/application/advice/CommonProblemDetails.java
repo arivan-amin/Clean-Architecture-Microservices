@@ -20,8 +20,7 @@ import static org.springframework.http.ProblemDetail.forStatusAndDetail;
 
 @NoArgsConstructor (access = AccessLevel.PRIVATE)
 @Slf4j
-public enum CommonProblemDetails {
-    ;
+public final class CommonProblemDetails {
 
     public static ProblemDetail getResourceNotFoundProblemDetail (
         NoResourceFoundException exception) {

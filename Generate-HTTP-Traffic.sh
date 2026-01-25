@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the base URL of the API
-BASE_URL="localhost:8080/patients/protected/v1"
+BASE_URL="localhost:8080/students/protected/v1"
 
 # Endpoints and corresponding methods
 declare -A endpoints=(

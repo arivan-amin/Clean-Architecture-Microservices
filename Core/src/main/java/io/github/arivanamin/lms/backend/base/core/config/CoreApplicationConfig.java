@@ -10,8 +10,7 @@ import static java.lang.System.getProperty;
 import static java.nio.file.Paths.get;
 
 @NoArgsConstructor (access = AccessLevel.PRIVATE)
-public enum CoreApplicationConfig {
-    ;
+public final class CoreApplicationConfig {
 
     public static final String APPLICATION_DIRECTORY_NAME = "Spring-Clean-Microservices";
 

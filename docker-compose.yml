@@ -178,7 +178,7 @@ services:
 #    image: arivanamin/lms-audit-service
 #    container_name: Audit-Service
 #
-#  patient-service:
+#  student-service:
 #    <<: *base-service
-#    image: arivanamin/lms-patient-service
-#    container_name: Patient-Service
+#    image: arivanamin/lms-student-service
+#    container_name: Student-Service

@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import java.util.function.Function;
 
 import static io.github.arivanamin.lms.backend.base.core.config.ServicesNamesHelper.AUDIT_SERVICE;
-import static io.github.arivanamin.lms.backend.base.core.config.ServicesNamesHelper.PATIENT_SERVICE;
+import static io.github.arivanamin.lms.backend.base.core.config.ServicesNamesHelper.STUDENT_SERVICE;
 
 @Slf4j
 @Configuration
@@ -27,9 +27,9 @@ class ApiGatewayRouting {
         return builder.routes()
             .route(getDiscoveryServerRoute())
             .route(getDiscoveryServerStaticResourcesRoute())
-            .route(getPatientServiceRoute())
-            .route(getPatientServiceApiDocRoute())
-            .route(getPatientServiceActuatorRoute())
+            .route(getStudentServiceRoute())
+            .route(getStudentServiceApiDocRoute())
+            .route(getStudentServiceActuatorRoute())
             .route(getAuditServiceRoute())
             .route(getAuditServiceApiDocRoute())
             .route(getAuditServiceActuatorRoute())
@@ -47,16 +47,16 @@ class ApiGatewayRouting {
             .uri(getEurekaUrl());
     }
 
-    private Function<PredicateSpec, Buildable<Route>> getPatientServiceRoute () {
-        return routingHelper.createApiRouteForService(PATIENT_SERVICE);
+    private Function<PredicateSpec, Buildable<Route>> getStudentServiceRoute () {
+        return routingHelper.createApiRouteForService(STUDENT_SERVICE);
     }
 
-    private Function<PredicateSpec, Buildable<Route>> getPatientServiceApiDocRoute () {
-        return routingHelper.createApiDocRouteForService(PATIENT_SERVICE);
+    private Function<PredicateSpec, Buildable<Route>> getStudentServiceApiDocRoute () {
+        return routingHelper.createApiDocRouteForService(STUDENT_SERVICE);
     }
 
-    private Function<PredicateSpec, Buildable<Route>> getPatientServiceActuatorRoute () {
-        return routingHelper.createActuatorRouteForService(PATIENT_SERVICE);
+    private Function<PredicateSpec, Buildable<Route>> getStudentServiceActuatorRoute () {
+        return routingHelper.createActuatorRouteForService(STUDENT_SERVICE);
     }
 
     private Function<PredicateSpec, Buildable<Route>> getAuditServiceRoute () {

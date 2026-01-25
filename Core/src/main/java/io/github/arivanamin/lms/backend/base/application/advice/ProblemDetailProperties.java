@@ -4,8 +4,7 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor (access = AccessLevel.PRIVATE)
-public enum ProblemDetailProperties {
-    ;
+public final class ProblemDetailProperties {
 
     public static final String CATEGORY = "category";
 

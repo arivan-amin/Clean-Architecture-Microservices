@@ -4,8 +4,7 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor (access = AccessLevel.PRIVATE)
-public enum AuditTopics {
-    ;
+public final class AuditTopics {
 
     public static final String API_AUDIT_TOPIC = "api-audit";
 }

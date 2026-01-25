@@ -5,9 +5,9 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.23.xsd">
 
-    <changeSet id="Patient-LMS-1-create-patients-table" author="Arivan-Amin">
+    <changeSet id="Student-LMS-1-create-students-table" author="Arivan-Amin">
 
-        <createTable tableName="patients">
+        <createTable tableName="students">
             <column name="id" type="BINARY(16)">
                 <constraints primaryKey="true" nullable="false" />
             </column>
