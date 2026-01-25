@@ -7,11 +7,11 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>4.0.1</version>
+        <version>4.0.2</version>
         <relativePath />
     </parent>
 
-    <groupId>io.github.arivanamin.scm</groupId>
+    <groupId>io.github.arivanamin.lms</groupId>
     <artifactId>spring-clean-microservices</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
@@ -62,7 +62,7 @@
         <module>Outbox-Storage</module>
         <module>Coverage-Module</module>
         <module>Audit-Service</module>
-        <module>Patient-Service</module>
+        <module>Student-Service</module>
     </modules>
 
     <dependencies>
@@ -239,7 +239,7 @@
     </dependencyManagement>
 
     <build>
-        <finalName>scm-${project.artifactId}</finalName>
+        <finalName>lms-${project.artifactId}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -300,7 +300,7 @@
                         <image>bellsoft/liberica-openjre-alpine:25</image>
                     </from>
                     <to>
-                        <image>arivanamin/scm-${project.artifactId}</image>
+                        <image>arivanamin/lms-${project.artifactId}</image>
                     </to>
                 </configuration>
                 <executions>
@@ -338,14 +338,14 @@
                         <mutator>REMOVE_CONDITIONALS_ORDER_IF</mutator>
                     </mutators>
                     <targetClasses>
-                        <param>io.github.arivanamin.scm.backend.*</param>
+                        <param>io.github.arivanamin.lms.backend.*</param>
                     </targetClasses>
                     <targetTests>
-                        <param>io.github.arivanamin.scm.backend.*</param>
+                        <param>io.github.arivanamin.lms.backend.*</param>
                     </targetTests>
                     <excludedTestClasses>
                         <excludedTestClass>
-                            io.github.arivanamin.scm.backend.**.**IT
+                            io.github.arivanamin.lms.backend.**.**IT
                         </excludedTestClass>
                     </excludedTestClasses>
                     <avoidCallsTo>

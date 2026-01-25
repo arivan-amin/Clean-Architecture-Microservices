@@ -114,7 +114,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"serviceName\":\"patient-service\",\n    \"location\":\"\",\n    \"action\":\"Read\",\n    \"data\":\"\"\n}",
+              "raw": "{\n    \"serviceName\":\"student-service\",\n    \"location\":\"\",\n    \"action\":\"Read\",\n    \"data\":\"\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -159,10 +159,10 @@
       ]
     },
     {
-      "name": "Patients",
+      "name": "Students",
       "item": [
         {
-          "name": "Get All Patients",
+          "name": "Get All Students",
           "event": [
             {
               "listen": "test",
@@ -179,13 +179,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "localhost:8080/patients/protected/v1/accounts?page=0&size=3",
+              "raw": "localhost:8080/students/protected/v1/accounts?page=0&size=3",
               "host": [
                 "localhost"
               ],
               "port": "8080",
               "path": [
-                "patients",
+                "students",
                 "protected",
                 "v1",
                 "accounts"
@@ -205,7 +205,7 @@
           "response": []
         },
         {
-          "name": "Get Patient by Id",
+          "name": "Get Student by Id",
           "event": [
             {
               "listen": "test",
@@ -221,13 +221,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "localhost:8080/patients/protected/v1/accounts/b704a6fa-983e-4132-9db7-4dcf50933f00",
+              "raw": "localhost:8080/students/protected/v1/accounts/b704a6fa-983e-4132-9db7-4dcf50933f00",
               "host": [
                 "localhost"
               ],
               "port": "8080",
               "path": [
-                "patients",
+                "students",
                 "protected",
                 "v1",
                 "accounts",
@@ -238,7 +238,7 @@
           "response": []
         },
         {
-          "name": "Create Patient",
+          "name": "Create Student",
           "event": [
             {
               "listen": "test",
@@ -264,13 +264,13 @@
               }
             },
             "url": {
-              "raw": "localhost:8080/patients/protected/v1/accounts",
+              "raw": "localhost:8080/students/protected/v1/accounts",
               "host": [
                 "localhost"
               ],
               "port": "8080",
               "path": [
-                "patients",
+                "students",
                 "protected",
                 "v1",
                 "accounts"
@@ -280,7 +280,7 @@
           "response": []
         },
         {
-          "name": "Update Patient",
+          "name": "Update Student",
           "event": [
             {
               "listen": "test",
@@ -305,13 +305,13 @@
               }
             },
             "url": {
-              "raw": "localhost:8080/patients/protected/v1/accounts/b704a6fa-983e-4132-9db7-4dcf50933f00",
+              "raw": "localhost:8080/students/protected/v1/accounts/b704a6fa-983e-4132-9db7-4dcf50933f00",
               "host": [
                 "localhost"
               ],
               "port": "8080",
               "path": [
-                "patients",
+                "students",
                 "protected",
                 "v1",
                 "accounts",
@@ -322,7 +322,7 @@
           "response": []
         },
         {
-          "name": "Create Patient Missing",
+          "name": "Create Student Missing",
           "event": [
             {
               "listen": "test",
@@ -348,13 +348,13 @@
               }
             },
             "url": {
-              "raw": "localhost:8080/patients/protected/v1/accounts",
+              "raw": "localhost:8080/students/protected/v1/accounts",
               "host": [
                 "localhost"
               ],
               "port": "8080",
               "path": [
-                "patients",
+                "students",
                 "protected",
                 "v1",
                 "accounts"
@@ -364,7 +364,7 @@
           "response": []
         },
         {
-          "name": "Create Patient Exists",
+          "name": "Create Student Exists",
           "event": [
             {
               "listen": "test",
@@ -390,13 +390,13 @@
               }
             },
             "url": {
-              "raw": "localhost:8080/patients/protected/v1/accounts",
+              "raw": "localhost:8080/students/protected/v1/accounts",
               "host": [
                 "localhost"
               ],
               "port": "8080",
               "path": [
-                "patients",
+                "students",
                 "protected",
                 "v1",
                 "accounts"
@@ -406,7 +406,7 @@
           "response": []
         },
         {
-          "name": "Delete Patient",
+          "name": "Delete Student",
           "event": [
             {
               "listen": "test",
@@ -423,13 +423,13 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "localhost:8080/patients/protected/v1/accounts/e8cd23d1-4bad-44bb-9b58-a3ca89dbf793",
+              "raw": "localhost:8080/students/protected/v1/accounts/e8cd23d1-4bad-44bb-9b58-a3ca89dbf793",
               "host": [
                 "localhost"
               ],
               "port": "8080",
               "path": [
-                "patients",
+                "students",
                 "protected",
                 "v1",
                 "accounts",

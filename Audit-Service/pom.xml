@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>io.github.arivanamin.scm</groupId>
+        <groupId>io.github.arivanamin.lms</groupId>
         <artifactId>spring-clean-microservices</artifactId>
         <version>1.0.0</version>
     </parent>
@@ -27,17 +27,17 @@
         </dependency>
 
         <dependency>
-            <groupId>io.github.arivanamin.scm</groupId>
+            <groupId>io.github.arivanamin.lms</groupId>
             <artifactId>core</artifactId>
             <version>${core-module-version}</version>
         </dependency>
         <dependency>
-            <groupId>io.github.arivanamin.scm</groupId>
+            <groupId>io.github.arivanamin.lms</groupId>
             <artifactId>testing</artifactId>
             <version>${testing-module-version}</version>
         </dependency>
         <dependency>
-            <groupId>io.github.arivanamin.scm</groupId>
+            <groupId>io.github.arivanamin.lms</groupId>
             <artifactId>outbox-storage</artifactId>
             <version>${outbox-storage-module-version}</version>
         </dependency>

@@ -20,7 +20,7 @@ x-base-service: &base-service
 services:
   discovery-server:
     <<: *base-service
-    image: arivanamin/scm-discovery-server
+    image: arivanamin/lms-discovery-server
     container_name: Discovery-Server
     ports:
       - "8761:8761"
@@ -28,7 +28,7 @@ services:
 
   api-gateway:
     <<: *base-service
-    image: arivanamin/scm-api-gateway
+    image: arivanamin/lms-api-gateway
     container_name: API-Gateway
     ports:
       - "8080:8080"
@@ -175,10 +175,10 @@ services:
   ### Uncomment below if you want to start all services through docker compose 
 #  audit-service:
 #    <<: *base-service
-#    image: arivanamin/scm-audit-service
+#    image: arivanamin/lms-audit-service
 #    container_name: Audit-Service
 #
-#  patient-service:
+#  student-service:
 #    <<: *base-service
-#    image: arivanamin/scm-patient-service
-#    container_name: Patient-Service
+#    image: arivanamin/lms-student-service
+#    container_name: Student-Service
