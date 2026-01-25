@@ -1,21 +1,26 @@
 package io.github.arivanamin.lms.backend.patient.application.openapi;
 
+import io.github.arivanamin.lms.backend.base.application.config.OpenApiServerProperties;
 import io.github.arivanamin.lms.backend.base.application.openapi.OpenApiDetails;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.servers.Server;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
 @Configuration
+@RequiredArgsConstructor
 class PatientOpenApiConfig {
+
+    private final OpenApiServerProperties serverProperties;
 
     @Bean
     public OpenAPI myOpenAPI () {
         Server server = new Server();
-        server.setUrl(OpenApiDetails.APPLICATION_SERVER_URL);
+        server.setUrl(serverProperties.url());
         server.setDescription("Server URL");
 
         Info info = new Info().title("Patient Service API")

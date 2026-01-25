@@ -6,10 +6,7 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor (access = AccessLevel.PRIVATE)
-public enum OpenApiDetails {
-    ;
-
-    public static final String APPLICATION_SERVER_URL = "localhost:8080/";
+public final class OpenApiDetails {
 
     public static Contact getOpenApiContactDetails () {
         Contact contact = new Contact();

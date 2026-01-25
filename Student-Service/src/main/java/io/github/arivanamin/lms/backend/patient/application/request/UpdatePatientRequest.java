@@ -7,8 +7,8 @@ import java.util.UUID;
 
 import static io.github.arivanamin.lms.backend.base.core.dates.TimestampHelper.toLocalDateTime;
 
-public record UpdatePatientRequest(String firstName, String lastName, String email, long dateOfBirth,
-    Gender gender, String address) {
+public record UpdatePatientRequest(String firstName, String lastName, String email,
+    long dateOfBirth, Gender gender, String address) {
 
     public Patient toEntity (UUID id) {
         Patient patient = new Patient();
