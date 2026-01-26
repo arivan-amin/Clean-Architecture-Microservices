@@ -39,9 +39,8 @@ class StudentController {
     @Cacheable (GET_ALL_STUDENTS_CACHE)
     @Operation (summary = "Get a list of students")
     @ResponseStatus (HttpStatus.OK)
-    public ReadStudentsResponse getAllStudents (@RequestParam Integer page,
-                                                @RequestParam Integer size) {
-        return ReadStudentsResponse.of(readQuery.execute(PaginationCriteria.of(page, size)));
+    public ReadStudentsResponse getAllStudents (@Valid PaginationCriteria criteria) {
+        return ReadStudentsResponse.of(readQuery.execute(criteria));
     }
 
     @GetMapping (GET_STUDENT_BY_ID_URL)

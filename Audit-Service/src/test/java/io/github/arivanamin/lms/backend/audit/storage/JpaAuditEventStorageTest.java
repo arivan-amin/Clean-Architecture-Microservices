@@ -5,6 +5,7 @@ import io.github.arivanamin.lms.backend.audit.core.exception.AuditEventNotFoundE
 import io.github.arivanamin.lms.backend.base.core.audit.AuditEvent;
 import io.github.arivanamin.lms.backend.base.core.dates.DateTimeRange;
 import io.github.arivanamin.lms.backend.base.core.pagination.PaginatedResponse;
+import io.github.arivanamin.lms.backend.base.core.pagination.PaginationCriteria;
 import io.github.arivanamin.lms.backend.testing.architecture.bases.BaseUnitTest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
@@ -31,15 +32,13 @@ class JpaAuditEventStorageTest implements BaseUnitTest {
 
     @InjectMocks
     JpaAuditEventStorage storage;
-
     LocalDateTime start = LocalDateTime.now()
         .minusDays(1);
     LocalDateTime end = LocalDateTime.now()
         .minusHours(1);
-
     DateTimeRange dateTimeRange = DateTimeRange.of(start, end);
-
     List<JpaAuditEvent> events;
+    private final PaginationCriteria paginationCriteria = PaginationCriteria.of(0, 3);
 
     @BeforeEach
     void setUp () {
@@ -55,13 +54,13 @@ class JpaAuditEventStorageTest implements BaseUnitTest {
     void findAllShouldReturnResultOfRepository () {
         // given
         Sort sort = Sort.by(Sort.Direction.DESC, "recordedAt");
-        PageRequest pageRequest = of(PAGINATION_CRITERIA.page(), PAGINATION_CRITERIA.size(), sort);
+        PageRequest pageRequest =
+            of(paginationCriteria.getPage(), paginationCriteria.getSize(), sort);
         when(repository.findAllByRecordedAtBetween(start, end, pageRequest)).thenReturn(
             new PageImpl(events));
 
         // when
-        PaginatedResponse<AuditEvent> response =
-            storage.findAll(dateTimeRange, PAGINATION_CRITERIA);
+        PaginatedResponse<AuditEvent> response = storage.findAll(dateTimeRange, paginationCriteria);
 
         // then
         assertThat(response.content()

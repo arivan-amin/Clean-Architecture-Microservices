@@ -22,7 +22,7 @@ public class DatabaseStudentStorage implements StudentStorage {
 
     @Override
     public PaginatedResponse<Student> findAll (PaginationCriteria criteria) {
-        Page<StudentEntity> page = repository.findAll(of(criteria.page(), criteria.size()));
+        Page<StudentEntity> page = repository.findAll(of(criteria.getPage(), criteria.getSize()));
 
         List<Student> elements = fetchAllStudentsAndMapToEntity(page.getContent());
         return PaginatedResponse.of(extractPageData(page), elements);

@@ -1,6 +1,7 @@
 package io.github.arivanamin.lms.backend.student.core.query;
 
 import io.github.arivanamin.lms.backend.base.core.pagination.PaginatedResponse;
+import io.github.arivanamin.lms.backend.base.core.pagination.PaginationCriteria;
 import io.github.arivanamin.lms.backend.student.core.entity.Student;
 import io.github.arivanamin.lms.backend.student.core.persistence.StudentStorage;
 import io.github.arivanamin.lms.backend.testing.architecture.bases.BaseUnitTest;
@@ -18,6 +19,7 @@ import static org.mockito.Mockito.*;
 class ReadStudentsQueryTest implements BaseUnitTest {
 
     private final List<Student> students = List.of();
+    private final PaginationCriteria paginationCriteria = PaginationCriteria.of(0, 3);
 
     @Mock
     private StudentStorage storage;
@@ -32,24 +34,24 @@ class ReadStudentsQueryTest implements BaseUnitTest {
         thenVerifyQueryCallsFindAll();
     }
 
+    private void givenQueryWithMockStorage () {
+        when(storage.findAll(paginationCriteria)).thenReturn(
+            PaginatedResponse.of(PAGE_DATA, students));
+    }
+
+    private PaginatedResponse<Student> whenQueryIsExecuted () {
+        return query.execute(paginationCriteria);
+    }
+
+    private void thenVerifyQueryCallsFindAll () {
+        verify(storage, times(1)).findAll(paginationCriteria);
+    }
+
     @Test
     void queryShouldReturnResultOfStorageFindAll () {
         givenQueryWithMockStorage();
         List<Student> result = whenQueryIsExecuted().content();
         thenVerifyFindAllResultIsReturned(result);
-    }
-
-    private void givenQueryWithMockStorage () {
-        when(storage.findAll(PAGINATION_CRITERIA)).thenReturn(
-            PaginatedResponse.of(PAGE_DATA, students));
-    }
-
-    private void thenVerifyQueryCallsFindAll () {
-        verify(storage, times(1)).findAll(PAGINATION_CRITERIA);
-    }
-
-    private PaginatedResponse<Student> whenQueryIsExecuted () {
-        return query.execute(PAGINATION_CRITERIA);
     }
 
     private void thenVerifyFindAllResultIsReturned (List<Student> result) {

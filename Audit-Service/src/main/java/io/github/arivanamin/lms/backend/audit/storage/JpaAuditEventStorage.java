@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.*;
 
 import static io.github.arivanamin.lms.backend.audit.storage.JpaAuditEvent.fromDomain;
-import static org.springframework.data.domain.PageRequest.of;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -43,7 +42,7 @@ public class JpaAuditEventStorage implements AuditEventStorage {
     }
 
     private PageRequest createPageRequestAndSortByRecordedAt (PaginationCriteria criteria) {
-        return of(criteria.page(), criteria.size(), sortByRecordedAtDescending());
+        return PageRequest.of(criteria.getPage(), criteria.getSize(), sortByRecordedAtDescending());
     }
 
     private Sort sortByRecordedAtDescending () {
