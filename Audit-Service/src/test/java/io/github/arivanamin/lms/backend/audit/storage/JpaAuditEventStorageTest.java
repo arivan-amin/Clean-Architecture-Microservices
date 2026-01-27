@@ -27,6 +27,8 @@ import static org.springframework.data.domain.PageRequest.of;
 @Slf4j
 class JpaAuditEventStorageTest implements BaseUnitTest {
 
+    private final PaginationCriteria paginationCriteria = PaginationCriteria.of(0, 3);
+
     @Mock
     AuditEventRepository repository;
 
@@ -38,7 +40,6 @@ class JpaAuditEventStorageTest implements BaseUnitTest {
         .minusHours(1);
     DateTimeRange dateTimeRange = DateTimeRange.of(start, end);
     List<JpaAuditEvent> events;
-    private final PaginationCriteria paginationCriteria = PaginationCriteria.of(0, 3);
 
     @BeforeEach
     void setUp () {

@@ -9,10 +9,6 @@ public class PaginationCriteria {
     // todo 1/26/26 - max size pe page should be configurable
     public static final int MAX_SIZE = 50;
 
-    public static PaginationCriteria of (int page, int size) {
-        return new PaginationCriteria(page, size);
-    }
-
     @NotNull
     @PositiveOrZero
     int page;
@@ -21,4 +17,8 @@ public class PaginationCriteria {
     @Positive
     @Max (MAX_SIZE)
     int size;
+
+    public static PaginationCriteria of (int page, int size) {
+        return new PaginationCriteria(page, size);
+    }
 }

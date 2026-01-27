@@ -36,23 +36,23 @@ class ReadStudentByIdQueryTest implements BaseUnitTest {
         thenVerifyQueryCallsStorageFindById();
     }
 
-    @Test
-    void executeShouldReturnResultFromStorageFindById () {
-        givenQueryWithMockStorage();
-        Student result = whenQueryIsExecuted();
-        thenVerifyFindByIdResultIsReturned(result);
-    }
-
     private void givenQueryWithMockStorage () {
         when(storage.findById(id)).thenReturn(Optional.of(student));
+    }
+
+    private Student whenQueryIsExecuted () {
+        return query.execute(id);
     }
 
     private void thenVerifyQueryCallsStorageFindById () {
         verify(storage, times(1)).findById(id);
     }
 
-    private Student whenQueryIsExecuted () {
-        return query.execute(id);
+    @Test
+    void executeShouldReturnResultFromStorageFindById () {
+        givenQueryWithMockStorage();
+        Student result = whenQueryIsExecuted();
+        thenVerifyFindByIdResultIsReturned(result);
     }
 
     private void thenVerifyFindByIdResultIsReturned (Student result) {
