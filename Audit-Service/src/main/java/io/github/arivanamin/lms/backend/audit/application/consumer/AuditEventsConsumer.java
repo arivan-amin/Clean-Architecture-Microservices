@@ -4,6 +4,7 @@ import io.github.arivanamin.lms.backend.audit.core.command.CreateAuditEventComma
 import io.github.arivanamin.lms.backend.base.core.aspects.LogExecutionTime;
 import io.github.arivanamin.lms.backend.base.core.audit.AuditEvent;
 import io.github.arivanamin.lms.backend.base.core.command.UpdateAuditOutboxMessageStatusCommand;
+import io.github.arivanamin.lms.backend.base.core.command.UpdateAuditOutboxMessageStatusCommandInput;
 import io.github.arivanamin.lms.backend.base.core.outbox.OutboxMessageStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -41,6 +42,7 @@ public class AuditEventsConsumer {
     }
 
     private void updateMessageStatusToCompleted (UUID eventId) {
-        updateCommand.execute(eventId, OutboxMessageStatus.COMPLETED);
+        updateCommand.execute(
+            new UpdateAuditOutboxMessageStatusCommandInput(eventId, OutboxMessageStatus.COMPLETED));
     }
 }
