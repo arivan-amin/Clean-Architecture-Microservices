@@ -1,25 +1,24 @@
-package io.github.arivanamin.lms.backend.student.core.command;
+package io.github.arivanamin.lms.backend.student.core.command.create;
 
 import io.github.arivanamin.lms.backend.student.core.entity.Student;
 import io.github.arivanamin.lms.backend.student.core.exception.StudentAlreadyExistsException;
 import io.github.arivanamin.lms.backend.student.core.persistence.StudentStorage;
 import lombok.RequiredArgsConstructor;
 
-import java.util.UUID;
-
 @RequiredArgsConstructor
 public class CreateStudentCommand {
 
     private final StudentStorage storage;
 
-    public UUID execute (Student student) {
-        if (doesStudentExist(student)) {
-            throw new StudentAlreadyExistsException();
+    public CreateStudentCommandOutput execute (CreateStudentCommandInput input) {
+        Student student = input.getStudent();
+        if (studentAlreadyExists(student)) {
+            throw new StudentAlreadyExistsException(student.getEmail());
         }
-        return storage.create(student);
+        return new CreateStudentCommandOutput(storage.create(student));
     }
 
-    private boolean doesStudentExist (Student student) {
+    private boolean studentAlreadyExists (Student student) {
         return storage.findByEmail(student.getEmail())
             .isPresent();
     }
