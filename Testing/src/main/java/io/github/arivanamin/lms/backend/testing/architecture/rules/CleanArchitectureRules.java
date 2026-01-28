@@ -48,6 +48,10 @@ public interface CleanArchitectureRules {
 
     String QUERY_SUFFIX = "Query";
 
+    String COMMAND_QUERY_PARAMETER_NAME_SUFFIX = "Input";
+
+    String COMMAND_QUERY_RETURN_TYPE_NAME_SUFFIX = "Output";
+
     String CONTROLLER_PACKAGE = "..endpoints..";
 
     String COMMANDS_AND_QUERIES_METHOD_NAME = "execute";
@@ -195,6 +199,10 @@ public interface CleanArchitectureRules {
     @ArchTest
     ArchRule COMMAND_SHOULD_BE_SUFFIXED = classes().that()
         .resideInAPackage(COMMAND_PACKAGE)
+        .and()
+        .haveSimpleNameNotEndingWith(COMMAND_QUERY_PARAMETER_NAME_SUFFIX)
+        .and()
+        .haveSimpleNameNotEndingWith(COMMAND_QUERY_RETURN_TYPE_NAME_SUFFIX)
         .should()
         .haveSimpleNameEndingWith(COMMAND_SUFFIX)
         .allowEmptyShould(true);
@@ -202,6 +210,10 @@ public interface CleanArchitectureRules {
     @ArchTest
     ArchRule QUERY_SHOULD_BE_SUFFIXED = classes().that()
         .resideInAPackage(QUERY_PACKAGE)
+        .and()
+        .haveSimpleNameNotEndingWith(COMMAND_QUERY_PARAMETER_NAME_SUFFIX)
+        .and()
+        .haveSimpleNameNotEndingWith(COMMAND_QUERY_RETURN_TYPE_NAME_SUFFIX)
         .should()
         .haveSimpleNameEndingWith(QUERY_SUFFIX)
         .allowEmptyShould(true);
@@ -245,6 +257,32 @@ public interface CleanArchitectureRules {
             .because(
                 "Commands and queries should adhere to the single responsibility principle and " +
                     "expose only the 'execute' method.");
+
+    @ArchTest
+    ArchRule COMMANDS_AND_QUERIES_SHOULD_HAVE_HAVE_SINGLE_PARAMETER_NAMED_INPUT = classes().that()
+        .resideInAPackage(CORE_PACKAGE)
+        .and()
+        .haveSimpleNameEndingWith(COMMAND_SUFFIX)
+        .or()
+        .haveSimpleNameEndingWith(QUERY_SUFFIX)
+        .and()
+        .doNotHaveModifier(JavaModifier.ABSTRACT)
+        .should(new CommandAndQueriesInputParameterCheck())
+        .allowEmptyShould(true)
+        .because("Commands and Queries must have one parameter with a name that ends with Input");
+
+    @ArchTest
+    ArchRule COMMANDS_AND_QUERIES_RETURN_TYPE_NAME_MUST_END_WITH_OUTPUT = classes().that()
+        .resideInAPackage(CORE_PACKAGE)
+        .and()
+        .haveSimpleNameEndingWith(COMMAND_SUFFIX)
+        .or()
+        .haveSimpleNameEndingWith(QUERY_SUFFIX)
+        .and()
+        .doNotHaveModifier(JavaModifier.ABSTRACT)
+        .should(new CommandAndQueriesOutputCheck())
+        .allowEmptyShould(true)
+        .because("Commands and Queries should return a type with a name that ends with Output");
 
     @ArchTest
     ArchRule CONTROLLERS_SHOULD_BE_SUFFIXED = classes().that()
