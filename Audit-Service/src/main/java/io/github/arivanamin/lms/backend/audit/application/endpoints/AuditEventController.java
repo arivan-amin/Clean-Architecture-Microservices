@@ -2,8 +2,8 @@ package io.github.arivanamin.lms.backend.audit.application.endpoints;
 
 import io.github.arivanamin.lms.backend.audit.application.response.AuditEventResponse;
 import io.github.arivanamin.lms.backend.audit.application.response.ReadAuditEventsResponse;
-import io.github.arivanamin.lms.backend.audit.core.query.ReadAuditEventByIdQuery;
-import io.github.arivanamin.lms.backend.audit.core.query.ReadAuditEventsQuery;
+import io.github.arivanamin.lms.backend.audit.core.query.readbyid.*;
+import io.github.arivanamin.lms.backend.audit.core.query.readbyspec.*;
 import io.github.arivanamin.lms.backend.base.core.dates.DateTimeRange;
 import io.github.arivanamin.lms.backend.base.core.pagination.PaginationCriteria;
 import io.swagger.v3.oas.annotations.Operation;
@@ -34,14 +34,19 @@ class AuditEventController {
                                                       @RequestParam long end,
                                                       @RequestParam Integer page,
                                                       @RequestParam Integer size) {
-        return ReadAuditEventsResponse.of(
-            readQuery.execute(DateTimeRange.of(start, end), PaginationCriteria.of(page, size)));
+        ReadAuditEventsQueryInput input =
+            new ReadAuditEventsQueryInput(DateTimeRange.of(start, end),
+                PaginationCriteria.of(page, size));
+        ReadAuditEventsQueryOutput output = readQuery.execute(input);
+        return ReadAuditEventsResponse.of(output.getEvents());
     }
 
     @GetMapping (GET_EVENT_BY_ID_URL)
     @Operation (summary = "Get a single auditEvent by id")
     @ResponseStatus (HttpStatus.OK)
     public AuditEventResponse getAuditEventById (@PathVariable UUID id) {
-        return AuditEventResponse.of(readByIdQuery.execute(id));
+        ReadAuditEventByIdQueryInput input = new ReadAuditEventByIdQueryInput(id);
+        ReadAuditEventByIdQueryOutput output = readByIdQuery.execute(input);
+        return AuditEventResponse.of(output.getEvent());
     }
 }

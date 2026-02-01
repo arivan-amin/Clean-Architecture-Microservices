@@ -5,6 +5,7 @@ import io.github.arivanamin.lms.backend.base.core.audit.AuditEventPublisher;
 import io.github.arivanamin.lms.backend.base.core.command.DeleteCompletedAuditOutboxMessagesCommand;
 import io.github.arivanamin.lms.backend.base.core.outbox.OutboxMessageStatus;
 import io.github.arivanamin.lms.backend.base.core.query.ReadAuditOutboxMessageByStatusQuery;
+import io.github.arivanamin.lms.backend.base.core.query.ReadAuditOutboxMessageByStatusQueryInput;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
@@ -26,14 +27,18 @@ class AuditEventsOutboxScheduler {
 
     @Scheduled (cron = SCHEDULER_CRONJOB)
     void sendEvents () {
-        List<AuditEvent> auditEvents = query.execute(OutboxMessageStatus.PENDING);
+        List<AuditEvent> auditEvents =
+            query.execute(new ReadAuditOutboxMessageByStatusQueryInput(OutboxMessageStatus.PENDING))
+                .getEvents();
         log.info("Pending auditEvents to be published = {}", auditEvents.size());
         auditEvents.forEach(event -> publisher.sendAuditLog(API_AUDIT_TOPIC, event));
     }
 
     @Scheduled (cron = SCHEDULER_CRONJOB)
     void deleteCompletedEvents () {
-        List<AuditEvent> completedEvents = query.execute(OutboxMessageStatus.COMPLETED);
+        List<AuditEvent> completedEvents = query.execute(
+                new ReadAuditOutboxMessageByStatusQueryInput(OutboxMessageStatus.COMPLETED))
+            .getEvents();
         log.info("Completed events to be deleted = {}", completedEvents.size());
         deleteCommand.execute();
     }

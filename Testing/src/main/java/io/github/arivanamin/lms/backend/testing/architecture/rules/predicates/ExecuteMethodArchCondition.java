@@ -9,9 +9,9 @@ public class ExecuteMethodArchCondition extends ArchCondition<JavaClass> {
 
     private final String commandsAndQueriesMethodName;
 
-    public ExecuteMethodArchCondition (String commandsAndQueriesMethodName) {
+    public ExecuteMethodArchCondition (String name) {
         super("have exactly one public method named 'execute'");
-        this.commandsAndQueriesMethodName = commandsAndQueriesMethodName;
+        commandsAndQueriesMethodName = name;
     }
 
     @Override

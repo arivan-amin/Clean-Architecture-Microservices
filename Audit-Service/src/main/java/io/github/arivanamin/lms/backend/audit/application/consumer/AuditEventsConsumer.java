@@ -1,9 +1,11 @@
 package io.github.arivanamin.lms.backend.audit.application.consumer;
 
-import io.github.arivanamin.lms.backend.audit.core.command.CreateAuditEventCommand;
+import io.github.arivanamin.lms.backend.audit.core.command.create.CreateAuditEventCommand;
+import io.github.arivanamin.lms.backend.audit.core.command.create.CreateAuditEventCommandInput;
 import io.github.arivanamin.lms.backend.base.core.aspects.LogExecutionTime;
 import io.github.arivanamin.lms.backend.base.core.audit.AuditEvent;
 import io.github.arivanamin.lms.backend.base.core.command.UpdateAuditOutboxMessageStatusCommand;
+import io.github.arivanamin.lms.backend.base.core.command.UpdateAuditOutboxMessageStatusCommandInput;
 import io.github.arivanamin.lms.backend.base.core.outbox.OutboxMessageStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,7 +34,7 @@ public class AuditEventsConsumer {
 
     private void saveToStorage (AuditEvent event) {
         try {
-            createCommand.execute(event);
+            createCommand.execute(new CreateAuditEventCommandInput(event));
             log.info("saved auditEvent to storage = {}", event.getId());
         }
         catch (Exception e) {
@@ -41,6 +43,7 @@ public class AuditEventsConsumer {
     }
 
     private void updateMessageStatusToCompleted (UUID eventId) {
-        updateCommand.execute(eventId, OutboxMessageStatus.COMPLETED);
+        updateCommand.execute(
+            new UpdateAuditOutboxMessageStatusCommandInput(eventId, OutboxMessageStatus.COMPLETED));
     }
 }

@@ -1,6 +1,8 @@
 package io.github.arivanamin.lms.backend.student.core.command;
 
 import io.github.arivanamin.lms.backend.student.StudentTestData;
+import io.github.arivanamin.lms.backend.student.core.command.create.CreateStudentCommand;
+import io.github.arivanamin.lms.backend.student.core.command.create.CreateStudentCommandInput;
 import io.github.arivanamin.lms.backend.student.core.entity.Student;
 import io.github.arivanamin.lms.backend.student.core.exception.StudentAlreadyExistsException;
 import io.github.arivanamin.lms.backend.student.core.persistence.StudentStorage;
@@ -48,7 +50,8 @@ class CreateStudentCommandTest implements BaseUnitTest {
     }
 
     private void thenThrowStudentAlreadyExistsException () {
-        assertThatException().isThrownBy(() -> command.execute(student))
+        assertThatException().isThrownBy(
+                () -> command.execute(new CreateStudentCommandInput(student)))
             .isInstanceOf(StudentAlreadyExistsException.class);
     }
 
@@ -65,7 +68,8 @@ class CreateStudentCommandTest implements BaseUnitTest {
     }
 
     private UUID whenCommandIsExecuted () {
-        return command.execute(student);
+        return command.execute(new CreateStudentCommandInput(student))
+            .getId();
     }
 
     private void thenVerifyCommandCallsCreate () {

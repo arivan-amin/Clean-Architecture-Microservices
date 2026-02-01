@@ -1,19 +1,18 @@
-package io.github.arivanamin.lms.backend.audit.core.query;
+package io.github.arivanamin.lms.backend.audit.core.query.readbyid;
 
 import io.github.arivanamin.lms.backend.audit.core.exception.AuditEventNotFoundException;
 import io.github.arivanamin.lms.backend.audit.core.persistence.AuditEventStorage;
 import io.github.arivanamin.lms.backend.base.core.audit.AuditEvent;
 import lombok.RequiredArgsConstructor;
 
-import java.util.UUID;
-
 @RequiredArgsConstructor
 public class ReadAuditEventByIdQuery {
 
     private final AuditEventStorage storage;
 
-    public AuditEvent execute (UUID id) {
-        return storage.findById(id)
+    public ReadAuditEventByIdQueryOutput execute (ReadAuditEventByIdQueryInput input) {
+        AuditEvent event = storage.findById(input.getId())
             .orElseThrow(AuditEventNotFoundException::new);
+        return new ReadAuditEventByIdQueryOutput(event);
     }
 }

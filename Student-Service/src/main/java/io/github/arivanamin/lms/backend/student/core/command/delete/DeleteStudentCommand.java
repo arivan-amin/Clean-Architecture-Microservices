@@ -1,16 +1,14 @@
-package io.github.arivanamin.lms.backend.student.core.command;
+package io.github.arivanamin.lms.backend.student.core.command.delete;
 
 import io.github.arivanamin.lms.backend.student.core.persistence.StudentStorage;
 import lombok.RequiredArgsConstructor;
-
-import java.util.UUID;
 
 @RequiredArgsConstructor
 public class DeleteStudentCommand {
 
     private final StudentStorage storage;
 
-    public void execute (UUID id) {
-        storage.delete(id);
+    public void execute (DeleteStudentCommandInput input) {
+        storage.delete(input.getId());
     }
 }

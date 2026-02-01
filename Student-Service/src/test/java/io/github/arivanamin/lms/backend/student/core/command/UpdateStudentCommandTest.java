@@ -1,6 +1,8 @@
 package io.github.arivanamin.lms.backend.student.core.command;
 
 import io.github.arivanamin.lms.backend.student.StudentTestData;
+import io.github.arivanamin.lms.backend.student.core.command.update.UpdateStudentCommand;
+import io.github.arivanamin.lms.backend.student.core.command.update.UpdateStudentCommandInput;
 import io.github.arivanamin.lms.backend.student.core.entity.Student;
 import io.github.arivanamin.lms.backend.student.core.persistence.StudentStorage;
 import io.github.arivanamin.lms.backend.testing.architecture.bases.BaseUnitTest;
@@ -33,7 +35,7 @@ class UpdateStudentCommandTest implements BaseUnitTest {
     }
 
     private void whenCommandIsExecuted () {
-        command.execute(student);
+        command.execute(new UpdateStudentCommandInput(student));
     }
 
     private void thenVerifyCommandCallsStorageUpdate () {

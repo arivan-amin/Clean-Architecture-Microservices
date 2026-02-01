@@ -1,11 +1,8 @@
 package io.github.arivanamin.lms.backend.base.core.query;
 
-import io.github.arivanamin.lms.backend.base.core.audit.AuditEvent;
 import io.github.arivanamin.lms.backend.base.core.outbox.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
-import java.util.UUID;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -13,9 +10,12 @@ public class ReadAuditOutboxMessageByIdQuery {
 
     private final AuditOutboxMessageStorage storage;
 
-    public AuditEvent execute (UUID id) {
-        AuditOutboxMessage event = storage.findById(id)
+    public ReadAuditOutboxMessageByIdQueryOutput execute (
+        ReadAuditOutboxMessageByIdQueryInput input) {
+
+        AuditOutboxMessage event = storage.findById(input.getId())
             .orElseThrow(AuditOutboxMessageNotFound::new);
-        return event.toDomain();
+
+        return new ReadAuditOutboxMessageByIdQueryOutput(event.toDomain());
     }
 }
