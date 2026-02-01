@@ -1,7 +1,6 @@
-package io.github.arivanamin.lms.backend.audit.core.command;
+package io.github.arivanamin.lms.backend.audit.core.command.create;
 
 import io.github.arivanamin.lms.backend.audit.core.persistence.AuditEventStorage;
-import io.github.arivanamin.lms.backend.base.core.audit.AuditEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -13,7 +12,8 @@ public class CreateAuditEventCommand {
 
     private final AuditEventStorage storage;
 
-    public UUID execute (AuditEvent event) {
-        return storage.create(event);
+    public CreateAuditEventCommandOutput execute (CreateAuditEventCommandInput input) {
+        UUID id = storage.create(input.getEvent());
+        return new CreateAuditEventCommandOutput(id);
     }
 }
