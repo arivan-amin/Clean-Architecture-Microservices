@@ -24,7 +24,7 @@ following on **Clean Architecture** and **SOLID** principles, built with **Sprin
 ![Repo Size](https://img.shields.io/github/repo-size/arivan-amin/Spring-Clean-Microservices)
 ![Contributors](https://img.shields.io/github/contributors/arivan-amin/Spring-Clean-Microservices)
 
-## Architecture Overview
+## Services Overview
 
 ![image](https://raw.githubusercontent.com/arivan-amin/Clean-Architecture-Microservices/master/Docs/Diagram/Architecture-Diagram.jpg)
 
@@ -64,6 +64,35 @@ following on **Clean Architecture** and **SOLID** principles, built with **Sprin
 - **Centralized Logging & Distributed Tracing**: Using Loki and Tempo.
 - **Database Migrations**: Using Liquibase.
 - **Dockerized Deployment**: Using Docker and Docker Compose.
+
+---
+
+## Clean Architecture Implementation Layers
+
+Services in this app implements strict architectural boundaries enforced by ArchUnit rules that
+cause failing unit tests when violated.
+In each service there are 3 layers:
+
+### Core
+
+- contains only business logic, entities, command/queries.
+- Persistence(JDBC, JPA, NoSql) or spring code are not allowed in this layer.
+- This is the most inner layer, it shouldn't know anything about the other layers.
+- Any access or references to classes in the other 2 layers will cause unit test failure.
+
+### Storage
+
+- Contains only classes related to data persistence, JPA, JDBC or any other data storing mechanism
+  belongs to this layer.
+- Only calls to persistence classes are allowed.
+- Spring configs and web classes doesn't belong here.
+- This is the second inner layer, it can access the Core layer.
+- Any access or references to classes in the Application layer will cause unit test failure.
+
+### Application
+
+- Spring beans,web classes live here.
+- It can access both previous layers since this is the most outward layer.
 
 ---
 
