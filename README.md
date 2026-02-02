@@ -4,7 +4,7 @@
 
 ## Overview
 
-This codebase is designed for java backend developers interested in a **Microservices** application
+This codebase is designed for Java backend developers interested in a **Microservices** application
 following on **Clean Architecture** and **SOLID** principles, built with **Spring Boot 4**, **Java
 25**, and **Spring Framework 7**.
 
@@ -26,7 +26,7 @@ following on **Clean Architecture** and **SOLID** principles, built with **Sprin
 
 ## Architecture Overview
 
-![image](https://raw.githubusercontent.com/arivan-amin/Clean-Architecture-Microservices/master/Docs/Diagram/Architecture-Diagram.png)
+![image](https://raw.githubusercontent.com/arivan-amin/Clean-Architecture-Microservices/master/Docs/Diagram/Architecture-Diagram.jpg)
 
 ## Technologies used and their responsibility
 
