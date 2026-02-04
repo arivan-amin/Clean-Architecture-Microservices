@@ -1,11 +1,11 @@
 package io.github.arivanamin.lms.backend.student.application.request;
 
-import io.github.arivanamin.lms.backend.base.core.gender.Gender;
-import io.github.arivanamin.lms.backend.student.core.entity.Student;
+import io.github.arivanamin.lms.backend.core.domain.gender.Gender;
+import io.github.arivanamin.lms.backend.student.domain.entity.Student;
 
 import java.util.UUID;
 
-import static io.github.arivanamin.lms.backend.base.core.dates.TimestampHelper.toLocalDateTime;
+import static io.github.arivanamin.lms.backend.core.domain.dates.TimestampHelper.toLocalDateTime;
 
 public record UpdateStudentRequest(String firstName, String lastName, String email,
     long dateOfBirth, Gender gender, String address) {

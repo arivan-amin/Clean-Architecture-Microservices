@@ -1,8 +1,8 @@
 package io.github.arivanamin.lms.backend.student.storage;
 
-import io.github.arivanamin.lms.backend.base.core.pagination.*;
-import io.github.arivanamin.lms.backend.student.core.entity.Student;
-import io.github.arivanamin.lms.backend.student.core.persistence.StudentStorage;
+import io.github.arivanamin.lms.backend.core.domain.pagination.*;
+import io.github.arivanamin.lms.backend.student.domain.entity.Student;
+import io.github.arivanamin.lms.backend.student.domain.persistence.StudentStorage;
 import io.github.arivanamin.lms.backend.student.storage.entity.StudentEntity;
 import io.github.arivanamin.lms.backend.student.storage.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;

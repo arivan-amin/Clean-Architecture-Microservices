@@ -1,8 +1,8 @@
 package io.github.arivanamin.lms.backend.student.storage;
 
-import io.github.arivanamin.lms.backend.base.core.gender.Gender;
-import io.github.arivanamin.lms.backend.base.core.pagination.PaginationCriteria;
-import io.github.arivanamin.lms.backend.student.core.entity.Student;
+import io.github.arivanamin.lms.backend.core.domain.gender.Gender;
+import io.github.arivanamin.lms.backend.core.domain.pagination.PaginationCriteria;
+import io.github.arivanamin.lms.backend.student.domain.entity.Student;
 import io.github.arivanamin.lms.backend.student.storage.entity.StudentEntity;
 import io.github.arivanamin.lms.backend.student.storage.repository.StudentRepository;
 import io.github.arivanamin.lms.backend.testing.architecture.bases.BaseDatabaseTest;

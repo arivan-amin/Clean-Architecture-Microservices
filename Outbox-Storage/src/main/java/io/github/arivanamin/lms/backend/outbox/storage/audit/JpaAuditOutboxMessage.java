@@ -1,7 +1,7 @@
 package io.github.arivanamin.lms.backend.outbox.storage.audit;
 
-import io.github.arivanamin.lms.backend.base.core.outbox.AuditOutboxMessage;
-import io.github.arivanamin.lms.backend.base.core.outbox.OutboxMessageStatus;
+import io.github.arivanamin.lms.backend.core.domain.outbox.AuditOutboxMessage;
+import io.github.arivanamin.lms.backend.core.domain.outbox.OutboxMessageStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;

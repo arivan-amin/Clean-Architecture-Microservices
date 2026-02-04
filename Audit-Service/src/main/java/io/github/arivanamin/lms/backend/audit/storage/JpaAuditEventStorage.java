@@ -1,10 +1,10 @@
 package io.github.arivanamin.lms.backend.audit.storage;
 
-import io.github.arivanamin.lms.backend.audit.core.persistence.AuditEventStorage;
-import io.github.arivanamin.lms.backend.base.core.audit.AuditEvent;
-import io.github.arivanamin.lms.backend.base.core.dates.DateTimeRange;
-import io.github.arivanamin.lms.backend.base.core.pagination.PaginatedResponse;
-import io.github.arivanamin.lms.backend.base.core.pagination.PaginationCriteria;
+import io.github.arivanamin.lms.backend.audit.domain.persistence.AuditEventStorage;
+import io.github.arivanamin.lms.backend.core.domain.audit.AuditEvent;
+import io.github.arivanamin.lms.backend.core.domain.dates.DateTimeRange;
+import io.github.arivanamin.lms.backend.core.domain.pagination.PaginatedResponse;
+import io.github.arivanamin.lms.backend.core.domain.pagination.PaginationCriteria;
 import io.github.arivanamin.lms.backend.outbox.storage.util.PaginationHelper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

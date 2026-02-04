@@ -11,10 +11,10 @@ import org.springframework.web.reactive.resource.NoResourceFoundException;
 import java.net.URI;
 import java.time.Instant;
 
-import static io.github.arivanamin.lms.backend.base.application.advice.ProblemDetailCategories.RESOURCE_NOT_FOUND;
-import static io.github.arivanamin.lms.backend.base.application.advice.ProblemDetailExceptionUrls.SPRING_REACTIVE_RESOURCE_NOT_FOUND_EXCEPTION_URL;
-import static io.github.arivanamin.lms.backend.base.application.advice.ProblemDetailProperties.CATEGORY;
-import static io.github.arivanamin.lms.backend.base.application.advice.ProblemDetailProperties.TIMESTAMP;
+import static io.github.arivanamin.lms.backend.core.application.advice.ProblemDetailCategories.RESOURCE_NOT_FOUND;
+import static io.github.arivanamin.lms.backend.core.application.advice.ProblemDetailExceptionUrls.SPRING_REACTIVE_RESOURCE_NOT_FOUND_EXCEPTION_URL;
+import static io.github.arivanamin.lms.backend.core.application.advice.ProblemDetailProperties.CATEGORY;
+import static io.github.arivanamin.lms.backend.core.application.advice.ProblemDetailProperties.TIMESTAMP;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.http.ProblemDetail.forStatusAndDetail;
 

@@ -1,16 +1,16 @@
 package io.github.arivanamin.lms.backend.student.application.endpoints;
 
-import io.github.arivanamin.lms.backend.base.core.pagination.PaginationCriteria;
+import io.github.arivanamin.lms.backend.core.domain.pagination.PaginationCriteria;
 import io.github.arivanamin.lms.backend.student.application.request.CreateStudentRequest;
 import io.github.arivanamin.lms.backend.student.application.request.UpdateStudentRequest;
 import io.github.arivanamin.lms.backend.student.application.response.*;
-import io.github.arivanamin.lms.backend.student.core.command.create.*;
-import io.github.arivanamin.lms.backend.student.core.command.delete.DeleteStudentCommand;
-import io.github.arivanamin.lms.backend.student.core.command.delete.DeleteStudentCommandInput;
-import io.github.arivanamin.lms.backend.student.core.command.update.UpdateStudentCommand;
-import io.github.arivanamin.lms.backend.student.core.command.update.UpdateStudentCommandInput;
-import io.github.arivanamin.lms.backend.student.core.query.readbyid.*;
-import io.github.arivanamin.lms.backend.student.core.query.readbyspec.*;
+import io.github.arivanamin.lms.backend.student.domain.command.create.*;
+import io.github.arivanamin.lms.backend.student.domain.command.delete.DeleteStudentCommand;
+import io.github.arivanamin.lms.backend.student.domain.command.delete.DeleteStudentCommandInput;
+import io.github.arivanamin.lms.backend.student.domain.command.update.UpdateStudentCommand;
+import io.github.arivanamin.lms.backend.student.domain.command.update.UpdateStudentCommandInput;
+import io.github.arivanamin.lms.backend.student.domain.query.readbyid.*;
+import io.github.arivanamin.lms.backend.student.domain.query.readbyspec.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;

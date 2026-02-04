@@ -1,8 +1,8 @@
 package io.github.arivanamin.lms.backend.student.application.response;
 
-import io.github.arivanamin.lms.backend.base.core.pagination.PageData;
-import io.github.arivanamin.lms.backend.base.core.pagination.PaginatedResponse;
-import io.github.arivanamin.lms.backend.student.core.entity.Student;
+import io.github.arivanamin.lms.backend.core.domain.pagination.PageData;
+import io.github.arivanamin.lms.backend.core.domain.pagination.PaginatedResponse;
+import io.github.arivanamin.lms.backend.student.domain.entity.Student;
 
 import java.util.List;
 

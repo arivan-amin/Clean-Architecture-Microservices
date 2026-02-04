@@ -1,0 +1,24 @@
+package io.github.arivanamin.lms.backend.core.domain.pagination;
+
+import jakarta.validation.constraints.*;
+import lombok.Value;
+
+@Value
+public class PaginationCriteria {
+
+    // todo 1/26/26 - max size pe page should be configurable
+    public static final int MAX_SIZE = 50;
+
+    @NotNull
+    @PositiveOrZero
+    int page;
+
+    @NotNull
+    @Positive
+    @Max (MAX_SIZE)
+    int size;
+
+    public static PaginationCriteria of (int page, int size) {
+        return new PaginationCriteria(page, size);
+    }
+}

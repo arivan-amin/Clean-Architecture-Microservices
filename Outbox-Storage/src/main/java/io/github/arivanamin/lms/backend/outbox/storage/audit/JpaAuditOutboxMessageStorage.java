@@ -1,6 +1,6 @@
 package io.github.arivanamin.lms.backend.outbox.storage.audit;
 
-import io.github.arivanamin.lms.backend.base.core.outbox.*;
+import io.github.arivanamin.lms.backend.core.domain.outbox.*;
 import jakarta.persistence.LockModeType;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

@@ -1,7 +1,7 @@
 package io.github.arivanamin.lms.backend.audit.application.response;
 
-import io.github.arivanamin.lms.backend.base.core.audit.AuditEvent;
-import io.github.arivanamin.lms.backend.base.core.dates.TimestampHelper;
+import io.github.arivanamin.lms.backend.core.domain.audit.AuditEvent;
+import io.github.arivanamin.lms.backend.core.domain.dates.TimestampHelper;
 import lombok.*;
 
 import java.time.LocalDateTime;

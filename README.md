@@ -73,7 +73,7 @@ Services in this app implements strict architectural boundaries enforced by Arch
 cause failing unit tests when violated.
 In each service there are 3 layers:
 
-### Core
+### Domain
 
 - contains only business logic, entities, command/queries.
 - Persistence(JDBC, JPA, NoSql) or spring code are not allowed in this layer.
@@ -86,7 +86,7 @@ In each service there are 3 layers:
   belongs to this layer.
 - Only calls to persistence classes are allowed.
 - Spring configs and web classes doesn't belong here.
-- This is the second inner layer, it can access the Core layer.
+- This is the second inner layer, it can access the Domain layer.
 - Any access or references to classes in the Application layer will cause unit test failure.
 
 ### Application
@@ -154,9 +154,9 @@ Provides detailed documentation for all endpoints.
 
 Decouples core business logic from presentation using request and response POJO.
 
-### Core Entity and JPA separation
+### Domain Entity and JPA separation
 
-Core entities have no association with JPA and are never annotated with @Entity.
+Domain entities have no association with JPA and are never annotated with @Entity.
 
 ## Sample audit log from Audit-Service captured from API calls in Student-Service
 

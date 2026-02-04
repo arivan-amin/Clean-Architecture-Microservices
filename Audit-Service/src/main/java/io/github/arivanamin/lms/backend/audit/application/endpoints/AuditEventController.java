@@ -2,10 +2,10 @@ package io.github.arivanamin.lms.backend.audit.application.endpoints;
 
 import io.github.arivanamin.lms.backend.audit.application.response.AuditEventResponse;
 import io.github.arivanamin.lms.backend.audit.application.response.ReadAuditEventsResponse;
-import io.github.arivanamin.lms.backend.audit.core.query.readbyid.*;
-import io.github.arivanamin.lms.backend.audit.core.query.readbyspec.*;
-import io.github.arivanamin.lms.backend.base.core.dates.DateTimeRange;
-import io.github.arivanamin.lms.backend.base.core.pagination.PaginationCriteria;
+import io.github.arivanamin.lms.backend.audit.domain.query.readbyid.*;
+import io.github.arivanamin.lms.backend.audit.domain.query.readbyspec.*;
+import io.github.arivanamin.lms.backend.core.domain.dates.DateTimeRange;
+import io.github.arivanamin.lms.backend.core.domain.pagination.PaginationCriteria;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;

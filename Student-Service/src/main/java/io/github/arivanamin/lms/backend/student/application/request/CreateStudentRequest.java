@@ -1,8 +1,8 @@
 package io.github.arivanamin.lms.backend.student.application.request;
 
-import io.github.arivanamin.lms.backend.base.core.dates.TimestampHelper;
-import io.github.arivanamin.lms.backend.base.core.gender.Gender;
-import io.github.arivanamin.lms.backend.student.core.entity.Student;
+import io.github.arivanamin.lms.backend.core.domain.dates.TimestampHelper;
+import io.github.arivanamin.lms.backend.core.domain.gender.Gender;
+import io.github.arivanamin.lms.backend.student.domain.entity.Student;
 import lombok.*;
 
 import java.time.LocalDate;

@@ -1,6 +1,6 @@
 package io.github.arivanamin.lms.backend.student.storage;
 
-import io.github.arivanamin.lms.backend.base.core.gender.Gender;
+import io.github.arivanamin.lms.backend.core.domain.gender.Gender;
 import io.github.arivanamin.lms.backend.student.storage.entity.StudentEntity;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;

@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.methods;
 import static com.tngtech.archunit.library.GeneralCodingRules.testClassesShouldResideInTheSamePackageAsImplementation;
-import static io.github.arivanamin.lms.backend.testing.architecture.rules.CleanArchitectureRules.CORE_PACKAGE;
+import static io.github.arivanamin.lms.backend.testing.architecture.rules.CleanArchitectureRules.DOMAIN_PACKAGE;
 
 public interface TestingBestPracticeRules extends BaseUnitTest {
 
@@ -62,6 +62,6 @@ public interface TestingBestPracticeRules extends BaseUnitTest {
     ArchRule INTEGRATION_TESTS_SHOULD_BE_AWAY_FROM_CORE_LAYER = classes().that()
         .areAssignableTo(BaseIntegrationTest.class)
         .should()
-        .resideOutsideOfPackage(CORE_PACKAGE)
+        .resideOutsideOfPackage(DOMAIN_PACKAGE)
         .allowEmptyShould(true);
 }

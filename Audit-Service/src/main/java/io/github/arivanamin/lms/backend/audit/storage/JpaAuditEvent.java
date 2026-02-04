@@ -1,6 +1,6 @@
 package io.github.arivanamin.lms.backend.audit.storage;
 
-import io.github.arivanamin.lms.backend.base.core.audit.AuditEvent;
+import io.github.arivanamin.lms.backend.core.domain.audit.AuditEvent;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -9,8 +9,8 @@ import lombok.experimental.FieldDefaults;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import static io.github.arivanamin.lms.backend.base.core.dates.TimestampHelper.toLocalDateTime;
-import static io.github.arivanamin.lms.backend.base.core.dates.TimestampHelper.toTimestampInMilliseconds;
+import static io.github.arivanamin.lms.backend.core.domain.dates.TimestampHelper.toLocalDateTime;
+import static io.github.arivanamin.lms.backend.core.domain.dates.TimestampHelper.toTimestampInMilliseconds;
 
 @Entity
 @Table (name = "audit_events")
