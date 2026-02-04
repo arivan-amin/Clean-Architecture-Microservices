@@ -1,6 +1,6 @@
 package io.github.arivanamin.lms.backend.outbox.storage.audit;
 
-import io.github.arivanamin.lms.backend.base.core.outbox.OutboxMessageStatus;
+import io.github.arivanamin.lms.backend.core.domain.outbox.OutboxMessageStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -11,8 +11,8 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.function.Function;
 
-import static io.github.arivanamin.lms.backend.base.core.config.ServicesNamesHelper.AUDIT_SERVICE;
-import static io.github.arivanamin.lms.backend.base.core.config.ServicesNamesHelper.STUDENT_SERVICE;
+import static io.github.arivanamin.lms.backend.core.domain.config.ServicesNamesHelper.AUDIT_SERVICE;
+import static io.github.arivanamin.lms.backend.core.domain.config.ServicesNamesHelper.STUDENT_SERVICE;
 
 @Slf4j
 @Configuration

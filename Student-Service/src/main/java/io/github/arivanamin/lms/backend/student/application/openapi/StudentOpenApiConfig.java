@@ -1,7 +1,7 @@
 package io.github.arivanamin.lms.backend.student.application.openapi;
 
-import io.github.arivanamin.lms.backend.base.application.config.OpenApiServerProperties;
-import io.github.arivanamin.lms.backend.base.application.openapi.OpenApiDetails;
+import io.github.arivanamin.lms.backend.core.application.config.OpenApiServerProperties;
+import io.github.arivanamin.lms.backend.core.application.openapi.OpenApiDetails;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.servers.Server;

@@ -1,13 +1,13 @@
 package io.github.arivanamin.lms.backend.audit;
 
-import io.github.arivanamin.lms.backend.base.core.audit.AuditEvent;
+import io.github.arivanamin.lms.backend.core.domain.audit.AuditEvent;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import static io.github.arivanamin.lms.backend.base.core.dates.TimestampHelper.toTimestampInMilliseconds;
+import static io.github.arivanamin.lms.backend.core.domain.dates.TimestampHelper.toTimestampInMilliseconds;
 
 @NoArgsConstructor (access = AccessLevel.PRIVATE)
 public final class AuditEventTestData {

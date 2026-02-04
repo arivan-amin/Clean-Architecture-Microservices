@@ -1,7 +1,7 @@
 package io.github.arivanamin.lms.backend.student;
 
-import io.github.arivanamin.lms.backend.base.core.gender.Gender;
-import io.github.arivanamin.lms.backend.student.core.entity.Student;
+import io.github.arivanamin.lms.backend.core.domain.gender.Gender;
+import io.github.arivanamin.lms.backend.student.domain.entity.Student;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 

@@ -1,7 +1,7 @@
 package io.github.arivanamin.lms.backend.testing.architecture.bases;
 
 import com.github.javafaker.Faker;
-import io.github.arivanamin.lms.backend.base.core.pagination.PageData;
+import io.github.arivanamin.lms.backend.core.domain.pagination.PageData;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 

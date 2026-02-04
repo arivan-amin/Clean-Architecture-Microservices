@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
-import static io.github.arivanamin.lms.backend.base.core.config.CoreApplicationConfig.BASE_PACKAGE;
+import static io.github.arivanamin.lms.backend.core.domain.config.CoreApplicationConfig.BASE_PACKAGE;
 
 @SpringBootApplication (scanBasePackages = BASE_PACKAGE)
 @EnableDiscoveryClient

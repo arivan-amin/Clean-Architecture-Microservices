@@ -1,9 +1,9 @@
 package io.github.arivanamin.lms.backend.audit.application.beans;
 
-import io.github.arivanamin.lms.backend.audit.core.command.create.CreateAuditEventCommand;
-import io.github.arivanamin.lms.backend.audit.core.persistence.AuditEventStorage;
-import io.github.arivanamin.lms.backend.audit.core.query.readbyid.ReadAuditEventByIdQuery;
-import io.github.arivanamin.lms.backend.audit.core.query.readbyspec.ReadAuditEventsQuery;
+import io.github.arivanamin.lms.backend.audit.domain.command.create.CreateAuditEventCommand;
+import io.github.arivanamin.lms.backend.audit.domain.persistence.AuditEventStorage;
+import io.github.arivanamin.lms.backend.audit.domain.query.readbyid.ReadAuditEventByIdQuery;
+import io.github.arivanamin.lms.backend.audit.domain.query.readbyspec.ReadAuditEventsQuery;
 import io.github.arivanamin.lms.backend.audit.storage.AuditEventRepository;
 import io.github.arivanamin.lms.backend.audit.storage.JpaAuditEventStorage;
 import org.springframework.context.annotation.Bean;

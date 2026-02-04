@@ -1,6 +1,6 @@
 package io.github.arivanamin.lms.backend.audit.application.openapi;
 
-import io.github.arivanamin.lms.backend.base.application.config.OpenApiServerProperties;
+import io.github.arivanamin.lms.backend.core.application.config.OpenApiServerProperties;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.servers.Server;
@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
-import static io.github.arivanamin.lms.backend.base.application.openapi.OpenApiDetails.*;
+import static io.github.arivanamin.lms.backend.core.application.openapi.OpenApiDetails.*;
 
 @Configuration
 @RequiredArgsConstructor

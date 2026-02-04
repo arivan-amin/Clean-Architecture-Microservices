@@ -1,8 +1,8 @@
 package io.github.arivanamin.lms.backend.student.storage.entity;
 
-import io.github.arivanamin.lms.backend.base.core.gender.Gender;
+import io.github.arivanamin.lms.backend.core.domain.gender.Gender;
 import io.github.arivanamin.lms.backend.outbox.storage.audit.AuditFields;
-import io.github.arivanamin.lms.backend.student.core.entity.Student;
+import io.github.arivanamin.lms.backend.student.domain.entity.Student;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;

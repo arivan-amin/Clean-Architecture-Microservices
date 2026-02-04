@@ -1,7 +1,7 @@
 package io.github.arivanamin.lms.backend.student.application.advice;
 
-import io.github.arivanamin.lms.backend.student.core.exception.StudentAlreadyExistsException;
-import io.github.arivanamin.lms.backend.student.core.exception.StudentNotFoundException;
+import io.github.arivanamin.lms.backend.student.domain.exception.StudentAlreadyExistsException;
+import io.github.arivanamin.lms.backend.student.domain.exception.StudentNotFoundException;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.net.URI;
 import java.time.Instant;
 
-import static io.github.arivanamin.lms.backend.base.application.advice.ProblemDetailCategories.RESOURCE_NOT_FOUND;
-import static io.github.arivanamin.lms.backend.base.application.advice.ProblemDetailExceptionUrls.RUNTIME_EXCEPTION_URL;
-import static io.github.arivanamin.lms.backend.base.application.advice.ProblemDetailProperties.CATEGORY;
-import static io.github.arivanamin.lms.backend.base.application.advice.ProblemDetailProperties.TIMESTAMP;
+import static io.github.arivanamin.lms.backend.core.application.advice.ProblemDetailCategories.RESOURCE_NOT_FOUND;
+import static io.github.arivanamin.lms.backend.core.application.advice.ProblemDetailExceptionUrls.RUNTIME_EXCEPTION_URL;
+import static io.github.arivanamin.lms.backend.core.application.advice.ProblemDetailProperties.CATEGORY;
+import static io.github.arivanamin.lms.backend.core.application.advice.ProblemDetailProperties.TIMESTAMP;
 import static org.springframework.http.HttpStatus.CONFLICT;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.http.ProblemDetail.forStatusAndDetail;

@@ -24,13 +24,13 @@ import static com.tngtech.archunit.core.domain.properties.CanBeAnnotated.Predica
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.*;
 import static com.tngtech.archunit.library.Architectures.layeredArchitecture;
 import static com.tngtech.archunit.library.ProxyRules.no_classes_should_directly_call_other_methods_declared_in_the_same_class_that_are_annotated_with;
-import static io.github.arivanamin.lms.backend.base.core.config.CoreApplicationConfig.BASE_PACKAGE;
+import static io.github.arivanamin.lms.backend.core.domain.config.CoreApplicationConfig.BASE_PACKAGE;
 
 public interface CleanArchitectureRules {
 
-    String CORE_PACKAGE = "..core..";
+    String DOMAIN_PACKAGE = "..domain..";
 
-    String CORE_LAYER = "Core";
+    String DOMAIN_LAYER = "Domain";
 
     String STORAGE_PACKAGE = "..storage..";
 
@@ -83,29 +83,29 @@ public interface CleanArchitectureRules {
         List.of("^/[a-z]+/protected/v[1-9]/.*", "^/[a-z]+/public/v[1-9]/.*");
 
     @ArchTest
-    ArchRule CORE_SHOULD_NOT_DEPEND_ON_ANY_PERSISTENCE_MECHANISM = noClasses().that()
-        .resideInAPackage(CORE_PACKAGE)
+    ArchRule DOMAIN_SHOULD_NOT_DEPEND_ON_ANY_PERSISTENCE_MECHANISM = noClasses().that()
+        .resideInAPackage(DOMAIN_PACKAGE)
         .should()
         .accessClassesThat()
         .resideInAnyPackage(PERSISTENCE_PACKAGES);
 
     @ArchTest
-    ArchRule CORE_SHOULD_NOT_DEPEND_ON_STORAGE_LAYER_OR_APPLICATION_LAYER = noClasses().that()
-        .resideInAPackage(CORE_PACKAGE)
+    ArchRule DOMAIN_SHOULD_NOT_DEPEND_ON_STORAGE_LAYER_OR_APPLICATION_LAYER = noClasses().that()
+        .resideInAPackage(DOMAIN_PACKAGE)
         .should()
         .accessClassesThat()
         .resideInAnyPackage(STORAGE_PACKAGE, APPLICATION_PACKAGE);
 
     @ArchTest
-    ArchRule CORE_SHOULD_NOT_ACCESS_APPLICATION_LAYER = noClasses().that()
-        .resideInAPackage(CORE_PACKAGE)
+    ArchRule DOMAIN_SHOULD_NOT_ACCESS_APPLICATION_LAYER = noClasses().that()
+        .resideInAPackage(DOMAIN_PACKAGE)
         .should()
         .dependOnClassesThat()
         .resideInAnyPackage(STORAGE_PACKAGE, APPLICATION_PACKAGE);
 
     @ArchTest
-    ArchRule CORE_SHOULD_NOT_DEPEND_ON_SPRING = noClasses().that()
-        .resideInAPackage(CORE_PACKAGE)
+    ArchRule DOMAIN_SHOULD_NOT_DEPEND_ON_SPRING = noClasses().that()
+        .resideInAPackage(DOMAIN_PACKAGE)
         .should()
         .accessClassesThat()
         .resideInAPackage(SPRING_FRAMEWORK_PACKAGES);
@@ -172,8 +172,8 @@ public interface CleanArchitectureRules {
     ArchRule LAYER_DEPENDENCIES_ARE_RESPECTED = layeredArchitecture().consideringAllDependencies()
         .layer(APPLICATION_LAYER)
         .definedBy(BASE_PACKAGE + APPLICATION_PACKAGE)
-        .layer(CORE_LAYER)
-        .definedBy(BASE_PACKAGE + CORE_PACKAGE)
+        .layer(DOMAIN_LAYER)
+        .definedBy(BASE_PACKAGE + DOMAIN_PACKAGE)
         .layer(STORAGE_LAYER)
         .definedBy(BASE_PACKAGE + STORAGE_PACKAGE)
         .whereLayer(APPLICATION_LAYER)
@@ -194,7 +194,7 @@ public interface CleanArchitectureRules {
             .should(new ResponseWrapperArchCondition(API_RESPONSE_SUFFIX))
             .allowEmptyShould(true)
             .because("we do not want to couple the api directly to the return types of the " +
-                "core module");
+                "domain module");
 
     @ArchTest
     ArchRule COMMAND_SHOULD_BE_SUFFIXED = classes().that()
@@ -219,18 +219,18 @@ public interface CleanArchitectureRules {
         .allowEmptyShould(true);
 
     @ArchTest
-    ArchRule COMMANDS_AND_QUERIES_SHOULD_BE_IN_CORE_PACKAGE = classes().that()
+    ArchRule COMMANDS_AND_QUERIES_SHOULD_BE_IN_DOMAIN_PACKAGE = classes().that()
         .haveSimpleNameEndingWith(COMMAND_SUFFIX)
         .or()
         .haveSimpleNameEndingWith(QUERY_SUFFIX)
         .should()
-        .resideInAPackage(CORE_PACKAGE)
+        .resideInAPackage(DOMAIN_PACKAGE)
         .allowEmptyShould(true)
-        .because("Commands and queries contain business rules and should be in core.");
+        .because("Commands and queries contain business rules and should be in domain.");
 
     @ArchTest
     ArchRule COMMANDS_AND_QUERIES_SHOULD_BE_PUBLIC = classes().that()
-        .resideInAPackage(CORE_PACKAGE)
+        .resideInAPackage(DOMAIN_PACKAGE)
         .and()
         .haveSimpleNameEndingWith(COMMAND_SUFFIX)
         .or()
@@ -245,7 +245,7 @@ public interface CleanArchitectureRules {
     @ArchTest
     ArchRule COMMANDS_AND_QUERIES_SHOULD_HAVE_EXACTLY_ONE_PUBLIC_METHOD_NAMED_EXECUTE =
         classes().that()
-            .resideInAPackage(CORE_PACKAGE)
+            .resideInAPackage(DOMAIN_PACKAGE)
             .and()
             .haveSimpleNameEndingWith(COMMAND_SUFFIX)
             .or()
@@ -260,7 +260,7 @@ public interface CleanArchitectureRules {
 
     @ArchTest
     ArchRule COMMANDS_AND_QUERIES_SHOULD_HAVE_HAVE_SINGLE_PARAMETER_NAMED_INPUT = classes().that()
-        .resideInAPackage(CORE_PACKAGE)
+        .resideInAPackage(DOMAIN_PACKAGE)
         .and()
         .haveSimpleNameEndingWith(COMMAND_SUFFIX)
         .or()
@@ -273,7 +273,7 @@ public interface CleanArchitectureRules {
 
     @ArchTest
     ArchRule COMMANDS_AND_QUERIES_RETURN_TYPE_NAME_MUST_END_WITH_OUTPUT = classes().that()
-        .resideInAPackage(CORE_PACKAGE)
+        .resideInAPackage(DOMAIN_PACKAGE)
         .and()
         .haveSimpleNameEndingWith(COMMAND_SUFFIX)
         .or()
