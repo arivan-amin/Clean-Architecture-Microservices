@@ -1,7 +1,7 @@
 package io.github.arivanamin.lms.backend.student;
 
 import io.github.arivanamin.lms.backend.core.domain.gender.Gender;
-import io.github.arivanamin.lms.backend.student.domain.entity.Student;
+import io.github.arivanamin.lms.backend.student.domain.entity.*;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -21,9 +21,12 @@ public final class StudentTestData {
         entity.setFirstName("Brad");
         entity.setLastName("Pitt");
         entity.setEmail(email);
+        entity.setPhoneNumber("07701234567");
         entity.setDateOfBirth(LocalDate.now()
             .minusYears(25));
         entity.setGender(Gender.MALE);
+        entity.setStatus(StudentStatus.ENROLLED);
+        entity.setGradeLevel(GradeLevel.GRADE_5);
         entity.setAddress("Colorado, Denver 77th avenue");
         return entity;
     }

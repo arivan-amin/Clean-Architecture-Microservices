@@ -65,7 +65,7 @@ class StudentController {
         allEntries = true)
     @ResponseStatus (HttpStatus.CREATED)
     public CreateStudentResponse createStudent (@RequestBody @Valid CreateStudentRequest request) {
-        CreateStudentCommandInput input = new CreateStudentCommandInput(request.toDomainEntity());
+        CreateStudentCommandInput input = new CreateStudentCommandInput(request.toDomain());
         CreateStudentCommandOutput output = createCommand.execute(input);
         return CreateStudentResponse.of(output.getId());
     }

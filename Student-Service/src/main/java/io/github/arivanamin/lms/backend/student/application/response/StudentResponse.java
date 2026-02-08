@@ -1,7 +1,7 @@
 package io.github.arivanamin.lms.backend.student.application.response;
 
 import io.github.arivanamin.lms.backend.core.domain.gender.Gender;
-import io.github.arivanamin.lms.backend.student.domain.entity.Student;
+import io.github.arivanamin.lms.backend.student.domain.entity.*;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -17,15 +17,20 @@ public class StudentResponse {
     String firstName;
     String lastName;
     String email;
+    String phoneNumber;
     LocalDate dateOfBirth;
     Gender gender;
+    StudentStatus status;
+    GradeLevel gradeLevel;
     String address;
     LocalDateTime createdAt;
     LocalDateTime updatedAt;
 
+    // todo 2/8/26 - handle timezone and return date as long
     public static StudentResponse of (Student student) {
         return new StudentResponse(student.getId(), student.getFirstName(), student.getLastName(),
-            student.getEmail(), student.getDateOfBirth(), student.getGender(), student.getAddress(),
+            student.getEmail(), student.getPhoneNumber(), student.getDateOfBirth(),
+            student.getGender(), student.getStatus(), student.getGradeLevel(), student.getAddress(),
             student.getCreatedAt(), student.getUpdatedAt());
     }
 }
