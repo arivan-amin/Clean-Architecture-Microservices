@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class StudentResponseTest implements BaseUnitTest {
 
     @Test
-    void factoryMethodShouldMapEntityToResponse () {
+    void shouldMapEntityToResponse () {
         // given
         Student student = StudentTestData.withDefaultEmail();
 
@@ -20,14 +20,7 @@ class StudentResponseTest implements BaseUnitTest {
         StudentResponse response = StudentResponse.of(student);
 
         // then
-        assertThat(response.getId()).isEqualTo(student.getId());
-        assertThat(response.getFirstName()).isEqualTo(student.getFirstName());
-        assertThat(response.getLastName()).isEqualTo(student.getLastName());
-        assertThat(response.getEmail()).isEqualTo(student.getEmail());
-        assertThat(response.getDateOfBirth()).isEqualTo(student.getDateOfBirth());
-        assertThat(response.getGender()).isEqualTo(student.getGender());
-        assertThat(response.getAddress()).isEqualTo(student.getAddress());
-        assertThat(response.getCreatedAt()).isEqualTo(student.getCreatedAt());
-        assertThat(response.getUpdatedAt()).isEqualTo(student.getUpdatedAt());
+        assertThat(response).usingRecursiveComparison()
+            .isEqualTo(student);
     }
 }

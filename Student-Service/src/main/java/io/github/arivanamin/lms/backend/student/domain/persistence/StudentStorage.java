@@ -9,7 +9,7 @@ import java.util.UUID;
 
 public interface StudentStorage {
 
-    PaginatedResponse<Student> findAll (PaginationCriteria criteria);
+    PaginatedResponse<Student> findAll (ReadStudentsParams params, PaginationCriteria criteria);
 
     Optional<Student> findById (UUID id);
 

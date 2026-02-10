@@ -1,5 +1,6 @@
 package io.github.arivanamin.lms.backend.core.domain.dates;
 
+import lombok.AllArgsConstructor;
 import lombok.Value;
 
 import java.time.LocalDateTime;
@@ -8,15 +9,11 @@ import java.util.Objects;
 import static io.github.arivanamin.lms.backend.core.domain.dates.TimestampHelper.toLocalDateTime;
 
 @Value
+@AllArgsConstructor
 public class DateTimeRange {
 
     LocalDateTime start;
     LocalDateTime end;
-
-    private DateTimeRange (LocalDateTime start, LocalDateTime end) {
-        this.start = start;
-        this.end = end;
-    }
 
     public static DateTimeRange of (long startTimestamp, long endTimestamp) {
         return of(toLocalDateTime(startTimestamp), toLocalDateTime(endTimestamp));

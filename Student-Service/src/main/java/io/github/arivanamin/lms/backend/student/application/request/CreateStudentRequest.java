@@ -1,11 +1,10 @@
 package io.github.arivanamin.lms.backend.student.application.request;
 
-import io.github.arivanamin.lms.backend.core.domain.dates.TimestampHelper;
 import io.github.arivanamin.lms.backend.core.domain.gender.Gender;
-import io.github.arivanamin.lms.backend.student.domain.entity.Student;
+import io.github.arivanamin.lms.backend.student.domain.entity.*;
 import lombok.*;
 
-import java.time.LocalDate;
+import static io.github.arivanamin.lms.backend.core.domain.dates.TimestampHelper.toLocalDate;
 
 @Data
 @NoArgsConstructor
@@ -15,23 +14,24 @@ public class CreateStudentRequest {
     String firstName;
     String lastName;
     String email;
+    String phoneNumber;
     long dateOfBirth;
     Gender gender;
+    StudentStatus status;
+    GradeLevel gradeLevel;
     String address;
 
-    public Student toDomainEntity () {
+    public Student toDomain () {
         Student student = new Student();
         student.setFirstName(firstName);
         student.setLastName(lastName);
         student.setEmail(email);
-        student.setDateOfBirth(convertTimestampToLocalDate());
+        student.setPhoneNumber(phoneNumber);
+        student.setDateOfBirth(toLocalDate(dateOfBirth));
         student.setGender(gender);
+        student.setStatus(status);
+        student.setGradeLevel(gradeLevel);
         student.setAddress(address);
         return student;
-    }
-
-    private LocalDate convertTimestampToLocalDate () {
-        return TimestampHelper.toLocalDateTime(dateOfBirth)
-            .toLocalDate();
     }
 }

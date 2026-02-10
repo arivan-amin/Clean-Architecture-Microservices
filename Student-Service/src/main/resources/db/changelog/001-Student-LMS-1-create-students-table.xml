@@ -20,10 +20,19 @@
             <column name="email" type="VARCHAR(255)">
                 <constraints nullable="false" unique="true" />
             </column>
+            <column name="phone_number" type="VARCHAR(20)">
+                <constraints nullable="false" />
+            </column>
             <column name="date_of_birth" type="DATE">
                 <constraints nullable="false" />
             </column>
-            <column name="gender" type="TINYINT">
+            <column name="gender" type="VARCHAR(50)">
+                <constraints nullable="false" />
+            </column>
+            <column name="status" type="VARCHAR(50)">
+                <constraints nullable="false" />
+            </column>
+            <column name="grade_level" type="VARCHAR(50)">
                 <constraints nullable="false" />
             </column>
             <column name="address" type="VARCHAR(255)">

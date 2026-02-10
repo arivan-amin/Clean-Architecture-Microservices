@@ -11,6 +11,7 @@ import java.lang.reflect.AnnotatedElement;
 import java.lang.reflect.Method;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static io.github.arivanamin.lms.backend.core.domain.dates.TimestampHelper.toTimestampInMilliseconds;
@@ -90,7 +91,7 @@ public class AuditDataExtractor {
 
     private static String getMethodParameters (ProceedingJoinPoint joinPoint) {
         return Arrays.stream(joinPoint.getArgs())
-            .map(String::valueOf)
+            .map(arg -> Objects.toString(arg, "null"))
             .collect(Collectors.joining(","));
     }
 

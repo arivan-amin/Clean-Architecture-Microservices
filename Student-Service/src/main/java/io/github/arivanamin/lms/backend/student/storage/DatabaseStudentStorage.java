@@ -2,17 +2,18 @@ package io.github.arivanamin.lms.backend.student.storage;
 
 import io.github.arivanamin.lms.backend.core.domain.pagination.*;
 import io.github.arivanamin.lms.backend.student.domain.entity.Student;
+import io.github.arivanamin.lms.backend.student.domain.persistence.ReadStudentsParams;
 import io.github.arivanamin.lms.backend.student.domain.persistence.StudentStorage;
 import io.github.arivanamin.lms.backend.student.storage.entity.StudentEntity;
 import io.github.arivanamin.lms.backend.student.storage.repository.StudentRepository;
+import io.github.arivanamin.lms.backend.student.storage.specification.StudentSpecification;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
-
-import static org.springframework.data.domain.PageRequest.of;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -21,8 +22,15 @@ public class DatabaseStudentStorage implements StudentStorage {
     private final StudentRepository repository;
 
     @Override
-    public PaginatedResponse<Student> findAll (PaginationCriteria criteria) {
-        Page<StudentEntity> page = repository.findAll(of(criteria.getPage(), criteria.getSize()));
+    public PaginatedResponse<Student> findAll (ReadStudentsParams params,
+                                               PaginationCriteria criteria) {
+        StudentSpecification specification =
+            new StudentSpecification(params.getSearchQuery(), params.getGender(),
+                params.getStatuses(), params.getGradeLevels(), params.getStartDate(),
+                params.getEndDate());
+
+        PageRequest pageable = PageRequest.of(criteria.getPage(), criteria.getSize());
+        Page<StudentEntity> page = repository.findAll(specification, pageable);
 
         List<Student> elements = fetchAllStudentsAndMapToEntity(page.getContent());
         return PaginatedResponse.of(extractPageData(page), elements);

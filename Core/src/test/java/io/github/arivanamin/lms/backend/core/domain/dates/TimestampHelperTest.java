@@ -3,8 +3,11 @@ package io.github.arivanamin.lms.backend.core.domain.dates;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import static io.github.arivanamin.lms.backend.core.domain.dates.TimestampHelper.toLocalDate;
+import static io.github.arivanamin.lms.backend.core.domain.dates.TimestampHelper.toLocalDateTime;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
@@ -23,12 +26,24 @@ class TimestampHelperTest {
     }
 
     @Test
+    void shouldConvertTimestampToLocalDate () {
+        // given
+        long timestamp = 1573841730000L;
+
+        // when
+        LocalDate localDate = toLocalDate(timestamp);
+
+        // then
+        assertThat(localDate).isEqualTo(LocalDate.parse("2019-11-15"));
+    }
+
+    @Test
     void shouldConvertTimestampToLocalDateTime () {
         // given
         long timestamp = 1573841730000L;
 
         // when
-        LocalDateTime dateTime = TimestampHelper.toLocalDateTime(timestamp);
+        LocalDateTime dateTime = toLocalDateTime(timestamp);
 
         // then
         assertThat(dateTime).isEqualTo(LocalDateTime.parse("2019-11-15T21:15:30"));
@@ -37,7 +52,7 @@ class TimestampHelperTest {
     @Test
     void shouldGenerateSampleForTesting () {
         Long start =
-            TimestampHelper.toTimestampInMilliseconds(LocalDateTime.of(2025, 1, 1, 0, 0, 0));
+            TimestampHelper.toTimestampInMilliseconds(LocalDateTime.of(1991, 1, 1, 0, 0, 0));
         Long end = TimestampHelper.toTimestampInMilliseconds(LocalDateTime.of(2027, 1, 1, 0, 0, 0));
         log.info("start = {}", start);
         log.info("end = {}", end);

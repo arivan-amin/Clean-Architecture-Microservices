@@ -19,8 +19,11 @@ public class Student {
     String firstName;
     String lastName;
     String email;
+    String phoneNumber;
     LocalDate dateOfBirth;
     Gender gender;
+    StudentStatus status;
+    GradeLevel gradeLevel;
     String address;
     LocalDateTime createdAt;
     LocalDateTime updatedAt;
