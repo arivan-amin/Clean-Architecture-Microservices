@@ -11,7 +11,8 @@ public class ReadStudentsQuery {
     private final StudentStorage storage;
 
     public ReadStudentsQueryOutput execute (ReadStudentsQueryInput input) {
-        PaginatedResponse<Student> students = storage.findAll(input.getCriteria());
+        PaginatedResponse<Student> students =
+            storage.findAll(input.getParams(), input.getCriteria());
         return new ReadStudentsQueryOutput(students);
     }
 }

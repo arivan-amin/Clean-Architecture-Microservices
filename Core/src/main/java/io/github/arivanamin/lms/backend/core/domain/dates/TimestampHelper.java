@@ -3,11 +3,9 @@ package io.github.arivanamin.lms.backend.core.domain.dates;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.*;
 
 import static io.github.arivanamin.lms.backend.core.domain.config.CoreApplicationConfig.DEFAULT_ZONE_ID;
-import static java.time.Instant.ofEpochMilli;
 import static java.time.LocalDateTime.ofInstant;
 import static lombok.AccessLevel.PRIVATE;
 
@@ -15,12 +13,18 @@ import static lombok.AccessLevel.PRIVATE;
 @NoArgsConstructor (access = PRIVATE)
 public final class TimestampHelper {
 
-    public static LocalDate toLocalDate (long timestamp) {
-        return toLocalDateTime(timestamp).toLocalDate();
+    public static LocalDate toLocalDate (Long timestamp) {
+        if (timestamp != null) {
+            return toLocalDateTime(timestamp).toLocalDate();
+        }
+        return null;
     }
 
-    public static LocalDateTime toLocalDateTime (long timestamp) {
-        return ofInstant(ofEpochMilli(timestamp), DEFAULT_ZONE_ID);
+    public static LocalDateTime toLocalDateTime (Long timestamp) {
+        if (timestamp != null) {
+            return ofInstant(Instant.ofEpochMilli(timestamp), DEFAULT_ZONE_ID);
+        }
+        return null;
     }
 
     public static Long toTimestampInMilliseconds (LocalDateTime dateTime) {

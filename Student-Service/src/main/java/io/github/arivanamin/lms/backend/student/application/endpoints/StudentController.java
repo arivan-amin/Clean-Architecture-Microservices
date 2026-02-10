@@ -1,5 +1,6 @@
 package io.github.arivanamin.lms.backend.student.application.endpoints;
 
+import io.github.arivanamin.lms.backend.core.domain.gender.Gender;
 import io.github.arivanamin.lms.backend.core.domain.pagination.PaginationCriteria;
 import io.github.arivanamin.lms.backend.student.application.request.CreateStudentRequest;
 import io.github.arivanamin.lms.backend.student.application.request.UpdateStudentRequest;
@@ -9,6 +10,9 @@ import io.github.arivanamin.lms.backend.student.domain.command.delete.DeleteStud
 import io.github.arivanamin.lms.backend.student.domain.command.delete.DeleteStudentCommandInput;
 import io.github.arivanamin.lms.backend.student.domain.command.update.UpdateStudentCommand;
 import io.github.arivanamin.lms.backend.student.domain.command.update.UpdateStudentCommandInput;
+import io.github.arivanamin.lms.backend.student.domain.entity.GradeLevel;
+import io.github.arivanamin.lms.backend.student.domain.entity.StudentStatus;
+import io.github.arivanamin.lms.backend.student.domain.persistence.ReadStudentsParams;
 import io.github.arivanamin.lms.backend.student.domain.query.readbyid.*;
 import io.github.arivanamin.lms.backend.student.domain.query.readbyspec.*;
 import io.swagger.v3.oas.annotations.Operation;
@@ -21,8 +25,10 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
+import static io.github.arivanamin.lms.backend.core.domain.dates.TimestampHelper.toLocalDate;
 import static io.github.arivanamin.lms.backend.student.application.config.StudentApiURLs.*;
 import static io.github.arivanamin.lms.backend.student.application.config.StudentCaches.GET_ALL_STUDENTS_CACHE;
 import static io.github.arivanamin.lms.backend.student.application.config.StudentCaches.GET_STUDENT_BY_ID_CACHE;
@@ -43,8 +49,18 @@ class StudentController {
     @Cacheable (GET_ALL_STUDENTS_CACHE)
     @Operation (summary = "Get a list of students")
     @ResponseStatus (HttpStatus.OK)
-    public ReadStudentsResponse getAllStudents (@Valid PaginationCriteria criteria) {
-        ReadStudentsQueryInput input = new ReadStudentsQueryInput(criteria);
+    public ReadStudentsResponse getAllStudents (
+        @RequestParam (name = "search", required = false) String searchQuery,
+        @RequestParam (name = "gender", required = false) Gender gender,
+        @RequestParam (name = "status", required = false) List<StudentStatus> statuses,
+        @RequestParam (name = "gradeLevel", required = false) List<GradeLevel> gradeLevels,
+        @RequestParam (required = false) Long startDate,
+        @RequestParam (required = false) Long endDate, @Valid PaginationCriteria criteria) {
+        ReadStudentsParams params =
+            new ReadStudentsParams(searchQuery, gender, statuses, gradeLevels,
+                toLocalDate(startDate), toLocalDate(endDate));
+        ReadStudentsQueryInput input = new ReadStudentsQueryInput(params, criteria);
+        
         ReadStudentsQueryOutput output = readQuery.execute(input);
         return ReadStudentsResponse.of(output.getStudents());
     }

@@ -13,7 +13,7 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
+import java.util.Arrays;
 
 import static io.github.arivanamin.lms.backend.core.domain.aspects.ExecuteAndLogPerformance.executeThrowable;
 
@@ -55,7 +55,7 @@ class ControllerLoggingAspect {
 
     private static void logIncomingRequestDetails (JoinPoint joinPoint) {
         log.info("Incoming request to: {}, with parameters: {}", joinPoint.getSignature(),
-            List.of(joinPoint.getArgs()));
+            Arrays.deepToString(joinPoint.getArgs()));
     }
 
     private static void stopTimerAndLogExecutionDuration (JoinPoint joinPoint,
