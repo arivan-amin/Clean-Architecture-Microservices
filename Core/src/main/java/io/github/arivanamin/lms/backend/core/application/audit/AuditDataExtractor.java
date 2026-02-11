@@ -9,21 +9,20 @@ import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.AnnotatedElement;
 import java.lang.reflect.Method;
-import java.time.LocalDateTime;
+import java.time.*;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.stream.Collectors;
-
-import static io.github.arivanamin.lms.backend.core.domain.dates.TimestampHelper.toTimestampInMilliseconds;
 
 @RequiredArgsConstructor
 @Slf4j
 public class AuditDataExtractor {
 
     private final String serviceName;
+    private final Clock clock;
 
     public AuditEvent extractAuditData (ProceedingJoinPoint joinPoint, Object result,
-                                        long duration) {
+                                        Duration duration) {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
         String requestURL = extractRequestUrl(method);
@@ -37,7 +36,7 @@ public class AuditDataExtractor {
             .location(requestURL)
             .action(requestAnnotation)
             .data(parameters)
-            .timestamp(toTimestampInMilliseconds(LocalDateTime.now()))
+            .recordedAt(Instant.now(clock))
             .duration(duration)
             .response(response)
             .build();

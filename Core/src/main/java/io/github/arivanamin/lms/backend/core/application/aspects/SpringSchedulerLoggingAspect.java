@@ -1,33 +1,41 @@
 package io.github.arivanamin.lms.backend.core.application.aspects;
 
-import io.github.arivanamin.lms.backend.core.domain.aspects.PerformanceTimer;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 
+import java.time.*;
+
 import static io.github.arivanamin.lms.backend.core.domain.aspects.ExecuteAndLogPerformance.executeThrowable;
 
 @Aspect
 @Component
+@RequiredArgsConstructor
 @Slf4j
 class SpringSchedulerLoggingAspect {
+
+    private final Clock clock;
 
     @Around ("@annotation(org.springframework.scheduling.annotation.Scheduled)")
     public Object logScheduler (ProceedingJoinPoint joinPoint) throws Throwable {
         logScheduledTaskDetails(joinPoint);
 
-        PerformanceTimer timer = PerformanceTimer.newInstance();
-
+        Instant start = Instant.now(clock);
         Object result;
         try {
-            timer.startTimer();
             result = executeThrowable(joinPoint::proceed);
         }
+        catch (RuntimeException exception) {
+            result = "Error: " + exception.getMessage();
+        }
         finally {
-            stopTimerAndLogExecutionDuration(joinPoint, timer);
+            Duration duration = Duration.between(start, Instant.now());
+            logExecutionDuration(joinPoint, duration);
         }
         return result;
     }
@@ -36,10 +44,8 @@ class SpringSchedulerLoggingAspect {
         log.info("Running = {}", getJobName(joinPoint));
     }
 
-    private void stopTimerAndLogExecutionDuration (ProceedingJoinPoint joinPoint,
-                                                   PerformanceTimer timer) {
-        timer.stopTimer();
-        timer.logMethodPerformance(getJobName(joinPoint));
+    private void logExecutionDuration (ProceedingJoinPoint joinPoint, Duration duration) {
+        log.info("execution of {} took {}ms", getMethodName(joinPoint), duration.toMillis());
     }
 
     private String getJobName (ProceedingJoinPoint joinPoint) {
@@ -48,5 +54,9 @@ class SpringSchedulerLoggingAspect {
         String methodName = signature.getMethod()
             .getName();
         return "Scheduled task: %s:%s".formatted(className, methodName);
+    }
+
+    private String getMethodName (JoinPoint joinPoint) {
+        return "Spring Scheduler %s ".formatted(joinPoint.getSignature());
     }
 }

@@ -15,13 +15,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.core.KafkaTemplate;
 
+import java.time.Clock;
+
 @Configuration
 class CoreAuditLogBeansConfig {
 
     @Bean
     public AuditDataExtractor auditDataExtractor (
-        @Value ("${spring.application.name}") String serviceName) {
-        return new AuditDataExtractor(serviceName);
+        @Value ("${spring.application.name}") String serviceName, Clock clock) {
+        return new AuditDataExtractor(serviceName, clock);
     }
 
     @Bean

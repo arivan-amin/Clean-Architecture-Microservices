@@ -4,6 +4,8 @@ import io.github.arivanamin.lms.backend.core.domain.audit.AuditEvent;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.UUID;
 
 @Data
@@ -18,19 +20,19 @@ public class AuditOutboxMessage {
     String location;
     String action;
     String data;
-    long timestamp;
-    long duration;
+    Instant recordedAt;
+    Duration duration;
     String response;
     OutboxMessageStatus status;
 
     public static AuditOutboxMessage fromDomain (AuditEvent event) {
         return new AuditOutboxMessage(event.getId(), event.getServiceName(), event.getLocation(),
-            event.getAction(), event.getData(), event.getTimestamp(), event.getDuration(),
+            event.getAction(), event.getData(), event.getRecordedAt(), event.getDuration(),
             event.getResponse(), OutboxMessageStatus.PENDING);
     }
 
     public AuditEvent toDomain () {
-        return new AuditEvent(id, serviceName, location, action, data, timestamp, duration,
+        return new AuditEvent(id, serviceName, location, action, data, recordedAt, duration,
             response);
     }
 }

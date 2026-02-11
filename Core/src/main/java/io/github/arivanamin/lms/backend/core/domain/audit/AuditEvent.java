@@ -3,6 +3,8 @@ package io.github.arivanamin.lms.backend.core.domain.audit;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.UUID;
 
 @Data
@@ -17,7 +19,7 @@ public class AuditEvent {
     String location;
     String action;
     String data;
-    long timestamp;
-    long duration;
+    Instant recordedAt;
+    Duration duration;
     String response;
 }

@@ -1,7 +1,6 @@
 package io.github.arivanamin.lms.backend.core.application.aspects;
 
 import io.github.arivanamin.lms.backend.core.application.audit.AuditDataExtractor;
-import io.github.arivanamin.lms.backend.core.domain.aspects.PerformanceTimer;
 import io.github.arivanamin.lms.backend.core.domain.audit.AuditEvent;
 import io.github.arivanamin.lms.backend.core.domain.command.CreateAuditOutboxMessageCommand;
 import io.github.arivanamin.lms.backend.core.domain.command.CreateAuditOutboxMessageCommandInput;
@@ -13,6 +12,7 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
 
+import java.time.*;
 import java.util.Arrays;
 
 import static io.github.arivanamin.lms.backend.core.domain.aspects.ExecuteAndLogPerformance.executeThrowable;
@@ -25,6 +25,7 @@ class ControllerLoggingAspect {
 
     private final CreateAuditOutboxMessageCommand command;
     private final AuditDataExtractor dataExtractor;
+    private final Clock clock;
 
     @Around ("""
             @annotation(org.springframework.web.bind.annotation.GetMapping)
@@ -35,42 +36,39 @@ class ControllerLoggingAspect {
         """)
     public Object logEndpoint (ProceedingJoinPoint joinPoint) throws Throwable {
         logIncomingRequestDetails(joinPoint);
-        PerformanceTimer timer = PerformanceTimer.newInstance();
 
+        Instant start = Instant.now(clock);
         Object result = null;
         try {
-            timer.startTimer();
             result = executeThrowable(joinPoint::proceed);
         }
         catch (RuntimeException exception) {
             result = "Error: " + exception.getMessage();
-            throw exception;
         }
         finally {
-            stopTimerAndLogExecutionDuration(joinPoint, timer);
-            extractAuditEventDetailsAndSaveToStorage(joinPoint, result, timer.getDuration());
+            Duration duration = Duration.between(start, Instant.now());
+            logExecutionDuration(joinPoint, duration);
+            extractAuditEventDetailsAndSaveToStorage(joinPoint, result, duration);
         }
         return result;
     }
 
-    private static void logIncomingRequestDetails (JoinPoint joinPoint) {
+    private void logIncomingRequestDetails (JoinPoint joinPoint) {
         log.info("Incoming request to: {}, with parameters: {}", joinPoint.getSignature(),
             Arrays.deepToString(joinPoint.getArgs()));
     }
 
-    private static void stopTimerAndLogExecutionDuration (JoinPoint joinPoint,
-                                                          PerformanceTimer timer) {
-        timer.stopTimer();
-        timer.logMethodPerformance(getMethodName(joinPoint));
+    private void logExecutionDuration (ProceedingJoinPoint joinPoint, Duration duration) {
+        log.info("execution of {} took {}ms", getMethodName(joinPoint), duration.toMillis());
     }
 
     private void extractAuditEventDetailsAndSaveToStorage (ProceedingJoinPoint joinPoint,
-                                                           Object result, long duration) {
+                                                           Object result, Duration duration) {
         AuditEvent event = dataExtractor.extractAuditData(joinPoint, result, duration);
         command.execute(new CreateAuditOutboxMessageCommandInput(event));
     }
 
-    private static String getMethodName (JoinPoint joinPoint) {
+    private String getMethodName (JoinPoint joinPoint) {
         return "Controller endpoint %s ".formatted(joinPoint.getSignature());
     }
 }
