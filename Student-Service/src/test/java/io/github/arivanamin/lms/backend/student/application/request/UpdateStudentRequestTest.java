@@ -1,14 +1,14 @@
 package io.github.arivanamin.lms.backend.student.application.request;
 
 import io.github.arivanamin.lms.backend.core.domain.gender.Gender;
-import io.github.arivanamin.lms.backend.student.domain.entity.Student;
+import io.github.arivanamin.lms.backend.student.domain.entity.*;
 import io.github.arivanamin.lms.backend.testing.architecture.bases.BaseUnitTest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
-import static io.github.arivanamin.lms.backend.core.domain.dates.TimestampHelper.toLocalDateTime;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
@@ -25,17 +25,17 @@ class UpdateStudentRequestTest implements BaseUnitTest {
 
         // then
         assertThat(entity.getId()).isEqualTo(id);
-        assertThat(entity.getFirstName()).isEqualTo(request.firstName());
-        assertThat(entity.getLastName()).isEqualTo(request.lastName());
-        assertThat(entity.getEmail()).isEqualTo(request.email());
-        assertThat(entity.getDateOfBirth()).isEqualTo(
-            toLocalDateTime(request.dateOfBirth()).toLocalDate());
-        assertThat(entity.getGender()).isEqualTo(request.gender());
-        assertThat(entity.getAddress()).isEqualTo(request.address());
+        assertThat(entity.getFirstName()).isEqualTo(request.getFirstName());
+        assertThat(entity.getLastName()).isEqualTo(request.getLastName());
+        assertThat(entity.getEmail()).isEqualTo(request.getEmail());
+        assertThat(entity.getDateOfBirth()).isEqualTo(request.getDateOfBirth());
+        assertThat(entity.getGender()).isEqualTo(request.getGender());
+        assertThat(entity.getAddress()).isEqualTo(request.getAddress());
     }
 
     private UpdateStudentRequest createRequest () {
-        return new UpdateStudentRequest("Chris", "Martin", "chris.martin@example.com", 1995,
-            Gender.MALE, "Woodward avenue 31th");
+        return new UpdateStudentRequest("Chris", "Martin", "chris.martin@example.com",
+            "07701234561", LocalDate.of(1995, 3, 7), Gender.MALE, StudentStatus.ENROLLED,
+            GradeLevel.GRADE_5, "Woodward avenue 31th");
     }
 }

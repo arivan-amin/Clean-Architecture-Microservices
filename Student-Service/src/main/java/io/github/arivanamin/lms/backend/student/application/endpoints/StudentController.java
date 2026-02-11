@@ -25,10 +25,11 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
 
-import static io.github.arivanamin.lms.backend.core.domain.dates.TimestampHelper.toLocalDate;
+import static io.github.arivanamin.lms.backend.core.domain.util.MappingUtility.mapIfNotNull;
 import static io.github.arivanamin.lms.backend.student.application.config.StudentApiURLs.*;
 import static io.github.arivanamin.lms.backend.student.application.config.StudentCaches.GET_ALL_STUDENTS_CACHE;
 import static io.github.arivanamin.lms.backend.student.application.config.StudentCaches.GET_STUDENT_BY_ID_CACHE;
@@ -58,9 +59,10 @@ class StudentController {
         @RequestParam (required = false) Long endDate, @Valid PaginationCriteria criteria) {
         ReadStudentsParams params =
             new ReadStudentsParams(searchQuery, gender, statuses, gradeLevels,
-                toLocalDate(startDate), toLocalDate(endDate));
+                mapIfNotNull(startDate, Instant::ofEpochMilli),
+                mapIfNotNull(endDate, Instant::ofEpochMilli));
         ReadStudentsQueryInput input = new ReadStudentsQueryInput(params, criteria);
-        
+
         ReadStudentsQueryOutput output = readQuery.execute(input);
         return ReadStudentsResponse.of(output.getStudents());
     }

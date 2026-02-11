@@ -4,7 +4,7 @@ import io.github.arivanamin.lms.backend.core.domain.gender.Gender;
 import io.github.arivanamin.lms.backend.student.domain.entity.*;
 import lombok.*;
 
-import static io.github.arivanamin.lms.backend.core.domain.dates.TimestampHelper.toLocalDate;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -15,7 +15,7 @@ public class CreateStudentRequest {
     String lastName;
     String email;
     String phoneNumber;
-    long dateOfBirth;
+    LocalDate dateOfBirth;
     Gender gender;
     StudentStatus status;
     GradeLevel gradeLevel;
@@ -27,7 +27,7 @@ public class CreateStudentRequest {
         student.setLastName(lastName);
         student.setEmail(email);
         student.setPhoneNumber(phoneNumber);
-        student.setDateOfBirth(toLocalDate(dateOfBirth));
+        student.setDateOfBirth(dateOfBirth);
         student.setGender(gender);
         student.setStatus(status);
         student.setGradeLevel(gradeLevel);

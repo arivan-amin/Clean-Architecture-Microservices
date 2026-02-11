@@ -8,7 +8,7 @@ import jakarta.persistence.criteria.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 
-import java.time.LocalDate;
+import java.time.Instant;
 import java.util.*;
 import java.util.stream.Stream;
 
@@ -19,8 +19,8 @@ public class StudentSpecification implements Specification<StudentEntity> {
     private final Gender gender;
     private final List<StudentStatus> statuses;
     private final List<GradeLevel> gradeLevels;
-    private final LocalDate startDate;
-    private final LocalDate endDate;
+    private final Instant startDate;
+    private final Instant endDate;
 
     @Override
     public Predicate toPredicate (Root<StudentEntity> root, CriteriaQuery<?> query,
@@ -71,7 +71,7 @@ public class StudentSpecification implements Specification<StudentEntity> {
 
     private Predicate byDateOfBirthEnd (Root<StudentEntity> root, CriteriaBuilder criteria) {
         return Optional.ofNullable(endDate)
-            .map(_ -> criteria.greaterThanOrEqualTo(root.get("dateOfBirth"), endDate))
+            .map(_ -> criteria.lessThan(root.get("dateOfBirth"), endDate))
             .orElse(null);
     }
 
@@ -83,7 +83,7 @@ public class StudentSpecification implements Specification<StudentEntity> {
 
     private Predicate byCreatedAtEnd (Root<StudentEntity> root, CriteriaBuilder criteria) {
         return Optional.ofNullable(endDate)
-            .map(_ -> criteria.greaterThanOrEqualTo(root.get("createdAt"), endDate))
+            .map(_ -> criteria.lessThan(root.get("createdAt"), endDate))
             .orElse(null);
     }
 

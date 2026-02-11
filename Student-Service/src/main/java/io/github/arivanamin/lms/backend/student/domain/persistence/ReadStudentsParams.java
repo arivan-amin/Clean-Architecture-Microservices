@@ -5,7 +5,7 @@ import io.github.arivanamin.lms.backend.student.domain.entity.GradeLevel;
 import io.github.arivanamin.lms.backend.student.domain.entity.StudentStatus;
 import lombok.Value;
 
-import java.time.LocalDate;
+import java.time.Instant;
 import java.util.List;
 
 @Value
@@ -15,6 +15,6 @@ public class ReadStudentsParams {
     Gender gender;
     List<StudentStatus> statuses;
     List<GradeLevel> gradeLevels;
-    LocalDate startDate;
-    LocalDate endDate;
+    Instant startDate;
+    Instant endDate;
 }
