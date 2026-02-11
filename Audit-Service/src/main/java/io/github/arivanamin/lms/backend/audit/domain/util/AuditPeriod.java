@@ -1,12 +1,18 @@
 package io.github.arivanamin.lms.backend.audit.domain.util;
 
-import java.time.LocalDateTime;
+import io.github.arivanamin.lms.backend.core.domain.util.MappingUtility;
+import lombok.Value;
 
-import static io.github.arivanamin.lms.backend.core.domain.dates.TimestampHelper.toLocalDateTime;
+import java.time.Instant;
 
-public record AuditPeriod(LocalDateTime start, LocalDateTime end) {
+@Value
+public class AuditPeriod {
+
+    Instant start;
+    Instant end;
 
     public static AuditPeriod of (long startTimestamp, long endTimestamp) {
-        return new AuditPeriod(toLocalDateTime(startTimestamp), toLocalDateTime(endTimestamp));
+        return new AuditPeriod(MappingUtility.mapIfNotNull(startTimestamp, Instant::ofEpochMilli),
+            MappingUtility.mapIfNotNull(endTimestamp, Instant::ofEpochMilli));
     }
 }

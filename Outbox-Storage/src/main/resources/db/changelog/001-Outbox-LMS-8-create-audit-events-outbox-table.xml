@@ -23,12 +23,16 @@
             <column name="data" type="LONGTEXT">
                 <constraints nullable="false" />
             </column>
-            <column name="timestamp" type="BIGINT UNSIGNED" />
-            <column name="duration" type="BIGINT UNSIGNED" />
+            <column name="recorded_at" type="TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+            <column name="duration" type="DECIMAL(21,0)">
+                <constraints nullable="false" />
+            </column>
             <column name="response" type="LONGTEXT">
                 <constraints nullable="false" />
             </column>
-            <column name="status" type="TINYINT">
+            <column name="status" type="VARCHAR(30)">
                 <constraints nullable="false" />
             </column>
         </createTable>

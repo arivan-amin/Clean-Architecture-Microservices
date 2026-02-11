@@ -4,16 +4,20 @@ import io.github.arivanamin.lms.backend.core.domain.audit.AuditEvent;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.time.*;
 import java.util.UUID;
-
-import static io.github.arivanamin.lms.backend.core.domain.dates.TimestampHelper.toTimestampInMilliseconds;
 
 @NoArgsConstructor (access = AccessLevel.PRIVATE)
 public final class AuditEventTestData {
 
     public static AuditEvent defaultEvent () {
         return initializeEvent();
+    }
+
+    public static AuditEvent eventWithRecordedAt (LocalDateTime recordedAt) {
+        AuditEvent event = initializeEvent();
+        event.setRecordedAt(Instant.now());
+        return event;
     }
 
     private static AuditEvent initializeEvent () {
@@ -23,15 +27,9 @@ public final class AuditEventTestData {
         event.setLocation("/users/account");
         event.setAction("Action");
         event.setData("Test data");
-        event.setDuration(1000);
+        event.setDuration(Duration.ofSeconds(1));
         event.setResponse("success");
-        event.setTimestamp(toTimestampInMilliseconds(LocalDateTime.now()));
-        return event;
-    }
-
-    public static AuditEvent eventWithRecordedAt (LocalDateTime recordedAt) {
-        AuditEvent event = initializeEvent();
-        event.setTimestamp(toTimestampInMilliseconds(recordedAt));
+        event.setRecordedAt(Instant.now());
         return event;
     }
 }

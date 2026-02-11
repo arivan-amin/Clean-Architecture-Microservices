@@ -1,8 +1,8 @@
 package io.github.arivanamin.lms.backend.audit.storage;
 
 import io.github.arivanamin.lms.backend.audit.domain.persistence.AuditEventStorage;
+import io.github.arivanamin.lms.backend.audit.domain.persistence.ReadAuditEventsParams;
 import io.github.arivanamin.lms.backend.core.domain.audit.AuditEvent;
-import io.github.arivanamin.lms.backend.core.domain.dates.DateTimeRange;
 import io.github.arivanamin.lms.backend.core.domain.pagination.PaginatedResponse;
 import io.github.arivanamin.lms.backend.core.domain.pagination.PaginationCriteria;
 import io.github.arivanamin.lms.backend.outbox.storage.util.PaginationHelper;
@@ -22,17 +22,16 @@ public class JpaAuditEventStorage implements AuditEventStorage {
     private final AuditEventRepository repository;
 
     @Override
-    public PaginatedResponse<AuditEvent> findAll (DateTimeRange range,
-                                                  PaginationCriteria criteria) {
-        Page<JpaAuditEvent> page = fetchPaginatedEvents(range, criteria);
+    public PaginatedResponse<AuditEvent> findAll (ReadAuditEventsParams params) {
+        Page<JpaAuditEvent> page = fetchPaginatedEvents(params);
         List<AuditEvent> events = mapToDomainEntities(page.getContent());
         return PaginationHelper.buildPaginatedResponse(events, page);
     }
 
-    private Page<JpaAuditEvent> fetchPaginatedEvents (DateTimeRange range,
-                                                      PaginationCriteria criteria) {
-        PageRequest pageRequest = createPageRequestAndSortByRecordedAt(criteria);
-        return repository.findAllByRecordedAtBetween(range.getStart(), range.getEnd(), pageRequest);
+    private Page<JpaAuditEvent> fetchPaginatedEvents (ReadAuditEventsParams params) {
+        PageRequest pageRequest = createPageRequestAndSortByRecordedAt(params.getCriteria());
+        return repository.findAllByRecordedAtBetween(params.getStartDate(), params.getEndDate(),
+            pageRequest);
     }
 
     private static List<AuditEvent> mapToDomainEntities (List<JpaAuditEvent> page) {

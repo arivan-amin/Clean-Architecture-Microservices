@@ -3,7 +3,8 @@ package io.github.arivanamin.lms.backend.audit.storage;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.UUID;
 
 @NoArgsConstructor (access = AccessLevel.PRIVATE)
@@ -16,9 +17,9 @@ public final class JpaAuditEventTestData {
         event.setLocation("/accounts/activate");
         event.setAction("Pending");
         event.setData("Account activation");
-        event.setDuration(2000);
+        event.setDuration(Duration.ofSeconds(2));
         event.setResponse("activated");
-        event.setRecordedAt(LocalDateTime.now());
+        event.setRecordedAt(Instant.now());
         return event;
     }
 }

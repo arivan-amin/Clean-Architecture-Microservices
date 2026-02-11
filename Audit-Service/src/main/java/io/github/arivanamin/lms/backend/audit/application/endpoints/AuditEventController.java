@@ -4,7 +4,6 @@ import io.github.arivanamin.lms.backend.audit.application.response.AuditEventRes
 import io.github.arivanamin.lms.backend.audit.application.response.ReadAuditEventsResponse;
 import io.github.arivanamin.lms.backend.audit.domain.query.readbyid.*;
 import io.github.arivanamin.lms.backend.audit.domain.query.readbyspec.*;
-import io.github.arivanamin.lms.backend.core.domain.dates.DateTimeRange;
 import io.github.arivanamin.lms.backend.core.domain.pagination.PaginationCriteria;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -13,10 +12,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Instant;
 import java.util.UUID;
 
 import static io.github.arivanamin.lms.backend.audit.application.config.AuditApiURLs.GET_EVENTS_URL;
 import static io.github.arivanamin.lms.backend.audit.application.config.AuditApiURLs.GET_EVENT_BY_ID_URL;
+import static io.github.arivanamin.lms.backend.core.domain.util.MappingUtility.mapIfNotNull;
 
 @Tag (name = "Audit Event Controller")
 @RestController
@@ -35,8 +36,8 @@ class AuditEventController {
                                                       @RequestParam Integer page,
                                                       @RequestParam Integer size) {
         ReadAuditEventsQueryInput input =
-            new ReadAuditEventsQueryInput(DateTimeRange.of(start, end),
-                PaginationCriteria.of(page, size));
+            new ReadAuditEventsQueryInput(mapIfNotNull(start, Instant::ofEpochMilli),
+                mapIfNotNull(end, Instant::ofEpochMilli), PaginationCriteria.of(page, size));
         ReadAuditEventsQueryOutput output = readQuery.execute(input);
         return ReadAuditEventsResponse.of(output.getEvents());
     }

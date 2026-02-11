@@ -1,10 +1,9 @@
 package io.github.arivanamin.lms.backend.audit.application.response;
 
 import io.github.arivanamin.lms.backend.core.domain.audit.AuditEvent;
-import io.github.arivanamin.lms.backend.core.domain.dates.TimestampHelper;
 import lombok.*;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.UUID;
 
 @Data
@@ -17,7 +16,7 @@ public class AuditEventResponse {
     private String location;
     private String action;
     private String data;
-    private LocalDateTime recordedAt;
+    private Instant recordedAt;
     private String duration;
     private String response;
 
@@ -28,8 +27,8 @@ public class AuditEventResponse {
         response.setLocation(event.getLocation());
         response.setAction(event.getAction());
         response.setData(event.getData());
-        response.setRecordedAt(TimestampHelper.toLocalDateTime(event.getTimestamp()));
-        response.setDuration("%dms".formatted(event.getDuration()));
+        response.setRecordedAt(event.getRecordedAt());
+        response.setDuration("%sms".formatted(event.getDuration()));
         response.setResponse(event.getResponse());
         return response;
     }

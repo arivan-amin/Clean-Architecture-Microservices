@@ -14,7 +14,7 @@
             <column name="service_name" type="VARCHAR(255)">
                 <constraints nullable="false" />
             </column>
-            <column name="location" type="VARCHAR(512)">
+            <column name="location" type="VARCHAR(255)">
                 <constraints nullable="false" />
             </column>
             <column name="action" type="VARCHAR(255)">
@@ -23,10 +23,12 @@
             <column name="data" type="LONGTEXT">
                 <constraints nullable="false" />
             </column>
-            <column name="recorded_at" type="DATETIME">
+            <column name="recorded_at" type="TIMESTAMP">
                 <constraints nullable="false" />
             </column>
-            <column name="duration" type="BIGINT UNSIGNED" />
+            <column name="duration" type="DECIMAL(21,0)">
+                <constraints nullable="false" />
+            </column>
             <column name="response" type="LONGTEXT">
                 <constraints nullable="false" />
             </column>

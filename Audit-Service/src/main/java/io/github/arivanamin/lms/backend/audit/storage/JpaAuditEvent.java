@@ -6,11 +6,9 @@ import jakarta.validation.constraints.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.time.LocalDateTime;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.UUID;
-
-import static io.github.arivanamin.lms.backend.core.domain.dates.TimestampHelper.toLocalDateTime;
-import static io.github.arivanamin.lms.backend.core.domain.dates.TimestampHelper.toTimestampInMilliseconds;
 
 @Entity
 @Table (name = "audit_events")
@@ -40,22 +38,22 @@ public class JpaAuditEvent {
 
     @PastOrPresent
     @Column (nullable = false)
-    LocalDateTime recordedAt;
+    Instant recordedAt;
 
-    @Positive
-    long duration;
+    @NotNull
+    Duration duration;
 
     @NotBlank
     String response;
 
     public static JpaAuditEvent fromDomain (AuditEvent domain) {
         return new JpaAuditEvent(domain.getId(), domain.getServiceName(), domain.getLocation(),
-            domain.getAction(), domain.getData(), toLocalDateTime(domain.getTimestamp()),
-            domain.getDuration(), domain.getResponse());
+            domain.getAction(), domain.getData(), domain.getRecordedAt(), domain.getDuration(),
+            domain.getResponse());
     }
 
     public AuditEvent toDomain () {
-        return new AuditEvent(id, serviceName, location, action, data,
-            toTimestampInMilliseconds(recordedAt), duration, response);
+        return new AuditEvent(id, serviceName, location, action, data, recordedAt, duration,
+            response);
     }
 }
