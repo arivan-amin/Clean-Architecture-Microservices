@@ -6,19 +6,21 @@ import lombok.*;
 import java.time.Instant;
 import java.util.UUID;
 
+import static io.github.arivanamin.lms.backend.core.domain.util.MappingUtility.mapIfNotNull;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class AuditEventResponse {
 
-    private UUID id;
-    private String serviceName;
-    private String location;
-    private String action;
-    private String data;
-    private Instant recordedAt;
-    private String duration;
-    private String response;
+    UUID id;
+    String serviceName;
+    String location;
+    String action;
+    String data;
+    Long recordedAt;
+    String duration;
+    String response;
 
     public static AuditEventResponse of (AuditEvent event) {
         AuditEventResponse response = new AuditEventResponse();
@@ -27,8 +29,9 @@ public class AuditEventResponse {
         response.setLocation(event.getLocation());
         response.setAction(event.getAction());
         response.setData(event.getData());
-        response.setRecordedAt(event.getRecordedAt());
-        response.setDuration("%sms".formatted(event.getDuration()));
+        response.setRecordedAt(mapIfNotNull(event.getRecordedAt(), Instant::toEpochMilli));
+        response.setDuration("%sms".formatted(event.getDuration()
+            .toMillis()));
         response.setResponse(event.getResponse());
         return response;
     }

@@ -88,7 +88,7 @@ public class StudentSpecification implements Specification<StudentEntity> {
     }
 
     private Predicate getSearchQueryPattern (Root<StudentEntity> root, CriteriaBuilder criteria) {
-        String likePattern = "%" + searchQuery.toLowerCase() + "%";
+        String likePattern = "%" + searchQuery.toLowerCase(Locale.ENGLISH) + "%";
         return criteria.or(criteria.like(criteria.lower(root.get("firstName")), likePattern),
             criteria.like(criteria.lower(root.get("lastName")), likePattern),
             criteria.like(criteria.lower(root.get("email")), likePattern),

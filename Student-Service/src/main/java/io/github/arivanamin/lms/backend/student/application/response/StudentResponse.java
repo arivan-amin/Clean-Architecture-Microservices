@@ -8,6 +8,8 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.util.UUID;
 
+import static io.github.arivanamin.lms.backend.core.domain.util.MappingUtility.mapIfNotNull;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,14 +25,14 @@ public class StudentResponse {
     StudentStatus status;
     GradeLevel gradeLevel;
     String address;
-    Instant createdAt;
-    Instant updatedAt;
+    Long createdAt;
+    Long updatedAt;
 
-    // todo 2/8/26 - handle timezone and return date as long
     public static StudentResponse of (Student student) {
         return new StudentResponse(student.getId(), student.getFirstName(), student.getLastName(),
             student.getEmail(), student.getPhoneNumber(), student.getDateOfBirth(),
             student.getGender(), student.getStatus(), student.getGradeLevel(), student.getAddress(),
-            student.getCreatedAt(), student.getUpdatedAt());
+            mapIfNotNull(student.getCreatedAt(), Instant::toEpochMilli),
+            mapIfNotNull(student.getUpdatedAt(), Instant::toEpochMilli));
     }
 }
