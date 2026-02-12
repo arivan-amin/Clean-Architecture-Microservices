@@ -21,29 +21,28 @@
 
     <properties>
         <java.version>25</java.version>
-        <spring-cloud-bom-version>2025.1.0</spring-cloud-bom-version>
+        <spring-cloud-bom-version>2025.1.1</spring-cloud-bom-version>
         <testcontainers-bom-version>2.0.3</testcontainers-bom-version>
         <!-- Other dependency versions -->
         <java-faker-version>1.0.2</java-faker-version>
         <logstash-encoder-version>9.0</logstash-encoder-version>
-        <datasource-micrometer-version>2.0.1</datasource-micrometer-version>
+        <datasource-micrometer-version>2.1.1</datasource-micrometer-version>
         <arch-unit-version>1.4.1</arch-unit-version>
         <caffeine-cache-version>3.2.3</caffeine-cache-version>
-        <springdoc-web-mvc-version>3.0.0</springdoc-web-mvc-version>
-        <springdoc-web-flux-version>3.0.0</springdoc-web-flux-version>
-        <vavr-version>0.11.0</vavr-version>
+        <springdoc-web-mvc-version>3.0.1</springdoc-web-mvc-version>
+        <springdoc-web-flux-version>3.0.1</springdoc-web-flux-version>
         <google-guava-version>33.5.0-jre</google-guava-version>
         <commons-io-version>2.21.0</commons-io-version>
-        <mysql-version>9.5.0</mysql-version>
+        <mysql-version>9.6.0</mysql-version>
         <!-- Security Dependencies -->
-        <keycloak-version>26.0.7</keycloak-version>
+        <keycloak-version>26.0.8</keycloak-version>
         <!-- Plugin versions -->
-        <compiler-plugin-version>3.14.1</compiler-plugin-version>
+        <compiler-plugin-version>3.15.0</compiler-plugin-version>
         <surefire-plugin-version>3.5.4</surefire-plugin-version>
         <failsafe-plugin-version>3.5.4</failsafe-plugin-version>
         <jib-plugin-version>3.5.1</jib-plugin-version>
         <jacoco-plugin-ver>0.8.14</jacoco-plugin-ver>
-        <pitest-plugin-version>1.22.0</pitest-plugin-version>
+        <pitest-plugin-version>1.22.1</pitest-plugin-version>
         <pitest-plugin-junit5-version>1.2.3</pitest-plugin-junit5-version>
         <pmd-plugin-version>3.28.0</pmd-plugin-version>
         <spotbugs-plugin-version>4.9.8.2</spotbugs-plugin-version>
@@ -201,11 +200,6 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>io.vavr</groupId>
-            <artifactId>vavr</artifactId>
-            <version>${vavr-version}</version>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>

@@ -12,7 +12,7 @@ public abstract class BaseDatabaseTest extends BaseIntegrationTest {
 
     @Container
     static final MySQLContainer MYSQL_CONTAINER =
-        new MySQLContainer("mysql:9.5.0").withDatabaseName("service_database")
+        new MySQLContainer("mysql:9.6.0").withDatabaseName("service_database")
             .withUsername("root")
             .withPassword("mysql");
 
