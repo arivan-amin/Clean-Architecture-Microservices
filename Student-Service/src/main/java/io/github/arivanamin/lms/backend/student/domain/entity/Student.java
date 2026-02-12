@@ -4,8 +4,8 @@ import io.github.arivanamin.lms.backend.core.domain.gender.Gender;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
@@ -25,6 +25,6 @@ public class Student {
     StudentStatus status;
     GradeLevel gradeLevel;
     String address;
-    LocalDateTime createdAt;
-    LocalDateTime updatedAt;
+    Instant createdAt;
+    Instant updatedAt;
 }

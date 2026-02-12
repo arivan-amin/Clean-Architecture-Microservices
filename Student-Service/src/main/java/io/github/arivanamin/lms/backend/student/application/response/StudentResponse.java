@@ -4,8 +4,8 @@ import io.github.arivanamin.lms.backend.core.domain.gender.Gender;
 import io.github.arivanamin.lms.backend.student.domain.entity.*;
 import lombok.*;
 
+import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
@@ -23,8 +23,8 @@ public class StudentResponse {
     StudentStatus status;
     GradeLevel gradeLevel;
     String address;
-    LocalDateTime createdAt;
-    LocalDateTime updatedAt;
+    Instant createdAt;
+    Instant updatedAt;
 
     // todo 2/8/26 - handle timezone and return date as long
     public static StudentResponse of (Student student) {
