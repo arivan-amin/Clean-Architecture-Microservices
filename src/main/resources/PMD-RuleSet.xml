@@ -25,10 +25,6 @@
     <rule ref="category/java/bestpractices.xml/AvoidUsingHardCodedIP" />
     <rule ref="category/java/bestpractices.xml/DefaultLabelNotLastInSwitch" />
     <rule ref="category/java/bestpractices.xml/DoubleBraceInitialization" />
-    <!-- Disable for now until PMD plugin is updated to PMD 7.10 -->
-    <!-- <rule ref="category/java/bestpractices.xml/ExhaustiveSwitchHasDefault" /> -->
-    <!-- <rule ref="category/java/bestpractices.xml/ForLoopVariableCount" /> -->
-    <!-- <rule ref="category/java/bestpractices.xml/ImplicitFunctionalInterface" /> -->
     <rule ref="category/java/bestpractices.xml/ForLoopCanBeForeach" />
     <rule ref="category/java/bestpractices.xml/JUnit5TestShouldBePackagePrivate" />
     <rule ref="category/java/bestpractices.xml/JUnitUseExpected" />
@@ -135,11 +131,6 @@
         </properties>
     </rule>
     <rule ref="category/java/design.xml/CollapsibleIfStatements" />
-    <rule ref="category/java/design.xml/CouplingBetweenObjects">
-        <properties>
-            <property name="threshold" value="20" />
-        </properties>
-    </rule>
     <rule ref="category/java/design.xml/CyclomaticComplexity">
         <properties>
             <property name="classReportLevel" value="80" />
@@ -149,7 +140,6 @@
     </rule>
     <rule ref="category/java/design.xml/DoNotExtendJavaLangError" />
     <rule ref="category/java/design.xml/ExceptionAsFlowControl" />
-    <rule ref="category/java/design.xml/ExcessiveImports" />
     <rule ref="category/java/design.xml/ExcessiveParameterList">
         <properties>
             <property name="minimum" value="10" />
