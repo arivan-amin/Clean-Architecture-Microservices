@@ -11,7 +11,7 @@
         <!-- @formatter:off -->
         <encoder>
             <pattern>
-                %d{yyyy-MM-dd'T'HH:mm:ss.SSSXXX} level=%-5p {App: ${appName:-}, trace: %X{traceId:-}, span: %X{spanId:-}} logger=%c %line thread=%thread = %msg%n
+                %d{yyyy-MM-dd'T'HH:mm:ss.SSSXXX} level=%-5p {App: ${appName:-}, trace: %X{traceId:-}, span: %X{spanId:-}} logger=%c %line thread=%thread = %msg%n%n
             </pattern>
         </encoder>
         <!-- @formatter:on -->
