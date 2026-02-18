@@ -24,7 +24,6 @@
         <spring-cloud-bom-version>2025.1.1</spring-cloud-bom-version>
         <testcontainers-bom-version>2.0.3</testcontainers-bom-version>
         <!-- Other dependency versions -->
-        <java-faker-version>1.0.2</java-faker-version>
         <logstash-encoder-version>9.0</logstash-encoder-version>
         <datasource-micrometer-version>2.1.1</datasource-micrometer-version>
         <arch-unit-version>1.4.1</arch-unit-version>
@@ -120,11 +119,6 @@
             <groupId>org.testcontainers</groupId>
             <artifactId>testcontainers-kafka</artifactId>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.github.javafaker</groupId>
-            <artifactId>javafaker</artifactId>
-            <version>${java-faker-version}</version>
         </dependency>
 
         <!-- ======================================================= -->
