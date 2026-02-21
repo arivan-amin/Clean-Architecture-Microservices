@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>4.0.2</version>
+        <version>4.0.3</version>
         <relativePath />
     </parent>
 
@@ -37,8 +37,8 @@
         <keycloak-version>26.0.8</keycloak-version>
         <!-- Plugin versions -->
         <compiler-plugin-version>3.15.0</compiler-plugin-version>
-        <surefire-plugin-version>3.5.4</surefire-plugin-version>
-        <failsafe-plugin-version>3.5.4</failsafe-plugin-version>
+        <surefire-plugin-version>3.5.5</surefire-plugin-version>
+        <failsafe-plugin-version>3.5.5</failsafe-plugin-version>
         <jib-plugin-version>3.5.1</jib-plugin-version>
         <jacoco-plugin-ver>0.8.14</jacoco-plugin-ver>
         <pitest-plugin-version>1.22.1</pitest-plugin-version>
