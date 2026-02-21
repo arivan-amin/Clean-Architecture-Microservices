@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.*;
 
-import static io.github.arivanamin.lms.backend.core.domain.aspects.ExecuteAndLogPerformance.executeThrowable;
+import static io.github.arivanamin.lms.backend.core.domain.aspects.ExecutionWrapper.executeThrowable;
 
 @Aspect
 @Component
