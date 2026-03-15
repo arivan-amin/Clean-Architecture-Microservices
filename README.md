@@ -69,29 +69,29 @@ following on **Clean Architecture** and **SOLID** principles, built with **Sprin
 
 ## Clean Architecture Implementation Layers
 
-Services in this app implements strict architectural boundaries enforced by ArchUnit rules that
+Services in this app implement strict architectural boundaries enforced by ArchUnit rules that
 cause failing unit tests when violated.
-In each service there are 3 layers:
+In each service, there are 3 layers:
 
 ### Domain
 
 - contains only business logic, entities, command/queries.
-- Persistence(JDBC, JPA, NoSql) or spring code are not allowed in this layer.
-- This is the most inner layer, it shouldn't know anything about the other layers.
+- Persistence(JDBC, JPA, NoSQL) or Spring code is not allowed in this layer.
+- This is the innermost layer; it shouldn't know anything about the other layers.
 - Any access or references to classes in the other 2 layers will cause unit test failure.
 
 ### Storage
 
-- Contains only classes related to data persistence, JPA, JDBC or any other data storing mechanism
-  belongs to this layer.
+- Contains only classes related to data persistence, JPA, JDBC, or any other data storing mechanism
+  that belong to this layer.
 - Only calls to persistence classes are allowed.
-- Spring configs and web classes doesn't belong here.
-- This is the second inner layer, it can access the Domain layer.
+- Spring configs and web classes don't belong here.
+- This is the second inner layer; it can access the Domain layer.
 - Any access or references to classes in the Application layer will cause unit test failure.
 
 ### Application
 
-- Spring beans,web classes live here.
+- Spring beans, web classes live here.
 - It can access both previous layers since this is the most outward layer.
 
 ---
@@ -101,7 +101,7 @@ In each service there are 3 layers:
 ### Automatic Audit Logs Recording
 
 Use Spring **AOP** to create Audit Events automatically whenever any API in any of the services is
-called and save it to persistence, allowing the controllers to be clutter-free.
+called and saved to persistence, allowing the controllers to be clutter-free.
 
 ### Clean Restful API in all services
 
@@ -118,7 +118,7 @@ Implemented in **API Gateway** using **Redis Rate Limiter**.
 
 ### Outbox Pattern
 
-Implements Outbox Pattern for sending audit events to guarantee 100% message delivery.
+Implements the Outbox Pattern for sending audit events to guarantee 100% message delivery.
 
 ### ArchUnit
 
@@ -294,7 +294,7 @@ Domain entities have no association with JPA and are never annotated with @Entit
 - **Discovery Server**: Dynamic service discovery and registry.
 - **API Gateway**: Centralized entry point for routing and security.
 - **Core Module**: Shared utilities and functionality.
-- **Outbox Storage Module**: Contains classes related to outbox messages storage, shared with
+- **Outbox Storage Module**: Contains classes related to outbox message storage, shared with
   all the modules.
 - **Student Service**: Manages student data.
 - **Audit Service**: Stores Audit Events, ensures compliance, and data integrity.
