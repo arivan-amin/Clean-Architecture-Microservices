@@ -1,7 +1,5 @@
 package io.github.arivanamin.lms.backend.core.application.advice;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ProblemDetail;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -11,7 +9,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 @RestControllerAdvice
-@NoArgsConstructor (access = AccessLevel.PRIVATE)
 @Slf4j
 public final class CommonControllerAdvice {
 
