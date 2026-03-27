@@ -21,6 +21,30 @@ public class DatabaseStudentStorage implements StudentStorage {
 
     private final StudentRepository repository;
 
+    private static void updateChangedFields (Student updatedStudent, StudentEntity storedStudent) {
+        storedStudent.setFirstName(updatedStudent.getFirstName());
+        storedStudent.setLastName(updatedStudent.getLastName());
+        storedStudent.setEmail(updatedStudent.getEmail());
+        storedStudent.setPhoneNumber(updatedStudent.getPhoneNumber());
+        storedStudent.setDateOfBirth(updatedStudent.getDateOfBirth());
+        storedStudent.setGender(updatedStudent.getGender());
+        storedStudent.setStatus(updatedStudent.getStatus());
+        storedStudent.setGradeLevel(updatedStudent.getGradeLevel());
+        storedStudent.setAddress(updatedStudent.getAddress());
+    }
+
+    private static List<Student> fetchAllStudentsAndMapToEntity (List<StudentEntity> page) {
+        return page.stream()
+            .map(StudentEntity::toDomain)
+            .toList();
+    }
+
+    public PageData extractPageData (Page<StudentEntity> page) {
+        return PageData.of(page.getNumber(), page.getTotalPages(), page.getSize(),
+            page.getTotalElements());
+    }
+
+    @Transactional (readOnly = true)
     @Override
     public PaginatedResponse<Student> findAll (ReadStudentsParams params,
                                                PaginationCriteria criteria) {
@@ -36,26 +60,10 @@ public class DatabaseStudentStorage implements StudentStorage {
         return PaginatedResponse.of(extractPageData(page), elements);
     }
 
-    private static List<Student> fetchAllStudentsAndMapToEntity (List<StudentEntity> page) {
-        return page.stream()
-            .map(StudentEntity::toDomain)
-            .toList();
-    }
-
-    public PageData extractPageData (Page<StudentEntity> page) {
-        return PageData.of(page.getNumber(), page.getTotalPages(), page.getSize(),
-            page.getTotalElements());
-    }
-
+    @Transactional (readOnly = true)
     @Override
     public Optional<Student> findById (UUID id) {
         return repository.findById(id)
-            .map(StudentEntity::toDomain);
-    }
-
-    @Override
-    public Optional<Student> findByEmail (String email) {
-        return repository.findByEmail(email)
             .map(StudentEntity::toDomain);
     }
 
@@ -75,13 +83,11 @@ public class DatabaseStudentStorage implements StudentStorage {
         repository.save(storedStudent);
     }
 
-    private static void updateChangedFields (Student updatedStudent, StudentEntity storedStudent) {
-        storedStudent.setFirstName(updatedStudent.getFirstName());
-        storedStudent.setLastName(updatedStudent.getLastName());
-        storedStudent.setEmail(updatedStudent.getEmail());
-        storedStudent.setDateOfBirth(updatedStudent.getDateOfBirth());
-        storedStudent.setGender(updatedStudent.getGender());
-        storedStudent.setAddress(updatedStudent.getAddress());
+    @Transactional (readOnly = true)
+    @Override
+    public Optional<Student> findByEmail (String email) {
+        return repository.findByEmail(email)
+            .map(StudentEntity::toDomain);
     }
 
     @Transactional

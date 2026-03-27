@@ -1,7 +1,5 @@
 package io.github.arivanamin.lms.backend.apigateway.application.advice;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ProblemDetail;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -19,7 +17,6 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.http.ProblemDetail.forStatusAndDetail;
 
 @RestControllerAdvice
-@NoArgsConstructor (access = AccessLevel.PRIVATE)
 @Slf4j
 public final class ApiGatewayAdvice {
 

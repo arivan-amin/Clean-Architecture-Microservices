@@ -48,7 +48,7 @@ services:
       - "3200:3200"
   
   otel:
-    image: otel/opentelemetry-collector:0.146.1
+    image: otel/opentelemetry-collector:0.148.0
     container_name: Otel
     restart: unless-stopped
     command:
@@ -61,7 +61,7 @@ services:
       - tempo
 
   loki:
-    image: grafana/loki:3.6.6
+    image: grafana/loki:3.7.1
     container_name: Loki
     restart: unless-stopped
     command:
@@ -72,7 +72,7 @@ services:
       - "3100:3100"
 
   promtail:
-    image: grafana/promtail:3.6.6
+    image: grafana/promtail:3.6.8
     container_name: Promtail
     restart: unless-stopped
     command:
@@ -97,7 +97,7 @@ services:
 
 
   grafana:
-    image: grafana/grafana:12.3.3
+    image: grafana/grafana:12.4.0
     container_name: Grafana
     restart: unless-stopped
     volumes:
@@ -136,7 +136,7 @@ services:
       - mysql
 
   redis:
-    image: redis:8.4.1
+    image: redis:8.4.2
     container_name: Redis-Server
     restart: unless-stopped
     command:
