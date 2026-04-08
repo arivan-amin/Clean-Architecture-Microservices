@@ -10,9 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.lang.reflect.AnnotatedElement;
 import java.lang.reflect.Method;
 import java.time.*;
-import java.util.Arrays;
-import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -20,6 +19,7 @@ public class AuditDataExtractor {
 
     private final String serviceName;
     private final Clock clock;
+    private final SensitiveDataMasker sensitiveDataMasker;
 
     public AuditEvent extractAuditData (ProceedingJoinPoint joinPoint, Object result,
                                         Duration duration) {
@@ -27,8 +27,7 @@ public class AuditDataExtractor {
         Method method = signature.getMethod();
         String requestURL = extractRequestUrl(method);
         String requestAnnotation = extractRequestAnnotation(method);
-
-        String parameters = getMethodParameters(joinPoint);
+        String parameters = maskMethodParameters(joinPoint, signature);
         String response = getMethodReturnType(result);
 
         AuditEvent event = AuditEvent.builder()
@@ -88,10 +87,17 @@ public class AuditDataExtractor {
         return "";
     }
 
-    private static String getMethodParameters (ProceedingJoinPoint joinPoint) {
-        return Arrays.stream(joinPoint.getArgs())
-            .map(arg -> Objects.toString(arg, "null"))
-            .collect(Collectors.joining(","));
+    private String maskMethodParameters (ProceedingJoinPoint joinPoint, MethodSignature signature) {
+        Object[] args = joinPoint.getArgs();
+        String[] paramNames = signature.getParameterNames();
+
+        return IntStream.range(0, args.length)
+            .mapToObj(i -> {
+                String paramName = resolveParameterName(paramNames, i);
+                String masked = sensitiveDataMasker.maskParameterIfSensitive(paramName, args[i]);
+                return "%s=%s".formatted(paramName, masked);
+            })
+            .collect(Collectors.joining(", "));
     }
 
     private static String getMethodReturnType (Object result) {
@@ -103,5 +109,16 @@ public class AuditDataExtractor {
             return String.join(", ", paths);
         }
         return "Unknown URL";
+    }
+
+    private String resolveParameterName (String[] paramNames, int index) {
+        if (isValidIndex(paramNames, index)) {
+            return paramNames[index];
+        }
+        return "arg%d".formatted(index);
+    }
+
+    private static boolean isValidIndex (String[] paramNames, int index) {
+        return paramNames != null && index < paramNames.length;
     }
 }

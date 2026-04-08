@@ -21,7 +21,7 @@ import static io.github.arivanamin.lms.backend.core.domain.config.CoreApplicatio
 class MeasurePerformanceAspect {
 
     private final Clock clock;
-    
+
     @Around ("@annotation(" + BASE_PACKAGE + ".core.domain.aspects.LogExecutionTime)")
     public Object logExecutionTimeOfMethod (ProceedingJoinPoint joinPoint) throws Throwable {
         logMethodNameAndParameters(joinPoint);
@@ -36,17 +36,18 @@ class MeasurePerformanceAspect {
         }
         finally {
             Duration duration = Duration.between(start, Instant.now());
-            logExecutionDuration(joinPoint, duration);       
+            logExecutionDuration(joinPoint, duration);
         }
         return result;
     }
 
-    private void logExecutionDuration (ProceedingJoinPoint joinPoint, Duration duration) {
-        log.info("Execution of {} took {}ms", getMethodName(joinPoint), duration.toMillis());
-    }
     private void logMethodNameAndParameters (JoinPoint joinPoint) {
         List<Object> args = List.of(joinPoint.getArgs());
         log.info("Called method: {}, with parameters: {}", getMethodName(joinPoint), args);
+    }
+
+    private void logExecutionDuration (ProceedingJoinPoint joinPoint, Duration duration) {
+        log.info("Execution of {} took {}ms", getMethodName(joinPoint), duration.toMillis());
     }
 
     private String getMethodName (JoinPoint joinPoint) {
