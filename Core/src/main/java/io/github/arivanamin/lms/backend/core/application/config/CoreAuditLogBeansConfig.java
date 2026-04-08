@@ -1,7 +1,6 @@
 package io.github.arivanamin.lms.backend.core.application.config;
 
-import io.github.arivanamin.lms.backend.core.application.audit.AuditDataExtractor;
-import io.github.arivanamin.lms.backend.core.application.audit.KafkaAuditEventPublisher;
+import io.github.arivanamin.lms.backend.core.application.audit.*;
 import io.github.arivanamin.lms.backend.core.application.outbox.NoOpAuditOutboxMessageStorage;
 import io.github.arivanamin.lms.backend.core.domain.audit.AuditEvent;
 import io.github.arivanamin.lms.backend.core.domain.audit.AuditEventPublisher;
@@ -22,8 +21,9 @@ class CoreAuditLogBeansConfig {
 
     @Bean
     public AuditDataExtractor auditDataExtractor (
-        @Value ("${spring.application.name}") String serviceName, Clock clock) {
-        return new AuditDataExtractor(serviceName, clock);
+        @Value ("${spring.application.name}") String serviceName, Clock clock,
+        SensitiveDataMasker dataMasker) {
+        return new AuditDataExtractor(serviceName, clock, dataMasker);
     }
 
     @Bean

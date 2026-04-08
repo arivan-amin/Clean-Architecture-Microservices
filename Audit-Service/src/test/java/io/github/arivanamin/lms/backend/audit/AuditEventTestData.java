@@ -14,12 +14,6 @@ public final class AuditEventTestData {
         return initializeEvent();
     }
 
-    public static AuditEvent eventWithRecordedAt (LocalDateTime recordedAt) {
-        AuditEvent event = initializeEvent();
-        event.setRecordedAt(Instant.now());
-        return event;
-    }
-
     private static AuditEvent initializeEvent () {
         AuditEvent event = new AuditEvent();
         event.setId(UUID.randomUUID());
@@ -29,6 +23,12 @@ public final class AuditEventTestData {
         event.setData("Test data");
         event.setDuration(Duration.ofSeconds(1));
         event.setResponse("success");
+        event.setRecordedAt(Instant.now());
+        return event;
+    }
+
+    public static AuditEvent eventWithRecordedAt (LocalDateTime recordedAt) {
+        AuditEvent event = initializeEvent();
         event.setRecordedAt(Instant.now());
         return event;
     }
