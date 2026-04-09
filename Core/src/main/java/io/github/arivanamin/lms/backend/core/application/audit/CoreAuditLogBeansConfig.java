@@ -1,6 +1,5 @@
-package io.github.arivanamin.lms.backend.core.application.config;
+package io.github.arivanamin.lms.backend.core.application.audit;
 
-import io.github.arivanamin.lms.backend.core.application.audit.*;
 import io.github.arivanamin.lms.backend.core.application.outbox.NoOpAuditOutboxMessageStorage;
 import io.github.arivanamin.lms.backend.core.domain.audit.AuditEvent;
 import io.github.arivanamin.lms.backend.core.domain.audit.AuditEventPublisher;

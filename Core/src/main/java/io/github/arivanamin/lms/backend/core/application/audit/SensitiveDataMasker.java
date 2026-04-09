@@ -7,11 +7,12 @@ import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Field;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class SensitiveDataMasker {
+class SensitiveDataMasker {
 
     private static final String MASK_VALUE = "***REDACTED***";
 
@@ -43,7 +44,7 @@ public class SensitiveDataMasker {
     }
 
     private String maskObjectFields (Object obj) {
-        Map<String, String> maskedFields = new LinkedHashMap<>();
+        Map<String, String> maskedFields = new ConcurrentHashMap<>();
         collectFields(obj.getClass()).forEach(field -> {
             try {
                 maskFieldIfSensitive(obj, field, maskedFields);
