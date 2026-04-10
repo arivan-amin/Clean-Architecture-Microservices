@@ -1,11 +1,11 @@
-package io.github.arivanamin.lms.backend.audit.storage;
+package io.github.arivanamin.lms.backend.audit.infrastructure;
 
 import io.github.arivanamin.lms.backend.audit.domain.persistence.AuditEventStorage;
 import io.github.arivanamin.lms.backend.audit.domain.persistence.ReadAuditEventsParams;
 import io.github.arivanamin.lms.backend.core.domain.audit.AuditEvent;
 import io.github.arivanamin.lms.backend.core.domain.pagination.PaginatedResponse;
 import io.github.arivanamin.lms.backend.core.domain.pagination.PaginationCriteria;
-import io.github.arivanamin.lms.backend.outbox.storage.util.PaginationHelper;
+import io.github.arivanamin.lms.backend.outbox.infrastructure.util.PaginationHelper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.*;
@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
-import static io.github.arivanamin.lms.backend.audit.storage.JpaAuditEvent.fromDomain;
+import static io.github.arivanamin.lms.backend.audit.infrastructure.JpaAuditEvent.fromDomain;
 
 @RequiredArgsConstructor
 @Slf4j

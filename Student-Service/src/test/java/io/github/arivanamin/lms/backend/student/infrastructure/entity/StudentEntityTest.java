@@ -1,4 +1,4 @@
-package io.github.arivanamin.lms.backend.student.storage.entity;
+package io.github.arivanamin.lms.backend.student.infrastructure.entity;
 
 import io.github.arivanamin.lms.backend.student.StudentTestData;
 import io.github.arivanamin.lms.backend.student.domain.entity.Student;

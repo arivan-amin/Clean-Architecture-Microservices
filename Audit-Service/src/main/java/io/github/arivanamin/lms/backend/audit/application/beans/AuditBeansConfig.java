@@ -4,8 +4,8 @@ import io.github.arivanamin.lms.backend.audit.domain.command.create.CreateAuditE
 import io.github.arivanamin.lms.backend.audit.domain.persistence.AuditEventStorage;
 import io.github.arivanamin.lms.backend.audit.domain.query.readbyid.ReadAuditEventByIdQuery;
 import io.github.arivanamin.lms.backend.audit.domain.query.readbyspec.ReadAuditEventsQuery;
-import io.github.arivanamin.lms.backend.audit.storage.AuditEventRepository;
-import io.github.arivanamin.lms.backend.audit.storage.JpaAuditEventStorage;
+import io.github.arivanamin.lms.backend.audit.infrastructure.AuditEventRepository;
+import io.github.arivanamin.lms.backend.audit.infrastructure.JpaAuditEventStorage;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

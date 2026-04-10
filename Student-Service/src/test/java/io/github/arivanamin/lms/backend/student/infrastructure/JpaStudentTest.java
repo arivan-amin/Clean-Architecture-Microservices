@@ -1,8 +1,8 @@
-package io.github.arivanamin.lms.backend.student.storage;
+package io.github.arivanamin.lms.backend.student.infrastructure;
 
 import io.github.arivanamin.lms.backend.student.StudentTestData;
 import io.github.arivanamin.lms.backend.student.domain.entity.Student;
-import io.github.arivanamin.lms.backend.student.storage.entity.StudentEntity;
+import io.github.arivanamin.lms.backend.student.infrastructure.entity.StudentEntity;
 import io.github.arivanamin.lms.backend.testing.architecture.bases.BaseUnitTest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
