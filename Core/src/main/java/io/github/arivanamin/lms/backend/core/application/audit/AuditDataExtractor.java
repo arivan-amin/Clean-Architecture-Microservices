@@ -27,7 +27,7 @@ public class AuditDataExtractor {
         Method method = signature.getMethod();
         String requestURL = extractRequestUrl(method);
         String requestAnnotation = extractRequestAnnotation(method);
-        String parameters = maskMethodParameters(joinPoint, signature);
+        String parameters = maskMethodParameters(joinPoint);
         String response = getMethodReturnType(result);
 
         AuditEvent event = AuditEvent.builder()
@@ -87,7 +87,8 @@ public class AuditDataExtractor {
         return "";
     }
 
-    private String maskMethodParameters (ProceedingJoinPoint joinPoint, MethodSignature signature) {
+    public String maskMethodParameters (ProceedingJoinPoint joinPoint) {
+        MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Object[] args = joinPoint.getArgs();
         String[] paramNames = signature.getParameterNames();
 

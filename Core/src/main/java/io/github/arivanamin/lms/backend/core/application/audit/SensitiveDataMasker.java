@@ -18,7 +18,7 @@ class SensitiveDataMasker {
 
     private final AuditSensitiveProperties sensitiveProperties;
 
-    public String maskParameterIfSensitive (String paramName, Object value) {
+    String maskParameterIfSensitive (String paramName, Object value) {
         if (value == null) {
             return "null";
         }

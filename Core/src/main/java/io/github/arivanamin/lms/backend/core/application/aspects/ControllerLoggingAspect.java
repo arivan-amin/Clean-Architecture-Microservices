@@ -13,7 +13,6 @@ import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
 
 import java.time.*;
-import java.util.Arrays;
 
 import static io.github.arivanamin.lms.backend.core.domain.aspects.ExecutionWrapper.executeThrowable;
 
@@ -53,13 +52,13 @@ class ControllerLoggingAspect {
         return result;
     }
 
-    private void logIncomingRequestDetails (JoinPoint joinPoint) {
+    private void logIncomingRequestDetails (ProceedingJoinPoint joinPoint) {
         log.info("Incoming request to: {}, with parameters: {}", joinPoint.getSignature(),
-            Arrays.deepToString(joinPoint.getArgs()));
+            dataExtractor.maskMethodParameters(joinPoint));
     }
 
     private void logExecutionDuration (ProceedingJoinPoint joinPoint, Duration duration) {
-        log.info("execution of {} took {}ms", getMethodName(joinPoint), duration.toMillis());
+        log.info("Execution of {} took {}ms", getMethodName(joinPoint), duration.toMillis());
     }
 
     private void extractAuditEventDetailsAndSaveToStorage (ProceedingJoinPoint joinPoint,
