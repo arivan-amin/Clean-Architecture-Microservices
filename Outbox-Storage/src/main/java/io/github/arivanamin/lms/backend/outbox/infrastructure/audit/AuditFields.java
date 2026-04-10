@@ -1,4 +1,4 @@
-package io.github.arivanamin.lms.backend.outbox.storage.audit;
+package io.github.arivanamin.lms.backend.outbox.infrastructure.audit;
 
 import jakarta.persistence.*;
 import lombok.Getter;

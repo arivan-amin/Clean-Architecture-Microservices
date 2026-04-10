@@ -6,8 +6,8 @@ import io.github.arivanamin.lms.backend.student.domain.command.update.UpdateStud
 import io.github.arivanamin.lms.backend.student.domain.persistence.StudentStorage;
 import io.github.arivanamin.lms.backend.student.domain.query.readbyid.ReadStudentByIdQuery;
 import io.github.arivanamin.lms.backend.student.domain.query.readbyspec.ReadStudentsQuery;
-import io.github.arivanamin.lms.backend.student.storage.DatabaseStudentStorage;
-import io.github.arivanamin.lms.backend.student.storage.repository.StudentRepository;
+import io.github.arivanamin.lms.backend.student.infrastructure.DatabaseStudentStorage;
+import io.github.arivanamin.lms.backend.student.infrastructure.repository.StudentRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

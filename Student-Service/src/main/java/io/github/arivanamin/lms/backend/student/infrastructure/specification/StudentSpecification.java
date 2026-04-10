@@ -1,9 +1,9 @@
-package io.github.arivanamin.lms.backend.student.storage.specification;
+package io.github.arivanamin.lms.backend.student.infrastructure.specification;
 
 import io.github.arivanamin.lms.backend.core.domain.gender.Gender;
 import io.github.arivanamin.lms.backend.student.domain.entity.GradeLevel;
 import io.github.arivanamin.lms.backend.student.domain.entity.StudentStatus;
-import io.github.arivanamin.lms.backend.student.storage.entity.StudentEntity;
+import io.github.arivanamin.lms.backend.student.infrastructure.entity.StudentEntity;
 import jakarta.persistence.criteria.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;

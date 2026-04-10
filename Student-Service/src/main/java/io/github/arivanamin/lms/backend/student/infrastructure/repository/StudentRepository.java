@@ -1,6 +1,6 @@
-package io.github.arivanamin.lms.backend.student.storage.repository;
+package io.github.arivanamin.lms.backend.student.infrastructure.repository;
 
-import io.github.arivanamin.lms.backend.student.storage.entity.StudentEntity;
+import io.github.arivanamin.lms.backend.student.infrastructure.entity.StudentEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 

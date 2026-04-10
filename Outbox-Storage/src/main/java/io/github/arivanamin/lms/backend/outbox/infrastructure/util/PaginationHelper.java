@@ -1,4 +1,4 @@
-package io.github.arivanamin.lms.backend.outbox.storage.util;
+package io.github.arivanamin.lms.backend.outbox.infrastructure.util;
 
 import io.github.arivanamin.lms.backend.core.domain.pagination.PageData;
 import io.github.arivanamin.lms.backend.core.domain.pagination.PaginatedResponse;

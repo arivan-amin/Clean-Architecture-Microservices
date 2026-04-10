@@ -1,4 +1,4 @@
-package io.github.arivanamin.lms.backend.audit.storage;
+package io.github.arivanamin.lms.backend.audit.infrastructure;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

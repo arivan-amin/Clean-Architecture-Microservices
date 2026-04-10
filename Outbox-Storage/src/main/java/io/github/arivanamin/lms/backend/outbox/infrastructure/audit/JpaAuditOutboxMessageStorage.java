@@ -1,4 +1,4 @@
-package io.github.arivanamin.lms.backend.outbox.storage.audit;
+package io.github.arivanamin.lms.backend.outbox.infrastructure.audit;
 
 import io.github.arivanamin.lms.backend.core.domain.outbox.*;
 import jakarta.persistence.LockModeType;

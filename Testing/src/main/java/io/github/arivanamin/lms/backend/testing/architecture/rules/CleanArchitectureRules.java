@@ -32,9 +32,9 @@ public interface CleanArchitectureRules {
 
     String DOMAIN_LAYER = "Domain";
 
-    String STORAGE_PACKAGE = "..storage..";
+    String INFRASTRUCTURE_PACKAGE = "..infrastructure..";
 
-    String STORAGE_LAYER = "Storage";
+    String INFRASTRUCTURE_LAYER = "Infrastructure";
 
     String APPLICATION_PACKAGE = "..application..";
 
@@ -90,18 +90,19 @@ public interface CleanArchitectureRules {
         .resideInAnyPackage(PERSISTENCE_PACKAGES);
 
     @ArchTest
-    ArchRule DOMAIN_SHOULD_NOT_DEPEND_ON_STORAGE_LAYER_OR_APPLICATION_LAYER = noClasses().that()
+    ArchRule DOMAIN_SHOULD_NOT_DEPEND_ON_INFRASTRUCTURE_LAYER_OR_APPLICATION_LAYER =
+        noClasses().that()
         .resideInAPackage(DOMAIN_PACKAGE)
         .should()
         .accessClassesThat()
-        .resideInAnyPackage(STORAGE_PACKAGE, APPLICATION_PACKAGE);
+            .resideInAnyPackage(INFRASTRUCTURE_PACKAGE, APPLICATION_PACKAGE);
 
     @ArchTest
     ArchRule DOMAIN_SHOULD_NOT_ACCESS_APPLICATION_LAYER = noClasses().that()
         .resideInAPackage(DOMAIN_PACKAGE)
         .should()
         .dependOnClassesThat()
-        .resideInAnyPackage(STORAGE_PACKAGE, APPLICATION_PACKAGE);
+        .resideInAnyPackage(INFRASTRUCTURE_PACKAGE, APPLICATION_PACKAGE);
 
     @ArchTest
     ArchRule DOMAIN_SHOULD_NOT_DEPEND_ON_SPRING = noClasses().that()
@@ -111,27 +112,27 @@ public interface CleanArchitectureRules {
         .resideInAPackage(SPRING_FRAMEWORK_PACKAGES);
 
     @ArchTest
-    ArchRule STORAGE_LAYER_SHOULD_NOT_ACCESS_APPLICATION_LAYER = noClasses().that()
-        .resideInAPackage(STORAGE_PACKAGE)
+    ArchRule INFRASTRUCTURE_LAYER_SHOULD_NOT_ACCESS_APPLICATION_LAYER = noClasses().that()
+        .resideInAPackage(INFRASTRUCTURE_PACKAGE)
         .should()
         .accessClassesThat()
         .resideInAPackage(APPLICATION_PACKAGE)
         .allowEmptyShould(true);
 
     @ArchTest
-    ArchRule STORAGE_LAYER_SHOULD_NOT_DEPEND_ON_APPLICATION_LAYER = noClasses().that()
-        .resideInAPackage(STORAGE_PACKAGE)
+    ArchRule INFRASTRUCTURE_LAYER_SHOULD_NOT_DEPEND_ON_APPLICATION_LAYER = noClasses().that()
+        .resideInAPackage(INFRASTRUCTURE_PACKAGE)
         .should()
         .dependOnClassesThat()
         .resideInAPackage(APPLICATION_PACKAGE)
         .allowEmptyShould(true);
 
     @ArchTest
-    ArchRule STORAGE_LAYER_SHOULD_ONLY_BE_ACCESSED_BY_APPLICATION_LAYER = classes().that()
-        .resideInAPackage(STORAGE_PACKAGE)
+    ArchRule INFRASTRUCTURE_LAYER_SHOULD_ONLY_BE_ACCESSED_BY_APPLICATION_LAYER = classes().that()
+        .resideInAPackage(INFRASTRUCTURE_PACKAGE)
         .should()
         .onlyBeAccessed()
-        .byAnyPackage(APPLICATION_PACKAGE, STORAGE_PACKAGE)
+        .byAnyPackage(APPLICATION_PACKAGE, INFRASTRUCTURE_PACKAGE)
         .allowEmptyShould(true);
 
     @ArchTest
@@ -141,28 +142,28 @@ public interface CleanArchitectureRules {
         .beInterfaces();
 
     @ArchTest
-    ArchRule STORAGE_CLASSES_SHOULD_BE_IN_STORAGE_PACKAGE = classes().that()
+    ArchRule INFRASTRUCTURE_CLASSES_SHOULD_BE_IN_INFRASTRUCTURE_PACKAGE = classes().that()
         .haveSimpleNameContaining("Jpa")
         .and()
         .haveSimpleNameEndingWith(STORAGE_SUFFIX)
         .should()
-        .resideInAPackage(STORAGE_PACKAGE)
+        .resideInAPackage(INFRASTRUCTURE_PACKAGE)
         .allowEmptyShould(true)
         .as("Classes that handle Persistence should only be in storage package");
 
     @ArchTest
-    ArchRule JPA_ENTITIES_SHOULD_BE_IN_STORAGE_PACKAGE = classes().that()
+    ArchRule JPA_ENTITIES_SHOULD_BE_IN_INFRASTRUCTURE_PACKAGE = classes().that()
         .areAnnotatedWith(Entity.class)
         .should()
-        .resideInAPackage(STORAGE_PACKAGE)
+        .resideInAPackage(INFRASTRUCTURE_PACKAGE)
         .allowEmptyShould(true)
         .as("Entities should be in storage package");
 
     @ArchTest
-    ArchRule JPA_REPOSITORY_SHOULD_BE_IN_STORAGE_PACKAGE = classes().that()
+    ArchRule JPA_REPOSITORY_SHOULD_BE_IN_INFRASTRUCTURE_PACKAGE = classes().that()
         .areAssignableTo(Repository.class)
         .should()
-        .resideInAPackage(STORAGE_PACKAGE)
+        .resideInAPackage(INFRASTRUCTURE_PACKAGE)
         .andShould()
         .haveSimpleNameEndingWith(REPOSITORY_SUFFIX)
         .allowEmptyShould(true)
@@ -174,13 +175,13 @@ public interface CleanArchitectureRules {
         .definedBy(BASE_PACKAGE + APPLICATION_PACKAGE)
         .layer(DOMAIN_LAYER)
         .definedBy(BASE_PACKAGE + DOMAIN_PACKAGE)
-        .layer(STORAGE_LAYER)
-        .definedBy(BASE_PACKAGE + STORAGE_PACKAGE)
+        .layer(INFRASTRUCTURE_LAYER)
+        .definedBy(BASE_PACKAGE + INFRASTRUCTURE_PACKAGE)
         .whereLayer(APPLICATION_LAYER)
         .mayNotBeAccessedByAnyLayer()
         .ignoreDependency(annotatedWith(SpringBootApplication.class),
             JavaClass.Predicates.resideInAPackage(APPLICATION_PACKAGE))
-        .whereLayer(STORAGE_LAYER)
+        .whereLayer(INFRASTRUCTURE_LAYER)
         .mayOnlyBeAccessedByLayers(APPLICATION_LAYER)
         .allowEmptyShould(true);
 
@@ -458,7 +459,7 @@ public interface CleanArchitectureRules {
         .or()
         .areMetaAnnotatedWith(Entity.class)
         .and()
-        .resideInAPackage(STORAGE_PACKAGE)
+        .resideInAPackage(INFRASTRUCTURE_PACKAGE)
         .should(new JpaProhibitedMethodsCheck(PROHIBITED_JPA_METHODS))
         .allowEmptyShould(true);
 
