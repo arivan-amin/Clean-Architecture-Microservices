@@ -13,7 +13,7 @@ following on **Clean Architecture** and **SOLID** principles, built with **Sprin
 ## Quick Info
 
 ![Java](https://img.shields.io/badge/java-25-brightgreen)
-![SpringBoot](https://img.shields.io/badge/spring--boot-4.0.3-brightgreen)
+![SpringBoot](https://img.shields.io/badge/spring--boot-4.0.5-brightgreen)
 ![Maven](https://img.shields.io/badge/Maven-3.9.12-blue)
 
 ![Coverage](https://img.shields.io/badge/jacoco%20coverage-75%25-yellow)
