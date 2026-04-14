@@ -6,7 +6,7 @@ import lombok.Value;
 import java.time.Instant;
 
 @Value
-public class ReadAuditEventsQueryInput {
+public class ReadAuditEventsInput {
 
     Instant startDate;
     Instant endDate;

@@ -12,8 +12,8 @@ public class CreateAuditEventCommand {
 
     private final AuditEventStorage storage;
 
-    public CreateAuditEventCommandOutput execute (CreateAuditEventCommandInput input) {
+    public CreateAuditEventOutput execute (CreateAuditEventInput input) {
         UUID id = storage.create(input.getEvent());
-        return new CreateAuditEventCommandOutput(id);
+        return new CreateAuditEventOutput(id);
     }
 }

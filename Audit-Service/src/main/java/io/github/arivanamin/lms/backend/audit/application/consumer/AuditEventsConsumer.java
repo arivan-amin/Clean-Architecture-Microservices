@@ -1,11 +1,11 @@
 package io.github.arivanamin.lms.backend.audit.application.consumer;
 
 import io.github.arivanamin.lms.backend.audit.domain.command.create.CreateAuditEventCommand;
-import io.github.arivanamin.lms.backend.audit.domain.command.create.CreateAuditEventCommandInput;
+import io.github.arivanamin.lms.backend.audit.domain.command.create.CreateAuditEventInput;
 import io.github.arivanamin.lms.backend.core.domain.aspects.LogExecutionTime;
 import io.github.arivanamin.lms.backend.core.domain.audit.AuditEvent;
-import io.github.arivanamin.lms.backend.core.domain.command.UpdateAuditOutboxMessageStatusCommand;
-import io.github.arivanamin.lms.backend.core.domain.command.UpdateAuditOutboxMessageStatusCommandInput;
+import io.github.arivanamin.lms.backend.core.domain.command.update.UpdateAuditOutboxMessageStatusCommand;
+import io.github.arivanamin.lms.backend.core.domain.command.update.UpdateAuditOutboxMessageStatusInput;
 import io.github.arivanamin.lms.backend.core.domain.outbox.OutboxMessageStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,7 +34,7 @@ public class AuditEventsConsumer {
 
     private void saveToStorage (AuditEvent event) {
         try {
-            createCommand.execute(new CreateAuditEventCommandInput(event));
+            createCommand.execute(new CreateAuditEventInput(event));
             log.info("saved auditEvent to storage = {}", event.getId());
         }
         catch (Exception e) {
@@ -44,6 +44,6 @@ public class AuditEventsConsumer {
 
     private void updateMessageStatusToCompleted (UUID eventId) {
         updateCommand.execute(
-            new UpdateAuditOutboxMessageStatusCommandInput(eventId, OutboxMessageStatus.COMPLETED));
+            new UpdateAuditOutboxMessageStatusInput(eventId, OutboxMessageStatus.COMPLETED));
     }
 }

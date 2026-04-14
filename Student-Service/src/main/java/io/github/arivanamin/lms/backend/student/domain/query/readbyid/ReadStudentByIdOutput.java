@@ -4,7 +4,7 @@ import io.github.arivanamin.lms.backend.student.domain.entity.Student;
 import lombok.Value;
 
 @Value
-public class ReadStudentByIdQueryOutput {
+public class ReadStudentByIdOutput {
 
     Student student;
 }

@@ -8,7 +8,7 @@ public class UpdateStudentCommand {
 
     private final StudentStorage storage;
 
-    public void execute (UpdateStudentCommandInput input) {
+    public void execute (UpdateStudentInput input) {
         storage.update(input.getStudent());
     }
 }

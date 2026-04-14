@@ -11,12 +11,12 @@ public class ReadAuditEventsQuery {
 
     private final AuditEventStorage storage;
 
-    public ReadAuditEventsQueryOutput execute (ReadAuditEventsQueryInput input) {
+    public ReadAuditEventsOutput execute (ReadAuditEventsInput input) {
         ReadAuditEventsParams params =
             new ReadAuditEventsParams(input.getStartDate(), input.getEndDate(),
                 input.getCriteria());
 
         PaginatedResponse<AuditEvent> events = storage.findAll(params);
-        return new ReadAuditEventsQueryOutput(events);
+        return new ReadAuditEventsOutput(events);
     }
 }

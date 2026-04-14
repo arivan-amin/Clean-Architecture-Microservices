@@ -5,7 +5,7 @@ import io.github.arivanamin.lms.backend.student.domain.entity.Student;
 import lombok.Value;
 
 @Value
-public class ReadStudentsQueryOutput {
+public class ReadStudentsOutput {
 
     PaginatedResponse<Student> students;
 }

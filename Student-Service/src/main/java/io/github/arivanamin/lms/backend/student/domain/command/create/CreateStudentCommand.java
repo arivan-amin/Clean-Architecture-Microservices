@@ -10,12 +10,12 @@ public class CreateStudentCommand {
 
     private final StudentStorage storage;
 
-    public CreateStudentCommandOutput execute (CreateStudentCommandInput input) {
+    public CreateStudentOutput execute (CreateStudentInput input) {
         Student student = input.getStudent();
         if (studentAlreadyExists(student)) {
             throw new StudentAlreadyExistsException(student.getEmail());
         }
-        return new CreateStudentCommandOutput(storage.create(student));
+        return new CreateStudentOutput(storage.create(student));
     }
 
     private boolean studentAlreadyExists (Student student) {

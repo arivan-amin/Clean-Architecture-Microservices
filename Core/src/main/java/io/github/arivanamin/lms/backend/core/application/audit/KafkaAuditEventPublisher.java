@@ -2,8 +2,8 @@ package io.github.arivanamin.lms.backend.core.application.audit;
 
 import io.github.arivanamin.lms.backend.core.domain.audit.AuditEvent;
 import io.github.arivanamin.lms.backend.core.domain.audit.AuditEventPublisher;
-import io.github.arivanamin.lms.backend.core.domain.command.UpdateAuditOutboxMessageStatusCommand;
-import io.github.arivanamin.lms.backend.core.domain.command.UpdateAuditOutboxMessageStatusCommandInput;
+import io.github.arivanamin.lms.backend.core.domain.command.update.UpdateAuditOutboxMessageStatusCommand;
+import io.github.arivanamin.lms.backend.core.domain.command.update.UpdateAuditOutboxMessageStatusInput;
 import io.github.arivanamin.lms.backend.core.domain.outbox.OutboxMessageStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +21,7 @@ public class KafkaAuditEventPublisher implements AuditEventPublisher {
         log.info("Kafka attempting to send audit event from outbox table = {}", event);
         kafkaTemplate.send(topic, event)
             .thenAccept(result -> {
-                updateCommand.execute(new UpdateAuditOutboxMessageStatusCommandInput(event.getId(),
+                updateCommand.execute(new UpdateAuditOutboxMessageStatusInput(event.getId(),
                     OutboxMessageStatus.SENT));
                 log.info("Audit event: {} sent successfully", event.getId());
             })

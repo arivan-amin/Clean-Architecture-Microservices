@@ -10,9 +10,9 @@ public class ReadStudentByIdQuery {
 
     private final StudentStorage storage;
 
-    public ReadStudentByIdQueryOutput execute (ReadStudentByIdQueryInput input) {
+    public ReadStudentByIdOutput execute (ReadStudentByIdInput input) {
         Student student = storage.findById(input.getId())
             .orElseThrow(StudentNotFoundException::new);
-        return new ReadStudentByIdQueryOutput(student);
+        return new ReadStudentByIdOutput(student);
     }
 }

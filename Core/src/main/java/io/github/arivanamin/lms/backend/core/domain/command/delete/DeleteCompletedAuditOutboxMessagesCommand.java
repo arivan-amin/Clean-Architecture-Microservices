@@ -1,4 +1,4 @@
-package io.github.arivanamin.lms.backend.core.domain.command;
+package io.github.arivanamin.lms.backend.core.domain.command.delete;
 
 import io.github.arivanamin.lms.backend.core.domain.outbox.AuditOutboxMessageStorage;
 import lombok.RequiredArgsConstructor;

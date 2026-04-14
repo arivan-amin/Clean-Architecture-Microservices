@@ -1,4 +1,4 @@
-package io.github.arivanamin.lms.backend.core.domain.query;
+package io.github.arivanamin.lms.backend.core.domain.query.readbystatus;
 
 import io.github.arivanamin.lms.backend.core.domain.audit.AuditEvent;
 import io.github.arivanamin.lms.backend.core.domain.outbox.AuditOutboxMessage;
@@ -14,14 +14,14 @@ public class ReadAuditOutboxMessageByStatusQuery {
 
     private final AuditOutboxMessageStorage storage;
 
-    public ReadAuditOutboxMessageByStatusQueryOutput execute (
-        ReadAuditOutboxMessageByStatusQueryInput input) {
+    public ReadAuditOutboxMessageByStatusOutput execute (
+        ReadAuditOutboxMessageByStatusInput input) {
 
         List<AuditEvent> events = storage.findAllByStatus(input.getStatus())
             .stream()
             .map(AuditOutboxMessage::toDomain)
             .toList();
 
-        return new ReadAuditOutboxMessageByStatusQueryOutput(events);
+        return new ReadAuditOutboxMessageByStatusOutput(events);
     }
 }

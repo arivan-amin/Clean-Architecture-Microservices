@@ -7,9 +7,9 @@ import io.github.arivanamin.lms.backend.student.application.request.UpdateStuden
 import io.github.arivanamin.lms.backend.student.application.response.*;
 import io.github.arivanamin.lms.backend.student.domain.command.create.*;
 import io.github.arivanamin.lms.backend.student.domain.command.delete.DeleteStudentCommand;
-import io.github.arivanamin.lms.backend.student.domain.command.delete.DeleteStudentCommandInput;
+import io.github.arivanamin.lms.backend.student.domain.command.delete.DeleteStudentInput;
 import io.github.arivanamin.lms.backend.student.domain.command.update.UpdateStudentCommand;
-import io.github.arivanamin.lms.backend.student.domain.command.update.UpdateStudentCommandInput;
+import io.github.arivanamin.lms.backend.student.domain.command.update.UpdateStudentInput;
 import io.github.arivanamin.lms.backend.student.domain.entity.GradeLevel;
 import io.github.arivanamin.lms.backend.student.domain.entity.StudentStatus;
 import io.github.arivanamin.lms.backend.student.domain.persistence.ReadStudentsParams;
@@ -61,9 +61,9 @@ class StudentController {
             new ReadStudentsParams(searchQuery, gender, statuses, gradeLevels,
                 mapIfNotNull(startDate, Instant::ofEpochMilli),
                 mapIfNotNull(endDate, Instant::ofEpochMilli));
-        ReadStudentsQueryInput input = new ReadStudentsQueryInput(params, criteria);
+        ReadStudentsInput input = new ReadStudentsInput(params, criteria);
 
-        ReadStudentsQueryOutput output = readQuery.execute(input);
+        ReadStudentsOutput output = readQuery.execute(input);
         return ReadStudentsResponse.of(output.getStudents());
     }
 
@@ -72,8 +72,8 @@ class StudentController {
     @Operation (summary = "Get a single student by id")
     @ResponseStatus (HttpStatus.OK)
     public StudentResponse getStudentById (@PathVariable UUID id) {
-        ReadStudentByIdQueryInput input = new ReadStudentByIdQueryInput(id);
-        ReadStudentByIdQueryOutput output = readByIdQuery.execute(input);
+        ReadStudentByIdInput input = new ReadStudentByIdInput(id);
+        ReadStudentByIdOutput output = readByIdQuery.execute(input);
         return StudentResponse.of(output.getStudent());
     }
 
@@ -83,8 +83,8 @@ class StudentController {
         allEntries = true)
     @ResponseStatus (HttpStatus.CREATED)
     public CreateStudentResponse createStudent (@RequestBody @Valid CreateStudentRequest request) {
-        CreateStudentCommandInput input = new CreateStudentCommandInput(request.toDomain());
-        CreateStudentCommandOutput output = createCommand.execute(input);
+        CreateStudentInput input = new CreateStudentInput(request.toDomain());
+        CreateStudentOutput output = createCommand.execute(input);
         return CreateStudentResponse.of(output.getId());
     }
 
@@ -95,7 +95,7 @@ class StudentController {
     @ResponseStatus (HttpStatus.OK)
     public void updateStudent (@PathVariable UUID id,
                                @RequestBody @Valid UpdateStudentRequest request) {
-        UpdateStudentCommandInput input = new UpdateStudentCommandInput(request.toEntity(id));
+        UpdateStudentInput input = new UpdateStudentInput(request.toEntity(id));
         updateCommand.execute(input);
     }
 
@@ -105,7 +105,7 @@ class StudentController {
         allEntries = true)
     @ResponseStatus (HttpStatus.NO_CONTENT)
     public void deleteStudent (@PathVariable UUID id) {
-        DeleteStudentCommandInput input = new DeleteStudentCommandInput(id);
+        DeleteStudentInput input = new DeleteStudentInput(id);
         deleteCommand.execute(input);
     }
 }

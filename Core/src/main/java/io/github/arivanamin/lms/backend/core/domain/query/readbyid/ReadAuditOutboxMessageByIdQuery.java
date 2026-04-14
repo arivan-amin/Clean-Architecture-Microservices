@@ -1,4 +1,4 @@
-package io.github.arivanamin.lms.backend.core.domain.query;
+package io.github.arivanamin.lms.backend.core.domain.query.readbyid;
 
 import io.github.arivanamin.lms.backend.core.domain.outbox.*;
 import lombok.RequiredArgsConstructor;
@@ -10,12 +10,11 @@ public class ReadAuditOutboxMessageByIdQuery {
 
     private final AuditOutboxMessageStorage storage;
 
-    public ReadAuditOutboxMessageByIdQueryOutput execute (
-        ReadAuditOutboxMessageByIdQueryInput input) {
+    public ReadAuditOutboxMessageByIdOutput execute (ReadAuditOutboxMessageByIdInput input) {
 
         AuditOutboxMessage event = storage.findById(input.getId())
             .orElseThrow(AuditOutboxMessageNotFound::new);
 
-        return new ReadAuditOutboxMessageByIdQueryOutput(event.toDomain());
+        return new ReadAuditOutboxMessageByIdOutput(event.toDomain());
     }
 }

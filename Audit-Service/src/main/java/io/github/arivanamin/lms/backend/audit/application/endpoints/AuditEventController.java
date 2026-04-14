@@ -35,10 +35,10 @@ class AuditEventController {
                                                       @RequestParam long end,
                                                       @RequestParam Integer page,
                                                       @RequestParam Integer size) {
-        ReadAuditEventsQueryInput input =
-            new ReadAuditEventsQueryInput(mapIfNotNull(start, Instant::ofEpochMilli),
+        ReadAuditEventsInput input =
+            new ReadAuditEventsInput(mapIfNotNull(start, Instant::ofEpochMilli),
                 mapIfNotNull(end, Instant::ofEpochMilli), PaginationCriteria.of(page, size));
-        ReadAuditEventsQueryOutput output = readQuery.execute(input);
+        ReadAuditEventsOutput output = readQuery.execute(input);
         return ReadAuditEventsResponse.of(output.getEvents());
     }
 
@@ -46,8 +46,8 @@ class AuditEventController {
     @Operation (summary = "Get a single auditEvent by id")
     @ResponseStatus (HttpStatus.OK)
     public AuditEventResponse getAuditEventById (@PathVariable UUID id) {
-        ReadAuditEventByIdQueryInput input = new ReadAuditEventByIdQueryInput(id);
-        ReadAuditEventByIdQueryOutput output = readByIdQuery.execute(input);
+        ReadAuditEventByIdInput input = new ReadAuditEventByIdInput(id);
+        ReadAuditEventByIdOutput output = readByIdQuery.execute(input);
         return AuditEventResponse.of(output.getEvent());
     }
 }

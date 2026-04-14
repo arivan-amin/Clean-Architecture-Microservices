@@ -1,10 +1,10 @@
-package io.github.arivanamin.lms.backend.audit.domain.command.create;
+package io.github.arivanamin.lms.backend.core.domain.query.readbyid;
 
 import io.github.arivanamin.lms.backend.core.domain.audit.AuditEvent;
 import lombok.Value;
 
 @Value
-public class CreateAuditEventCommandInput {
+public class ReadAuditOutboxMessageByIdOutput {
 
     AuditEvent event;
 }

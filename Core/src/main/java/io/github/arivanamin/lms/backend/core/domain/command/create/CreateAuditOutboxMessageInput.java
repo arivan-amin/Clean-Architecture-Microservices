@@ -1,10 +1,10 @@
-package io.github.arivanamin.lms.backend.core.domain.command;
+package io.github.arivanamin.lms.backend.core.domain.command.create;
 
 import io.github.arivanamin.lms.backend.core.domain.audit.AuditEvent;
 import lombok.Value;
 
 @Value
-public class CreateAuditOutboxMessageCommandInput {
+public class CreateAuditOutboxMessageInput {
 
     AuditEvent auditEvent;
 }

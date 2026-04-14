@@ -2,7 +2,7 @@ package io.github.arivanamin.lms.backend.student.domain.command;
 
 import io.github.arivanamin.lms.backend.student.StudentTestData;
 import io.github.arivanamin.lms.backend.student.domain.command.create.CreateStudentCommand;
-import io.github.arivanamin.lms.backend.student.domain.command.create.CreateStudentCommandInput;
+import io.github.arivanamin.lms.backend.student.domain.command.create.CreateStudentInput;
 import io.github.arivanamin.lms.backend.student.domain.entity.Student;
 import io.github.arivanamin.lms.backend.student.domain.exception.StudentAlreadyExistsException;
 import io.github.arivanamin.lms.backend.student.domain.persistence.StudentStorage;
@@ -50,8 +50,7 @@ class CreateStudentCommandTest implements BaseUnitTest {
     }
 
     private void thenThrowStudentAlreadyExistsException () {
-        assertThatException().isThrownBy(
-                () -> command.execute(new CreateStudentCommandInput(student)))
+        assertThatException().isThrownBy(() -> command.execute(new CreateStudentInput(student)))
             .isInstanceOf(StudentAlreadyExistsException.class);
     }
 
@@ -68,7 +67,7 @@ class CreateStudentCommandTest implements BaseUnitTest {
     }
 
     private UUID whenCommandIsExecuted () {
-        return command.execute(new CreateStudentCommandInput(student))
+        return command.execute(new CreateStudentInput(student))
             .getId();
     }
 

@@ -5,7 +5,7 @@ import lombok.Value;
 import java.util.UUID;
 
 @Value
-public class CreateAuditEventCommandOutput {
+public class CreateAuditEventOutput {
 
     UUID id;
 }

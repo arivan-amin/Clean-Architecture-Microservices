@@ -2,8 +2,8 @@ package io.github.arivanamin.lms.backend.core.application.aspects;
 
 import io.github.arivanamin.lms.backend.core.application.audit.AuditDataExtractor;
 import io.github.arivanamin.lms.backend.core.domain.audit.AuditEvent;
-import io.github.arivanamin.lms.backend.core.domain.command.CreateAuditOutboxMessageCommand;
-import io.github.arivanamin.lms.backend.core.domain.command.CreateAuditOutboxMessageCommandInput;
+import io.github.arivanamin.lms.backend.core.domain.command.create.CreateAuditOutboxMessageCommand;
+import io.github.arivanamin.lms.backend.core.domain.command.create.CreateAuditOutboxMessageInput;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
@@ -64,7 +64,7 @@ class ControllerLoggingAspect {
     private void extractAuditEventDetailsAndSaveToStorage (ProceedingJoinPoint joinPoint,
                                                            Object result, Duration duration) {
         AuditEvent event = dataExtractor.extractAuditData(joinPoint, result, duration);
-        command.execute(new CreateAuditOutboxMessageCommandInput(event));
+        command.execute(new CreateAuditOutboxMessageInput(event));
     }
 
     private String getMethodName (JoinPoint joinPoint) {

@@ -1,4 +1,4 @@
-package io.github.arivanamin.lms.backend.core.domain.command;
+package io.github.arivanamin.lms.backend.core.domain.command.create;
 
 import io.github.arivanamin.lms.backend.core.domain.outbox.*;
 import lombok.RequiredArgsConstructor;
@@ -10,12 +10,11 @@ public class CreateAuditOutboxMessageCommand {
 
     private final AuditOutboxMessageStorage storage;
 
-    public CreateAuditOutboxMessageCommandOutput execute (
-        CreateAuditOutboxMessageCommandInput input) {
+    public CreateAuditOutboxMessageOutput execute (CreateAuditOutboxMessageInput input) {
 
         AuditOutboxMessage message = AuditOutboxMessage.fromDomain(input.getAuditEvent());
         message.setStatus(OutboxMessageStatus.PENDING);
 
-        return new CreateAuditOutboxMessageCommandOutput(storage.create(message));
+        return new CreateAuditOutboxMessageOutput(storage.create(message));
     }
 }

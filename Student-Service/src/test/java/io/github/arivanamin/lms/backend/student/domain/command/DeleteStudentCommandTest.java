@@ -1,7 +1,7 @@
 package io.github.arivanamin.lms.backend.student.domain.command;
 
 import io.github.arivanamin.lms.backend.student.domain.command.delete.DeleteStudentCommand;
-import io.github.arivanamin.lms.backend.student.domain.command.delete.DeleteStudentCommandInput;
+import io.github.arivanamin.lms.backend.student.domain.command.delete.DeleteStudentInput;
 import io.github.arivanamin.lms.backend.student.domain.persistence.StudentStorage;
 import io.github.arivanamin.lms.backend.testing.architecture.bases.BaseUnitTest;
 import org.junit.jupiter.api.Test;
@@ -34,7 +34,7 @@ class DeleteStudentCommandTest implements BaseUnitTest {
     }
 
     private void whenCommandIsExecuted (UUID id) {
-        command.execute(new DeleteStudentCommandInput(id));
+        command.execute(new DeleteStudentInput(id));
     }
 
     private void thenVerifyCommandCallsDelete () {

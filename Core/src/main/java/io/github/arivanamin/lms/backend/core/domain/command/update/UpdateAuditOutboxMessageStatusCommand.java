@@ -1,4 +1,4 @@
-package io.github.arivanamin.lms.backend.core.domain.command;
+package io.github.arivanamin.lms.backend.core.domain.command.update;
 
 import io.github.arivanamin.lms.backend.core.domain.outbox.AuditOutboxMessageStorage;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +10,7 @@ public class UpdateAuditOutboxMessageStatusCommand {
 
     private final AuditOutboxMessageStorage storage;
 
-    public void execute (UpdateAuditOutboxMessageStatusCommandInput input) {
+    public void execute (UpdateAuditOutboxMessageStatusInput input) {
         storage.updateMessageStatus(input.getMessageId(), input.getStatus());
     }
 }

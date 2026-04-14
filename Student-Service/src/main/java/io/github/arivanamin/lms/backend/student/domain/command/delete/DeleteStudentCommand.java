@@ -8,7 +8,7 @@ public class DeleteStudentCommand {
 
     private final StudentStorage storage;
 
-    public void execute (DeleteStudentCommandInput input) {
+    public void execute (DeleteStudentInput input) {
         storage.delete(input.getId());
     }
 }

@@ -5,7 +5,7 @@ import io.github.arivanamin.lms.backend.student.domain.persistence.ReadStudentsP
 import lombok.Value;
 
 @Value
-public class ReadStudentsQueryInput {
+public class ReadStudentsInput {
 
     ReadStudentsParams params;
     PaginationCriteria criteria;

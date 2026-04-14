@@ -5,7 +5,7 @@ import io.github.arivanamin.lms.backend.core.domain.pagination.PaginatedResponse
 import lombok.Value;
 
 @Value
-public class ReadAuditEventsQueryOutput {
+public class ReadAuditEventsOutput {
 
     PaginatedResponse<AuditEvent> events;
 }

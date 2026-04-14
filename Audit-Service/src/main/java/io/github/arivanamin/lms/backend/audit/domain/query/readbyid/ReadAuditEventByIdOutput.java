@@ -4,7 +4,7 @@ import io.github.arivanamin.lms.backend.core.domain.audit.AuditEvent;
 import lombok.Value;
 
 @Value
-public class ReadAuditEventByIdQueryOutput {
+public class ReadAuditEventByIdOutput {
 
     AuditEvent event;
 }

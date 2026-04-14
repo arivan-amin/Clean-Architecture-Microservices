@@ -10,9 +10,9 @@ public class ReadAuditEventByIdQuery {
 
     private final AuditEventStorage storage;
 
-    public ReadAuditEventByIdQueryOutput execute (ReadAuditEventByIdQueryInput input) {
+    public ReadAuditEventByIdOutput execute (ReadAuditEventByIdInput input) {
         AuditEvent event = storage.findById(input.getId())
             .orElseThrow(AuditEventNotFoundException::new);
-        return new ReadAuditEventByIdQueryOutput(event);
+        return new ReadAuditEventByIdOutput(event);
     }
 }
