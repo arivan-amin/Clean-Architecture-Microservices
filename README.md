@@ -1,4 +1,4 @@
-# LMS Microservices
+# Cinemayan Spring Microservices
 
 ## Clean Architecture with Spring Boot 4
 
@@ -26,7 +26,7 @@ following on **Clean Architecture** and **SOLID** principles, built with **Sprin
 
 ## Services Overview
 
-![image](https://raw.githubusercontent.com/arivan-amin/Clean-Architecture-Microservices/master/Docs/Diagram/Architecture-Diagram.jpg)
+![image](https://raw.githubusercontent.com/arivan-amin/Cinemayan-Spring-Microservices/master/Docs/Diagram/Architecture-Diagram.jpg)
 
 ## Technologies used and their responsibility
 
@@ -80,7 +80,7 @@ In each service, there are 3 layers:
 - This is the innermost layer; it shouldn't know anything about the other layers.
 - Any access or references to classes in the other 2 layers will cause unit test failure.
 
-### Storage
+### Infrastructure
 
 - Contains only classes related to data persistence, JPA, JDBC, or any other data storing mechanism
   that belong to this layer.
@@ -202,14 +202,14 @@ Domain entities have no association with JPA and are never annotated with @Entit
 
 - Discovery Server
 - API Gateway
-- Student Service
 - Audit Service
+- Catalog Service
 
 ---
 
 ## Grafana Monitoring Sample
 
-![image](https://raw.githubusercontent.com/arivan-amin/Clean-Architecture-Microservices/master/Docs/Grafana/Grafana-Dashboard-1.png)
+![image](https://raw.githubusercontent.com/arivan-amin/Cinemayan-Spring-Microservices/master/Docs/Grafana/Grafana-Dashboard-1.png)
 
 ## Installation Guide
 
@@ -225,7 +225,7 @@ Domain entities have no association with JPA and are never annotated with @Entit
 
 1. **Clone the Repository:**
    ```
-   git clone https://github.com/arivan-amin/Clean-Architecture-Microservices.git
+   git clone https://github.com/arivan-amin/Cinemayan-Spring-Microservices.git
    cd Spring-Clean-Microservices
    ```
 
@@ -247,7 +247,7 @@ Domain entities have no association with JPA and are never annotated with @Entit
    ```
    docker compose up -d
    ```
-5. **Start the services(Students, Audit, ...) manually or uncomment the section in docker compose
+5. **Start the services(Catalog, Audit, ...) manually or uncomment the section in docker compose
    file
    to run everything with Docker Compose:**
    ```
@@ -296,7 +296,7 @@ Domain entities have no association with JPA and are never annotated with @Entit
 - **Core Module**: Shared utilities and functionality.
 - **Outbox Storage Module**: Contains classes related to outbox message storage, shared with
   all the modules.
-- **Student Service**: Manages student data.
+- **Catalog Service**: Manages student data.
 - **Audit Service**: Stores Audit Events, ensures compliance, and data integrity.
 
 ---

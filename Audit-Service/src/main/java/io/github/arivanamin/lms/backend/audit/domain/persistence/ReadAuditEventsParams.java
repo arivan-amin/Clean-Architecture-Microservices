@@ -1,6 +1,6 @@
 package io.github.arivanamin.lms.backend.audit.domain.persistence;
 
-import io.github.arivanamin.lms.backend.core.domain.pagination.PaginationCriteria;
+import io.github.arivanamin.cinemayan.backend.core.domain.pagination.PaginationCriteria;
 import lombok.Value;
 
 import java.time.Instant;

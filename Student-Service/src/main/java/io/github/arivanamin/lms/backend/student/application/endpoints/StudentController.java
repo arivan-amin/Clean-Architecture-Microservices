@@ -1,7 +1,7 @@
 package io.github.arivanamin.lms.backend.student.application.endpoints;
 
-import io.github.arivanamin.lms.backend.core.domain.gender.Gender;
-import io.github.arivanamin.lms.backend.core.domain.pagination.PaginationCriteria;
+import io.github.arivanamin.cinemayan.backend.core.domain.gender.Gender;
+import io.github.arivanamin.cinemayan.backend.core.domain.pagination.PaginationCriteria;
 import io.github.arivanamin.lms.backend.student.application.request.CreateStudentRequest;
 import io.github.arivanamin.lms.backend.student.application.request.UpdateStudentRequest;
 import io.github.arivanamin.lms.backend.student.application.response.*;
@@ -29,7 +29,7 @@ import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
 
-import static io.github.arivanamin.lms.backend.core.domain.util.MappingUtility.mapIfNotNull;
+import static io.github.arivanamin.cinemayan.backend.core.domain.util.MappingUtility.mapIfNotNull;
 import static io.github.arivanamin.lms.backend.student.application.config.StudentApiURLs.*;
 import static io.github.arivanamin.lms.backend.student.application.config.StudentCaches.GET_ALL_STUDENTS_CACHE;
 import static io.github.arivanamin.lms.backend.student.application.config.StudentCaches.GET_STUDENT_BY_ID_CACHE;

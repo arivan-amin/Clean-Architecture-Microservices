@@ -1,12 +1,12 @@
 package io.github.arivanamin.lms.backend.audit.application.consumer;
 
+import io.github.arivanamin.cinemayan.backend.core.domain.aspects.LogExecutionTime;
+import io.github.arivanamin.cinemayan.backend.core.domain.audit.AuditEvent;
+import io.github.arivanamin.cinemayan.backend.core.domain.command.update.UpdateAuditOutboxMessageStatusCommand;
+import io.github.arivanamin.cinemayan.backend.core.domain.command.update.UpdateAuditOutboxMessageStatusInput;
+import io.github.arivanamin.cinemayan.backend.core.domain.outbox.OutboxMessageStatus;
 import io.github.arivanamin.lms.backend.audit.domain.command.create.CreateAuditEventCommand;
 import io.github.arivanamin.lms.backend.audit.domain.command.create.CreateAuditEventInput;
-import io.github.arivanamin.lms.backend.core.domain.aspects.LogExecutionTime;
-import io.github.arivanamin.lms.backend.core.domain.audit.AuditEvent;
-import io.github.arivanamin.lms.backend.core.domain.command.update.UpdateAuditOutboxMessageStatusCommand;
-import io.github.arivanamin.lms.backend.core.domain.command.update.UpdateAuditOutboxMessageStatusInput;
-import io.github.arivanamin.lms.backend.core.domain.outbox.OutboxMessageStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
-import static io.github.arivanamin.lms.backend.core.domain.topics.AuditTopics.API_AUDIT_TOPIC;
+import static io.github.arivanamin.cinemayan.backend.core.domain.topics.AuditTopics.API_AUDIT_TOPIC;
 
 @Service
 @RequiredArgsConstructor

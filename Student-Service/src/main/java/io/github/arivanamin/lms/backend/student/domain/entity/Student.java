@@ -1,6 +1,6 @@
 package io.github.arivanamin.lms.backend.student.domain.entity;
 
-import io.github.arivanamin.lms.backend.core.domain.gender.Gender;
+import io.github.arivanamin.cinemayan.backend.core.domain.gender.Gender;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 

@@ -1,7 +1,7 @@
 package io.github.arivanamin.lms.backend.student.domain.persistence;
 
-import io.github.arivanamin.lms.backend.core.domain.pagination.PaginatedResponse;
-import io.github.arivanamin.lms.backend.core.domain.pagination.PaginationCriteria;
+import io.github.arivanamin.cinemayan.backend.core.domain.pagination.PaginatedResponse;
+import io.github.arivanamin.cinemayan.backend.core.domain.pagination.PaginationCriteria;
 import io.github.arivanamin.lms.backend.student.domain.entity.Student;
 
 import java.util.Optional;

@@ -11,8 +11,8 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.function.Function;
 
-import static io.github.arivanamin.lms.backend.core.domain.config.ServicesNamesHelper.AUDIT_SERVICE;
-import static io.github.arivanamin.lms.backend.core.domain.config.ServicesNamesHelper.STUDENT_SERVICE;
+import static io.github.arivanamin.cinemayan.backend.core.domain.config.ServicesNamesHelper.AUDIT_SERVICE;
+import static io.github.arivanamin.cinemayan.backend.core.domain.config.ServicesNamesHelper.CATALOG_SERVICE;
 
 @Slf4j
 @Configuration
@@ -48,15 +48,15 @@ class ApiGatewayRouting {
     }
 
     private Function<PredicateSpec, Buildable<Route>> getStudentServiceRoute () {
-        return routingHelper.createApiRouteForService(STUDENT_SERVICE);
+        return routingHelper.createApiRouteForService(CATALOG_SERVICE);
     }
 
     private Function<PredicateSpec, Buildable<Route>> getStudentServiceApiDocRoute () {
-        return routingHelper.createApiDocRouteForService(STUDENT_SERVICE);
+        return routingHelper.createApiDocRouteForService(CATALOG_SERVICE);
     }
 
     private Function<PredicateSpec, Buildable<Route>> getStudentServiceActuatorRoute () {
-        return routingHelper.createActuatorRouteForService(STUDENT_SERVICE);
+        return routingHelper.createActuatorRouteForService(CATALOG_SERVICE);
     }
 
     private Function<PredicateSpec, Buildable<Route>> getAuditServiceRoute () {

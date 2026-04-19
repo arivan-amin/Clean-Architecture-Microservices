@@ -11,13 +11,13 @@
         <relativePath />
     </parent>
 
-    <groupId>io.github.arivanamin.lms</groupId>
-    <artifactId>spring-clean-microservices</artifactId>
+    <groupId>io.github.arivanamin</groupId>
+    <artifactId>cinemayan</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
-    <name>Spring-Clean-Microservices</name>
-    <description>Backend Parent Module</description>
-    <url>https://github.com/arivan-amin/Clean-Architecture-Microservices</url>
+    <name>Cinemayan</name>
+    <description>Cinemayan Backend Module</description>
+    <url>https://github.com/arivan-amin/Cinemayan-Spring-Microservices</url>
 
     <properties>
         <java.version>25</java.version>
@@ -219,7 +219,7 @@
     </dependencyManagement>
 
     <build>
-        <finalName>lms-${project.artifactId}</finalName>
+        <finalName>cinemayan-${project.artifactId}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -280,7 +280,7 @@
                         <image>bellsoft/liberica-openjre-alpine:25</image>
                     </from>
                     <to>
-                        <image>arivanamin/lms-${project.artifactId}</image>
+                        <image>arivanamin/cinemayan-${project.artifactId}</image>
                     </to>
                 </configuration>
                 <executions>
@@ -318,14 +318,14 @@
                         <mutator>REMOVE_CONDITIONALS_ORDER_IF</mutator>
                     </mutators>
                     <targetClasses>
-                        <param>io.github.arivanamin.lms.backend.*</param>
+                        <param>io.github.arivanamin.cinemayan.backend.*</param>
                     </targetClasses>
                     <targetTests>
-                        <param>io.github.arivanamin.lms.backend.*</param>
+                        <param>io.github.arivanamin.cinemayan.backend.*</param>
                     </targetTests>
                     <excludedTestClasses>
                         <excludedTestClass>
-                            io.github.arivanamin.lms.backend.**.**IT
+                            io.github.arivanamin.cinemayan.backend.**.**IT
                         </excludedTestClass>
                     </excludedTestClasses>
                     <avoidCallsTo>

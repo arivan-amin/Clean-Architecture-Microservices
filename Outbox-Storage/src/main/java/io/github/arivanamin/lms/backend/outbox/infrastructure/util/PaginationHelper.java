@@ -1,7 +1,7 @@
 package io.github.arivanamin.lms.backend.outbox.infrastructure.util;
 
-import io.github.arivanamin.lms.backend.core.domain.pagination.PageData;
-import io.github.arivanamin.lms.backend.core.domain.pagination.PaginatedResponse;
+import io.github.arivanamin.cinemayan.backend.core.domain.pagination.PageData;
+import io.github.arivanamin.cinemayan.backend.core.domain.pagination.PaginatedResponse;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.springframework.data.domain.Page;
