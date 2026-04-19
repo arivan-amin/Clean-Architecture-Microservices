@@ -13,7 +13,7 @@ x-base-service: &base-service
   env_file:
     - .env
   volumes:
-    - app-logs:/root/Apps/Spring-Clean-Microservices/Logs/
+    - app-logs:/root/Apps/Cinemayan-Spring-Microservices/Logs/
   depends_on:
     - discovery-server
 
@@ -80,7 +80,7 @@ services:
     volumes:
       - ./Docker/promtail/promtail-config.yaml:/etc/promtail/config.yml
       - app-logs:/logs
-      - ${HOME}/Apps/Spring-Clean-Microservices/Logs:/local-logs
+      - ${HOME}/Apps/Cinemayan-Spring-Microservices/Logs:/local-logs
 
   prometheus:
     image: prom/prometheus:v3.9.1

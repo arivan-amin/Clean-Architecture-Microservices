@@ -1,0 +1,23 @@
+package io.github.arivanamin.cinemayan.student.domain.persistence;
+
+import io.github.arivanamin.cinemayan.backend.core.domain.pagination.PaginatedResponse;
+import io.github.arivanamin.cinemayan.backend.core.domain.pagination.PaginationCriteria;
+import io.github.arivanamin.cinemayan.student.domain.entity.Student;
+
+import java.util.Optional;
+import java.util.UUID;
+
+public interface StudentStorage {
+
+    PaginatedResponse<Student> findAll (ReadStudentsParams params, PaginationCriteria criteria);
+
+    Optional<Student> findById (UUID id);
+
+    Optional<Student> findByEmail (String email);
+
+    UUID create (Student student);
+
+    void update (Student student);
+
+    void delete (UUID id);
+}
