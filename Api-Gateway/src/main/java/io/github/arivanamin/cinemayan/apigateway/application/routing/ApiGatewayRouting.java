@@ -11,8 +11,8 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.function.Function;
 
-import static io.github.arivanamin.cinemayan.backend.core.domain.config.ServicesNamesHelper.AUDIT_SERVICE;
-import static io.github.arivanamin.cinemayan.backend.core.domain.config.ServicesNamesHelper.CATALOG_SERVICE;
+import static io.github.arivanamin.cinemayan.core.domain.config.ServicesNamesHelper.AUDIT_SERVICE;
+import static io.github.arivanamin.cinemayan.core.domain.config.ServicesNamesHelper.CATALOG_SERVICE;
 
 @Slf4j
 @Configuration

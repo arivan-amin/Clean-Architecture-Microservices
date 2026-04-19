@@ -4,7 +4,6 @@ import com.tngtech.archunit.base.DescribedPredicate;
 import com.tngtech.archunit.core.domain.*;
 import com.tngtech.archunit.junit.ArchTest;
 import com.tngtech.archunit.lang.ArchRule;
-import io.github.arivanamin.cinemayan.backend.testing.architecture.rules.predicates.*;
 import io.github.arivanamin.cinemayan.testing.architecture.rules.predicates.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -25,7 +24,7 @@ import static com.tngtech.archunit.core.domain.properties.CanBeAnnotated.Predica
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.*;
 import static com.tngtech.archunit.library.Architectures.layeredArchitecture;
 import static com.tngtech.archunit.library.ProxyRules.no_classes_should_directly_call_other_methods_declared_in_the_same_class_that_are_annotated_with;
-import static io.github.arivanamin.cinemayan.backend.core.domain.config.CoreApplicationConfig.BASE_PACKAGE;
+import static io.github.arivanamin.cinemayan.core.domain.config.CoreApplicationConfig.BASE_PACKAGE;
 
 public interface CleanArchitectureRules {
 
@@ -93,9 +92,9 @@ public interface CleanArchitectureRules {
     @ArchTest
     ArchRule DOMAIN_SHOULD_NOT_DEPEND_ON_INFRASTRUCTURE_LAYER_OR_APPLICATION_LAYER =
         noClasses().that()
-        .resideInAPackage(DOMAIN_PACKAGE)
-        .should()
-        .accessClassesThat()
+            .resideInAPackage(DOMAIN_PACKAGE)
+            .should()
+            .accessClassesThat()
             .resideInAnyPackage(INFRASTRUCTURE_PACKAGE, APPLICATION_PACKAGE);
 
     @ArchTest

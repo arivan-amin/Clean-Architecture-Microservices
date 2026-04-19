@@ -19,7 +19,7 @@ import java.util.UUID;
 
 import static io.github.arivanamin.cinemayan.audit.application.config.AuditApiURLs.GET_EVENTS_URL;
 import static io.github.arivanamin.cinemayan.audit.application.config.AuditApiURLs.GET_EVENT_BY_ID_URL;
-import static io.github.arivanamin.cinemayan.backend.core.domain.util.MappingUtility.mapIfNotNull;
+import static io.github.arivanamin.cinemayan.core.domain.util.MappingUtility.mapIfNotNull;
 
 @Tag (name = "Audit Event Controller")
 @RestController

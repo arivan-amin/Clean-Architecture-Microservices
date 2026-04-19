@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
-import static io.github.arivanamin.cinemayan.backend.core.domain.topics.AuditTopics.API_AUDIT_TOPIC;
+import static io.github.arivanamin.cinemayan.core.domain.topics.AuditTopics.API_AUDIT_TOPIC;
 
 @Service
 @RequiredArgsConstructor

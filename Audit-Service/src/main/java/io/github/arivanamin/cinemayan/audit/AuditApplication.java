@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-import static io.github.arivanamin.cinemayan.backend.core.domain.config.CoreApplicationConfig.BASE_PACKAGE;
+import static io.github.arivanamin.cinemayan.core.domain.config.CoreApplicationConfig.BASE_PACKAGE;
 
 @SpringBootApplication (scanBasePackages = BASE_PACKAGE)
 @EnableJpaRepositories (basePackages = BASE_PACKAGE)

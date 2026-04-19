@@ -36,9 +36,9 @@ class AuditEventsOutboxScheduler {
 
     @Scheduled (cron = SCHEDULER_CRONJOB)
     void deleteCompletedEvents () {
-        List<AuditEvent> completedEvents = query.execute(
-                new ReadAuditOutboxMessageByStatusInput(OutboxMessageStatus.COMPLETED))
-            .getEvents();
+        List<AuditEvent> completedEvents =
+            query.execute(new ReadAuditOutboxMessageByStatusInput(OutboxMessageStatus.COMPLETED))
+                .getEvents();
         log.info("Completed events to be deleted = {}", completedEvents.size());
         deleteCommand.execute();
     }

@@ -22,37 +22,37 @@
 
     <dependencies>
         <dependency>
-            <groupId>io.github.arivanamin.lms</groupId>
+            <groupId>io.github.arivanamin</groupId>
             <artifactId>core</artifactId>
             <version>${core-module-version}</version>
         </dependency>
         <dependency>
-            <groupId>io.github.arivanamin.lms</groupId>
+            <groupId>io.github.arivanamin</groupId>
             <artifactId>testing</artifactId>
             <version>${testing-module-version}</version>
         </dependency>
         <dependency>
-            <groupId>io.github.arivanamin.lms</groupId>
+            <groupId>io.github.arivanamin</groupId>
             <artifactId>outbox-storage</artifactId>
             <version>${outbox-storage-module-version}</version>
         </dependency>
         <dependency>
-            <groupId>io.github.arivanamin.lms</groupId>
+            <groupId>io.github.arivanamin</groupId>
             <artifactId>discovery-server</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>
-            <groupId>io.github.arivanamin.lms</groupId>
+            <groupId>io.github.arivanamin</groupId>
             <artifactId>api-gateway</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>
-            <groupId>io.github.arivanamin.lms</groupId>
+            <groupId>io.github.arivanamin</groupId>
             <artifactId>audit-service</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>
-            <groupId>io.github.arivanamin.lms</groupId>
+            <groupId>io.github.arivanamin</groupId>
             <artifactId>student-service</artifactId>
             <version>1.0.0</version>
         </dependency>

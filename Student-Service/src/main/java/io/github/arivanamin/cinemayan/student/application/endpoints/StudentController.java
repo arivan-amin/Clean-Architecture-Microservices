@@ -33,7 +33,7 @@ import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
 
-import static io.github.arivanamin.cinemayan.backend.core.domain.util.MappingUtility.mapIfNotNull;
+import static io.github.arivanamin.cinemayan.core.domain.util.MappingUtility.mapIfNotNull;
 import static io.github.arivanamin.cinemayan.student.application.config.StudentApiURLs.*;
 import static io.github.arivanamin.cinemayan.student.application.config.StudentCaches.GET_ALL_STUDENTS_CACHE;
 import static io.github.arivanamin.cinemayan.student.application.config.StudentCaches.GET_STUDENT_BY_ID_CACHE;

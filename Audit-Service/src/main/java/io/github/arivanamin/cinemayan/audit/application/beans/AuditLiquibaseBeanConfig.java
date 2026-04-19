@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 
 import javax.sql.DataSource;
 
-import static io.github.arivanamin.cinemayan.backend.core.domain.config.CoreApplicationConfig.LIQUIBASE_CHANGELOG_PATH;
+import static io.github.arivanamin.cinemayan.core.domain.config.CoreApplicationConfig.LIQUIBASE_CHANGELOG_PATH;
 
 @Configuration
 @Slf4j

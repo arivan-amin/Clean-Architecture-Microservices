@@ -9,7 +9,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.util.UUID;
 
-import static io.github.arivanamin.cinemayan.backend.core.domain.util.MappingUtility.mapIfNotNull;
+import static io.github.arivanamin.cinemayan.core.domain.util.MappingUtility.mapIfNotNull;
 
 @Data
 @NoArgsConstructor

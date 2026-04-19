@@ -22,12 +22,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>io.github.arivanamin.lms</groupId>
+            <groupId>io.github.arivanamin</groupId>
             <artifactId>core</artifactId>
             <version>${core-module-version}</version>
         </dependency>
         <dependency>
-            <groupId>io.github.arivanamin.lms</groupId>
+            <groupId>io.github.arivanamin</groupId>
             <artifactId>testing</artifactId>
             <version>${testing-module-version}</version>
         </dependency>

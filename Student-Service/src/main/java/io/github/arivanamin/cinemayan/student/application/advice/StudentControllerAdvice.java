@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.net.URI;
 import java.time.Instant;
 
-import static io.github.arivanamin.cinemayan.backend.core.application.advice.ProblemDetailCategories.RESOURCE_NOT_FOUND;
-import static io.github.arivanamin.cinemayan.backend.core.application.advice.ProblemDetailExceptionUrls.RUNTIME_EXCEPTION_URL;
-import static io.github.arivanamin.cinemayan.backend.core.application.advice.ProblemDetailProperties.CATEGORY;
-import static io.github.arivanamin.cinemayan.backend.core.application.advice.ProblemDetailProperties.TIMESTAMP;
+import static io.github.arivanamin.cinemayan.core.application.advice.ProblemDetailCategories.RESOURCE_NOT_FOUND;
+import static io.github.arivanamin.cinemayan.core.application.advice.ProblemDetailExceptionUrls.RUNTIME_EXCEPTION_URL;
+import static io.github.arivanamin.cinemayan.core.application.advice.ProblemDetailProperties.CATEGORY;
+import static io.github.arivanamin.cinemayan.core.application.advice.ProblemDetailProperties.TIMESTAMP;
 import static org.springframework.http.HttpStatus.CONFLICT;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.http.ProblemDetail.forStatusAndDetail;
