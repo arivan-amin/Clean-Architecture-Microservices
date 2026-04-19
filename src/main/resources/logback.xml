@@ -3,7 +3,7 @@
     <springProperty name="appName" source="spring.application.name" />
 
     <property scope="context" name="logDirectory"
-              value="${LOG_DIR:-${user.home}/Apps/Spring-Clean-Microservices/Logs}" />
+              value="${LOG_DIR:-${user.home}/Apps/Cinemayan-Spring-Microservices/Logs}" />
 
     <statusListener class="ch.qos.logback.core.status.NopStatusListener" />
 

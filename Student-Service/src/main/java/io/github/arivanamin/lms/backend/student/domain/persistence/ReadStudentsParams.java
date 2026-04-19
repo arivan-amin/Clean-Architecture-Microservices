@@ -1,6 +1,6 @@
 package io.github.arivanamin.lms.backend.student.domain.persistence;
 
-import io.github.arivanamin.lms.backend.core.domain.gender.Gender;
+import io.github.arivanamin.cinemayan.backend.core.domain.gender.Gender;
 import io.github.arivanamin.lms.backend.student.domain.entity.GradeLevel;
 import io.github.arivanamin.lms.backend.student.domain.entity.StudentStatus;
 import lombok.Value;

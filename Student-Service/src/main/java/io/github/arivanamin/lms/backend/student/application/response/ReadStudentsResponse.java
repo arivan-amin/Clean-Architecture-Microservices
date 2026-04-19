@@ -1,7 +1,7 @@
 package io.github.arivanamin.lms.backend.student.application.response;
 
-import io.github.arivanamin.lms.backend.core.domain.pagination.PageData;
-import io.github.arivanamin.lms.backend.core.domain.pagination.PaginatedResponse;
+import io.github.arivanamin.cinemayan.backend.core.domain.pagination.PageData;
+import io.github.arivanamin.cinemayan.backend.core.domain.pagination.PaginatedResponse;
 import io.github.arivanamin.lms.backend.student.domain.entity.Student;
 
 import java.util.List;

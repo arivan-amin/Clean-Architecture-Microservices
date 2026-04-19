@@ -1,0 +1,30 @@
+package io.github.arivanamin.cinemayan.backend.core.domain.config;
+
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
+import java.nio.file.Path;
+
+import static java.lang.System.getProperty;
+import static java.nio.file.Paths.get;
+
+@NoArgsConstructor (access = AccessLevel.PRIVATE)
+public final class CoreApplicationConfig {
+
+    public static final String APPLICATION_DIRECTORY_NAME = "Cinemayan-Spring-Microservices";
+
+    public static final String BASE_PACKAGE = "io.github.arivanamin.cinemayan.backend";
+
+    public static final String LIQUIBASE_CHANGELOG_PATH =
+        "classpath:db/changelog/changelog-master.xml";
+
+    static final String USER_HOME_DIRECTORY_PROPERTY = "user.home";
+
+    public static Path getApplicationConfigDirectory () {
+        return get(getUserHomeDirectory(), "Apps", APPLICATION_DIRECTORY_NAME);
+    }
+
+    private static String getUserHomeDirectory () {
+        return getProperty(USER_HOME_DIRECTORY_PROPERTY);
+    }
+}

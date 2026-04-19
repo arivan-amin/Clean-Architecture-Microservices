@@ -1,6 +1,6 @@
 package io.github.arivanamin.lms.backend.audit;
 
-import io.github.arivanamin.lms.backend.core.domain.audit.AuditEvent;
+import io.github.arivanamin.cinemayan.backend.core.domain.audit.AuditEvent;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 

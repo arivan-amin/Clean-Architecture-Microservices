@@ -1,6 +1,6 @@
 package io.github.arivanamin.lms.backend.student.application.request;
 
-import io.github.arivanamin.lms.backend.core.domain.gender.Gender;
+import io.github.arivanamin.cinemayan.backend.core.domain.gender.Gender;
 import io.github.arivanamin.lms.backend.student.domain.entity.*;
 import io.github.arivanamin.lms.backend.testing.architecture.bases.BaseUnitTest;
 import lombok.extern.slf4j.Slf4j;

@@ -1,6 +1,6 @@
 package io.github.arivanamin.lms.backend.student.application.response;
 
-import io.github.arivanamin.lms.backend.core.domain.gender.Gender;
+import io.github.arivanamin.cinemayan.backend.core.domain.gender.Gender;
 import io.github.arivanamin.lms.backend.student.domain.entity.*;
 import lombok.*;
 
@@ -8,7 +8,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.util.UUID;
 
-import static io.github.arivanamin.lms.backend.core.domain.util.MappingUtility.mapIfNotNull;
+import static io.github.arivanamin.cinemayan.backend.core.domain.util.MappingUtility.mapIfNotNull;
 
 @Data
 @NoArgsConstructor

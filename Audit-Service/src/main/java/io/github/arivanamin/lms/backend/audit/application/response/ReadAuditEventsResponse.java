@@ -1,8 +1,8 @@
 package io.github.arivanamin.lms.backend.audit.application.response;
 
-import io.github.arivanamin.lms.backend.core.domain.audit.AuditEvent;
-import io.github.arivanamin.lms.backend.core.domain.pagination.PageData;
-import io.github.arivanamin.lms.backend.core.domain.pagination.PaginatedResponse;
+import io.github.arivanamin.cinemayan.backend.core.domain.audit.AuditEvent;
+import io.github.arivanamin.cinemayan.backend.core.domain.pagination.PageData;
+import io.github.arivanamin.cinemayan.backend.core.domain.pagination.PaginatedResponse;
 
 import java.util.List;
 

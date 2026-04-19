@@ -1,6 +1,6 @@
 package io.github.arivanamin.lms.backend.student.infrastructure;
 
-import io.github.arivanamin.lms.backend.core.domain.pagination.*;
+import io.github.arivanamin.cinemayan.backend.core.domain.pagination.*;
 import io.github.arivanamin.lms.backend.student.domain.entity.Student;
 import io.github.arivanamin.lms.backend.student.domain.persistence.ReadStudentsParams;
 import io.github.arivanamin.lms.backend.student.domain.persistence.StudentStorage;

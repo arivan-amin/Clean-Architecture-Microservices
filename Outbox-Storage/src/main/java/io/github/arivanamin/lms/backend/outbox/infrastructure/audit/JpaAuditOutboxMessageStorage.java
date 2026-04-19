@@ -1,6 +1,6 @@
 package io.github.arivanamin.lms.backend.outbox.infrastructure.audit;
 
-import io.github.arivanamin.lms.backend.core.domain.outbox.*;
+import io.github.arivanamin.cinemayan.backend.core.domain.outbox.*;
 import jakarta.persistence.LockModeType;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

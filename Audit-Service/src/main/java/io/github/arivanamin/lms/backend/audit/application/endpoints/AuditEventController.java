@@ -1,10 +1,10 @@
 package io.github.arivanamin.lms.backend.audit.application.endpoints;
 
+import io.github.arivanamin.cinemayan.backend.core.domain.pagination.PaginationCriteria;
 import io.github.arivanamin.lms.backend.audit.application.response.AuditEventResponse;
 import io.github.arivanamin.lms.backend.audit.application.response.ReadAuditEventsResponse;
 import io.github.arivanamin.lms.backend.audit.domain.query.readbyid.*;
 import io.github.arivanamin.lms.backend.audit.domain.query.readbyspec.*;
-import io.github.arivanamin.lms.backend.core.domain.pagination.PaginationCriteria;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.*;
 import java.time.Instant;
 import java.util.UUID;
 
+import static io.github.arivanamin.cinemayan.backend.core.domain.util.MappingUtility.mapIfNotNull;
 import static io.github.arivanamin.lms.backend.audit.application.config.AuditApiURLs.GET_EVENTS_URL;
 import static io.github.arivanamin.lms.backend.audit.application.config.AuditApiURLs.GET_EVENT_BY_ID_URL;
-import static io.github.arivanamin.lms.backend.core.domain.util.MappingUtility.mapIfNotNull;
 
 @Tag (name = "Audit Event Controller")
 @RestController

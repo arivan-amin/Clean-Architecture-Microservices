@@ -1,6 +1,6 @@
 package io.github.arivanamin.lms.backend.student.domain.query.readbyspec;
 
-import io.github.arivanamin.lms.backend.core.domain.pagination.PaginatedResponse;
+import io.github.arivanamin.cinemayan.backend.core.domain.pagination.PaginatedResponse;
 import io.github.arivanamin.lms.backend.student.domain.entity.Student;
 import io.github.arivanamin.lms.backend.student.domain.persistence.StudentStorage;
 import lombok.RequiredArgsConstructor;

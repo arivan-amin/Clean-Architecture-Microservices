@@ -1,9 +1,9 @@
 package io.github.arivanamin.lms.backend.audit.domain.query.readbyspec;
 
+import io.github.arivanamin.cinemayan.backend.core.domain.audit.AuditEvent;
+import io.github.arivanamin.cinemayan.backend.core.domain.pagination.PaginatedResponse;
 import io.github.arivanamin.lms.backend.audit.domain.persistence.AuditEventStorage;
 import io.github.arivanamin.lms.backend.audit.domain.persistence.ReadAuditEventsParams;
-import io.github.arivanamin.lms.backend.core.domain.audit.AuditEvent;
-import io.github.arivanamin.lms.backend.core.domain.pagination.PaginatedResponse;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

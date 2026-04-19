@@ -1,4 +1,4 @@
-# Contributing to Spring Clean Microservices
+# Contributing to Cinemayan Spring Microservices
 
 Thank you for considering contributing, We're excited to collaborate with the open-source community
 to improve this project. Below are some guidelines to help you get started.

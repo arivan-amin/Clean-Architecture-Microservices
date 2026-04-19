@@ -1,6 +1,6 @@
 package io.github.arivanamin.lms.backend.student.infrastructure.entity;
 
-import io.github.arivanamin.lms.backend.core.domain.gender.Gender;
+import io.github.arivanamin.cinemayan.backend.core.domain.gender.Gender;
 import io.github.arivanamin.lms.backend.outbox.infrastructure.audit.AuditFields;
 import io.github.arivanamin.lms.backend.student.domain.entity.*;
 import jakarta.persistence.*;

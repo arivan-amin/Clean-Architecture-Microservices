@@ -1,6 +1,6 @@
 package io.github.arivanamin.lms.backend.audit.domain.util;
 
-import io.github.arivanamin.lms.backend.core.domain.util.MappingUtility;
+import io.github.arivanamin.cinemayan.backend.core.domain.util.MappingUtility;
 import lombok.Value;
 
 import java.time.Instant;
