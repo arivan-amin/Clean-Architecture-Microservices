@@ -49,7 +49,7 @@
         <!-- Inherited dependency versions -->
         <core-module-version>1.0.0</core-module-version>
         <testing-module-version>1.0.0</testing-module-version>
-        <outbox-storage-module-version>1.0.0</outbox-storage-module-version>
+        <outbox-module-version>1.0.0</outbox-module-version>
     </properties>
 
     <modules>
@@ -318,14 +318,14 @@
                         <mutator>REMOVE_CONDITIONALS_ORDER_IF</mutator>
                     </mutators>
                     <targetClasses>
-                        <param>io.github.arivanamin.cinemayan.backend.*</param>
+                        <param>io.github.arivanamin.cinemayan.*</param>
                     </targetClasses>
                     <targetTests>
-                        <param>io.github.arivanamin.cinemayan.backend.*</param>
+                        <param>io.github.arivanamin.cinemayan.*</param>
                     </targetTests>
                     <excludedTestClasses>
                         <excludedTestClass>
-                            io.github.arivanamin.cinemayan.backend.**.**IT
+                            io.github.arivanamin.cinemayan.**.**IT
                         </excludedTestClass>
                     </excludedTestClasses>
                     <avoidCallsTo>

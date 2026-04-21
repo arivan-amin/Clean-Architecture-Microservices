@@ -12,7 +12,7 @@
 
     <artifactId>cinemayan-testing</artifactId>
     <version>1.0.0</version>
-    <name>Testing</name>
+    <name>Cinemayan :: Testing</name>
     <description>Testing Module</description>
 
     <properties>

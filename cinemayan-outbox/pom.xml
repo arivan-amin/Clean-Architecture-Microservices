@@ -10,9 +10,9 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>cinemayan-outbox-storage</artifactId>
+    <artifactId>cinemayan-outbox</artifactId>
     <version>1.0.0</version>
-    <name>Outbox-Storage</name>
+    <name>Cinemayan :: Outbox</name>
     <description>Outbox Storage Module</description>
 
     <properties>

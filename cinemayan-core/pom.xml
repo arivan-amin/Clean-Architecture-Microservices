@@ -12,7 +12,7 @@
 
     <artifactId>cinemayan-core</artifactId>
     <version>1.0.0</version>
-    <name>Core</name>
+    <name>Cinemayan :: Core</name>
     <description>Core Module</description>
 
     <properties>

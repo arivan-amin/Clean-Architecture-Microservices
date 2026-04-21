@@ -12,7 +12,7 @@
 
     <artifactId>cinemayan-api-gateway</artifactId>
     <version>1.0.0</version>
-    <name>API-Gateway</name>
+    <name>Cinemayan :: API Gateway</name>
     <description>API-Gateway</description>
 
     <dependencies>

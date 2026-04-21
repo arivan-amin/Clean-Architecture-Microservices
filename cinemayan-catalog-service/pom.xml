@@ -12,7 +12,7 @@
 
     <artifactId>cinemayan-catalog-service</artifactId>
     <version>1.0.0</version>
-    <name>Student-Service</name>
+    <name>Cinemayan :: Catalog Service</name>
     <description>Student Service Module</description>
 
     <dependencies>
@@ -38,8 +38,8 @@
         </dependency>
         <dependency>
             <groupId>io.github.arivanamin</groupId>
-            <artifactId>cinemayan-outbox-storage</artifactId>
-            <version>${outbox-storage-module-version}</version>
+            <artifactId>cinemayan-outbox</artifactId>
+            <version>${outbox-module-version}</version>
         </dependency>
 
         <dependency>
