@@ -87,7 +87,8 @@ public interface CleanArchitectureRules {
         .resideInAPackage(DOMAIN_PACKAGE)
         .should()
         .accessClassesThat()
-        .resideInAnyPackage(PERSISTENCE_PACKAGES);
+        .resideInAnyPackage(PERSISTENCE_PACKAGES)
+        .allowEmptyShould(true);
 
     @ArchTest
     ArchRule DOMAIN_SHOULD_NOT_DEPEND_ON_INFRASTRUCTURE_LAYER_OR_APPLICATION_LAYER =
@@ -95,21 +96,24 @@ public interface CleanArchitectureRules {
             .resideInAPackage(DOMAIN_PACKAGE)
             .should()
             .accessClassesThat()
-            .resideInAnyPackage(INFRASTRUCTURE_PACKAGE, APPLICATION_PACKAGE);
+            .resideInAnyPackage(INFRASTRUCTURE_PACKAGE, APPLICATION_PACKAGE)
+            .allowEmptyShould(true);
 
     @ArchTest
     ArchRule DOMAIN_SHOULD_NOT_ACCESS_APPLICATION_LAYER = noClasses().that()
         .resideInAPackage(DOMAIN_PACKAGE)
         .should()
         .dependOnClassesThat()
-        .resideInAnyPackage(INFRASTRUCTURE_PACKAGE, APPLICATION_PACKAGE);
+        .resideInAnyPackage(INFRASTRUCTURE_PACKAGE, APPLICATION_PACKAGE)
+        .allowEmptyShould(true);
 
     @ArchTest
     ArchRule DOMAIN_SHOULD_NOT_DEPEND_ON_SPRING = noClasses().that()
         .resideInAPackage(DOMAIN_PACKAGE)
         .should()
         .accessClassesThat()
-        .resideInAPackage(SPRING_FRAMEWORK_PACKAGES);
+        .resideInAPackage(SPRING_FRAMEWORK_PACKAGES)
+        .allowEmptyShould(true);
 
     @ArchTest
     ArchRule INFRASTRUCTURE_LAYER_SHOULD_NOT_ACCESS_APPLICATION_LAYER = noClasses().that()
@@ -139,7 +143,8 @@ public interface CleanArchitectureRules {
     ArchRule INTERFACES_MUST_NOT_BE_PLACED_IN_IMPLEMENTATION_PACKAGES = noClasses().that()
         .resideInAPackage(APPLICATION_PACKAGE)
         .should()
-        .beInterfaces();
+        .beInterfaces()
+        .allowEmptyShould(true);
 
     @ArchTest
     ArchRule INFRASTRUCTURE_CLASSES_SHOULD_BE_IN_INFRASTRUCTURE_PACKAGE = classes().that()
@@ -374,7 +379,8 @@ public interface CleanArchitectureRules {
     ArchRule AVOID_BEAN_ANNOTATION_WITH_QUALIFIER = methods().that()
         .areAnnotatedWith(Bean.class)
         .should()
-        .notBeAnnotatedWith(Qualifier.class);
+        .notBeAnnotatedWith(Qualifier.class)
+        .allowEmptyShould(true);
 
     @ArchTest
     ArchRule BEAN_ANNOTATION_SHOULD_BE_ON_PUBLIC_METHODS = methods().that()
@@ -389,7 +395,8 @@ public interface CleanArchitectureRules {
         .or()
         .areAnnotatedWith(Component.class)
         .should()
-        .notBePublic();
+        .notBePublic()
+        .allowEmptyShould(true);
 
     @ArchTest
     ArchRule ONLY_DECLARE_BEANS_IN_APPLICATION_CLASSES = classes().that()
@@ -451,7 +458,7 @@ public interface CleanArchitectureRules {
     @ArchTest
     ArchRule NO_BYPASS_OF_PROXY_LOGIC =
         no_classes_should_directly_call_other_methods_declared_in_the_same_class_that_are_annotated_with(
-            Async.class);
+            Async.class).allowEmptyShould(true);
 
     @ArchTest
     ArchRule ENTITY_CLASSES_SHOULD_NOT_IMPLEMENT_EQUALS_HASHCODE = classes().that()

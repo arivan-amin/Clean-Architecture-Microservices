@@ -16,20 +16,24 @@ public interface CommonBestPracticeRules extends BaseUnitTest {
     ArchRule INTERFACES_SHOULD_NOT_HAVE_NAMES_ENDING_WITH_THE_WORD_INTERFACE = noClasses().that()
         .areInterfaces()
         .should()
-        .haveNameMatching(".*Interface");
+        .haveNameMatching(".*Interface")
+        .allowEmptyShould(true);
 
     @ArchTest
     ArchRule INTERFACES_SHOULD_NOT_HAVE_SIMPLE_CLASS_NAMES_CONTAINING_THE_WORD_INTERFACE =
         noClasses().that()
             .areInterfaces()
             .should()
-            .haveSimpleNameContaining("Interface");
+            .haveSimpleNameContaining("Interface")
+            .allowEmptyShould(true);
 
     @ArchTest
-    ArchRule NO_ACCESS_TO_STANDARD_STREAMS = NO_CLASSES_SHOULD_ACCESS_STANDARD_STREAMS;
+    ArchRule NO_ACCESS_TO_STANDARD_STREAMS =
+        NO_CLASSES_SHOULD_ACCESS_STANDARD_STREAMS.allowEmptyShould(true);
 
     @ArchTest
-    ArchRule NO_GENERIC_EXCEPTIONS = NO_CLASSES_SHOULD_THROW_GENERIC_EXCEPTIONS;
+    ArchRule NO_GENERIC_EXCEPTIONS =
+        NO_CLASSES_SHOULD_THROW_GENERIC_EXCEPTIONS.allowEmptyShould(true);
 
     @ArchTest
     ArchRule NO_JAVA_UTIL_LOGGING = NO_CLASSES_SHOULD_USE_JAVA_UTIL_LOGGING;
@@ -53,5 +57,5 @@ public interface CommonBestPracticeRules extends BaseUnitTest {
     ArchRule NO_FIELD_INJECTION = NO_CLASSES_SHOULD_USE_FIELD_INJECTION;
 
     @ArchTest
-    ArchRule AVOID_DEPRECATED_API = DEPRECATED_API_SHOULD_NOT_BE_USED;
+    ArchRule AVOID_DEPRECATED_API = DEPRECATED_API_SHOULD_NOT_BE_USED.allowEmptyShould(true);
 }

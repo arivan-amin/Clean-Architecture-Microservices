@@ -1,0 +1,98 @@
+package io.github.arivanamin.cinemayan.catalog.infrastructure;
+
+import io.github.arivanamin.cinemayan.catalog.domain.entity.Student;
+import io.github.arivanamin.cinemayan.catalog.domain.persistence.ReadStudentsParams;
+import io.github.arivanamin.cinemayan.catalog.domain.persistence.StudentStorage;
+import io.github.arivanamin.cinemayan.catalog.infrastructure.entity.StudentEntity;
+import io.github.arivanamin.cinemayan.catalog.infrastructure.repository.StudentRepository;
+import io.github.arivanamin.cinemayan.catalog.infrastructure.specification.StudentSpecification;
+import io.github.arivanamin.cinemayan.core.domain.pagination.*;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.*;
+
+@RequiredArgsConstructor
+@Slf4j
+public class DatabaseStudentStorage implements StudentStorage {
+
+    private final StudentRepository repository;
+
+    @Transactional (readOnly = true)
+    @Override
+    public PaginatedResponse<Student> findAll (ReadStudentsParams params,
+                                               PaginationCriteria criteria) {
+        StudentSpecification specification =
+            new StudentSpecification(params.getSearchQuery(), params.getGender(),
+                params.getStatuses(), params.getGradeLevels(), params.getStartDate(),
+                params.getEndDate());
+
+        PageRequest pageable = PageRequest.of(criteria.getPage(), criteria.getSize());
+        Page<StudentEntity> page = repository.findAll(specification, pageable);
+
+        List<Student> elements = fetchAllStudentsAndMapToEntity(page.getContent());
+        return PaginatedResponse.of(extractPageData(page), elements);
+    }
+
+    private static List<Student> fetchAllStudentsAndMapToEntity (List<StudentEntity> page) {
+        return page.stream()
+            .map(StudentEntity::toDomain)
+            .toList();
+    }
+
+    private static void updateChangedFields (Student updatedStudent, StudentEntity storedStudent) {
+        storedStudent.setFirstName(updatedStudent.getFirstName());
+        storedStudent.setLastName(updatedStudent.getLastName());
+        storedStudent.setEmail(updatedStudent.getEmail());
+        storedStudent.setPhoneNumber(updatedStudent.getPhoneNumber());
+        storedStudent.setDateOfBirth(updatedStudent.getDateOfBirth());
+        storedStudent.setGender(updatedStudent.getGender());
+        storedStudent.setStatus(updatedStudent.getStatus());
+        storedStudent.setGradeLevel(updatedStudent.getGradeLevel());
+        storedStudent.setAddress(updatedStudent.getAddress());
+    }
+
+    @Transactional (readOnly = true)
+    @Override
+    public Optional<Student> findById (UUID id) {
+        return repository.findById(id)
+            .map(StudentEntity::toDomain);
+    }
+
+    public PageData extractPageData (Page<StudentEntity> page) {
+        return PageData.of(page.getNumber(), page.getTotalPages(), page.getSize(),
+            page.getTotalElements());
+    }
+
+    @Transactional
+    @Override
+    public UUID create (Student student) {
+        return repository.save(StudentEntity.fromDomain(student))
+            .getId();
+    }
+
+    @Transactional
+    @Override
+    public void update (Student updatedStudent) {
+        StudentEntity storedStudent =
+            StudentEntity.fromDomain(findById(updatedStudent.getId()).orElseThrow());
+        updateChangedFields(updatedStudent, storedStudent);
+        repository.save(storedStudent);
+    }
+
+    @Transactional (readOnly = true)
+    @Override
+    public Optional<Student> findByEmail (String email) {
+        return repository.findByEmail(email)
+            .map(StudentEntity::toDomain);
+    }
+
+    @Transactional
+    @Override
+    public void delete (UUID id) {
+        repository.deleteById(id);
+    }
+}

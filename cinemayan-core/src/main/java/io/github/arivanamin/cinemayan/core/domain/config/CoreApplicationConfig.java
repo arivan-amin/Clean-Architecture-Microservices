@@ -13,7 +13,7 @@ public final class CoreApplicationConfig {
 
     public static final String APPLICATION_DIRECTORY_NAME = "Cinemayan-Spring-Microservices";
 
-    public static final String BASE_PACKAGE = "io.github.arivanamin.cinemayan.backend";
+    public static final String BASE_PACKAGE = "io.github.arivanamin.cinemayan";
 
     public static final String LIQUIBASE_CHANGELOG_PATH =
         "classpath:db/changelog/changelog-master.xml";
