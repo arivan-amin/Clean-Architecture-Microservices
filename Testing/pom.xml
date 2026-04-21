@@ -10,7 +10,7 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>testing</artifactId>
+    <artifactId>cinemayan-testing</artifactId>
     <version>1.0.0</version>
     <name>Testing</name>
     <description>Testing Module</description>
@@ -51,7 +51,7 @@
 
         <dependency>
             <groupId>io.github.arivanamin</groupId>
-            <artifactId>core</artifactId>
+            <artifactId>cinemayan-core</artifactId>
             <version>${core-module-version}</version>
         </dependency>
 

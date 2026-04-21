@@ -10,7 +10,7 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>coverage-module</artifactId>
+    <artifactId>cinemayan-coverage-module</artifactId>
     <version>1.0.0</version>
     <name>Coverage-Module</name>
     <description>Coverage Module</description>
@@ -23,37 +23,37 @@
     <dependencies>
         <dependency>
             <groupId>io.github.arivanamin</groupId>
-            <artifactId>core</artifactId>
+            <artifactId>cinemayan-core</artifactId>
             <version>${core-module-version}</version>
         </dependency>
         <dependency>
             <groupId>io.github.arivanamin</groupId>
-            <artifactId>testing</artifactId>
+            <artifactId>cinemayan-testing</artifactId>
             <version>${testing-module-version}</version>
         </dependency>
         <dependency>
             <groupId>io.github.arivanamin</groupId>
-            <artifactId>outbox-storage</artifactId>
+            <artifactId>cinemayan-outbox-storage</artifactId>
             <version>${outbox-storage-module-version}</version>
         </dependency>
         <dependency>
             <groupId>io.github.arivanamin</groupId>
-            <artifactId>discovery-server</artifactId>
+            <artifactId>cinemayan-discovery-server</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>io.github.arivanamin</groupId>
-            <artifactId>api-gateway</artifactId>
+            <artifactId>cinemayan-api-gateway</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>io.github.arivanamin</groupId>
-            <artifactId>audit-service</artifactId>
+            <artifactId>cinemayan-audit-service</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>io.github.arivanamin</groupId>
-            <artifactId>student-service</artifactId>
+            <artifactId>cinemayan-student-service</artifactId>
             <version>1.0.0</version>
         </dependency>
     </dependencies>

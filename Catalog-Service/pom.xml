@@ -10,7 +10,7 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>student-service</artifactId>
+    <artifactId>cinemayan-student-service</artifactId>
     <version>1.0.0</version>
     <name>Student-Service</name>
     <description>Student Service Module</description>
@@ -28,17 +28,17 @@
 
         <dependency>
             <groupId>io.github.arivanamin</groupId>
-            <artifactId>core</artifactId>
+            <artifactId>cinemayan-core</artifactId>
             <version>${core-module-version}</version>
         </dependency>
         <dependency>
             <groupId>io.github.arivanamin</groupId>
-            <artifactId>testing</artifactId>
+            <artifactId>cinemayan-testing</artifactId>
             <version>${testing-module-version}</version>
         </dependency>
         <dependency>
             <groupId>io.github.arivanamin</groupId>
-            <artifactId>outbox-storage</artifactId>
+            <artifactId>cinemayan-outbox-storage</artifactId>
             <version>${outbox-storage-module-version}</version>
         </dependency>
 

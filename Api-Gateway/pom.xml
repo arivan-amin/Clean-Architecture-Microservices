@@ -10,7 +10,7 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>api-gateway</artifactId>
+    <artifactId>cinemayan-api-gateway</artifactId>
     <version>1.0.0</version>
     <name>API-Gateway</name>
     <description>API-Gateway</description>
@@ -37,12 +37,12 @@
 
         <dependency>
             <groupId>io.github.arivanamin</groupId>
-            <artifactId>core</artifactId>
+            <artifactId>cinemayan-core</artifactId>
             <version>${core-module-version}</version>
         </dependency>
         <dependency>
             <groupId>io.github.arivanamin</groupId>
-            <artifactId>testing</artifactId>
+            <artifactId>cinemayan-testing</artifactId>
             <version>${testing-module-version}</version>
         </dependency>
     </dependencies>

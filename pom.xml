@@ -60,7 +60,7 @@
         <module>Outbox-Storage</module>
         <module>Coverage-Module</module>
         <module>Audit-Service</module>
-        <module>Student-Service</module>
+        <module>Catalog-Service</module>
     </modules>
 
     <dependencies>

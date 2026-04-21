@@ -10,7 +10,7 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>discovery-server</artifactId>
+    <artifactId>cinemayan-discovery-server</artifactId>
     <version>1.0.0</version>
     <name>Discovery-Server</name>
     <description>Discovery Server Module</description>
@@ -27,12 +27,12 @@
 
         <dependency>
             <groupId>io.github.arivanamin</groupId>
-            <artifactId>core</artifactId>
+            <artifactId>cinemayan-core</artifactId>
             <version>${core-module-version}</version>
         </dependency>
         <dependency>
             <groupId>io.github.arivanamin</groupId>
-            <artifactId>testing</artifactId>
+            <artifactId>cinemayan-testing</artifactId>
             <version>${testing-module-version}</version>
         </dependency>
     </dependencies>
