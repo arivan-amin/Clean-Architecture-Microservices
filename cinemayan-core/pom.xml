@@ -13,7 +13,6 @@
     <artifactId>cinemayan-core</artifactId>
     <version>1.0.0</version>
     <name>Cinemayan :: Core</name>
-    <description>Core Module</description>
 
     <properties>
         <spring-boot.repackage.skip>true</spring-boot.repackage.skip>

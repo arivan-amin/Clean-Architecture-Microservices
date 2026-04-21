@@ -13,7 +13,6 @@
     <artifactId>cinemayan-coverage</artifactId>
     <version>1.0.0</version>
     <name>Cinemayan :: Coverage</name>
-    <description>Coverage Module</description>
 
     <properties>
         <spring-boot.repackage.skip>true</spring-boot.repackage.skip>

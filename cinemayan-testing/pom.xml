@@ -13,7 +13,6 @@
     <artifactId>cinemayan-testing</artifactId>
     <version>1.0.0</version>
     <name>Cinemayan :: Testing</name>
-    <description>Testing Module</description>
 
     <properties>
         <spring-boot.repackage.skip>true</spring-boot.repackage.skip>

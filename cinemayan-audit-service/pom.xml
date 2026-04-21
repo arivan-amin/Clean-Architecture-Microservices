@@ -13,7 +13,6 @@
     <artifactId>cinemayan-audit-service</artifactId>
     <version>1.0.0</version>
     <name>Cinemayan :: Audit Service</name>
-    <description>audit Service Module</description>
 
     <dependencies>
         <dependency>

@@ -16,7 +16,7 @@
     <version>1.0.0</version>
     <packaging>pom</packaging>
     <name>Cinemayan</name>
-    <description>Cinemayan Backend Module</description>
+
     <url>https://github.com/arivan-amin/Cinemayan-Spring-Microservices</url>
 
     <properties>

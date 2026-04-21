@@ -13,7 +13,6 @@
     <artifactId>cinemayan-catalog-service</artifactId>
     <version>1.0.0</version>
     <name>Cinemayan :: Catalog Service</name>
-    <description>Student Service Module</description>
 
     <dependencies>
         <dependency>

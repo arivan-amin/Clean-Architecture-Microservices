@@ -13,7 +13,6 @@
     <artifactId>cinemayan-discovery-server</artifactId>
     <version>1.0.0</version>
     <name>Cinemayan :: Discovery Server</name>
-    <description>Discovery Server Module</description>
 
     <dependencies>
         <dependency>
