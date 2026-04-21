@@ -1,12 +1,16 @@
-# Cinemayan Spring Microservices
+# Cinemayan
 
 ## Clean Architecture with Spring Boot 4
 
-## Overview
+Cinemayan is a microservices backend application designed to provide detailed information for:
+
+- Movies
+- TV Series
+- Anime & Manga
 
 This codebase is designed for Java backend developers interested in a **Microservices** application
-following on **Clean Architecture** and **SOLID** principles, built with **Spring Boot 4**, **Java
-25**, and **Spring Framework 7**.
+following on **Clean Architecture** and **SOLID** principles, DDD, built with **Spring Boot 4**,
+**Java 25**, and **Spring Framework 7**.
 
 ---
 
@@ -24,9 +28,17 @@ following on **Clean Architecture** and **SOLID** principles, built with **Sprin
 ![Repo Size](https://img.shields.io/github/repo-size/arivan-amin/Spring-Clean-Microservices)
 ![Contributors](https://img.shields.io/github/contributors/arivan-amin/Spring-Clean-Microservices)
 
-## Services Overview
+---
 
-![image](https://raw.githubusercontent.com/arivan-amin/Cinemayan-Spring-Microservices/master/Docs/Diagram/Architecture-Diagram.jpg)
+## Currently Implemented Services:
+
+- Eureka Discovery Server
+- Spring Boot API Gateway
+- Audit Service
+
+## In Progress:
+
+- Catalog Service
 
 ## Technologies used and their responsibility
 
@@ -82,9 +94,9 @@ In each service, there are 3 layers:
 
 ### Infrastructure
 
-- Contains only classes related to data persistence, JPA, JDBC, or any other data storing mechanism
-  that belong to this layer.
-- Only calls to persistence classes are allowed.
+- Contains only classes related to infrastructure concerns such as data persistence, JPA, JDBC,
+  Messaging, external communications that belong to this layer.
+- Only calls to infrastructure classes are allowed.
 - Spring configs and web classes don't belong here.
 - This is the second inner layer; it can access the Domain layer.
 - Any access or references to classes in the Application layer will cause unit test failure.
@@ -172,38 +184,7 @@ Domain entities have no association with JPA and are never annotated with @Entit
             "duration": "50ms",
             "response": "CreateStudentResponse(id=9622e5ef-5ab7-4faf-89db-7dd970ea8ef0)"
         }
-
-        // Delete Student Endpoint
-        {
-            "id": "6797e0115829937787277605",
-            "serviceName": "student-service",
-            "location": "/students/protected/v1/accounts/{id}",
-            "action": "Delete",
-            "data": "e8cd23d1-4bad-44bb-9b58-a3ca89dbf793",
-            "creationDate": "2025-01-27T14:35:45.631",
-            "duration": "25ms",
-            "response": "Void"
-        },
-        
-        // Read Student by ID Endpoint
-        {
-            "id": "6797e0145829937787277606",
-            "serviceName": "student-service",
-            "location": "/students/protected/v1/accounts/{id}",
-            "action": "Read",
-            "data": "e8cd23d1-4bad-44bb-9b58-a3ca89dbf793",
-            "creationDate": "2025-01-27T14:35:48.66",
-            "duration": "14ms",
-            "response": "Error: Student by the requested id not found"
-        }
 ```
-
-### Currently, the following services are implemented; other services will be added:
-
-- Discovery Server
-- API Gateway
-- Audit Service
-- Catalog Service
 
 ---
 
@@ -226,7 +207,7 @@ Domain entities have no association with JPA and are never annotated with @Entit
 1. **Clone the Repository:**
    ```
    git clone https://github.com/arivan-amin/Cinemayan-Spring-Microservices.git
-   cd Spring-Clean-Microservices
+   cd Cinemayan-Spring-Microservices
    ```
 
 2. **Build and deploy the services to Docker using JIB:**

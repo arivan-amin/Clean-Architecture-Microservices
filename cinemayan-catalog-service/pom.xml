@@ -10,7 +10,7 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>cinemayan-student-service</artifactId>
+    <artifactId>cinemayan-catalog-service</artifactId>
     <version>1.0.0</version>
     <name>Student-Service</name>
     <description>Student Service Module</description>
