@@ -53,14 +53,14 @@
     </properties>
 
     <modules>
-        <module>Discovery-Server</module>
-        <module>Api-Gateway</module>
-        <module>Core</module>
-        <module>Testing</module>
-        <module>Outbox-Storage</module>
-        <module>Coverage-Module</module>
-        <module>Audit-Service</module>
-        <module>Catalog-Service</module>
+        <module>cinemayan-discovery-server</module>
+        <module>cinemayan-api-gateway</module>
+        <module>cinemayan-core</module>
+        <module>cinemayan-testing</module>
+        <module>cinemayan-outbox</module>
+        <module>cinemayan-coverage</module>
+        <module>cinemayan-audit-service</module>
+        <module>cinemayan-catalog-service</module>
     </modules>
 
     <dependencies>
