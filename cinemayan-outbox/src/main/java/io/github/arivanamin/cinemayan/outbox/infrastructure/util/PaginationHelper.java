@@ -1,7 +1,7 @@
 package io.github.arivanamin.cinemayan.outbox.infrastructure.util;
 
-import io.github.arivanamin.cinemayan.backend.core.domain.pagination.PageData;
-import io.github.arivanamin.cinemayan.backend.core.domain.pagination.PaginatedResponse;
+import io.github.arivanamin.cinemayan.core.domain.pagination.PageData;
+import io.github.arivanamin.cinemayan.core.domain.pagination.PaginatedResponse;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.springframework.data.domain.Page;

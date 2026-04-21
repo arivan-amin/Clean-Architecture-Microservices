@@ -1,7 +1,7 @@
 package io.github.arivanamin.cinemayan.outbox.infrastructure.audit;
 
-import io.github.arivanamin.cinemayan.backend.core.domain.outbox.AuditOutboxMessage;
-import io.github.arivanamin.cinemayan.backend.core.domain.outbox.OutboxMessageStatus;
+import io.github.arivanamin.cinemayan.core.domain.outbox.AuditOutboxMessage;
+import io.github.arivanamin.cinemayan.core.domain.outbox.OutboxMessageStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

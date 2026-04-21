@@ -4,9 +4,7 @@ import io.github.arivanamin.cinemayan.audit.application.response.AuditEventRespo
 import io.github.arivanamin.cinemayan.audit.application.response.ReadAuditEventsResponse;
 import io.github.arivanamin.cinemayan.audit.domain.query.readbyid.*;
 import io.github.arivanamin.cinemayan.audit.domain.query.readbyspec.*;
-import io.github.arivanamin.cinemayan.backend.core.domain.pagination.PaginationCriteria;
-import io.github.arivanamin.lms.backend.audit.domain.query.readbyid.*;
-import io.github.arivanamin.lms.backend.audit.domain.query.readbyspec.*;
+import io.github.arivanamin.cinemayan.core.domain.pagination.PaginationCriteria;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;

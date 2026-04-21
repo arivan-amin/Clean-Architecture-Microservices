@@ -1,7 +1,7 @@
 package io.github.arivanamin.cinemayan.student.application.endpoints;
 
-import io.github.arivanamin.cinemayan.backend.core.domain.gender.Gender;
-import io.github.arivanamin.cinemayan.backend.core.domain.pagination.PaginationCriteria;
+import io.github.arivanamin.cinemayan.core.domain.gender.Gender;
+import io.github.arivanamin.cinemayan.core.domain.pagination.PaginationCriteria;
 import io.github.arivanamin.cinemayan.student.application.request.CreateStudentRequest;
 import io.github.arivanamin.cinemayan.student.application.request.UpdateStudentRequest;
 import io.github.arivanamin.cinemayan.student.application.response.*;
@@ -15,10 +15,6 @@ import io.github.arivanamin.cinemayan.student.domain.entity.StudentStatus;
 import io.github.arivanamin.cinemayan.student.domain.persistence.ReadStudentsParams;
 import io.github.arivanamin.cinemayan.student.domain.query.readbyid.*;
 import io.github.arivanamin.cinemayan.student.domain.query.readbyspec.*;
-import io.github.arivanamin.lms.backend.student.application.response.*;
-import io.github.arivanamin.lms.backend.student.domain.command.create.*;
-import io.github.arivanamin.lms.backend.student.domain.query.readbyid.*;
-import io.github.arivanamin.lms.backend.student.domain.query.readbyspec.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;

@@ -5,7 +5,7 @@ import io.github.arivanamin.cinemayan.student.domain.command.update.UpdateStuden
 import io.github.arivanamin.cinemayan.student.domain.command.update.UpdateStudentInput;
 import io.github.arivanamin.cinemayan.student.domain.entity.Student;
 import io.github.arivanamin.cinemayan.student.domain.persistence.StudentStorage;
-import io.github.arivanamin.lms.backend.testing.architecture.bases.BaseUnitTest;
+import io.github.arivanamin.cinemayan.testing.architecture.bases.BaseUnitTest;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;

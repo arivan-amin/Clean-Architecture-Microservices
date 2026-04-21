@@ -1,6 +1,6 @@
 package io.github.arivanamin.cinemayan.outbox.infrastructure.audit;
 
-import io.github.arivanamin.cinemayan.backend.core.domain.outbox.OutboxMessageStatus;
+import io.github.arivanamin.cinemayan.core.domain.outbox.OutboxMessageStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

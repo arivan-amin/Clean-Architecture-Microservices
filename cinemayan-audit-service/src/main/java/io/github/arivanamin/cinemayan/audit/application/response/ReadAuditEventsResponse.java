@@ -1,8 +1,8 @@
 package io.github.arivanamin.cinemayan.audit.application.response;
 
-import io.github.arivanamin.cinemayan.backend.core.domain.audit.AuditEvent;
-import io.github.arivanamin.cinemayan.backend.core.domain.pagination.PageData;
-import io.github.arivanamin.cinemayan.backend.core.domain.pagination.PaginatedResponse;
+import io.github.arivanamin.cinemayan.core.domain.audit.AuditEvent;
+import io.github.arivanamin.cinemayan.core.domain.pagination.PageData;
+import io.github.arivanamin.cinemayan.core.domain.pagination.PaginatedResponse;
 
 import java.util.List;
 

@@ -3,7 +3,7 @@ package io.github.arivanamin.cinemayan.student.domain.command;
 import io.github.arivanamin.cinemayan.student.domain.command.delete.DeleteStudentCommand;
 import io.github.arivanamin.cinemayan.student.domain.command.delete.DeleteStudentInput;
 import io.github.arivanamin.cinemayan.student.domain.persistence.StudentStorage;
-import io.github.arivanamin.lms.backend.testing.architecture.bases.BaseUnitTest;
+import io.github.arivanamin.cinemayan.testing.architecture.bases.BaseUnitTest;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
 

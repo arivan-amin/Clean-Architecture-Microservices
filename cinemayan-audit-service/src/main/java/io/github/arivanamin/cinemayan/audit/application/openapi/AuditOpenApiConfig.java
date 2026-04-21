@@ -1,6 +1,6 @@
 package io.github.arivanamin.cinemayan.audit.application.openapi;
 
-import io.github.arivanamin.cinemayan.backend.core.application.config.OpenApiServerProperties;
+import io.github.arivanamin.cinemayan.core.application.config.OpenApiServerProperties;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.servers.Server;
@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
+
+import static io.github.arivanamin.cinemayan.core.application.openapi.OpenApiDetails.*;
 
 @Configuration
 @RequiredArgsConstructor

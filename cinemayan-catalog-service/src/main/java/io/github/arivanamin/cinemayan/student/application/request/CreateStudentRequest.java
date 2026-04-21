@@ -1,8 +1,7 @@
 package io.github.arivanamin.cinemayan.student.application.request;
 
-import io.github.arivanamin.cinemayan.backend.core.domain.gender.Gender;
+import io.github.arivanamin.cinemayan.core.domain.gender.Gender;
 import io.github.arivanamin.cinemayan.student.domain.entity.*;
-import io.github.arivanamin.lms.backend.student.domain.entity.*;
 import lombok.*;
 
 import java.time.LocalDate;

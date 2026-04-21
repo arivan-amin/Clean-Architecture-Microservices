@@ -1,6 +1,6 @@
 package io.github.arivanamin.cinemayan.student.application.response;
 
-import io.github.arivanamin.lms.backend.testing.architecture.bases.BaseUnitTest;
+import io.github.arivanamin.cinemayan.testing.architecture.bases.BaseUnitTest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 

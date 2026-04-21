@@ -1,7 +1,7 @@
 package io.github.arivanamin.cinemayan.audit.domain.persistence;
 
-import io.github.arivanamin.cinemayan.backend.core.domain.audit.AuditEvent;
-import io.github.arivanamin.cinemayan.backend.core.domain.pagination.PaginatedResponse;
+import io.github.arivanamin.cinemayan.core.domain.audit.AuditEvent;
+import io.github.arivanamin.cinemayan.core.domain.pagination.PaginatedResponse;
 
 import java.util.Optional;
 import java.util.UUID;

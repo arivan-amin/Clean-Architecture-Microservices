@@ -2,7 +2,7 @@ package io.github.arivanamin.cinemayan.audit.domain.query.readbyid;
 
 import io.github.arivanamin.cinemayan.audit.domain.exception.AuditEventNotFoundException;
 import io.github.arivanamin.cinemayan.audit.domain.persistence.AuditEventStorage;
-import io.github.arivanamin.cinemayan.backend.core.domain.audit.AuditEvent;
+import io.github.arivanamin.cinemayan.core.domain.audit.AuditEvent;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

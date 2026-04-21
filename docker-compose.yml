@@ -178,7 +178,7 @@ services:
 #    image: arivanamin/lms-audit-service
 #    container_name: Audit-Service
 #
-#  student-service:
+#  catalog-service:
 #    <<: *base-service
 #    image: arivanamin/lms-student-service
 #    container_name: Student-Service

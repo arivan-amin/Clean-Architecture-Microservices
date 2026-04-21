@@ -1,6 +1,6 @@
 package io.github.arivanamin.cinemayan.student.infrastructure;
 
-import io.github.arivanamin.cinemayan.backend.core.domain.gender.Gender;
+import io.github.arivanamin.cinemayan.core.domain.gender.Gender;
 import io.github.arivanamin.cinemayan.student.infrastructure.entity.StudentEntity;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;

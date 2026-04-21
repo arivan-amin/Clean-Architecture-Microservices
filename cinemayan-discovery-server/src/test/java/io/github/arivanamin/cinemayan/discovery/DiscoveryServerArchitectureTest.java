@@ -2,8 +2,8 @@ package io.github.arivanamin.cinemayan.discovery;
 
 import com.tngtech.archunit.core.importer.ImportOption;
 import com.tngtech.archunit.junit.AnalyzeClasses;
-import io.github.arivanamin.lms.backend.testing.architecture.rules.CleanArchitectureRules;
-import io.github.arivanamin.lms.backend.testing.architecture.rules.CommonBestPracticeRules;
+import io.github.arivanamin.cinemayan.testing.architecture.rules.CleanArchitectureRules;
+import io.github.arivanamin.cinemayan.testing.architecture.rules.CommonBestPracticeRules;
 
 import static io.github.arivanamin.cinemayan.core.domain.config.CoreApplicationConfig.BASE_PACKAGE;
 

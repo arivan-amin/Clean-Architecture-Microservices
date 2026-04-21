@@ -1,6 +1,6 @@
 package io.github.arivanamin.cinemayan.testing.architecture.bases;
 
-import io.github.arivanamin.cinemayan.backend.core.domain.pagination.PageData;
+import io.github.arivanamin.cinemayan.core.domain.pagination.PageData;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 

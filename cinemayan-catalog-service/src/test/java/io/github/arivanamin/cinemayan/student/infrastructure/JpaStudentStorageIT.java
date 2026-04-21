@@ -1,10 +1,10 @@
 package io.github.arivanamin.cinemayan.student.infrastructure;
 
-import io.github.arivanamin.cinemayan.backend.core.domain.gender.Gender;
+import io.github.arivanamin.cinemayan.core.domain.gender.Gender;
 import io.github.arivanamin.cinemayan.student.domain.entity.Student;
 import io.github.arivanamin.cinemayan.student.infrastructure.entity.StudentEntity;
 import io.github.arivanamin.cinemayan.student.infrastructure.repository.StudentRepository;
-import io.github.arivanamin.lms.backend.testing.architecture.bases.BaseDatabaseTest;
+import io.github.arivanamin.cinemayan.testing.architecture.bases.BaseDatabaseTest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;

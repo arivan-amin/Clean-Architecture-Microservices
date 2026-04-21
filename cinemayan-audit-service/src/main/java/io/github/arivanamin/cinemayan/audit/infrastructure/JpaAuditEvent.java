@@ -1,6 +1,6 @@
 package io.github.arivanamin.cinemayan.audit.infrastructure;
 
-import io.github.arivanamin.cinemayan.backend.core.domain.audit.AuditEvent;
+import io.github.arivanamin.cinemayan.core.domain.audit.AuditEvent;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;

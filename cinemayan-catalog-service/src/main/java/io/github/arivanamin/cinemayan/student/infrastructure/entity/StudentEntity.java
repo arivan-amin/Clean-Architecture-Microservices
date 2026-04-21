@@ -1,9 +1,8 @@
 package io.github.arivanamin.cinemayan.student.infrastructure.entity;
 
-import io.github.arivanamin.cinemayan.backend.core.domain.gender.Gender;
+import io.github.arivanamin.cinemayan.core.domain.gender.Gender;
+import io.github.arivanamin.cinemayan.outbox.infrastructure.audit.AuditFields;
 import io.github.arivanamin.cinemayan.student.domain.entity.*;
-import io.github.arivanamin.lms.backend.outbox.infrastructure.audit.AuditFields;
-import io.github.arivanamin.lms.backend.student.domain.entity.*;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;

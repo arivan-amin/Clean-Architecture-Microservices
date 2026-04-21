@@ -6,7 +6,7 @@ import io.github.arivanamin.cinemayan.student.domain.command.create.CreateStuden
 import io.github.arivanamin.cinemayan.student.domain.entity.Student;
 import io.github.arivanamin.cinemayan.student.domain.exception.StudentAlreadyExistsException;
 import io.github.arivanamin.cinemayan.student.domain.persistence.StudentStorage;
-import io.github.arivanamin.lms.backend.testing.architecture.bases.BaseUnitTest;
+import io.github.arivanamin.cinemayan.testing.architecture.bases.BaseUnitTest;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;

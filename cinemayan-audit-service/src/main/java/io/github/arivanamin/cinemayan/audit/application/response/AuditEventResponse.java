@@ -1,6 +1,6 @@
 package io.github.arivanamin.cinemayan.audit.application.response;
 
-import io.github.arivanamin.cinemayan.backend.core.domain.audit.AuditEvent;
+import io.github.arivanamin.cinemayan.core.domain.audit.AuditEvent;
 import lombok.*;
 
 import java.time.Instant;

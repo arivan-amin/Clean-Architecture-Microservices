@@ -1,6 +1,6 @@
 package io.github.arivanamin.cinemayan.student.infrastructure.specification;
 
-import io.github.arivanamin.cinemayan.backend.core.domain.gender.Gender;
+import io.github.arivanamin.cinemayan.core.domain.gender.Gender;
 import io.github.arivanamin.cinemayan.student.domain.entity.GradeLevel;
 import io.github.arivanamin.cinemayan.student.domain.entity.StudentStatus;
 import io.github.arivanamin.cinemayan.student.infrastructure.entity.StudentEntity;
