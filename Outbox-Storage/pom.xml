@@ -10,7 +10,7 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>outbox-storage</artifactId>
+    <artifactId>cinemayan-outbox-storage</artifactId>
     <version>1.0.0</version>
     <name>Outbox-Storage</name>
     <description>Outbox Storage Module</description>
@@ -22,13 +22,13 @@
 
     <dependencies>
         <dependency>
-            <groupId>io.github.arivanamin.lms</groupId>
-            <artifactId>core</artifactId>
+            <groupId>io.github.arivanamin</groupId>
+            <artifactId>cinemayan-core</artifactId>
             <version>${core-module-version}</version>
         </dependency>
         <dependency>
-            <groupId>io.github.arivanamin.lms</groupId>
-            <artifactId>testing</artifactId>
+            <groupId>io.github.arivanamin</groupId>
+            <artifactId>cinemayan-testing</artifactId>
             <version>${testing-module-version}</version>
         </dependency>
 

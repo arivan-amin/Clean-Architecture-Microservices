@@ -10,7 +10,7 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>audit-service</artifactId>
+    <artifactId>cinemayan-audit-service</artifactId>
     <version>1.0.0</version>
     <name>Audit-Service</name>
     <description>audit Service Module</description>
@@ -27,18 +27,18 @@
         </dependency>
 
         <dependency>
-            <groupId>io.github.arivanamin.lms</groupId>
-            <artifactId>core</artifactId>
+            <groupId>io.github.arivanamin</groupId>
+            <artifactId>cinemayan-core</artifactId>
             <version>${core-module-version}</version>
         </dependency>
         <dependency>
-            <groupId>io.github.arivanamin.lms</groupId>
-            <artifactId>testing</artifactId>
+            <groupId>io.github.arivanamin</groupId>
+            <artifactId>cinemayan-testing</artifactId>
             <version>${testing-module-version}</version>
         </dependency>
         <dependency>
-            <groupId>io.github.arivanamin.lms</groupId>
-            <artifactId>outbox-storage</artifactId>
+            <groupId>io.github.arivanamin</groupId>
+            <artifactId>cinemayan-outbox-storage</artifactId>
             <version>${outbox-storage-module-version}</version>
         </dependency>
 

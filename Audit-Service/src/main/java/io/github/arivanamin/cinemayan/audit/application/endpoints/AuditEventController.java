@@ -1,0 +1,55 @@
+package io.github.arivanamin.cinemayan.audit.application.endpoints;
+
+import io.github.arivanamin.cinemayan.audit.application.response.AuditEventResponse;
+import io.github.arivanamin.cinemayan.audit.application.response.ReadAuditEventsResponse;
+import io.github.arivanamin.cinemayan.audit.domain.query.readbyid.*;
+import io.github.arivanamin.cinemayan.audit.domain.query.readbyspec.*;
+import io.github.arivanamin.cinemayan.backend.core.domain.pagination.PaginationCriteria;
+import io.github.arivanamin.lms.backend.audit.domain.query.readbyid.*;
+import io.github.arivanamin.lms.backend.audit.domain.query.readbyspec.*;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import java.time.Instant;
+import java.util.UUID;
+
+import static io.github.arivanamin.cinemayan.audit.application.config.AuditApiURLs.GET_EVENTS_URL;
+import static io.github.arivanamin.cinemayan.audit.application.config.AuditApiURLs.GET_EVENT_BY_ID_URL;
+import static io.github.arivanamin.cinemayan.core.domain.util.MappingUtility.mapIfNotNull;
+
+@Tag (name = "Audit Event Controller")
+@RestController
+@RequiredArgsConstructor
+@Slf4j
+class AuditEventController {
+
+    private final ReadAuditEventsQuery readQuery;
+    private final ReadAuditEventByIdQuery readByIdQuery;
+
+    @GetMapping (GET_EVENTS_URL)
+    @Operation (summary = "Get a list of auditEvents")
+    @ResponseStatus (HttpStatus.OK)
+    public ReadAuditEventsResponse getAllAuditEvents (@RequestParam long start,
+                                                      @RequestParam long end,
+                                                      @RequestParam Integer page,
+                                                      @RequestParam Integer size) {
+        ReadAuditEventsInput input =
+            new ReadAuditEventsInput(mapIfNotNull(start, Instant::ofEpochMilli),
+                mapIfNotNull(end, Instant::ofEpochMilli), PaginationCriteria.of(page, size));
+        ReadAuditEventsOutput output = readQuery.execute(input);
+        return ReadAuditEventsResponse.of(output.getEvents());
+    }
+
+    @GetMapping (GET_EVENT_BY_ID_URL)
+    @Operation (summary = "Get a single auditEvent by id")
+    @ResponseStatus (HttpStatus.OK)
+    public AuditEventResponse getAuditEventById (@PathVariable UUID id) {
+        ReadAuditEventByIdInput input = new ReadAuditEventByIdInput(id);
+        ReadAuditEventByIdOutput output = readByIdQuery.execute(input);
+        return AuditEventResponse.of(output.getEvent());
+    }
+}

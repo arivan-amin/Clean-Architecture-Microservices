@@ -1,0 +1,17 @@
+package io.github.arivanamin.cinemayan.audit.application.response;
+
+import io.github.arivanamin.cinemayan.backend.core.domain.audit.AuditEvent;
+import io.github.arivanamin.cinemayan.backend.core.domain.pagination.PageData;
+import io.github.arivanamin.cinemayan.backend.core.domain.pagination.PaginatedResponse;
+
+import java.util.List;
+
+public record ReadAuditEventsResponse(PageData pageData, List<AuditEventResponse> events) {
+
+    public static ReadAuditEventsResponse of (PaginatedResponse<AuditEvent> paginatedResponse) {
+        return new ReadAuditEventsResponse(paginatedResponse.pageData(), paginatedResponse.content()
+            .stream()
+            .map(AuditEventResponse::of)
+            .toList());
+    }
+}
