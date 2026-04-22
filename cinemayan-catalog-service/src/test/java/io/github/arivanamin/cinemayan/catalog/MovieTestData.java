@@ -9,15 +9,15 @@ import java.time.LocalDate;
 import java.util.List;
 
 @NoArgsConstructor (access = AccessLevel.PRIVATE)
-public final class StudentTestData {
+public final class MovieTestData {
 
-    public static List<Student> studentsList () {
+    public static List<Movie> moviesList () {
         return List.of(withEmail("clint.eastwood@example.com"),
             withEmail("anne.hathaway@example.com"), withEmail("kate.wislet@example.com"));
     }
 
-    public static Student withEmail (String email) {
-        Student entity = new Student();
+    public static Movie withEmail (String email) {
+        Movie entity = new Movie();
         entity.setFirstName("Brad");
         entity.setLastName("Pitt");
         entity.setEmail(email);
@@ -31,7 +31,7 @@ public final class StudentTestData {
         return entity;
     }
 
-    public static Student withDefaultEmail () {
+    public static Movie withDefaultEmail () {
         return withEmail("emma.stone@example.com");
     }
 }
