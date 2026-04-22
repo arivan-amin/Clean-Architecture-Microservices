@@ -1,8 +1,8 @@
 package io.github.arivanamin.cinemayan.catalog.infrastructure.storage.movie;
 
-import io.github.arivanamin.cinemayan.catalog.domain.entity.Movie;
-import io.github.arivanamin.cinemayan.catalog.domain.persistence.MovieSearchCriteria;
-import io.github.arivanamin.cinemayan.catalog.domain.persistence.MovieStorage;
+import io.github.arivanamin.cinemayan.catalog.domain.movie.entity.Movie;
+import io.github.arivanamin.cinemayan.catalog.domain.movie.storage.MovieSearchCriteria;
+import io.github.arivanamin.cinemayan.catalog.domain.movie.storage.MovieStorage;
 import io.github.arivanamin.cinemayan.core.domain.pagination.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,6 +1,6 @@
 package io.github.arivanamin.cinemayan.catalog;
 
-import io.github.arivanamin.cinemayan.catalog.domain.entity.*;
+import io.github.arivanamin.cinemayan.catalog.domain.movie.entity.*;
 import io.github.arivanamin.cinemayan.core.domain.gender.Gender;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;

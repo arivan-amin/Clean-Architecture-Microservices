@@ -1,9 +1,9 @@
 package io.github.arivanamin.cinemayan.catalog.application.beans;
 
-import io.github.arivanamin.cinemayan.catalog.domain.command.create.CreateStudentCommand;
 import io.github.arivanamin.cinemayan.catalog.domain.command.delete.DeleteStudentCommand;
 import io.github.arivanamin.cinemayan.catalog.domain.command.update.UpdateStudentCommand;
-import io.github.arivanamin.cinemayan.catalog.domain.persistence.MovieStorage;
+import io.github.arivanamin.cinemayan.catalog.domain.movie.command.create.CreateStudentCommand;
+import io.github.arivanamin.cinemayan.catalog.domain.movie.storage.MovieStorage;
 import io.github.arivanamin.cinemayan.catalog.domain.query.readbyid.ReadStudentByIdQuery;
 import io.github.arivanamin.cinemayan.catalog.domain.query.readbyspec.ReadStudentsQuery;
 import io.github.arivanamin.cinemayan.catalog.infrastructure.storage.movie.MovieJpaStorage;

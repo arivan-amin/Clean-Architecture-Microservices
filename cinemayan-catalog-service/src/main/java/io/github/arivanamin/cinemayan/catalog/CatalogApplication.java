@@ -18,9 +18,9 @@ import static io.github.arivanamin.cinemayan.core.domain.config.CoreApplicationC
 @EnableCaching
 @EnableScheduling
 @EnableJpaAuditing
-public class StudentApplication {
+public class CatalogApplication {
 
     static void main (String[] args) {
-        SpringApplication.run(StudentApplication.class, args);
+        SpringApplication.run(CatalogApplication.class, args);
     }
 }

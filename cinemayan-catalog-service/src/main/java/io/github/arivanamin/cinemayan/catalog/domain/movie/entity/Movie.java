@@ -1,4 +1,4 @@
-package io.github.arivanamin.cinemayan.catalog.domain.entity;
+package io.github.arivanamin.cinemayan.catalog.domain.movie.entity;
 
 import io.github.arivanamin.cinemayan.core.domain.gender.Gender;
 import lombok.*;
@@ -13,7 +13,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults (level = AccessLevel.PRIVATE)
-public class Student {
+public class Movie {
 
     UUID id;
     String firstName;

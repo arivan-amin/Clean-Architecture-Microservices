@@ -1,7 +1,7 @@
 package io.github.arivanamin.cinemayan.catalog.application.advice;
 
-import io.github.arivanamin.cinemayan.catalog.domain.exception.MovieAlreadyExistsException;
-import io.github.arivanamin.cinemayan.catalog.domain.exception.MovieNotFoundException;
+import io.github.arivanamin.cinemayan.catalog.domain.movie.exception.MovieAlreadyExistsException;
+import io.github.arivanamin.cinemayan.catalog.domain.movie.exception.MovieNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ProblemDetail;
 import org.springframework.web.bind.annotation.ExceptionHandler;

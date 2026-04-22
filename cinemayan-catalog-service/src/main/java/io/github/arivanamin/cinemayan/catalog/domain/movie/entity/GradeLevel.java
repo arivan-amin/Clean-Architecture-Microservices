@@ -1,4 +1,4 @@
-package io.github.arivanamin.cinemayan.catalog.domain.entity;
+package io.github.arivanamin.cinemayan.catalog.domain.movie.entity;
 
 public enum GradeLevel {
     GRADE_1,

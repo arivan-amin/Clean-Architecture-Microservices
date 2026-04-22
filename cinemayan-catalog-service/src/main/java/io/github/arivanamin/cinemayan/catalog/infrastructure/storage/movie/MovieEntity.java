@@ -1,6 +1,6 @@
 package io.github.arivanamin.cinemayan.catalog.infrastructure.storage.movie;
 
-import io.github.arivanamin.cinemayan.catalog.domain.entity.*;
+import io.github.arivanamin.cinemayan.catalog.domain.movie.entity.*;
 import io.github.arivanamin.cinemayan.core.domain.gender.Gender;
 import io.github.arivanamin.cinemayan.outbox.infrastructure.audit.AuditFields;
 import jakarta.persistence.*;

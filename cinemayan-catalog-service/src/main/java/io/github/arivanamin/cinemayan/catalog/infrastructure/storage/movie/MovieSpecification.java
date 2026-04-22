@@ -1,7 +1,7 @@
 package io.github.arivanamin.cinemayan.catalog.infrastructure.storage.movie;
 
-import io.github.arivanamin.cinemayan.catalog.domain.entity.GradeLevel;
-import io.github.arivanamin.cinemayan.catalog.domain.entity.StudentStatus;
+import io.github.arivanamin.cinemayan.catalog.domain.movie.entity.GradeLevel;
+import io.github.arivanamin.cinemayan.catalog.domain.movie.entity.StudentStatus;
 import io.github.arivanamin.cinemayan.core.domain.gender.Gender;
 import jakarta.persistence.criteria.*;
 import lombok.RequiredArgsConstructor;
