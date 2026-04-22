@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 import java.util.UUID;
 
 @RequiredArgsConstructor
-public class CreateStudentCommand {
+public class CreateMovieCommand {
 
     private final MovieStorage storage;
 
