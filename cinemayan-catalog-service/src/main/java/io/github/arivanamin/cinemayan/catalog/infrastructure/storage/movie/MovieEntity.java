@@ -1,4 +1,4 @@
-package io.github.arivanamin.cinemayan.catalog.infrastructure.entity;
+package io.github.arivanamin.cinemayan.catalog.infrastructure.storage.movie;
 
 import io.github.arivanamin.cinemayan.catalog.domain.entity.*;
 import io.github.arivanamin.cinemayan.core.domain.gender.Gender;
@@ -15,7 +15,7 @@ import java.util.UUID;
 import static jakarta.persistence.EnumType.STRING;
 
 @Entity
-@Table (name = "students")
+@Table (name = "movies")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -23,7 +23,7 @@ import static jakarta.persistence.EnumType.STRING;
 @Builder
 @FieldDefaults (level = AccessLevel.PRIVATE)
 @ToString (callSuper = true)
-public class StudentEntity extends AuditFields {
+public class MovieEntity extends AuditFields {
 
     @Id
     @UuidGenerator
@@ -69,14 +69,14 @@ public class StudentEntity extends AuditFields {
     @Column (name = "address")
     String address;
 
-    public static StudentEntity fromDomain (Student domain) {
-        return new StudentEntity(domain.getId(), domain.getFirstName(), domain.getLastName(),
+    public static MovieEntity fromDomain (Movie domain) {
+        return new MovieEntity(domain.getId(), domain.getFirstName(), domain.getLastName(),
             domain.getEmail(), domain.getPhoneNumber(), domain.getDateOfBirth(), domain.getGender(),
             domain.getStatus(), domain.getGradeLevel(), domain.getAddress());
     }
 
-    public Student toDomain () {
-        return new Student(id, firstName, lastName, email, phoneNumber, dateOfBirth, gender, status,
+    public Movie toDomain () {
+        return new Movie(id, firstName, lastName, email, phoneNumber, dateOfBirth, gender, status,
             gradeLevel, address, getCreatedAt(), getUpdatedAt());
     }
 }
