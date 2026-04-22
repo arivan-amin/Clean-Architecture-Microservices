@@ -1,7 +1,7 @@
 package io.github.arivanamin.cinemayan.catalog.application.advice;
 
-import io.github.arivanamin.cinemayan.catalog.domain.exception.StudentAlreadyExistsException;
-import io.github.arivanamin.cinemayan.catalog.domain.exception.StudentNotFoundException;
+import io.github.arivanamin.cinemayan.catalog.domain.exception.MovieAlreadyExistsException;
+import io.github.arivanamin.cinemayan.catalog.domain.exception.MovieNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ProblemDetail;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -20,12 +20,12 @@ import static org.springframework.http.ProblemDetail.forStatusAndDetail;
 
 @RestControllerAdvice
 @Slf4j
-public final class StudentControllerAdvice {
+public final class MovieControllerAdvice {
 
-    @ExceptionHandler (StudentNotFoundException.class)
-    ProblemDetail handleStudentNotFound (StudentNotFoundException exception) {
+    @ExceptionHandler (MovieNotFoundException.class)
+    ProblemDetail handleMovieNotFound (MovieNotFoundException exception) {
         ProblemDetail detail = forStatusAndDetail(NOT_FOUND, exception.getMessage());
-        detail.setTitle("Requested Student Not Found");
+        detail.setTitle("Requested Movie Not Found");
         detail.setType(URI.create(RUNTIME_EXCEPTION_URL));
         detail.setProperty(CATEGORY, RESOURCE_NOT_FOUND);
         detail.setProperty(TIMESTAMP, Instant.now());
@@ -33,12 +33,12 @@ public final class StudentControllerAdvice {
         return detail;
     }
 
-    @ExceptionHandler (StudentAlreadyExistsException.class)
-    ProblemDetail handleStudentNotFound (StudentAlreadyExistsException exception) {
+    @ExceptionHandler (MovieAlreadyExistsException.class)
+    ProblemDetail handleMovieNotFound (MovieAlreadyExistsException exception) {
         ProblemDetail detail = forStatusAndDetail(CONFLICT, exception.getMessage());
-        detail.setTitle("Conflict, Student already exists");
+        detail.setTitle("Conflict, Movie already exists");
         detail.setType(URI.create(RUNTIME_EXCEPTION_URL));
-        detail.setProperty(CATEGORY, "Student Already Exists");
+        detail.setProperty(CATEGORY, "Movie Already Exists");
         detail.setProperty(TIMESTAMP, Instant.now());
         log.error(exception.getMessage(), exception);
         return detail;

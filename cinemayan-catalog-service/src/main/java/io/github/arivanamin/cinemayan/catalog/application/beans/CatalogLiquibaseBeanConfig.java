@@ -11,11 +11,11 @@ import static io.github.arivanamin.cinemayan.core.domain.config.CoreApplicationC
 
 @Configuration
 @Slf4j
-class StudentLiquibaseBeanConfig {
+class CatalogLiquibaseBeanConfig {
 
     @Bean
     public SpringLiquibase liquibase (DataSource dataSource) {
-        log.info("Initializing Student Liquibase Bean");
+        log.info("Initializing Catalog Liquibase Bean");
         SpringLiquibase liquibase = new SpringLiquibase();
         liquibase.setDataSource(dataSource);
         liquibase.setChangeLog(LIQUIBASE_CHANGELOG_PATH);

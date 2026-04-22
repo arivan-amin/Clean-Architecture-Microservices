@@ -3,44 +3,44 @@ package io.github.arivanamin.cinemayan.catalog.application.beans;
 import io.github.arivanamin.cinemayan.catalog.domain.command.create.CreateStudentCommand;
 import io.github.arivanamin.cinemayan.catalog.domain.command.delete.DeleteStudentCommand;
 import io.github.arivanamin.cinemayan.catalog.domain.command.update.UpdateStudentCommand;
-import io.github.arivanamin.cinemayan.catalog.domain.persistence.StudentStorage;
+import io.github.arivanamin.cinemayan.catalog.domain.persistence.MovieStorage;
 import io.github.arivanamin.cinemayan.catalog.domain.query.readbyid.ReadStudentByIdQuery;
 import io.github.arivanamin.cinemayan.catalog.domain.query.readbyspec.ReadStudentsQuery;
-import io.github.arivanamin.cinemayan.catalog.infrastructure.DatabaseStudentStorage;
-import io.github.arivanamin.cinemayan.catalog.infrastructure.repository.StudentRepository;
+import io.github.arivanamin.cinemayan.catalog.infrastructure.storage.movie.MovieJpaStorage;
+import io.github.arivanamin.cinemayan.catalog.infrastructure.storage.movie.MovieRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-class StudentBeansConfig {
+class MovieBeansConfig {
 
     @Bean
-    public StudentStorage storage (StudentRepository repository) {
-        return new DatabaseStudentStorage(repository);
+    public MovieStorage storage (MovieRepository repository) {
+        return new MovieJpaStorage(repository);
     }
 
     @Bean
-    public ReadStudentsQuery readStudentsQuery (StudentStorage storage) {
+    public ReadStudentsQuery readMoviesQuery (MovieStorage storage) {
         return new ReadStudentsQuery(storage);
     }
 
     @Bean
-    public ReadStudentByIdQuery readStudentByIdQuery (StudentStorage storage) {
+    public ReadStudentByIdQuery readMovieByIdQuery (MovieStorage storage) {
         return new ReadStudentByIdQuery(storage);
     }
 
     @Bean
-    public CreateStudentCommand createStudentCommand (StudentStorage storage) {
+    public CreateStudentCommand createMovieCommand (MovieStorage storage) {
         return new CreateStudentCommand(storage);
     }
 
     @Bean
-    public UpdateStudentCommand updateStudentCommand (StudentStorage storage) {
+    public UpdateStudentCommand updateMovieCommand (MovieStorage storage) {
         return new UpdateStudentCommand(storage);
     }
 
     @Bean
-    public DeleteStudentCommand deleteStudentCommand (StudentStorage storage) {
+    public DeleteStudentCommand deleteMovieCommand (MovieStorage storage) {
         return new DeleteStudentCommand(storage);
     }
 }

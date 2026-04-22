@@ -1,7 +1,6 @@
 package io.github.arivanamin.cinemayan.catalog.application.openapi;
 
 import io.github.arivanamin.cinemayan.core.application.config.OpenApiServerProperties;
-import io.github.arivanamin.cinemayan.core.application.openapi.OpenApiDetails;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.servers.Server;
@@ -11,9 +10,11 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
+import static io.github.arivanamin.cinemayan.core.application.openapi.OpenApiDetails.*;
+
 @Configuration
 @RequiredArgsConstructor
-class StudentOpenApiConfig {
+class CatalogOpenApiConfig {
 
     private final OpenApiServerProperties serverProperties;
 
@@ -23,12 +24,12 @@ class StudentOpenApiConfig {
         server.setUrl(serverProperties.url());
         server.setDescription("Server URL");
 
-        Info info = new Info().title("Student Service API")
-            .description("Provides all the API related to Student service")
+        Info info = new Info().title("Catalog Service API")
+            .description("Provides all the API related to Catalog service")
             .version("1.0")
-            .contact(OpenApiDetails.getOpenApiContactDetails())
-            .termsOfService(OpenApiDetails.getOpenApiTermsOfService())
-            .license(OpenApiDetails.getOpenApiLicence());
+            .contact(getOpenApiContactDetails())
+            .termsOfService(getOpenApiTermsOfService())
+            .license(getOpenApiLicence());
 
         return new OpenAPI().info(info)
             .servers(List.of(server));
