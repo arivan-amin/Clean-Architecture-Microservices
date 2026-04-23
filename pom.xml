@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>4.0.5</version>
+        <version>4.0.6</version>
         <relativePath />
     </parent>
 
@@ -22,29 +22,29 @@
     <properties>
         <java.version>25</java.version>
         <spring-cloud-bom-version>2025.1.1</spring-cloud-bom-version>
-        <testcontainers-bom-version>2.0.4</testcontainers-bom-version>
+        <testcontainers-bom-version>2.0.5</testcontainers-bom-version>
         <!-- Other dependency versions -->
         <logstash-encoder-version>9.0</logstash-encoder-version>
-        <datasource-micrometer-version>2.2.0</datasource-micrometer-version>
-        <arch-unit-version>1.4.1</arch-unit-version>
+        <datasource-micrometer-version>2.2.1</datasource-micrometer-version>
+        <arch-unit-version>1.4.2</arch-unit-version>
         <caffeine-cache-version>3.2.3</caffeine-cache-version>
-        <springdoc-web-mvc-version>3.0.2</springdoc-web-mvc-version>
-        <springdoc-web-flux-version>3.0.2</springdoc-web-flux-version>
-        <google-guava-version>33.5.0-jre</google-guava-version>
-        <commons-io-version>2.21.0</commons-io-version>
-        <mysql-version>9.6.0</mysql-version>
+        <springdoc-web-mvc-version>3.0.3</springdoc-web-mvc-version>
+        <springdoc-web-flux-version>3.0.3</springdoc-web-flux-version>
+        <google-guava-version>33.6.0-jre</google-guava-version>
+        <commons-io-version>2.22.0</commons-io-version>
+        <mysql-version>9.7.0</mysql-version>
         <!-- Security Dependencies -->
-        <keycloak-version>26.0.8</keycloak-version>
+        <keycloak-version>26.0.9</keycloak-version>
         <!-- Plugin versions -->
         <compiler-plugin-version>3.15.0</compiler-plugin-version>
         <surefire-plugin-version>3.5.5</surefire-plugin-version>
         <failsafe-plugin-version>3.5.5</failsafe-plugin-version>
         <jib-plugin-version>3.5.1</jib-plugin-version>
         <jacoco-plugin-ver>0.8.14</jacoco-plugin-ver>
-        <pitest-plugin-version>1.23.0</pitest-plugin-version>
+        <pitest-plugin-version>1.23.1</pitest-plugin-version>
         <pitest-plugin-junit5-version>1.2.3</pitest-plugin-junit5-version>
         <pmd-plugin-version>3.28.0</pmd-plugin-version>
-        <spotbugs-plugin-version>4.9.8.2</spotbugs-plugin-version>
+        <spotbugs-plugin-version>4.9.8.3</spotbugs-plugin-version>
         <maven-resources-version>3.5.0</maven-resources-version>
         <!-- Inherited dependency versions -->
         <core-module-version>1.0.0</core-module-version>
