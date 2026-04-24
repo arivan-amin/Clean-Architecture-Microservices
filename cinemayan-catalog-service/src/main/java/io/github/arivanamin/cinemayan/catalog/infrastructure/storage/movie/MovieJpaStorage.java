@@ -76,15 +76,6 @@ public class MovieJpaStorage implements MovieStorage {
     }
 
     private static void updateChangedFields (Movie updatedStudent, MovieEntity storedStudent) {
-        storedStudent.setFirstName(updatedStudent.getFirstName());
-        storedStudent.setLastName(updatedStudent.getLastName());
-        storedStudent.setEmail(updatedStudent.getEmail());
-        storedStudent.setPhoneNumber(updatedStudent.getPhoneNumber());
-        storedStudent.setDateOfBirth(updatedStudent.getDateOfBirth());
-        storedStudent.setGender(updatedStudent.getGender());
-        storedStudent.setStatus(updatedStudent.getStatus());
-        storedStudent.setGradeLevel(updatedStudent.getGradeLevel());
-        storedStudent.setAddress(updatedStudent.getAddress());
     }
 
     @Transactional
