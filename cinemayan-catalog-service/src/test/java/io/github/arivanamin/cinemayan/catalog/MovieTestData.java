@@ -1,11 +1,9 @@
 package io.github.arivanamin.cinemayan.catalog;
 
-import io.github.arivanamin.cinemayan.catalog.domain.movie.entity.*;
-import io.github.arivanamin.cinemayan.core.domain.gender.Gender;
+import io.github.arivanamin.cinemayan.catalog.domain.movie.entity.Movie;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @NoArgsConstructor (access = AccessLevel.PRIVATE)
@@ -17,17 +15,7 @@ public final class MovieTestData {
     }
 
     public static Movie withEmail (String email) {
-        Movie entity = new Movie();
-        entity.setFirstName("Brad");
-        entity.setLastName("Pitt");
-        entity.setEmail(email);
-        entity.setPhoneNumber("07701234567");
-        entity.setDateOfBirth(LocalDate.now()
-            .minusYears(25));
-        entity.setGender(Gender.MALE);
-        entity.setStatus(StudentStatus.ENROLLED);
-        entity.setGradeLevel(GradeLevel.GRADE_5);
-        entity.setAddress("Colorado, Denver 77th avenue");
+        Movie entity = new Movie(null);
         return entity;
     }
 
