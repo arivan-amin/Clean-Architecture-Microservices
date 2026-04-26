@@ -38,17 +38,25 @@ class ControllerLoggingAspect {
 
         Instant start = Instant.now(clock);
         Object result = null;
+        Throwable caughtException = null;
+
         try {
             result = executeThrowable(joinPoint::proceed);
         }
         catch (RuntimeException exception) {
-            result = "Error: " + exception.getMessage();
+            caughtException = exception;
+            result = "Error: %s".formatted(exception.getMessage());
         }
         finally {
             Duration duration = Duration.between(start, Instant.now());
             logExecutionDuration(joinPoint, duration);
             extractAuditEventDetailsAndSaveToStorage(joinPoint, result, duration);
         }
+
+        if (caughtException != null) {
+            throw caughtException;
+        }
+
         return result;
     }
 

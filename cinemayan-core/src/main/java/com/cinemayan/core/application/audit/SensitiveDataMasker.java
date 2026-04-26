@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -62,8 +63,10 @@ class SensitiveDataMasker {
     private List<Field> collectFields (Class<?> clazz) {
         List<Field> fields = new ArrayList<>();
         Class<?> current = clazz;
-        while (current != null && current != Object.class) {
-            fields.addAll(Arrays.asList(current.getDeclaredFields()));
+        while (current != null && current != Object.class && isUserDefinedClass(current)) {
+            Arrays.stream(current.getDeclaredFields())
+                .filter(field -> !isSkippableField(field))
+                .forEach(fields::add);
             current = current.getSuperclass();
         }
         return fields;
@@ -76,6 +79,16 @@ class SensitiveDataMasker {
         String stringValue = fieldValue == null ? "null" : fieldValue.toString();
         maskedFields.put(field.getName(),
             isAnnotatedWithSensitiveData(field) ? MASK_VALUE : stringValue);
+    }
+
+    private boolean isUserDefinedClass (Class<?> clazz) {
+        return clazz.getPackageName()
+            .startsWith("com.cinemayan.");
+    }
+
+    private boolean isSkippableField (Field field) {
+        int modifiers = field.getModifiers();
+        return Modifier.isStatic(modifiers) || field.isSynthetic();
     }
 
     private boolean isAnnotatedWithSensitiveData (Field field) {

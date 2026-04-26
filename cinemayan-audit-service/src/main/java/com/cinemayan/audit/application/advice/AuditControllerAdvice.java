@@ -1,6 +1,7 @@
 package com.cinemayan.audit.application.advice;
 
 import com.cinemayan.audit.domain.exception.AuditEventNotFoundException;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
@@ -25,10 +26,13 @@ public final class AuditControllerAdvice {
 
     @ResponseStatus (NOT_FOUND)
     @ExceptionHandler (AuditEventNotFoundException.class)
-    ProblemDetail handleAuditEventNotFound (AuditEventNotFoundException exception) {
-        log.error(exception.getMessage(), exception);
+    ProblemDetail handleAuditEventNotFound (AuditEventNotFoundException exception,
+                                            HttpServletRequest request) {
+        log.warn("Audit event not found Exception [eventID = {}, errorCode = {}, URI = {}]",
+            exception.getEventId(), exception.getErrorCode(), request.getRequestURI());
 
-        ProblemDetail detail = ProblemDetail.forStatusAndDetail(NOT_FOUND, exception.getMessage());
+        ProblemDetail detail =
+            ProblemDetail.forStatusAndDetail(NOT_FOUND, "Audit event by ID not found");
         detail.setTitle("Audit Event Not Found");
         detail.setType(URI.create(RUNTIME_EXCEPTION_URL));
         detail.setProperty(CATEGORY, RESOURCE_NOT_FOUND);
