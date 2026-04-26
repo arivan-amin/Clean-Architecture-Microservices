@@ -2,7 +2,7 @@ package com.cinemayan.audit.domain.query.readbyid;
 
 import com.cinemayan.audit.domain.exception.AuditEventNotFoundException;
 import com.cinemayan.audit.domain.persistence.AuditEventStorage;
-import io.github.arivanamin.cinemayan.core.domain.audit.AuditEvent;
+import com.cinemayan.core.domain.audit.AuditEvent;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -12,7 +12,7 @@ public class ReadAuditEventByIdQuery {
 
     public ReadAuditEventByIdOutput execute (ReadAuditEventByIdInput input) {
         AuditEvent event = storage.findById(input.getId())
-            .orElseThrow(AuditEventNotFoundException::new);
+            .orElseThrow(() -> new AuditEventNotFoundException(input.getId()));
         return new ReadAuditEventByIdOutput(event);
     }
 }

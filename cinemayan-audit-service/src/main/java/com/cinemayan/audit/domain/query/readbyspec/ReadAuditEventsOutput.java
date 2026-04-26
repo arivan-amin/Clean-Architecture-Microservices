@@ -1,7 +1,7 @@
 package com.cinemayan.audit.domain.query.readbyspec;
 
-import io.github.arivanamin.cinemayan.core.domain.audit.AuditEvent;
-import io.github.arivanamin.cinemayan.core.domain.pagination.PaginatedResponse;
+import com.cinemayan.core.domain.audit.AuditEvent;
+import com.cinemayan.core.domain.pagination.PaginatedResponse;
 import lombok.Value;
 
 @Value

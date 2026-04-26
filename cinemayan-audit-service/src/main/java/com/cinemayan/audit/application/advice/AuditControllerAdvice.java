@@ -11,9 +11,9 @@ import java.net.URI;
 import java.time.Clock;
 import java.time.Instant;
 
-import static io.github.arivanamin.cinemayan.core.application.advice.ProblemDetailCategories.RESOURCE_NOT_FOUND;
-import static io.github.arivanamin.cinemayan.core.application.advice.ProblemDetailExceptionUrls.RUNTIME_EXCEPTION_URL;
-import static io.github.arivanamin.cinemayan.core.application.advice.ProblemDetailProperties.*;
+import static com.cinemayan.core.application.advice.ProblemDetailCategories.RESOURCE_NOT_FOUND;
+import static com.cinemayan.core.application.advice.ProblemDetailExceptionUrls.RUNTIME_EXCEPTION_URL;
+import static com.cinemayan.core.application.advice.ProblemDetailProperties.*;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @RestControllerAdvice

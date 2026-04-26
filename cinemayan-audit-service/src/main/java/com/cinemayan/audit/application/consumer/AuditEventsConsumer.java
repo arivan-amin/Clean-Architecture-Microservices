@@ -2,11 +2,11 @@ package com.cinemayan.audit.application.consumer;
 
 import com.cinemayan.audit.domain.command.create.CreateAuditEventCommand;
 import com.cinemayan.audit.domain.command.create.CreateAuditEventInput;
-import io.github.arivanamin.cinemayan.core.domain.aspects.LogExecutionTime;
-import io.github.arivanamin.cinemayan.core.domain.audit.AuditEvent;
-import io.github.arivanamin.cinemayan.core.domain.command.update.UpdateAuditOutboxMessageStatusCommand;
-import io.github.arivanamin.cinemayan.core.domain.command.update.UpdateAuditOutboxMessageStatusInput;
-import io.github.arivanamin.cinemayan.core.domain.outbox.OutboxMessageStatus;
+import com.cinemayan.core.domain.aspects.LogExecutionTime;
+import com.cinemayan.core.domain.audit.AuditEvent;
+import com.cinemayan.core.domain.command.update.UpdateAuditOutboxMessageStatusCommand;
+import com.cinemayan.core.domain.command.update.UpdateAuditOutboxMessageStatusInput;
+import com.cinemayan.core.domain.outbox.OutboxMessageStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
-import static io.github.arivanamin.cinemayan.core.domain.topics.AuditTopics.API_AUDIT_TOPIC;
+import static com.cinemayan.core.domain.topics.AuditTopics.API_AUDIT_TOPIC;
 
 @Service
 @RequiredArgsConstructor

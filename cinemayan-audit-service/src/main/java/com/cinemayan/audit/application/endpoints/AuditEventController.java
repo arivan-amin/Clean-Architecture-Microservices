@@ -4,7 +4,7 @@ import com.cinemayan.audit.application.response.AuditEventResponse;
 import com.cinemayan.audit.application.response.ReadAuditEventsResponse;
 import com.cinemayan.audit.domain.query.readbyid.*;
 import com.cinemayan.audit.domain.query.readbyspec.*;
-import io.github.arivanamin.cinemayan.core.domain.pagination.PaginationCriteria;
+import com.cinemayan.core.domain.pagination.PaginationCriteria;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +17,7 @@ import java.util.UUID;
 
 import static com.cinemayan.audit.application.config.AuditApiURLs.GET_EVENTS_URL;
 import static com.cinemayan.audit.application.config.AuditApiURLs.GET_EVENT_BY_ID_URL;
-import static io.github.arivanamin.cinemayan.core.domain.util.MappingUtility.mapIfNotNull;
+import static com.cinemayan.core.domain.util.MappingUtility.mapIfNotNull;
 
 @Tag (name = "Audit Event Controller")
 @RestController

@@ -2,10 +2,10 @@ package com.cinemayan.audit.infrastructure;
 
 import com.cinemayan.audit.domain.persistence.AuditEventStorage;
 import com.cinemayan.audit.domain.persistence.ReadAuditEventsParams;
-import io.github.arivanamin.cinemayan.core.domain.audit.AuditEvent;
-import io.github.arivanamin.cinemayan.core.domain.pagination.PaginatedResponse;
-import io.github.arivanamin.cinemayan.core.domain.pagination.PaginationCriteria;
-import io.github.arivanamin.cinemayan.outbox.infrastructure.util.PaginationHelper;
+import com.cinemayan.core.domain.audit.AuditEvent;
+import com.cinemayan.core.domain.pagination.PaginatedResponse;
+import com.cinemayan.core.domain.pagination.PaginationCriteria;
+import com.cinemayan.outbox.infrastructure.util.PaginationHelper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.*;

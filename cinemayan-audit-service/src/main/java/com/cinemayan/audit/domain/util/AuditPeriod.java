@@ -1,6 +1,6 @@
 package com.cinemayan.audit.domain.util;
 
-import io.github.arivanamin.cinemayan.core.domain.util.MappingUtility;
+import com.cinemayan.core.domain.util.MappingUtility;
 import lombok.Value;
 
 import java.time.Instant;

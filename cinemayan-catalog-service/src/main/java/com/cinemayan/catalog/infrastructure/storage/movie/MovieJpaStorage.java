@@ -3,7 +3,7 @@ package com.cinemayan.catalog.infrastructure.storage.movie;
 import com.cinemayan.catalog.domain.movie.entity.Movie;
 import com.cinemayan.catalog.domain.movie.storage.MovieSearchCriteria;
 import com.cinemayan.catalog.domain.movie.storage.MovieStorage;
-import io.github.arivanamin.cinemayan.core.domain.pagination.*;
+import com.cinemayan.core.domain.pagination.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -23,8 +23,7 @@ public class MovieJpaStorage implements MovieStorage {
     public PaginatedResponse<Movie> findAll (MovieSearchCriteria params,
                                              PaginationCriteria criteria) {
         MovieSpecification specification =
-            new MovieSpecification(params.getSearchQuery(), params.getGender(),
-                params.getStatuses(), params.getGradeLevels(), params.getStartDate(),
+            new MovieSpecification(params.getSearchQuery(), params.getStartDate(),
                 params.getEndDate());
 
         PageRequest pageable = PageRequest.of(criteria.getPage(), criteria.getSize());

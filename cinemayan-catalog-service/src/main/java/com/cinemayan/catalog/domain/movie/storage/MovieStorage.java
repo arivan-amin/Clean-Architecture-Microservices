@@ -1,8 +1,8 @@
 package com.cinemayan.catalog.domain.movie.storage;
 
 import com.cinemayan.catalog.domain.movie.entity.Movie;
-import io.github.arivanamin.cinemayan.core.domain.pagination.PaginatedResponse;
-import io.github.arivanamin.cinemayan.core.domain.pagination.PaginationCriteria;
+import com.cinemayan.core.domain.pagination.PaginatedResponse;
+import com.cinemayan.core.domain.pagination.PaginationCriteria;
 
 import java.util.Optional;
 import java.util.UUID;

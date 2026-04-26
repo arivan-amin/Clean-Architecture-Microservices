@@ -1,12 +1,12 @@
 package com.cinemayan.audit.application.response;
 
-import io.github.arivanamin.cinemayan.core.domain.audit.AuditEvent;
+import com.cinemayan.core.domain.audit.AuditEvent;
 import lombok.*;
 
 import java.time.Instant;
 import java.util.UUID;
 
-import static io.github.arivanamin.cinemayan.core.domain.util.MappingUtility.mapIfNotNull;
+import static com.cinemayan.core.domain.util.MappingUtility.mapIfNotNull;
 
 @Data
 @NoArgsConstructor

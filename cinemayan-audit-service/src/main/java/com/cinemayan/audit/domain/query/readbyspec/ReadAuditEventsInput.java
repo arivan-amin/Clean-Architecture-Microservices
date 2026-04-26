@@ -1,6 +1,6 @@
 package com.cinemayan.audit.domain.query.readbyspec;
 
-import io.github.arivanamin.cinemayan.core.domain.pagination.PaginationCriteria;
+import com.cinemayan.core.domain.pagination.PaginationCriteria;
 import lombok.Value;
 
 import java.time.Instant;

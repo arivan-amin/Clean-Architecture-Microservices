@@ -1,7 +1,7 @@
 package com.cinemayan.catalog.infrastructure.storage.movie;
 
 import com.cinemayan.catalog.domain.movie.entity.Movie;
-import io.github.arivanamin.cinemayan.outbox.infrastructure.audit.AuditFields;
+import com.cinemayan.outbox.infrastructure.audit.AuditFields;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.UuidGenerator;
