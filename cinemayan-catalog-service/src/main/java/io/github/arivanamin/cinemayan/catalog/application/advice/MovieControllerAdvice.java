@@ -31,7 +31,9 @@ public final class MovieControllerAdvice {
     @ExceptionHandler (MovieNotFoundException.class)
     ProblemDetail handleMovieNotFound (MovieNotFoundException exception,
                                        HttpServletRequest request) {
-        log.warn("Movie not found Exception", exception);
+        log.warn("Movie not found Exception [movieID = {}, errorCode = {}, URI = {}]",
+            exception.getMovieId(), exception.getErrorCode(), request.getRequestURI());
+        
         ProblemDetail detail = ProblemDetail.forStatusAndDetail(NOT_FOUND, "Movie Not Found");
         detail.setTitle("Requested Movie Not Found");
         detail.setType(URI.create(RUNTIME_EXCEPTION_URL));
@@ -46,9 +48,10 @@ public final class MovieControllerAdvice {
     @ExceptionHandler (MovieAlreadyExistsException.class)
     ProblemDetail handleMovieAlreadyExists (MovieAlreadyExistsException exception,
                                             HttpServletRequest request) {
-        log.warn("Movie already exists [title = {}, errorCode = {}, uri = {}]",
+        log.warn("Movie already exists [title = {}, errorCode = {}, URI = {}]",
             exception.getMovieTitle(), exception.getErrorCode(), request.getRequestURI(),
             exception);
+
         ProblemDetail detail = ProblemDetail.forStatusAndDetail(CONFLICT, "Movie already exists");
         detail.setTitle("Conflict, Movie already exists");
         detail.setType(URI.create(RUNTIME_EXCEPTION_URL));

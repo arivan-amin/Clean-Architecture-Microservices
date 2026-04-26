@@ -13,6 +13,7 @@ import org.springframework.web.servlet.resource.NoResourceFoundException;
 import java.net.URI;
 import java.time.Clock;
 import java.time.Instant;
+import java.util.List;
 
 import static io.github.arivanamin.cinemayan.core.application.advice.ProblemDetailCategories.*;
 import static io.github.arivanamin.cinemayan.core.application.advice.ProblemDetailExceptionUrls.*;
@@ -30,6 +31,9 @@ public final class CommonControllerAdvice {
     @ExceptionHandler (MissingPathVariableException.class)
     ProblemDetail handleMissingPathVariable (MissingPathVariableException exception,
                                              HttpServletRequest request) {
+        log.warn("Bad request, Missing required path variables [uri={}, variable={}]",
+            request.getRequestURI(), exception.getVariableName(), exception);
+
         ProblemDetail detail = ProblemDetail.forStatusAndDetail(BAD_REQUEST,
             "Bad request, Missing required path variables");
         detail.setTitle("Bad request, Missing required path variables");
@@ -38,8 +42,6 @@ public final class CommonControllerAdvice {
         detail.setProperty(TIMESTAMP, Instant.now(clock));
         detail.setProperty(TRACE_ID_KEY, MDC.get(TRACE_ID_VALUE));
         detail.setProperty(SPAN_ID_KEY, MDC.get(SPAN_ID_VALUE));
-        log.warn("Path variable mismatch — likely a controller mapping bug [uri={}, variable={}]",
-            request.getRequestURI(), exception.getVariableName(), exception);
         return detail;
     }
 
@@ -47,6 +49,11 @@ public final class CommonControllerAdvice {
     @ExceptionHandler (HttpMessageNotReadableException.class)
     ProblemDetail handleMissingRequestBody (HttpMessageNotReadableException exception,
                                             HttpServletRequest request) {
+        log.warn(
+            "Bad request, Malformed or missing request body [method = {},uri = {},contentType = " +
+                "{},client = {},reason = {}", request.getMethod(), request.getRequestURI(),
+            request.getContentType(), request.getRemoteAddr(), exception.getMessage());
+
         ProblemDetail detail = ProblemDetail.forStatusAndDetail(BAD_REQUEST,
             "Bad Request, Required request body is missing or unreadable");
         detail.setTitle("Bad Request, Required request body is missing or unreadable");
@@ -55,7 +62,6 @@ public final class CommonControllerAdvice {
         detail.setProperty(TIMESTAMP, Instant.now(clock));
         detail.setProperty(TRACE_ID_KEY, MDC.get(TRACE_ID_VALUE));
         detail.setProperty(SPAN_ID_KEY, MDC.get(SPAN_ID_VALUE));
-        log.warn("Bad Request, Required request body is missing or unreadable", exception);
         return detail;
     }
 
@@ -63,6 +69,15 @@ public final class CommonControllerAdvice {
     @ExceptionHandler (MethodArgumentNotValidException.class)
     ProblemDetail handleMethodArgumentNotValid (MethodArgumentNotValidException exception,
                                                 HttpServletRequest request) {
+        List<String> violations = exception.getBindingResult()
+            .getFieldErrors()
+            .stream()
+            .map(error -> "%s:%s".formatted(error.getField(), error.getDefaultMessage()))
+            .toList();
+        log.warn(
+            "Bad Request, Validation failed [method = {},uri = {}, client = {}, validations = {}]",
+            request.getMethod(), request.getRequestURI(), request.getRemoteAddr(), violations);
+
         ProblemDetail detail = ProblemDetail.forStatusAndDetail(BAD_REQUEST,
             "Bad Request, Validation failed for one or more arguments");
         detail.setTitle("Bad Request, Validation failed for one or more arguments");
@@ -71,7 +86,6 @@ public final class CommonControllerAdvice {
         detail.setProperty(TIMESTAMP, Instant.now(clock));
         detail.setProperty(TRACE_ID_KEY, MDC.get(TRACE_ID_VALUE));
         detail.setProperty(SPAN_ID_KEY, MDC.get(SPAN_ID_VALUE));
-        log.warn("Bad Request, Validation failed for one or more arguments", exception);
         return detail;
     }
 
@@ -79,6 +93,11 @@ public final class CommonControllerAdvice {
     @ExceptionHandler (MissingServletRequestParameterException.class)
     ProblemDetail handleMissingParameterException (
         MissingServletRequestParameterException exception, HttpServletRequest request) {
+        log.warn(
+            "Missing required request parameter: [method = {}, uri = {}, client = {}, paramName =" +
+                " {}, " + "paramType = {}]", request.getMethod(), request.getRequestURI(),
+            request.getRemoteAddr(), exception.getParameterName(), exception.getParameterType());
+
         ProblemDetail detail =
             ProblemDetail.forStatusAndDetail(BAD_REQUEST, "Bad Request, Missing Parameter");
         detail.setTitle("Bad Request, Missing Parameter");
@@ -87,7 +106,6 @@ public final class CommonControllerAdvice {
         detail.setProperty(TIMESTAMP, Instant.now(clock));
         detail.setProperty(TRACE_ID_KEY, MDC.get(TRACE_ID_VALUE));
         detail.setProperty(SPAN_ID_KEY, MDC.get(SPAN_ID_VALUE));
-        log.warn("Bad Request, Missing Parameter", exception);
         return detail;
     }
 
@@ -95,6 +113,10 @@ public final class CommonControllerAdvice {
     @ExceptionHandler (NoResourceFoundException.class)
     ProblemDetail handleResourceNotFound (NoResourceFoundException exception,
                                           HttpServletRequest request) {
+        log.warn("Resource not found: method={}, uri={}, client={}, resourcePath={}",
+            request.getMethod(), request.getRequestURI(), request.getRemoteAddr(),
+            exception.getResourcePath());
+
         ProblemDetail detail =
             ProblemDetail.forStatusAndDetail(NOT_FOUND, "Requested Resource not found");
         detail.setTitle("Requested Resource not found");
@@ -103,13 +125,14 @@ public final class CommonControllerAdvice {
         detail.setProperty(TIMESTAMP, Instant.now(clock));
         detail.setProperty(TRACE_ID_KEY, MDC.get(TRACE_ID_VALUE));
         detail.setProperty(SPAN_ID_KEY, MDC.get(SPAN_ID_VALUE));
-        log.warn("Requested Resource not found", exception);
         return detail;
     }
 
     @ResponseStatus (INTERNAL_SERVER_ERROR)
     @ExceptionHandler (Exception.class)
     ProblemDetail handleGeneralExceptions (Exception exception) {
+        log.error("Unhandled Exception occurred", exception);
+        
         ProblemDetail detail =
             ProblemDetail.forStatusAndDetail(INTERNAL_SERVER_ERROR, "Unhandled exception occurred");
         detail.setTitle("Unhandled exception occurred");
@@ -118,7 +141,6 @@ public final class CommonControllerAdvice {
         detail.setProperty(TIMESTAMP, Instant.now(clock));
         detail.setProperty(TRACE_ID_KEY, MDC.get(TRACE_ID_VALUE));
         detail.setProperty(SPAN_ID_KEY, MDC.get(SPAN_ID_VALUE));
-        log.warn("Unhandled Exception occurred", exception);
         return detail;
     }
 }
