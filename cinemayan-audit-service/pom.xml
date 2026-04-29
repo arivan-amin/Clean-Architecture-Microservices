@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>io.github.arivanamin</groupId>
+        <groupId>com.cinemayan</groupId>
         <artifactId>cinemayan</artifactId>
         <version>1.0.0</version>
     </parent>
@@ -26,17 +26,17 @@
         </dependency>
 
         <dependency>
-            <groupId>io.github.arivanamin</groupId>
+            <groupId>com.cinemayan</groupId>
             <artifactId>cinemayan-core</artifactId>
             <version>${core-module-version}</version>
         </dependency>
         <dependency>
-            <groupId>io.github.arivanamin</groupId>
+            <groupId>com.cinemayan</groupId>
             <artifactId>cinemayan-testing</artifactId>
             <version>${testing-module-version}</version>
         </dependency>
         <dependency>
-            <groupId>io.github.arivanamin</groupId>
+            <groupId>com.cinemayan</groupId>
             <artifactId>cinemayan-outbox</artifactId>
             <version>${outbox-module-version}</version>
         </dependency>
