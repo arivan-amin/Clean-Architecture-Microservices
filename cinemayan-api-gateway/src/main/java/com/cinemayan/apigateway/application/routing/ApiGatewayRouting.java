@@ -27,9 +27,9 @@ class ApiGatewayRouting {
         return builder.routes()
             .route(getDiscoveryServerRoute())
             .route(getDiscoveryServerStaticResourcesRoute())
-            .route(getStudentServiceRoute())
-            .route(getStudentServiceApiDocRoute())
-            .route(getStudentServiceActuatorRoute())
+            .route(getCatalogServiceRoute())
+            .route(getCatalogServiceApiDocRoute())
+            .route(getCatalogServiceActuatorRoute())
             .route(getAuditServiceRoute())
             .route(getAuditServiceApiDocRoute())
             .route(getAuditServiceActuatorRoute())
@@ -47,15 +47,15 @@ class ApiGatewayRouting {
             .uri(getEurekaUrl());
     }
 
-    private Function<PredicateSpec, Buildable<Route>> getStudentServiceRoute () {
+    private Function<PredicateSpec, Buildable<Route>> getCatalogServiceRoute () {
         return routingHelper.createApiRouteForService(CATALOG_SERVICE);
     }
 
-    private Function<PredicateSpec, Buildable<Route>> getStudentServiceApiDocRoute () {
+    private Function<PredicateSpec, Buildable<Route>> getCatalogServiceApiDocRoute () {
         return routingHelper.createApiDocRouteForService(CATALOG_SERVICE);
     }
 
-    private Function<PredicateSpec, Buildable<Route>> getStudentServiceActuatorRoute () {
+    private Function<PredicateSpec, Buildable<Route>> getCatalogServiceActuatorRoute () {
         return routingHelper.createActuatorRouteForService(CATALOG_SERVICE);
     }
 

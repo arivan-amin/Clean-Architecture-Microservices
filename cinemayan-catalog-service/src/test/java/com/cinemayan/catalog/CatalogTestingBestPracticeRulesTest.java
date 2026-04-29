@@ -7,6 +7,6 @@ import com.tngtech.archunit.junit.AnalyzeClasses;
 import static com.cinemayan.core.domain.config.CoreApplicationConfig.BASE_PACKAGE;
 
 @AnalyzeClasses (packages = BASE_PACKAGE, importOptions = ImportOption.OnlyIncludeTests.class)
-class StudentTestingBestPracticeRulesTest implements TestingBestPracticeRules {
+class CatalogTestingBestPracticeRulesTest implements TestingBestPracticeRules {
 
 }

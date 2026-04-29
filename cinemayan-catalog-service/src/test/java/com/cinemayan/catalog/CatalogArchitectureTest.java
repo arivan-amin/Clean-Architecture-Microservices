@@ -8,6 +8,6 @@ import com.tngtech.archunit.junit.AnalyzeClasses;
 import static com.cinemayan.core.domain.config.CoreApplicationConfig.BASE_PACKAGE;
 
 @AnalyzeClasses (packages = BASE_PACKAGE, importOptions = ImportOption.DoNotIncludeTests.class)
-class StudentArchitectureTest implements CommonBestPracticeRules, CleanArchitectureRules {
+class CatalogArchitectureTest implements CommonBestPracticeRules, CleanArchitectureRules {
 
 }
