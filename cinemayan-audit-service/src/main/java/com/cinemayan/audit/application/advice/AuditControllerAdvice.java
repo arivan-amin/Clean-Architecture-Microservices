@@ -1,20 +1,15 @@
 package com.cinemayan.audit.application.advice;
 
 import com.cinemayan.audit.domain.exception.AuditEventNotFoundException;
+import com.cinemayan.core.application.advice.ProblemDetailFactory;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.MDC;
 import org.springframework.http.ProblemDetail;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.URI;
-import java.time.Clock;
-import java.time.Instant;
-
 import static com.cinemayan.core.application.advice.ProblemDetailCategories.RESOURCE_NOT_FOUND;
 import static com.cinemayan.core.application.advice.ProblemDetailExceptionUrls.RUNTIME_EXCEPTION_URL;
-import static com.cinemayan.core.application.advice.ProblemDetailProperties.*;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @RestControllerAdvice
@@ -22,7 +17,7 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 @Slf4j
 public final class AuditControllerAdvice {
 
-    private final Clock clock;
+    private final ProblemDetailFactory factory;
 
     @ResponseStatus (NOT_FOUND)
     @ExceptionHandler (AuditEventNotFoundException.class)
@@ -31,14 +26,8 @@ public final class AuditControllerAdvice {
         log.warn("Audit event not found Exception [eventID = {}, errorCode = {}, URI = {}]",
             exception.getEventId(), exception.getErrorCode(), request.getRequestURI());
 
-        ProblemDetail detail =
-            ProblemDetail.forStatusAndDetail(NOT_FOUND, "Audit event by ID not found");
-        detail.setTitle("Audit Event Not Found");
-        detail.setType(URI.create(RUNTIME_EXCEPTION_URL));
-        detail.setProperty(CATEGORY, RESOURCE_NOT_FOUND);
-        detail.setProperty(TIMESTAMP, Instant.now(clock));
-        detail.setProperty(TRACE_ID_KEY, MDC.get(TRACE_ID_VALUE));
-        detail.setProperty(SPAN_ID_KEY, MDC.get(SPAN_ID_VALUE));
-        return detail;
+        String title = "Resource Not Found";
+        String detail = "Audit Event with ID: %s, Not Found".formatted(exception.getEventId());
+        return factory.build(NOT_FOUND, title, detail, RESOURCE_NOT_FOUND, RUNTIME_EXCEPTION_URL);
     }
 }

@@ -20,10 +20,10 @@ public final class ProblemDetailExceptionUrls {
     public static final String CONSTRAINT_VIOLATION_EXCEPTION_URL =
         "https://docs.oracle.com/javaee/7/api/javax/validation/ConstraintViolationException.html";
 
-    public static final String SPRING_RESOURCE_NOT_FOUND_EXCEPTION_URL =
+    public static final String RESOURCE_NOT_FOUND_EXCEPTION_URL =
         SPRING_DOCS_URI + "/web/servlet/resource/NoResourceFoundException.html";
 
-    public static final String SPRING_REACTIVE_RESOURCE_NOT_FOUND_EXCEPTION_URL =
+    public static final String REACTIVE_RESOURCE_NOT_FOUND_EXCEPTION_URL =
         SPRING_DOCS_URI + "/web/reactive/resource/NoResourceFoundException.html";
 
     public static final String HTTP_MESSAGE_NOT_READABLE_EXCEPTION_URL =
