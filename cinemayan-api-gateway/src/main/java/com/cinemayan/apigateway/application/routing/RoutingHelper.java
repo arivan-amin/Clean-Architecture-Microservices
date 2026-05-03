@@ -30,15 +30,16 @@ public class RoutingHelper {
     public Function<PredicateSpec, Buildable<Route>> createApiDocRouteForService (
         String serviceName) {
         return r -> r.path("/%s-service/api-docs".formatted(serviceName))
-            .filters(f -> f.setPath("/v3/api-docs"))
+            .filters(filter -> filter.setPath("/v3/api-docs"))
             .uri(getLoadBalancedServiceUrl(serviceName));
     }
 
     public Function<PredicateSpec, Buildable<Route>> createActuatorRouteForService (
         String serviceName) {
+        String serviceNameRegex = "/actuator/%ss/(?<segment>.*)".formatted(serviceName);
+        String replacementPath = "/actuator/${segment}";
         return r -> r.path("/actuator/%ss/**".formatted(serviceName))
-            .filters(f -> f.rewritePath("/actuator/%ss/(?<segment>.*)".formatted(serviceName),
-                "/actuator/${segment}"))
+            .filters(filter -> filter.rewritePath(serviceNameRegex, replacementPath))
             .uri(getLoadBalancedServiceUrl(serviceName));
     }
 }

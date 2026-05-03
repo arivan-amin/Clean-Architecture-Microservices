@@ -1,6 +1,7 @@
 package com.cinemayan.apigateway.application.routing;
 
 import com.cinemayan.apigateway.application.config.EurekaProperties;
+import com.cinemayan.apigateway.application.config.RouteProperties;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.route.Route;
@@ -21,9 +22,11 @@ class ApiGatewayRouting {
 
     private final RoutingHelper routingHelper;
     private final EurekaProperties eurekaProperties;
+    private final RouteProperties routeProperties;
 
     @Bean
     public RouteLocator routeLocator (RouteLocatorBuilder builder) {
+        log.info("config routeProperties = {}", routeProperties);
         return builder.routes()
             .route(getDiscoveryServerRoute())
             .route(getDiscoveryServerStaticResourcesRoute())
@@ -38,7 +41,7 @@ class ApiGatewayRouting {
 
     private Function<PredicateSpec, Buildable<Route>> getDiscoveryServerRoute () {
         return r -> r.path("/eureka/web")
-            .filters(f -> f.setPath("/"))
+            .filters(filter -> filter.setPath("/"))
             .uri(getEurekaUrl());
     }
 
